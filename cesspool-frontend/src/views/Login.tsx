@@ -2,12 +2,12 @@ import React from "react";
 
 import styles from "./Login.module.scss"
 
-import LoginBox from "../components/LoginBox";
+import SignInBox from "../components/SignInBox";
 
 const Login: React.FC = () => {
     return(
         <div className={styles.login}>
-            <LoginBox />
+            <SignInBox />
         </div>
 
     )
