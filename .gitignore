@@ -45,3 +45,6 @@ __pycache__
 /cesspool-backend/.env
 /cesspool-backend/venv
 /cesspool-backend/.venv
+
+# Editor files
+.vscode

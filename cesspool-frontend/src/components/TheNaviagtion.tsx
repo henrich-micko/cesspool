@@ -7,9 +7,9 @@ import styles from "./TheNavigation.module.scss"
 const TheNaviagtion: React.FC = () => {
     return(
         <nav className={styles.navigation}>
-            <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Home</NavLink>
-            <NavLink to="/account/login" className={({ isActive }) => isActive ? styles.active : undefined}>Login</NavLink>
-            <NavLink to="/account/signup" className={({ isActive }) => isActive ? styles.active : undefined}>Sign up</NavLink>
+            <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Domov</NavLink>
+            <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlásenie</NavLink>
+            <NavLink to="/logout" className={({ isActive }) => isActive ? styles.active : undefined}>Registrácia</NavLink>
         </nav>    
     )
 }
