@@ -8,8 +8,8 @@ const TheNaviagtion: React.FC = () => {
     return(
         <nav className={styles.navigation}>
             <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Domov</NavLink>
-            <NavLink to="/login" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlásenie</NavLink>
-            <NavLink to="/logout" className={({ isActive }) => isActive ? styles.active : undefined}>Registrácia</NavLink>
+            <NavLink to="/account/signin" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlásenie</NavLink>
+            <NavLink to="/account/signup" className={({ isActive }) => isActive ? styles.active : undefined}>Registrácia</NavLink>
         </nav>    
     )
 }

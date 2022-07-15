@@ -6,7 +6,8 @@ import TheNaviagtion from './components/TheNaviagtion';
 
 // Views
 import Home from './views/Home';
-import Login from "./views/Login"
+import SignIn from "./views/authentication/SignIn"
+import SignUp from "./views/authentication/SignUp"
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       <main className="content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/account/signin" element={<SignIn />} />
+          <Route path="/account/signup" element={<SignUp />} />
         </Routes>
       </main>
     </div>

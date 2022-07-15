@@ -1,12 +1,12 @@
 import React, { useState, ChangeEvent, FormEvent } from "react"
 import { Link } from "react-router-dom";
 
-import styles from "./SignInBox.module.scss"
+import styles from "./styles.module.scss"
 
-const LoginBox: React.FC = () => {
+const SignInBox: React.FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    
+
     const onSubmit = (email: string, password: string) => {
         alert(email + "\n" + password)
     }
@@ -21,12 +21,12 @@ const LoginBox: React.FC = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        
+
         onSubmit(email, password)
     }
 
-    return(
-        <div className={styles.loginBox}>
+    return (
+        <div className={styles.formWrapper}>
             <div className={styles.header}>
                 <h1>Sign in</h1>
             </div>
@@ -45,7 +45,7 @@ const LoginBox: React.FC = () => {
                 <input
                     type="password"
                     spellCheck={false}
-                    placeholder="Password"
+                    placeholder="Heslo"
                     value={password}
                     onChange={handlePassword}
                     required={true}
@@ -56,7 +56,7 @@ const LoginBox: React.FC = () => {
                 </Link>
 
                 <div className={styles.buttonWrapper}>
-                    <input 
+                    <input
                         type="submit"
                         value="Potvrdiť"
                     />
@@ -66,4 +66,4 @@ const LoginBox: React.FC = () => {
     )
 }
 
-export default LoginBox
+export default SignInBox
