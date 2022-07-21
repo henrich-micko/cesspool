@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useContext } from "react"
 
 // Styles && assets
 import logo from "../assets/logo.png"
-import styles from "./Home.module.scss"
+import styles from "./HomeView.module.scss"
 
-const Home: React.FC = () => {
+// Context
+import AuthContext from "../context/AuthContext"
+
+const Home: React.FC = () => {    
     return (
         <div>
              <div>
@@ -13,6 +16,8 @@ const Home: React.FC = () => {
 
             <h1>Cesspool Manager</h1>
             <em>Robíme zo sveta lepšie miesto</em>
+
+            <br />
         </div>
     )
 }
