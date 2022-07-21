@@ -4,6 +4,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from . import serializers
 
@@ -34,6 +35,10 @@ class BlackListTokenView(APIView):
         token.blacklist()
 
         return Response(status = status.HTTP_200_OK)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = serializers.CustomTokenObtainPairSerializer
 
 
 class TestView(APIView):
