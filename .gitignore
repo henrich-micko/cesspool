@@ -1,0 +1,50 @@
+
+# React application
+
+# dependencies
+/cesspool-frontend/node_modules
+/cesspool-frontend/.pnp
+/cesspool-frontend/.pnp.js
+
+# testing
+/cesspool-frontend/coverage
+
+# production
+/cesspool-frontend/build
+
+# misc
+/cesspool-frontend/.DS_Store
+/cesspool-frontend/.env.local
+/cesspool-frontend/.env.development.local
+/cesspool-frontend/.env.test.local
+/cesspool-frontend/.env.production.local
+
+/cesspool-frontend/npm-debug.log*
+/cesspool-frontend/yarn-debug.log*
+/cesspool-frontend/yarn-error.log*
+
+# Django
+
+*.log
+*.pot
+*.pyc
+__pycache__
+
+/cesspool-backend/db.sqlite3
+
+# Python # 
+*.py[cod] 
+*$py.class 
+
+# installer logs 
+/cesspool-backend/pip-log.txt 
+/cesspool-backend/pip-delete-this-directory.txt 
+
+# env
+/cesspool-backend/env
+/cesspool-backend/.env
+/cesspool-backend/venv
+/cesspool-backend/.venv
+
+# Editor files
+.vscode
