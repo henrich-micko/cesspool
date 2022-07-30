@@ -21,6 +21,8 @@ class Machine(models.Model):
 
 
 class Record(models.Model):
+    objects = models.Manager.from_queryset(managers.QuerySet)
+
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE)  
     
     date = models.DateTimeField(auto_now_add = True)
