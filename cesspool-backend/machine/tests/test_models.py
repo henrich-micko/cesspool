@@ -49,7 +49,6 @@ class TestModels(TestCase):
     def test_level_average(self):
         machine = models.Machine.objects.create(
             title = "test_level_average",
-            code = "000001"
         )
 
         for i in range(1, 5):
