@@ -5,8 +5,6 @@ from . import managers
 
 
 class Machine(models.Model):
-    objects = managers.MachineManager()
-
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
     
     title = models.CharField(max_length = 20)

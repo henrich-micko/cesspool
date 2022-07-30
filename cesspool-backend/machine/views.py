@@ -38,9 +38,11 @@ class RecordsAPIView(APIView):
         if machine == None:
             return Response({"detail": "This user doesn't own machine with this code."}, status = status.HTTP_404_NOT_FOUND)
 
+        period = request.query_params.get("period", "day")
+
         records = machine.record_set.all()
         records_serializer = serializers.RecordSerializer(instance = records, many = True)
-        
+
         return Response(records_serializer.data, status = status.HTTP_200_OK)
 
 records_view = RecordsAPIView.as_view()
