@@ -6,9 +6,10 @@ from . import managers
 
 class Machine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
-    
+
     title = models.CharField(max_length = 20)
     code = models.CharField(max_length = 10, unique = True)
+    max_level = models.IntegerField(null = True, blank = True)
 
     def __str__(self):
         return f"{self.code}"
@@ -21,10 +22,10 @@ class Machine(models.Model):
 
 
 class Record(models.Model):
-    objects = models.Manager.from_queryset(managers.QuerySet)
+    objects = managers.RecordQuerySet.as_manager()
 
-    machine = models.ForeignKey(Machine, on_delete = models.CASCADE)  
-    
+    machine = models.ForeignKey(Machine, on_delete = models.CASCADE)
+
     date = models.DateTimeField(auto_now_add = True)
     level = models.IntegerField(default = 0)
     battery = models.IntegerField(default = 0)

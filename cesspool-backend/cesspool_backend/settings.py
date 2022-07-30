@@ -150,3 +150,5 @@ REST_FRAMEWORK = {
 
 # Change for public !!!
 CORS_ALLOW_ALL_ORIGINS = True
+
+TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
