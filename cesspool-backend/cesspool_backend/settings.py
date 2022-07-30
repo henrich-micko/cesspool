@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     
     'corsheaders',
 
-    'account.apps.AccountConfig'
+    'account.apps.AccountConfig',
+    'machine.apps.MachineConfig'
 ]
 
 MIDDLEWARE = [
