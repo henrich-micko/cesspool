@@ -1,35 +1,30 @@
-from rest_framework.generics import ListAPIView
+from rest_framework import status
+from rest_framework.views import APIView, Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.exceptions import ValidationError
 
-from . import serializers, models
+from . import serializers
 
 
-# Get list of machines
-class MachinesListView(ListAPIView):
+class MachineDetailAPIView(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = serializers.MachineSerializer
+    
+    def get(self, request, code: str):
+        machine = request.user.machine_set.get(code = code)
+        if machine == None:
+            return Response({"detail": "This user doesn't own machine with this code."}, status = status.HTTP_404_NOT_FOUND)
 
-    def get_queryset(self):
-        return self.request.user.machine_set.all()
+        machine_serializer = serializers.MachineSerializer(instance = machine)
+        return Response(machine_serializer.data, status = status.HTTP_200_OK)
+
+machine_detail_view = MachineDetailAPIView.as_view()
 
 
-# Get list of records of spec machine
-class RecordsListView(ListAPIView):
+class MyMachinesAPIView(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = serializers.RecordSerializer
 
-    def get_queryset(self):
-        machine_id = self.request.query_params.get("machine", None)
-        records = self.request.query_params.get("records", None)
+    def get(self, request):
+        machines = request.user.machine_set.all()
+        machines_serializer = serializers.MachineSerializer(instance = machines, many = True)
+        return Response(machines_serializer.data, status = status.HTTP_200_OK)
 
-        if machine_id == None:
-            raise ValidationError({"detail": "Machine id must be set in 'machine' query parameter."})
-        machine = models.Machine.objects.get(id = machine_id)
-
-        if records != None:
-            output = machine.objects.lastn(num = int(records))
-        else:
-            output = machine.objects.all()
-
-        return output
+my_machines_view = MyMachinesAPIView.as_view()

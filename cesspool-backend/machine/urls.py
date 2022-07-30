@@ -2,5 +2,6 @@ from django.urls import path
 from  . import views
 
 urlpatterns = [
-    path("all/", views.MachinesListView.as_view(), name = "machine_all"),
+    path("my/", views.my_machines_view, name = "machine_my_machine"),
+    path("<str:code>/", views.machine_detail_view, name = "machine_machine_detail")
 ]
