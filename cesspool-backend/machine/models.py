@@ -29,6 +29,14 @@ class Machine(models.Model):
         
         return (self.level/self.max_level)*100
 
+    @property
+    def status(self):
+        level_percent = int(self.get_level_percent())
+        if level_percent < 50: return 0
+        if level_percent < 75: return 1
+        if level_percent < 90: return 2
+        return 3
+
 class Record(models.Model):
     objects = managers.RecordQuerySet.as_manager()
 
