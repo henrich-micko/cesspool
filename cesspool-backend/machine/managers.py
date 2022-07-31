@@ -1,6 +1,7 @@
 from django.db.models import QuerySet
-from datetime import date, timedelta
+from django.utils import timezone
 
+from datetime import timedelta
 
 class RecordQuerySet(QuerySet):
 
@@ -10,20 +11,16 @@ class RecordQuerySet(QuerySet):
             output += obj.level
         return output/len(self.all())
 
-    def get_year_period(self):
-        today = date.today()
-        output = self.filter(date__range = [today, today - timedelta(years = 1)])
+    def time_period(self, *argv, **kwargs):
+        today = timezone.now()
+        since = today - timedelta(*argv, **kwargs)
+        return self.filter(date__range = [since, today])
 
-        return output
+    def year_period(self):
+        return self.time_period(days = 365)
 
-    def get_month_period(self):
-        today = date.today()
-        output = self.filter(date__range = [today, today - timedelta(months = 1)])
+    def month_period(self):
+        return self.time_period(months = 1)
 
-        return output
-
-    def get_day_period(self):
-        today = date.today()
-        output = self.filter(date__range = [today, today - timedelta(hours = 24)])
-
-        return output
+    def day_period(self):
+        return self.time_period(hours = 24)
