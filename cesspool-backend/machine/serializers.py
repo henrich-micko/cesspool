@@ -6,6 +6,7 @@ from . import models
 class MachineSerializer(serializers.ModelSerializer):
     level = serializers.SerializerMethodField(default = 0)
     battery = serializers.SerializerMethodField(default = 0)
+    status = serializers.SerializerMethodField(default = 0)
 
     class Meta:
         model = models.Machine
@@ -16,6 +17,11 @@ class MachineSerializer(serializers.ModelSerializer):
 
     def get_battery(self, obj):
         return obj.level
+
+    def get_status(self, obj):
+        if obj.max_level != None:
+            return obj.status
+        return None
 
 
 class RecordSerializer(serializers.ModelSerializer):
