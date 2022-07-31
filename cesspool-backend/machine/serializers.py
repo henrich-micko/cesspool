@@ -12,10 +12,10 @@ class MachineSerializer(serializers.ModelSerializer):
         fields = ["id", "title", "level", "battery"]
 
     def get_level(self, obj):
-        return obj.get_level()
+        return obj.level
 
     def get_battery(self, obj):
-        return obj.get_battery()
+        return obj.level
 
 
 class RecordSerializer(serializers.ModelSerializer):

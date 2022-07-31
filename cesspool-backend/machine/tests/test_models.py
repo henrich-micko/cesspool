@@ -7,34 +7,10 @@ from datetime import timedelta
 
 class TestModels(TestCase):
 
-    # def setUp(self):
-    #     self.machine = models.Machine.objects.create(
-    #         title = "global_testing",
-    #         code = "000001"
-    #     )
-
-    #     record_date = datetime.now(tz = timezone.utc)
-    #     level = 0
-    #     battery = 100
-
-    #     for i in range(365 * 24):
-    #         record = self.machine.record_set.create(
-    #             level = level,
-    #             battery = battery
-    #         )
-
-    #         record.date = record_date
-    #         record.save(update_fields=["date"])
-
-    #         if self.machine.max_level != None and level == self.machine.max_level: level = 0
-    #         else: level += 1
-
-    #         if battery == 0: battery = 100
-    #         else: battery -= 1
-
-    #         record_date = record_date - timedelta(hours = 1)
-
     def test_level_average(self):
+        """
+        machine.managers.RecordQuearySet.get_level_average
+        """
         machine = models.Machine.objects.create(
             title = "test_level_average",
         )
@@ -47,7 +23,14 @@ class TestModels(TestCase):
 
         self.assertEqual(machine.record_set.all().get_level_average(), 2.5)
 
+
     def test_time_period(self):
+        """
+        machine.managers.RecordQuearySet.time_period
+
+        create 5 days record set and than get 4 days period
+        and make sure than last one is not older than 4 days and 1 second
+        """
         machine = models.Machine.objects.create(
             title = "test_time_period"
         )
@@ -70,4 +53,22 @@ class TestModels(TestCase):
 
         self.assertTrue(
            last_record.date > now - timedelta(days = 4, seconds = 1)
+        )
+
+
+    def test_get_level_percent(self):
+        """
+        machine.models.Machine.get_level_percent
+        """
+        machine = models.Machine.objects.create(
+            title = "test_get_level_percent",
+            max_level = 250
+        )
+
+        machine.record_set.create(
+            level = 25,
+        )
+
+        self.assertEqual(
+            machine.get_level_percent(), 10
         )

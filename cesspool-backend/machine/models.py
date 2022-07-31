@@ -7,19 +7,27 @@ from . import managers
 class Machine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
 
-    title = models.CharField(max_length = 20)
+    title = models.CharField(max_length = 20, default = "untitled")
     code = models.CharField(max_length = 10, unique = True)
+    
     max_level = models.IntegerField(null = True, blank = True)
 
     def __str__(self):
-        return f"{self.code}"
+        return f"{self.title}"
 
-    def get_level(self) -> int:
+    @property
+    def level(self) -> int:
         return self.record_set.last().level
 
-    def get_battery(self) -> int:
+    @property
+    def battery(self) -> int:
         return self.record_set.last().battery
 
+    def get_level_percent(self) -> float:
+        if self.max_level == None:
+            raise ValueError("max_level field is not deffined.")
+        
+        return (self.level/self.max_level)*100
 
 class Record(models.Model):
     objects = managers.RecordQuerySet.as_manager()
