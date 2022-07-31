@@ -1,4 +1,4 @@
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Model
 from django.utils import timezone
 
 from datetime import timedelta
@@ -26,7 +26,7 @@ class RecordQuerySet(QuerySet):
     def day_period(self):
         return self.time_period(hours = 24)
 
-    def group_by(self, key):
+    def group_by(self, key) -> list[list[Model]]:
         output = []
     
         for record in self.all().order_by("-date"):
