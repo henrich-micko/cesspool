@@ -55,3 +55,36 @@ class TestManagers(TestCase):
         self.assertTrue(
            last_record.date > now - timedelta(days = 4, seconds = 1)
         )
+
+    def test_group_by(self):
+        """
+        machine.mangers.RecordQuerySet.group_by
+        """
+        machine = models.Machine.objects.create(
+            title = "testing_group_by",
+        )
+
+        date = timezone.now()
+
+        for i in range(8 * 24): # days * hours
+            record = machine.record_set.create(
+                level = i,
+                battery = 100
+            )
+
+            record.date = date
+            record.save(update_fields = ["date"])
+
+            date = date - timedelta(hours = 1)
+
+        grouped = machine.record_set.group_by(lambda item: item.date.day)
+
+        for items_group in grouped:
+            items_group_day = None
+
+            for item in items_group:
+                if items_group_day == None:
+                    items_group_day = item.date.day
+                    continue
+
+                self.assertEqual(items_group_day, item.date.day)

@@ -152,3 +152,5 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
