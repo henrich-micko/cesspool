@@ -56,12 +56,12 @@ class TestManagers(TestCase):
            last_record.date > now - timedelta(days = 4, seconds = 1)
         )
 
-    def test_group_by(self):
+    def test_group_by_date(self):
         """
-        machine.mangers.RecordQuerySet.group_by
+        machine.mangers.RecordQuerySet.group_by_date
         """
         machine = models.Machine.objects.create(
-            title = "testing_group_by",
+            title = "testing_group_by_date",
         )
 
         date = timezone.now()
@@ -77,7 +77,7 @@ class TestManagers(TestCase):
 
             date = date - timedelta(hours = 1)
 
-        grouped = machine.record_set.group_by(lambda item: item.date.day)
+        grouped = machine.record_set.group_by_date("day")
 
         for items_group in grouped:
             items_group_day = None
