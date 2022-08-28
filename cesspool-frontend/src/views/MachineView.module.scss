@@ -1,0 +1,16 @@
+.view {
+    .headder {
+        display: flex;
+        justify-content: right;
+
+        margin-bottom: 0em;
+    }
+
+    .noRecords {
+        margin-top: 3em;
+
+        img {
+            width: 9em;
+        }
+    }
+}

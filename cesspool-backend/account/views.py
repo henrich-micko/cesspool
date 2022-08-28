@@ -1,14 +1,15 @@
 from rest_framework import status
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
+from account.models import UserAccount
+
 from . import serializers
 
-# Create your views here.
 
-class CreateUserView(APIView):
+class CreateUserAPIView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -20,7 +21,7 @@ class CreateUserView(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
-class LogoutAll(APIView):
+class LogoutAllAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -28,9 +29,17 @@ class LogoutAll(APIView):
         return Response(status = status.HTTP_200_OK)
 
 
-class WhoAmI(APIView):
+class WhoAmIAPIview(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request): 
         serializer = serializers.UserAccountSerializer(instance = request.user)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+
+class AdminAccountsAPIView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminUser]
+
+    def get(self, request): 
+        serializer = serializers.UserAccountSerializer(instance = UserAccount.objects.all(), many = True)
         return Response(serializer.data, status = status.HTTP_200_OK)

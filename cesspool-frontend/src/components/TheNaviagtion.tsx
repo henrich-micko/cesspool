@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import { NavLink } from "react-router-dom"
  
-// Styles
+// styles
 import styles from "./TheNavigation.module.scss"
 
 // context && hooks

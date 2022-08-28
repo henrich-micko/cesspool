@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from traitlets import default
 
 from . import models
 
@@ -8,19 +7,29 @@ class MachineSerializer(serializers.ModelSerializer):
     level = serializers.SerializerMethodField(default = 0)
     level_percent = serializers.SerializerMethodField(default = None)
     battery = serializers.SerializerMethodField(default = 0)
-    status = serializers.SerializerMethodField(default = None)
+    problems = serializers.SerializerMethodField(default = None)
+    last_update = serializers.SerializerMethodField(default = None)
 
     class Meta:
         model = models.Machine
-        fields = ["id", "title", "level", "battery"]
+        fields = [
+            "id",
+            "title", 
+            "level",
+            "code",
+            "max_level", 
+            "battery", 
+            "problems",
+            "level_percent", 
+            "last_update",
+        ]
 
-    def get_level(self, obj):
+    def get_level(self, obj: models.Machine):
         return obj.level
 
-    def get_level_percent(self, obj):
-        if obj.max_level != None:
-            return obj.get_level_percent()
-        return None
+    def get_level_percent(self, obj: models.Machine):
+        level_percent = obj.get_level_percent()
+        return level_percent if level_percent == None else round(level_percent, 1)
 
     def get_battery(self, obj: models.Machine):
         return obj.battery
@@ -35,7 +44,11 @@ class MachineSerializer(serializers.ModelSerializer):
 
 
 class RecordSerializer(serializers.ModelSerializer):
-    
+    level_percent = serializers.SerializerMethodField(default = None)
+
     class Meta:
         model = models.Record
-        fields = ["level", "battery", "date"]
+        fields = ["level", "battery", "level_percent", "date", "id"]
+
+    def get_level_percent(self, obj):
+        return obj.machine.get_level_percent(obj.level)

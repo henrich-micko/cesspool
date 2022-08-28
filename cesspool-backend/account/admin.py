@@ -3,8 +3,6 @@ from django.contrib.auth.admin import UserAdmin
 
 from . import models, forms
 
-# Register your models here.
-
 
 class UserAccountAdmin(UserAdmin):
     model = models.UserAccount

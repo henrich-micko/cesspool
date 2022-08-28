@@ -1,5 +1,7 @@
-import React, { FC, createContext, useState, ReactNode } from "react"
+import React, { FC, createContext, useState, ReactNode, useEffect } from "react"
 import axios from "axios"
+
+import { UserType } from "../types";
 
 // Types for default values and defalut values for context
 interface defaultValueTypes {
@@ -10,6 +12,7 @@ interface defaultValueTypes {
 
     authToken: string | null;
     isLogged: boolean;
+    user: UserType
 }
 
 
@@ -22,7 +25,18 @@ export default AuthContext
 export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken")) // Private getter and setter
     const [isLogged, setIsLogged] = useState(authToken !== null) // Public getter and setter 
-    
+    const [user, setUser] = useState<UserType>({} as UserType)
+
+    // set user after token is set
+    useEffect(() => {
+        if (authToken !== null) {
+            axios.get("http://localhost:8000/api/account/whoami/", {headers: {Authorization: "Token " + authToken}})
+                .then(res => setUser(res.data))
+                .catch(error => error.response.status === 401 && logoutUser())
+        } else setUser({email: null, is_active: null, is_superuser: null, date_joined: null})
+    }, [authToken])
+
+
     const loginUser = async (email: string, password: string, onError: Function|null = null) => {        
         const data = {
             "username": email,
@@ -89,6 +103,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
 
         isLogged: isLogged, 
         authToken: authToken,
+        user: user
     }
     
     return (

@@ -1,11 +1,9 @@
-import React, { useContext } from "react"
+import React from "react"
 
 // Styles && assets
 import logo from "../assets/logo.png"
 import styles from "./HomeView.module.scss"
 
-// Context
-import AuthContext from "../context/AuthContext"
 
 const Home: React.FC = () => {    
     return (
@@ -15,7 +13,7 @@ const Home: React.FC = () => {
             </div>
 
             <h1>Cesspool Manager</h1>
-            <em>Robíme zo sveta lepšie miesto</em>
+            <p>Kontaktuje nás na náš <a href="mailto:heno.micko@gmail.com">email</a></p>
 
             <br />
         </div>

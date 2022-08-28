@@ -3,10 +3,9 @@ from django.contrib.auth.base_user import BaseUserManager
 from rest_framework.authtoken.models import Token
 
 class UserAccountManager(BaseUserManager):
-    def create_user(self, email, password, **extra_fields):
+    def create_user(self, email: str, password: str, **extra_fields):
         if not email:
             raise ValueError("Email must be set.")
-
         email = self.normalize_email(email)
 
         user = self.model(email = email, **extra_fields)

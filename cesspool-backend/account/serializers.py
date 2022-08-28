@@ -19,16 +19,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return value
 
 
-class LoginUserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.UserAccount
-        fields = ["email", "password"]
-        extra_kwargs = {"password": {"write_only": True}}
-
-
 class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserAccount
-        fields = ["email"]
+        fields = ["email", "is_active", "date_joined", "is_superuser"]

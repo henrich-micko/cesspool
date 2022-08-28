@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 
 // Context
-import AuthContext from "./context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
 
 const useAxios = () => {

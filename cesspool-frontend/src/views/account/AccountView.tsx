@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 // Styles
 import styles from "./AccountView.module.scss"
@@ -9,27 +9,16 @@ import { IsAuthenticatedView } from '../../permissions/Authenticated'
 // Contexts
 import AuthContext from '../../context/AuthContext'
 
-// Axios
-import useAxios from '../../useAxios'
 
 const UserView: React.FC = () => {
-    const [email, setEmail] = useState("")
-
-    const {logoutUser, logoutUserAll} = useContext(AuthContext)
-    const axios = useAxios()
+    const {user, logoutUser, logoutUserAll} = useContext(AuthContext)
 
     const handleError = (error: any) => {
         alert("Došlo ku nečakanej chybe a snažime sa ju vyriešiť.")
     }
 
-    const onEffect = () => {
-        axios.get("/account/whoami/")
-            .then(res => setEmail(res.data.email))
-            .catch(error => console.log(error))
-    }
-
     return(
-        <IsAuthenticatedView onEffect={onEffect}>
+        <IsAuthenticatedView>
             <div className={styles.view}>
                 <div className={styles.boxWrapper}>
                     <div className={styles.header}>
@@ -37,7 +26,7 @@ const UserView: React.FC = () => {
                     </div>
 
                     <div className={styles.body}>
-                        {email}
+                        {user.email}
 
                         <div className={styles.buttonsWrapper}>
                             <input

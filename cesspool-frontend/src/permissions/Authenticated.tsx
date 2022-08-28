@@ -16,7 +16,7 @@ export const IsAuthenticatedView: React.FC<Props> = ({ children, onEffect = null
 
     useEffect(() => {
         if (onEffect !== null && isLogged) onEffect()
-    })
+    }, [])
  
     return(
         <>
@@ -35,7 +35,7 @@ export const IsNotAuthenticatedView: React.FC<Props> = ({ children, onEffect = n
 
     useEffect(() => {
         if (onEffect !== null && !isLogged) onEffect()
-    })
+    }, [])
 
     return(
         <>
@@ -45,30 +45,4 @@ export const IsNotAuthenticatedView: React.FC<Props> = ({ children, onEffect = n
             }
         </>
     )
-}
-
-
-// View contect only is user is authenticated
-export const IsAuthenticated: React.FC<Props> = ({ children }) => {
-    const {isLogged} = React.useContext(AuthContext)
-
-    return (
-        <>
-            {isLogged ? children: null}
-        </>
-    )
-
-}
-
-
-// View content only if user is not authenticated
-export const IsNotAuthenticated: React.FC<Props> = ({ children }) => {
-    const {isLogged} = React.useContext(AuthContext)
-
-    return (
-        <>
-            {!isLogged ? children: null}
-        </>
-    )
-
 }
