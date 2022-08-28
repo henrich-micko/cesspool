@@ -7,10 +7,12 @@ import TheNaviagtion from './components/TheNaviagtion'
 import { AuthProvider } from './context/AuthContext'
 
 // Views
-import Home from './views/HomeView'
-import Login from './views/auth/LoginView'
-import Register from "./views/auth/RegisterView"
-import Account from './views/account/AccountView'
+import HomeView from './views/HomeView'
+import LoginView from './views/auth/LoginView'
+import RegisterView from "./views/auth/RegisterView"
+import AccountView from './views/account/AccountView'
+import MachineView from "./views/MachineView"
+import AdminView from "./views/admin/AdminView"
 
 // Permissions
 
@@ -24,10 +26,12 @@ function App() {
 
         <main className="content">
           <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/account/login" element={<Login />}/>
-              <Route path="/account/register" element={<Register />} />
-              <Route path="/account" element={<Account />} />
+              <Route path="/" element={<HomeView />} />
+              <Route path="/account/login" element={<LoginView />}/>
+              <Route path="/account/register" element={<RegisterView />} />
+              <Route path="/account" element={<AccountView />} />
+              <Route path="/machine" element={<MachineView />} />
+              <Route path="/admin/:app/" element={<AdminView />} />
           </Routes>
         </main>
       </div>

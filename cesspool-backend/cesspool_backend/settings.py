@@ -153,4 +153,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
 
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 5000
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
+
+# settings for mqtt 
+
+MQTT_RUN = False
+MQTT_HOST = "backend.zumpomer.sk"
+MQTT_PORT = 18579
+MQTT_USERNAME = "micko"
+MQTT_PASSWORD = "HenrichMicko"
+MQTT_TOPIC = "#"
