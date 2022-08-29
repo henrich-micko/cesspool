@@ -11,8 +11,8 @@ import AdminMachineView from "./AdminMachineView"
 import AdminNavigation from "../../components/admin/AdminNavigation"
 
 const AdminView: React.FC = () => {
-    const { application } = useParams()
-    
+    const { app } = useParams()
+    console.log(app)
     const handlePlus = () => {
 
     }
@@ -23,12 +23,12 @@ const AdminView: React.FC = () => {
 
     return(
         <IsAdminView>
-            <div className={styles.view}>
-                <AdminNavigation onPlus={handlePlus} onRefresh={handleRefresh} />
+            <AdminNavigation onPlus={() => {}} onRefresh={() => {}}/>
 
-                {application === "account"
+            <div className={styles.view}>
+                {app === "account"
                     ? <AdminAccountView />
-                    : application === "machine" && <AdminMachineView />
+                    : app === "machine" && <AdminMachineView />
                 }
             </div>
         </IsAdminView>

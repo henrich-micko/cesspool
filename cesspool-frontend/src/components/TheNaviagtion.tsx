@@ -32,7 +32,6 @@ const TheNaviagtion: React.FC = (props) => {
                     <NavLink to="/account" className={({ isActive }) => isActive ? styles.active : undefined}>Učet{!isMobile && ": " + user.email }</NavLink>
                 </>
             }
-
         </nav>
     )
 }

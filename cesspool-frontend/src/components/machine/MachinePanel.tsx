@@ -4,7 +4,7 @@ import React from "react"
 import styles from "./styles.module.scss"
 import classNames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChartSimple, faSliders, faInfoCircle, faFaucetDrip, faTriangleExclamation, faPrint, faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { faChartSimple, faSliders, faInfoCircle, faTriangleExclamation, faStopwatch } from "@fortawesome/free-solid-svg-icons"
 
 // types and hooks
 import { MachineType } from "../../types"
@@ -55,7 +55,7 @@ const MachinePanel: React.FC<Props> = (props) => {
 
                 <FontAwesomeIcon
                     className={classNames(styles.icon, isMobile ? styles.mobile : undefined)}
-                    icon={faFaucetDrip}
+                    icon={faStopwatch}
                     size={isMobile ? "lg": undefined} 
                     onClick={() => handleIcon("release")}
                 />

@@ -7,14 +7,13 @@ import { IsAuthenticatedView } from "../permissions/Authenticated"
 import ListOfMachines from "../components/machine/ListOfMachines"
 
 // styles && icons
-import EmojyLogo from "../assets/emojy.svg"
 import styles from "./MachineView.module.scss"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRefresh } from "@fortawesome/free-solid-svg-icons"
 
 // api
 import useAxios from "../hooks/useAxios"
-import { MachineType, RecordType } from "../types"
+import { MachineType } from "../types"
+import NoContent from "../components/NoContent"
+import MachineNavigation from "../components/machine/MachineNavigation"
 
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
@@ -46,20 +45,12 @@ const MachineView: React.FC = () => {
 	return (
 		<IsAuthenticatedView onEffect={refreshMachines}>
 			<div className={styles.view}>
-				<div className={styles.headder}>
-					<FontAwesomeIcon
-						className={styles.icon}
-						size="sm"
-						icon={faRefresh}
-						onClick={refreshMachines}
-					/>
-				</div>
+				<MachineNavigation onPlus={() => {window.open('https://www.zumpomer.sk', '_blank')}} onRefresh={refreshMachines}/>
+
 				{machines !== null && machines.length !== 0 
 					? <ListOfMachines machines={machines} refresh={refreshMachine}/>
-					: machines !== null &&<div className={styles.noRecords}>
-						<img src={EmojyLogo} alt="Thinking emojy" />
-						<h2>Hmm zdá sa že nemate žiadne zariadenia</h2>
-					  </div>
+					: machines !== null && 
+					  <NoContent missing="zariadenia"/>
 				}
 			</div>
 		</IsAuthenticatedView>

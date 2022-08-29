@@ -13,6 +13,7 @@ import RegisterView from "./views/auth/RegisterView"
 import AccountView from './views/account/AccountView'
 import MachineView from "./views/MachineView"
 import AdminView from "./views/admin/AdminView"
+import AdminNavigation from "./components/admin/AdminNavigation"
 
 // Permissions
 
