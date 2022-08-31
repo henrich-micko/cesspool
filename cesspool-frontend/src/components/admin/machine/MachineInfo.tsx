@@ -1,22 +1,9 @@
 import React from "react"
 
-// icons
+// style && icons
+import styles from "@styles/components/admin/machine/machineInfo.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCode, faUser } from "@fortawesome/free-solid-svg-icons"
-
-
-const style = {
-    display: "flex",
-    width: "auto",
-    height: "100%",
-    alignItems: "center",
-
-    span: {
-        marginLeft: "0.25em",
-        fontSize: "1.2em",
-        marginBottom: "-0.15em"
-    },
-}
 
 
 interface MachineCodeProps {
@@ -25,9 +12,9 @@ interface MachineCodeProps {
 
 export const MachineCode: React.FC<MachineCodeProps> = (props) => {
     return (
-        <div style={style}>
+        <div className={styles.machineInfo}>
             <FontAwesomeIcon icon={faCode} />
-            <span style={style.span}>{props.code}</span>
+            <span>{props.code}</span>
         </div>
     )
 } 
@@ -38,9 +25,9 @@ interface MachineUserProps {
 
 export const MachineUser: React.FC<MachineUserProps> = (props) => {
     return (
-        <div style={style}>
-            <FontAwesomeIcon icon={faUser}/>
-            <span style={style.span}>{props.user}</span>
+        <div className={styles.machineInfo}>
+            <FontAwesomeIcon icon={faUser} />
+            <span>{props.user}</span>
         </div>
     )
 }

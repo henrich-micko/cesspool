@@ -2,7 +2,7 @@ import React from "react"
 import { NavLink } from "react-router-dom"
 
 // styles && icons
-import styles from "./styles.module.scss"
+import styles from "@styles/components/admin/adminNavigation.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons"
 

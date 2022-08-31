@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import { NavLink } from "react-router-dom"
  
 // styles
-import styles from "./TheNavigation.module.scss"
+import styles from "@styles/components/theNavigation.module.scss"
 
 // context && hooks
 import AuthContext from "../context/AuthContext"

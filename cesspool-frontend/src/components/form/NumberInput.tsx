@@ -14,7 +14,7 @@ interface Props {
     onSubmit(value: string): void;
 }
 
-const TextInput: React.FC<Props> = (props) => {
+const NumberInput: React.FC<Props> = (props) => {
     const handleChange = debounce((event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
         props.onSubmit(value)
@@ -26,7 +26,7 @@ const TextInput: React.FC<Props> = (props) => {
             
             <input
                 id={props.id}
-                type="text"
+                type="number"
                 defaultValue={props.value}
                 onChange={handleChange}
             />
@@ -34,4 +34,4 @@ const TextInput: React.FC<Props> = (props) => {
     )
 }
 
-export default TextInput
+export default NumberInput

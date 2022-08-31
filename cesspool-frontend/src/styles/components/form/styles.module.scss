@@ -1,0 +1,60 @@
+.textNumberInputWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 0.5em;
+
+    font-size: 1.1em;
+
+    input[type=text],
+    input[type=number] {
+        color: #fff;
+        background: none;
+        border: none;
+        border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
+        display: block;
+        text-align: left;
+        margin: 0 auto 0.5em;
+        width: 100%;
+        font-size: inherit;
+    }
+
+    input[type=text],
+    input[type=number]:focus {
+        outline: none;
+    }
+
+    span {
+        width: min-content;
+        margin-right: 0.5em;
+        font-size: inherit;
+    }
+}
+
+.switchInput {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+    font-size: 1.1em;
+
+    span {
+        font-size: inherit;
+        width: min-content;
+        margin-right: 0.5em;
+    }
+
+    .icon {
+        &.on {
+            color: #61dafb;
+        }
+
+        &.off {
+            color: rgb(255, 78, 78);
+        }
+
+        &.disabled {
+            color: grey;
+        }
+    }
+}

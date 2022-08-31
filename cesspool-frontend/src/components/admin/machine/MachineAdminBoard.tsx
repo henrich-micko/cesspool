@@ -1,10 +1,5 @@
 import React, { useState } from "react"
 
-// styles && icons && animations
-import styles from "./styles.module.scss"
-import classNames from "classnames"
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-
 // mobile respo
 import useIsMobile from "../../../hooks/useIsMobile"
 
@@ -13,19 +8,17 @@ import { MachineAdminType } from "../../../types"
 
 // components
 import MachineAdminPanel from "./MachineAdminPanel"
+import TheBoard from "@components/TheBoard"
+import MachineAdminSettings from "./views/MachineAdminSettings"
 
 interface Props {
     machine: MachineAdminType,
     refresh(): void
 }
 
-const MachineAdminBoard: React.FC<Props> = (props) => {
-    const { machine } = props
-    
+const MachineAdminBoard: React.FC<Props> = (props) => {    
     const [machineView, setMachineView] = useState<string>("")    
     const isMobile = useIsMobile()
-
-    const [animationParent] = useAutoAnimate<HTMLDivElement>()
 
     const handleIcon = (iconName: string) => {
         setMachineView(prevState => {
@@ -34,10 +27,14 @@ const MachineAdminBoard: React.FC<Props> = (props) => {
     }
 
     return (
-        <div ref={animationParent} className={classNames(styles.machine, isMobile ? styles.mobile : undefined, machineView !== "" && (!isMobile && machineView !== "info") ? styles.activate : undefined)}>
-            {/* Top panel */}
-            <MachineAdminPanel machine={machine}/>
-        </div>
+        <TheBoard isActive={machineView !== "" && (!isMobile && machineView !== "info")}>
+            <MachineAdminPanel handleIcon={handleIcon} machine={props.machine} />
+
+            {machineView === "settings" ?
+                <MachineAdminSettings machine={props.machine} refresh={props.refresh} />
+                : undefined
+            }
+        </TheBoard>
     )
 }
 

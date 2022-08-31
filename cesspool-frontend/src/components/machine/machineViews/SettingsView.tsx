@@ -33,7 +33,7 @@ const SettingsView: React.FC<Props> = (props) => {
 
     return (
         <div className={classNames(styles.machineView, styles.settings)}>
-            <form>
+            <form onSubmit={event => {event.preventDefault()}}>
                 <TextInput 
                     onSubmit={handleTitle}
                     label="Názov"

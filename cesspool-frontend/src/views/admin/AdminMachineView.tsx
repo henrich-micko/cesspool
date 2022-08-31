@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react"
 
-// styles
-import styles from ".styles.module.scss"
-
 // types
-import { MachineAdminType } from "../../types"
+import { MachineAdminType } from "@types"
 
 // components
-import NoContent from "../../components/NoContent"
+import NoContent from "@components/NoContent"
 
 // hooks
-import useAxios from "../../hooks/useAxios"
-import ListOfAdminMachines from "../../components/admin/machine/ListOfAdminMachine"
+import useAxios from "@hooks/useAxios"
+import ListOfAdminMachines from "@components/admin/machine/ListOfAdminMachine"
 
 const AdminMachineView: React.FC = () => {
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)

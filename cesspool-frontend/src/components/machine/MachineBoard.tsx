@@ -1,10 +1,5 @@
 import React, { useState } from "react"
 
-// styles && icons && animations
-import styles from "./styles.module.scss"
-import classNames from "classnames"
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-
 // mobile respo
 import useIsMobile from "../../hooks/useIsMobile"
 
@@ -13,11 +8,11 @@ import { MachineType } from "../../types"
 
 // conponents
 import MachinePanel from "./MachinePanel"
-import InfoView from "./machineViews/InfoView"
 import ChartsView from "./machineViews/ChartsView"
 import SettingsView from "./machineViews/SettingsView"
 import ProblemsView from "./machineViews/ProblemsViews"
 import ReleaseView from "./machineViews/ReleaseView"
+import TheBoard from "@components/TheBoard"
 
 interface Props {
     machine: MachineType,
@@ -25,12 +20,10 @@ interface Props {
 }
 
 const Machine: React.FC<Props> = (props) => {
-    const { machine } = props
-    
     const [machineView, setMachineView] = useState<string>("")    
     const isMobile = useIsMobile()
 
-    const [animationParent] = useAutoAnimate<HTMLDivElement>()
+    const { machine } = props
 
     const handleIcon = (iconName: string) => {
         setMachineView(prevState => {
@@ -39,15 +32,13 @@ const Machine: React.FC<Props> = (props) => {
     }
 
     return (
-        <div ref={animationParent} className={classNames(styles.machine, isMobile ? styles.mobile : undefined, machineView !== "" && (!isMobile && machineView !== "info") ? styles.activate : undefined)}>
+        <TheBoard isActive={machineView !== "" && !isMobile}>
             {/* Top panel */}
             <MachinePanel machine={machine} handleIcon={handleIcon} />
 
             {/* Body machineView */}
-            {machineView === "info" && isMobile ?
-                <InfoView machine={machine} />
 
-            : machineView === "charts" ?
+            { machineView === "charts" ?
                 <ChartsView machine={machine} />
 
             : machineView === "settings" ?
@@ -61,7 +52,7 @@ const Machine: React.FC<Props> = (props) => {
 
             : <></>
             }
-        </div>
+        </TheBoard>
     )
 }
 

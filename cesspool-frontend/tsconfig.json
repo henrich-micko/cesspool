@@ -2,12 +2,14 @@
   "compilerOptions": {
     "baseUrl": "./src/",
     "paths": {
+        "@assets/*": ["assets/*"],
         "@components/*": ["components/*"],
         "@context/*": ["context/*"],
         "@hooks/*": ["hooks/*"],
-        "@types/*": ["types/*"],
+        "@types": ["types/index.ts"],
         "@permissions/*": ["permissions/*"],
         "@views/*": ["views/*"],
+        "@styles/*": ["styles/*"],
     },
     "target": "es5",
     "lib": [

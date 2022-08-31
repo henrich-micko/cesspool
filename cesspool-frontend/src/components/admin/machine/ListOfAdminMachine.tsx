@@ -1,13 +1,12 @@
 import React from "react"
 
 // types
-import { MachineAdminType } from "../../../types"
+import { MachineAdminType } from "@types"
 import MachineAdminBoard from "./MachineAdminBoard"
 
 // styles
-import styles from "./styles.module.scss"
+import styles from "@styles/components/admin/machine/listOfAdminMachine.module.scss"
 
-// 
 
 interface Props {
     machines: MachineAdminType[],

@@ -1,9 +1,6 @@
-import React, { useState } from "react"
+import React from "react"
 import { IsAdminView } from "../../permissions/Admin"
 import { useParams } from "react-router-dom"
-
-// styles
-import styles from "./styles.module.scss"
 
 // components && admin views
 import AdminAccountView from "./AdminAccountView"
@@ -24,8 +21,7 @@ const AdminView: React.FC = () => {
     return(
         <IsAdminView>
             <AdminNavigation onPlus={() => {}} onRefresh={() => {}}/>
-
-            <div className={styles.view}>
+            <div>
                 {app === "account"
                     ? <AdminAccountView />
                     : app === "machine" && <AdminMachineView />

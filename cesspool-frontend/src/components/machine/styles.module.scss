@@ -22,30 +22,6 @@
         margin-bottom: 3em;
         width: 100%;
 
-        .machine {
-            margin-top: 1em;
-
-            background: #24272e;
-            width: auto;
-            height: auto;
-
-            border: 2px solid white;
-            border-radius: 0.3em 0.3em 0.6em 0.6em;
-
-            padding-left: 2em;
-            padding-right: 2em;
-
-            margin-bottom: 3em;
-
-            &.mobile {
-                padding-left: 1em;
-                padding-right: 1em;
-            }
-
-            &.activate {
-                box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-            }
-
             .icon {
                 &.yellow {
                     color: rgb(255, 255, 78);
@@ -75,13 +51,27 @@
 
                     &.mobile {
                         width: 100%;
-                        justify-content: center;
+                        justify-content: space-between;
                         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                         margin-bottom: 1em;
                     }
 
                     span {
                         margin-right: 0.25em;
+                    }
+
+                    .statusLevelDesktop {
+                        display: flex;
+
+                        width: auto;
+                        height: 100%;
+                        
+                        align-items: center;
+                        justify-content: space-between;
+                        
+                        div:first-child {
+                            margin-right: 1em;
+                        }
                     }
                 }
 
@@ -109,7 +99,7 @@
 
                     .statusLevelDesktop {
                         display: flex;
-                        
+
                         width: auto;
                         height: 100%;
                         
@@ -216,7 +206,7 @@
                         padding-bottom: 1em;
                         flex-direction: column;
                         justify-content: space-evenly;
-                        height: 10em;
+                        height: auto;
                         width: 14em;
 
                         input[type=text],
@@ -232,6 +222,11 @@
                         }
                     
                         input[type=text],
+                        input[type=number] {
+                            margin-bottom: 0em;
+                        }
+
+                        input[type=text],
                         input[type=number]:focus {
                             outline: none;
                         }
@@ -244,6 +239,14 @@
                 }
 
                 &.release {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: left;
+
+                    span {
+                        text-align: left;
+                    }
+
                     .date {
                         border-bottom: 0.05em solid #61dafb;
                     }
@@ -271,4 +274,3 @@
     li:last-child {
         margin-bottom: 0em;
     }
-}

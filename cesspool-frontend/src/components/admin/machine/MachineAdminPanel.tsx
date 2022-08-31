@@ -1,12 +1,12 @@
 import React from "react"
 
 // types
-import { MachineAdminType } from "../../../types"
+import { MachineAdminType } from "@types"
 
 // styles && icons
-import styles from "./styles.module.scss"
+import styles from "@styles/components/admin/machine/machineAdminPanel.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSliders, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faCompactDisc, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons"
 
 // components
 import { MachineCode, MachineUser } from "./MachineInfo"
@@ -15,6 +15,7 @@ import classNames from "classnames";
 
 interface Props {
     machine: MachineAdminType;
+    handleIcon(icon: string): void
 }
 
 const AdminMachinePanel: React.FC<Props> = (props) => {
@@ -27,8 +28,21 @@ const AdminMachinePanel: React.FC<Props> = (props) => {
                 <MachineUser user={props.machine.user} />
             </div>
             <div className={styles.panel}>
-                <FontAwesomeIcon className={styles.icon} icon={faTrash} />
-                <FontAwesomeIcon className={styles.icon} icon={faSliders} />
+                <FontAwesomeIcon 
+                    onClick={() => props.handleIcon("trash")} 
+                    className={styles.icon} 
+                    icon={faTrash} 
+                />
+                <FontAwesomeIcon 
+                    onClick={() => props.handleIcon("records")} 
+                    className={styles.icon} 
+                    icon={faCompactDisc} 
+                />
+                <FontAwesomeIcon                
+                    onClick={() => props.handleIcon("settings")} 
+                    className={styles.icon}
+                    icon={faSliders}
+                />
             </div>
         </div>
     )
