@@ -21,7 +21,7 @@ class Status:
     NO_TITLE = [0, "Nie je nastavené meno"]
     HIGHT_LEVEL = [1, "Vysoka hladina obsahu"]
     LOW_BATTERY = [1, "Takmer vybitá bateria"]
-    OLD_RECORD = [1, "V dlhsej dobe nebol poskytnutá záznam"]
+    OLD_RECORD = [1, "V dlhsej dobe nebol poskytnutý záznam"]
 
     @staticmethod
     def get(status: str, default = None) -> list[int, str]:
