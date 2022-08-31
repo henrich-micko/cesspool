@@ -17,7 +17,6 @@ class MachineSerializer(serializers.ModelSerializer):
             "title", 
             "level",
             "code",
-            "max_level", 
             "battery", 
             "problems",
             "level_percent", 
@@ -28,8 +27,7 @@ class MachineSerializer(serializers.ModelSerializer):
         return obj.level
 
     def get_level_percent(self, obj: models.Machine):
-        level_percent = obj.get_level_percent()
-        return level_percent if level_percent == None else round(level_percent, 1)
+        return obj.level_percent
 
     def get_battery(self, obj: models.Machine):
         return obj.battery
@@ -43,6 +41,13 @@ class MachineSerializer(serializers.ModelSerializer):
         return obj.last_update
 
 
+class MachineConfSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Machine
+        fields = ["title"]
+
+
 class RecordSerializer(serializers.ModelSerializer):
     level_percent = serializers.SerializerMethodField(default = None)
 
@@ -51,4 +56,4 @@ class RecordSerializer(serializers.ModelSerializer):
         fields = ["level", "battery", "level_percent", "date", "id"]
 
     def get_level_percent(self, obj):
-        return obj.machine.get_level_percent(obj.level)
+        return obj.level_percent

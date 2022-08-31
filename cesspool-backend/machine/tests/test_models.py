@@ -36,47 +36,24 @@ class TestStatus(TestCase):
 
 class TestMachineModels(TestCase):
     MACHINE_TITLE = "Summer House"
-    MACHINE_MAX_LEVEL = 250
     MACHINE_CODE = "123456"
 
     def setUp(self):
         self.machine = models.Machine.objects.create(
             title = self.MACHINE_TITLE,
-            max_level = self.MACHINE_MAX_LEVEL,
             code = self.MACHINE_CODE
         )
         
     # level and battery
-    def test_level_battery(self):
-        self.machine.record_set.create(level = 25, battery = 30)
+    def test_level_level_percent_battery(self):
+        self.machine.record_set.create(level = 25, battery = 30, level_percent = 20)
 
         self.assertEqual(self.machine.level, 25)
+        self.assertEqual(self.machine.level_percent, 20)
         self.assertEqual(self.machine.battery, 30)
 
     def test_level_battery_without_record(self):
         self.assertEquals(self.machine.level, self.machine.battery, None)
-
-    # get_level_percent
-    def test_get_level_percent(self):
-        self.machine.record_set.create(level = 25)
-        self.assertEqual(self.machine.get_level_percent(), 10)
-
-    def test_get_level_percent_without_max_level(self):
-        self.machine.record_set.create(level = 25)
-        self.machine.max_level = None
-        self.machine.save()
-
-        self.assertEqual(self.machine.get_level_percent(), None)
-
-    def test_get_level_percent_without_max_level_and_record(self):
-        self.machine.max_level = None
-        self.machine.save()
-
-        self.assertEqual(self.machine.get_level_percent(), None)
-
-    def test_get_level_percent_without_default_record(self):
-        per_level = self.machine.get_level_percent(level = 25)
-        self.assertEqual(per_level, 10)
 
     # last_update
     def test_last_update(self):
@@ -97,18 +74,13 @@ class TestMachineModels(TestCase):
         self.machine.record_set.all().delete()
         self.assertTrue(models.Status.NO_RECORDS in self.machine.problem_scan())
 
-    def test_problem_scan_no_max_level(self):
-        self.machine.max_level = None
-        self.machine.save()
-        self.assertTrue(models.Status.NO_MAX_LEVEL in self.machine.problem_scan())
-
     def test_problem_scan_no_title(self):
         self.machine.title = None
         self.machine.save()
         self.assertTrue(models.Status.NO_TITLE in self.machine.problem_scan())
 
     def test_problem_scan_hight_level(self):
-        self.machine.record_set.create(level = self.MACHINE_MAX_LEVEL)
+        self.machine.record_set.create(level_percent = 85)
         self.assertTrue(models.Status.HIGHT_LEVEL in self.machine.problem_scan())
 
     def test_problem_scan_low_battery(self):
@@ -129,38 +101,33 @@ class TestMachineModels(TestCase):
 
     # release_date
     def test_release_date_valid(self):
-        self.machine.record_set.create(level = 5)
-        self.machine.record_set.create(level = 10)
+        self.machine.record_set.create(level_percent = 5)
+        self.machine.record_set.create(level_percent = 10)
         self.assertIsInstance(self.machine.release_date(), datetime.date)
-
-    def test_release_date_without_max_level(self):
-        self.machine.max_level = None
-        self.machine.save()
-        self.assertEqual(self.machine.release_date(), None)
 
     def test_release_date_without_records(self):
         self.assertEqual(self.machine.release_date(), None)
 
     def test_release_date_with_one_record(self):
-        self.machine.record_set.create(level = 5)
+        self.machine.record_set.create(level_percent = 5)
         self.assertEqual(self.machine.release_date(), None)
 
     def test_release_date_with_negative_rise(self):
-        self.machine.record_set.create(level = 10)
-        self.machine.record_set.create(level = 5)
+        self.machine.record_set.create(level_percent = 10)
+        self.machine.record_set.create(level_percent = 5)
         self.assertEqual(self.machine.release_date(), None)
 
     def test_release_date_with_old_negative_rise(self):
-        self.machine.record_set.create(level = 10)
-        self.machine.record_set.create(level = 5)
-        self.machine.record_set.create(level = 15)
+        self.machine.record_set.create(level_percent = 10)
+        self.machine.record_set.create(level_percent = 5)
+        self.machine.record_set.create(level_percent = 15)
         self.assertIsInstance(self.machine.release_date(), datetime.date)
 
 
 class TestRecordModel(TestCase):
     def setUp(self):
-        self.machine = models.Machine.objects.create(title = "house", max_level = 250)
-        self.record = self.machine.record_set.create(level = 50, battery = 50)
+        self.machine = models.Machine.objects.create(title = "house")
+        self.record = self.machine.record_set.create(level = 50, level_percent = 50, battery = 50)
 
     # rise
     def test_rise(self):
@@ -179,31 +146,29 @@ class TestRecordModel(TestCase):
 
     # rise percent
     def test_percent_rise(self):
-        last_record_level = self.record.level
-        new_record = self.machine.record_set.create(level = last_record_level + 10)
-        self.assertEqual(4.0, new_record.rise_percent())
+        new_record = self.machine.record_set.create(level_percent = self.record.level_percent + 10)
+        self.assertEqual(10, new_record.rise_percent())
 
-    def test_percent_rise_while_level_is_going_down(self):
-        last_record_level = self.record.level
-        new_record = self.machine.record_set.create(level = last_record_level - 10)
-        self.assertEqual(-4.0, new_record.rise_percent())
+    def test_percent_rise_while_level_is_going_down(self):        
+        new_record = self.machine.record_set.create(level_percent = self.record.level_percent - 10)
+        self.assertEqual(-10, new_record.rise_percent())
 
-    def test_percent_rise_without_default(self):
-        new_record = self.machine.record_set.create(level = self.record.level - 10)
-        self.assertEqual(-4.0, new_record.rise_percent(self.record))
+    def test_percent_rise_without_default(self):        
+        new_record = self.machine.record_set.create(level_percent = self.record.level_percent - 10)
+        self.assertEqual(-10, new_record.rise_percent(self.record))
 
     # is_valid
     def test_is_valid(self):
-        self.machine.record_set.create(level = 10)
-        invalid_record = self.machine.record_set.create(level = 150)
-        self.machine.record_set.create(level = 15)
+        self.machine.record_set.create(level_percent = 10)
+        invalid_record = self.machine.record_set.create(level_percent = 150)
+        self.machine.record_set.create(level_percent = 15)
         self.assertFalse(invalid_record.is_valid())
 
     def test_is_invalid_without_record(self):
         self.assertEqual(self.record.is_valid(), None)
 
     def test_valid_with_valid(self):
-        self.machine.record_set.create(level = 10)
-        valid_record = self.machine.record_set.create(level = 12)
-        self.machine.record_set.create(level = 15)
+        self.machine.record_set.create(level_percent = 10)
+        valid_record = self.machine.record_set.create(level_percent = 12)
+        self.machine.record_set.create(level_percent = 15)
         self.assertTrue(valid_record.is_valid())

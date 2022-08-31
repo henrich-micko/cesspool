@@ -17,7 +17,6 @@ class Status:
     
     NO_USER = [0, "Nenašiel sa použivatel"]
     NO_RECORDS = [0, "Nenašiel sa žiaden záznam"]
-    NO_MAX_LEVEL = [1, "Nie je nastavený objem nádrže"]
     NO_TITLE = [0, "Nie je nastavené meno"]
     HIGHT_LEVEL = [1, "Vysoka hladina obsahu"]
     LOW_BATTERY = [1, "Takmer vybitá bateria"]
@@ -42,7 +41,6 @@ class Machine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
     title = models.CharField(max_length = 20, null = True, blank = True)
     code = models.CharField(max_length = 10, unique = True)
-    max_level = models.IntegerField(null = True, blank = True)
 
     def __str__(self) -> str:
         return f"{self.code} : {self.title if self.title != None else 'Untitled'}"
@@ -54,6 +52,11 @@ class Machine(models.Model):
     def level(self) -> int|None:
         record = self.get_record()
         return record.level if record != None else None
+
+    @property
+    def level_percent(self) -> int|None:
+        record = self.get_record()
+        return record.level_percent if record != None else None 
 
     @property
     def battery(self) -> int|None:
@@ -69,26 +72,18 @@ class Machine(models.Model):
         output: list = []
 
         if self.user == None: output.append(Status.NO_USER)
-        if self.max_level == None: output.append(Status.NO_MAX_LEVEL)
         if self.title == None: output.append(Status.NO_TITLE)
         if self.get_record() == None: output.append(Status.NO_RECORDS)
         else:
-            if self.max_level and self.get_level_percent() >= 95: output.append(Status.HIGHT_LEVEL)
+            if self.level_percent >= 80: output.append(Status.HIGHT_LEVEL)
             if self.battery <= 10: output.append(Status.LOW_BATTERY)
             if self.last_update <= timezone.now() - timedelta(days = 2): output.append(Status.OLD_RECORD)
 
         return output
-
-    # default last record
-    def get_level_percent(self, level = None) -> float|None:
-        level = level if level != None else self.get_record().level if self.get_record() != None else None 
-        if level == None or self.max_level == None:
-            return None
-        return round((level/self.max_level)*100, 2)
         
     def release_date(self):
         records = self.record_set.all().time_period(days = 1)
-        if len(records) < 2 or self.max_level == None: return
+        if len(records) < 2: return
 
         first_record, last_record = records.first(), records.last()
         percent_rise = last_record.rise_percent(first_record)
@@ -121,10 +116,11 @@ class Record(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE)
     date = models.DateTimeField(auto_now_add = True)
     level = models.FloatField(default = 0.0)
-    battery = models.IntegerField(default = 0)
+    level_percent = models.FloatField(default = 0.0)
+    battery = models.FloatField(default = 0.0)
 
     def __str__(self) -> str:
-        return f"{str(self.machine)} -> {self.date}"
+        return f"{str(self.machine)} -> {self.date}: {self.level_percent}"
 
     def index(self, index: int, default: any = None):
         records_list = list(self.machine.record_set.all()) 
@@ -140,7 +136,8 @@ class Record(models.Model):
         return self.level - before_record.level if before_record != None else None
 
     def rise_percent(self, record = None):
-        return self.machine.get_level_percent(self.rise(record))
+        before_record = record if record != None else self.index(-1)
+        return self.level_percent - before_record.level_percent if before_record != None else None
 
     def is_valid(self, minimal_rise: int = 40) -> None|boolean:
         record_after = self.index(1)

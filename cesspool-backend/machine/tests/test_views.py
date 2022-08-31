@@ -26,14 +26,12 @@ class TestMachineAPIView(APITestCase):
         self.machine_1 = self.user.machine_set.create(
             title = "Summer House",
             code = "123456",
-            max_level = 250
         )
         self.machine_1.record_set.create(level = 10, battery = 100)
 
         self.machine_2 = self.user.machine_set.create(
             title = "Winter House",
             code = "654321",
-            max_level = 200
         )
         self.machine_2.record_set.create(level = 5, battery = 90)
         
@@ -82,7 +80,6 @@ class TestRecordsAPIView(APITestCase):
     
     MACHINE_TITLE = "Summer House"
     MACHINE_CODE = "123456"
-    MACHINE_MAX_LEVEL = 250
 
     def url(self, machine_code: str|None = None, **kwargs):
         machine_code = self.MACHINE_CODE if machine_code == None else machine_code
@@ -123,7 +120,6 @@ class TestRecordsAPIView(APITestCase):
         machine = self.user.machine_set.create_demo(
             title = self.MACHINE_TITLE,
             code = self.MACHINE_CODE,
-            max_level = self.MACHINE_MAX_LEVEL,
             **create_timedelta
         )
 
@@ -169,7 +165,6 @@ class TestDateRecordsAPIView(APITestCase):
 
         self.machine = self.user.machine_set.create_demo(
             code = "123456",
-            max_level = 250,
             time_days = 3
         )
 
@@ -210,7 +205,6 @@ class TestReleaseDateAPIView(APITestCase):
 
         self.machine = self.user.machine_set.create_demo(
             code = "123456",
-            max_level = 250,
             time_days = 3
         )
 

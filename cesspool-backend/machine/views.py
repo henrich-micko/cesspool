@@ -79,19 +79,13 @@ class DateRecordsAPIView(APIView):
 class MachineConfAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def post(self, request, machine_code: str):
+    def put(self, request, machine_code: str):
         machine = get_object_or_404(request.user.machine_set, code = machine_code)
-
-        new_title, new_max_level = request.data.get("title", False), request.data.get("max_level", False)
-        if new_title and type(new_title) != str or new_max_level and type(new_max_level) != int:
-            return Response(status = status.HTTP_400_BAD_REQUEST)
-
-        if new_title or new_title == None: machine.title = new_title
-        if new_max_level or new_max_level == None: machine.max_level = new_max_level
-
-        machine.save()
-
-        return Response(status = status.HTTP_200_OK)
+        serializer = serializers.MachineConfSerializer(instance = machine, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
 # this is not included in basic Machine view

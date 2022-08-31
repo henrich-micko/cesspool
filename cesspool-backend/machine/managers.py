@@ -17,22 +17,25 @@ class MachineManager(Manager):
         if not timedelta_kwargs:
             raise ValueError("There was not provided kwargs for timedelta: 'time_year'.")
 
-        if not "max_level" in kwargs.keys():
-            kwargs["max_level"] = 250
-
         machine = self.create(**kwargs)
-        machine_level, machine_battery = 0, 100
+        machine_level, machine_level_percent, machine_battery = 0, 0, 100
         
+        max_level = 250
+
         today_date = timezone.now()
         record_date = today_date - timedelta(**timedelta_kwargs)
 
         while (record_date < today_date):
-            record = machine.record_set.create(level = machine_level, battery = machine_battery)
+            record = machine.record_set.create(level = machine_level, battery = machine_battery, level_percent = machine_level_percent)
             record.date = record_date
             record.save(update_fields = ["date"])
             
-            if machine_level <= machine.max_level: machine_level += uniform(1/12, 3/12)
-            else: machine_level = 0
+            if machine_level <= max_level: 
+                machine_level += uniform(1/12, 3/12) # random
+                machine_level_percent = round((machine_level/max_level)*100, 2)
+
+            else: 
+                machine_level = 0
             
             if machine_battery <= 100: machine_battery += 1
             else: machine_battery = 0
