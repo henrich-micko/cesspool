@@ -1,3 +1,5 @@
+from email.policy import default
+from platform import machine
 import string
 from tkinter.tix import Tree
 from xmlrpc.client import boolean
@@ -41,6 +43,10 @@ class Machine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
     title = models.CharField(max_length = 20, null = True, blank = True)
     code = models.CharField(max_length = 10, unique = True)
+    
+    mqtt = models.BooleanField(default = True)
+    notification = models.BooleanField(default = True)
+    autocorrect = models.BooleanField(default = True)
 
     def __str__(self) -> str:
         return f"{self.code} : {self.title if self.title != None else 'Untitled'}"
@@ -95,7 +101,7 @@ class Machine(models.Model):
                 new_records.append(record)
             if len(new_records) < 2: return
 
-            first_record, last_record = new_records.first(), new_records.last()
+            first_record, last_record = new_records[0], new_records[-1]
             percent_rise = last_record.rise_percent(first_record)
 
         time = last_record.date - first_record.date
@@ -108,6 +114,29 @@ class Machine(models.Model):
             except OverflowError: break
 
         return date(year = output.year, month = output.month, day = output.day)
+
+    def action_at(self, action: models.Model, date: datetime):
+        action = action.objects.update_or_create(machine = self, defaults = {"date": date})
+        return action
+
+
+class MachineAction(models.Model):
+    machine = models.OneToOneField(Machine, on_delete = models.CASCADE)
+    date = models.DateTimeField()
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return f"{self.machine} at {self.date}"
+
+    def run(self):
+        pass
+
+
+class MachineDeleteAction(MachineAction):
+    def run(self):
+        self.machine.delete()
 
 
 class Record(models.Model):

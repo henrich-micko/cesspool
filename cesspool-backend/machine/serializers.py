@@ -23,6 +23,11 @@ class MachineSerializer(serializers.ModelSerializer):
             "last_update",
         ]
 
+        extra_kwargs = {
+            "id": {"read_only": True}, 
+            "code": {"read_only": True}
+        }
+
     def get_level(self, obj: models.Machine):
         return obj.level
 
@@ -39,13 +44,6 @@ class MachineSerializer(serializers.ModelSerializer):
 
     def get_last_update(self, obj: models.Machine):
         return obj.last_update
-
-
-class MachineConfSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Machine
-        fields = ["title"]
 
 
 class RecordSerializer(serializers.ModelSerializer):

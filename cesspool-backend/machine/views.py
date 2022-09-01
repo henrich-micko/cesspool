@@ -23,6 +23,18 @@ class MachineDetailAPIView(APIView):
         return Response(machine_serializer.data, status = status.HTTP_200_OK)
 
 
+class MachineConfAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, machine_code: str):
+        machine = get_object_or_404(request.user.machine_set, code = machine_code)
+        serializer = serializers.MachineSerializer(instance = machine, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+
 class RecordsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -74,18 +86,6 @@ class DateRecordsAPIView(APIView):
         data = {"is_enought": is_enought, "records": serializer.data}
 
         return Response(data = data, status = status.HTTP_200_OK)
-
-
-class MachineConfAPIView(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def put(self, request, machine_code: str):
-        machine = get_object_or_404(request.user.machine_set, code = machine_code)
-        serializer = serializers.MachineConfSerializer(instance = machine, data = request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status = status.HTTP_200_OK)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
 # this is not included in basic Machine view

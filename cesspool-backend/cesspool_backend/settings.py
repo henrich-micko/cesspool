@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -157,7 +157,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 # settings for mqtt 
 
-MQTT_RUN = False
+MQTT_RUN = True
 MQTT_HOST = "backend.zumpomer.sk"
 MQTT_PORT = 18579
 MQTT_USERNAME = "micko"

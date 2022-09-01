@@ -22,4 +22,5 @@ urlpatterns = [
     path("api/account/", include("account.urls"), name = "account"),
     path("api/machine/", include("machine.urls"), name = "machine"),
     path("api/admin/machine/", include("machine.admin_api.urls")),
+    path("api/admin/account/", include("account.admin_api.urls")),
 ]

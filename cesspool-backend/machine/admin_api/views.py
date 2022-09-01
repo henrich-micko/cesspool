@@ -1,5 +1,6 @@
-from typing import List
+from datetime import timedelta
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 from rest_framework import status 
 from rest_framework.views import APIView, Response
@@ -38,8 +39,10 @@ class AdminMachineAPIView(APIView):
     # delete machine
     def delete(self, request, machine_code: str):
         machine = get_object_or_404(models.Machine.objects.all(), code = machine_code)
-        machine.delete()
-        return Response(status = status.HTTP_204_NO_CONTENT)
+        machine.action_at(models.MachineDeleteAction, timezone.now() + timedelta(days = 1))
+        serializer = serializers.AdminMachineDetailSerializer(instance = machine)
+        
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
 
 class AdminMachineCreateAPIView(APIView):
