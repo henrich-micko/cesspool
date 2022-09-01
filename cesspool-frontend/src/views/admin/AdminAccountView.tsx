@@ -1,12 +1,15 @@
 import React from "react"
 
-// styles
-import styles from ".styles.module.scss"
+
+import AdminNavigation from "@components/admin/AdminNavigation"
+import { IsAdminView } from "@permissions/Admin"
 
 
 const AdminAccountView: React.FC = () => {
     return (
-        <h1>Account view</h1>
+        <IsAdminView>
+			<AdminNavigation onPlus={() => {}} onRefresh={() => {}}/>
+        </IsAdminView>
     )
 }
 

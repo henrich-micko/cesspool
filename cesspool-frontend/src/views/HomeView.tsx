@@ -13,6 +13,7 @@ const Home: React.FC = () => {
             </div>
 
             <h1>Cesspool Manager</h1>
+            <p>Naštívte našu <a href="https://zumpomer.sk"> domovskú stranku</a></p>
             <p>Kontaktuje nás na náš <a href="mailto:heno.micko@gmail.com">email</a></p>
 
             <br />

@@ -1,7 +1,7 @@
 import React, { FC, createContext, useState, ReactNode, useEffect } from "react"
 import axios from "axios"
 
-import { UserType } from "../types";
+import { ContextUserType } from "../types";
 
 // Types for default values and defalut values for context
 interface defaultValueTypes {
@@ -12,7 +12,7 @@ interface defaultValueTypes {
 
     authToken: string | null;
     isLogged: boolean;
-    user: UserType
+    user: ContextUserType
 }
 
 
@@ -25,7 +25,7 @@ export default AuthContext
 export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     const [authToken, setAuthToken] = useState(localStorage.getItem("authToken")) // Private getter and setter
     const [isLogged, setIsLogged] = useState(authToken !== null) // Public getter and setter 
-    const [user, setUser] = useState<UserType>({} as UserType)
+    const [user, setUser] = useState<ContextUserType>({} as ContextUserType)
 
     // set user after token is set
     useEffect(() => {

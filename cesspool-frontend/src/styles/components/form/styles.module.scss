@@ -58,3 +58,27 @@
         }
     }
 }
+
+.selectInput {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+    font-size: 1.1em;
+
+    span {
+        font-size: inherit;
+        width: min-content;
+        margin-right: 0.5em;
+    }
+
+    select {
+        color: white;
+        font-size: 1em;
+        background: none;
+        border: none;
+        border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
+        display: block;
+        text-align: left;
+    }
+}

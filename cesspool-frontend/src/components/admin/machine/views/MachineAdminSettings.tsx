@@ -1,62 +1,75 @@
-import React, { useState } from "react"
+import React, {useState } from "react"
 
 // styles
 import styles from "@styles/components/admin/machine/machineAdminView.module.scss"
 import classNames from "classnames"
 
 // types && hooks
-import { MachineAdminType } from "@types"
+import { MachineAdminType, UserType } from "@types"
 import useAxios from "@hooks/useAxios"
 
 // components
-import TextInput from "@components/form/TextInput"
 import NumberInput from "@components/form/NumberInput"
 import SwithInput from "@components/form/SwitchInput"
+import SelectInput from "@components/form/SeletectInput"
 
 interface Props {
     machine: MachineAdminType;
-    refresh: () => void
+    users: UserType[];
+    setMachine(newMachine: MachineAdminType): void
 }
 
 
 const MachineAdminSettings: React.FC<Props> = (props) => {
-    const [error, setError] = useState<string>("")
-    
+    const [error, setError] = useState<string>()
+
+    const axios = useAxios()
+
+    const confMachine = (data: {code?: string; user?: string|null; mqtt?: boolean, notification?: boolean, autocorrect?: boolean}) => {
+        setError("")
+        
+        axios.put("/admin/machine/" + props.machine.code + "/", data)
+             .then(res => props.setMachine(res.data))
+             .catch(error => setError("Neplatný typ udaja"))
+    }
+
     return (
         <div className={classNames(styles.machineView, styles.settings)}>
-            <form>
+            <div>
+                {error !== "" && <span className={styles.error}>{error}</span>}
+
                 <NumberInput 
-                    onSubmit={() => {}}
+                    onSubmit={(value) => confMachine({code: value})}
                     label="Code"
                     value={props.machine.code !== null ? props.machine.code : undefined}
                 />
 
-                <TextInput 
-                    onSubmit={() => {}}
+                <SelectInput 
+                    onSubmit={(value) => confMachine({user: value === "" ? null : value})}
                     label="User"
+                    options={[["", "Nepridelený"], ...props.users.map(user => [user.email, user.email])]}
                     value={props.machine.user !== null ? props.machine.user : undefined}
+                    selected={props.machine.user}
                 />
 
                 <SwithInput
-                    onSubmit={() => {}}
+                    onSubmit={(value) => confMachine({mqtt: value})}
                     label="Mqtt"
-                    value={false}
+                    value={props.machine.mqtt}
                 />
 
                 <SwithInput
-                    onSubmit={() => {}}
+                    onSubmit={(value) => confMachine({notification: value})}
                     label="Notifikacie"
-                    value={false}
+                    value={props.machine.notification}
                 />
 
                 <SwithInput
-                    onSubmit={() => {}}
-                    label="Autocorect"
-                    value={false}
+                    onSubmit={(value) => confMachine({autocorrect: value})}
+                    label="Autocorrect"
+                    value={props.machine.autocorrect}
                 />
-
-                {error !== "" && <span>Neplatné udaje</span>}
-            </form>
+            </div>
         </div>
     )
 }

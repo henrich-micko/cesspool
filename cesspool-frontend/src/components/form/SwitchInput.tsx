@@ -1,4 +1,4 @@
-import React, { useState} from "react"
+import React, { useEffect, useState} from "react"
 
 // styles && icons
 import styles from "@styles/components/form/styles.module.scss"
@@ -13,11 +13,9 @@ interface Props {
 }
 
 const SwitchInput: React.FC<Props> = (props) => {
-    const [status, setStatus] = useState<boolean>(props.value)
-
     const handleClick = () => {
-        setStatus(prevStatus => !prevStatus)
-        props.onSubmit(status)
+        const value = !props.value
+        props.onSubmit(value)
     }
 
     return (
@@ -25,8 +23,8 @@ const SwitchInput: React.FC<Props> = (props) => {
             {props.label !== undefined && <span>{props.label}:</span>}   
             
             <FontAwesomeIcon
-                className={classNames(styles.icon, status ? styles.on : styles.off)}
-                icon={status ? faToggleOn : faToggleOff}
+                className={classNames(styles.icon, props.value ? styles.on : styles.off)}
+                icon={props.value ? faToggleOn : faToggleOff}
                 onClick={handleClick}
                 size="lg"
             />

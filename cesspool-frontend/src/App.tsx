@@ -12,7 +12,8 @@ import LoginView from './views/auth/LoginView'
 import RegisterView from "./views/auth/RegisterView"
 import AccountView from './views/account/AccountView'
 import MachineView from "./views/MachineView"
-import AdminView from "./views/admin/AdminView"
+import AdminAccountView from "./views/admin/AdminAccountView"
+import AdminMachineView from "./views/admin/AdminMachineView"
 import AdminNavigation from "./components/admin/AdminNavigation"
 
 // Permissions
@@ -32,7 +33,8 @@ function App() {
               <Route path="/account/register" element={<RegisterView />} />
               <Route path="/account" element={<AccountView />} />
               <Route path="/machine" element={<MachineView />} />
-              <Route path="/admin/:app/" element={<AdminView />} />
+              <Route path="/admin/machine/" element={<AdminMachineView />} />
+              <Route path="/admin/account/" element={<AdminAccountView />} />
           </Routes>
         </main>
       </div>

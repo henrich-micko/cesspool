@@ -25,7 +25,7 @@ const SettingsView: React.FC<Props> = (props) => {
 	const handleTitle = (value: string) => {
         const title = value.trim()
 
-        axios.post("machine/" + props.machine.code + "/conf/", {title: title !== "" ? title : null})
+        axios.put("machine/" + props.machine.code + "/conf/", {title: title !== "" ? title : null})
             .then(() => props.refresh())
             .catch(error => console.log(error))
 

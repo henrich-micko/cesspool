@@ -27,7 +27,7 @@ export const MachineUser: React.FC<MachineUserProps> = (props) => {
     return (
         <div className={styles.machineInfo}>
             <FontAwesomeIcon icon={faUser} />
-            <span>{props.user}</span>
+            <span>{props.user !== null ? props.user : "Nepridelené"}</span>
         </div>
     )
 }

@@ -10,5 +10,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        .error {
+            color: rgb(255, 78, 78);
+            margin-bottom: 2em;
+        }
+
+        
     }
 }

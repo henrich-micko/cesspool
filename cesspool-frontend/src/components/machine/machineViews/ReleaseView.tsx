@@ -33,7 +33,7 @@ const ReleaseView: React.FC<Props> = (props) => {
                     <span>Posledný záznam: {props.machine.last_update?.split("T").at(0)}</span>
                 </>
 
-              : <span>Není nastavený objem, alebo sa s danými zaznamamy nepodaril vypočet</span>
+              : <span>Bohužial sa s danými zaznamamy sa nepodaril vypočet</span>
             }
         </div>
     )

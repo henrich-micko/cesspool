@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import useIsMobile from "../../../hooks/useIsMobile"
 
 // api
-import { MachineAdminType } from "../../../types"
+import { MachineAdminType, UserType } from "../../../types"
 
 // components
 import MachineAdminPanel from "./MachineAdminPanel"
@@ -13,7 +13,8 @@ import MachineAdminSettings from "./views/MachineAdminSettings"
 
 interface Props {
     machine: MachineAdminType,
-    refresh(): void
+    users: UserType[],
+    setMachine(newMachine: MachineAdminType): void
 }
 
 const MachineAdminBoard: React.FC<Props> = (props) => {    
@@ -31,7 +32,7 @@ const MachineAdminBoard: React.FC<Props> = (props) => {
             <MachineAdminPanel handleIcon={handleIcon} machine={props.machine} />
 
             {machineView === "settings" ?
-                <MachineAdminSettings machine={props.machine} refresh={props.refresh} />
+                <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} users={props.users}/>
                 : undefined
             }
         </TheBoard>

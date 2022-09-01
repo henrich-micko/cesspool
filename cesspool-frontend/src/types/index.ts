@@ -24,15 +24,26 @@ export interface RecordType {
     date: string
 }
 
-export interface UserType {
+export interface ContextUserType {
     email: string|null;
     is_active: boolean|null;
     is_superuser: boolean|null;
     date_joined: string|null;
 }
 
+export interface UserType {
+    email: string;
+    is_active: boolean;
+    is_superuser: boolean;
+    date_joined: string;
+}
+
+
 export interface MachineAdminType {
     id: number;
     code: string;
     user: string|null;
+    mqtt: boolean;
+    notification: boolean;
+    autocorrect: boolean
 }
