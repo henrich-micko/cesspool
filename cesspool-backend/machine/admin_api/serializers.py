@@ -7,18 +7,24 @@ import account
 class AdminMachineDetailSerializer(serializers.ModelSerializer):
     user = serializers.EmailField(source = "user.email", default = None, allow_null = True)
     delete_date = serializers.SerializerMethodField()
+    delete_records_date = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Machine
-        fields = ["user", "code", "mqtt", "notification", "autocorrect", "delete_date"]
+        fields = ["user", "code", "mqtt", "notification", "autocorrect", "delete_date", "delete_records_date"]
         extra_kwargs = {"code": {"required": False}}
 
     def get_delete_date(self, obj):
-        try:
-            delete_action = models.MachineDeleteAction.objects.get(machine = obj)
-            return delete_action.date
-        except models.MachineDeleteAction.DoesNotExist:
-            return None
+        action = obj.get_action(models.MachineDeleteAction)
+        if action != None:
+            return action.date
+        return None
+
+    def get_delete_records_date(self, obj):
+        action = obj.get_action(models.MachineDeleteRecordsAction)
+        if action != None:
+            return action.date
+        return None
 
     def update(self, instance, validated_data):
         for key in validated_data.keys():

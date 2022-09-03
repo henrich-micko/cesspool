@@ -49,7 +49,7 @@ class Machine(models.Model):
     autocorrect = models.BooleanField(default = True)
 
     def __str__(self) -> str:
-        return f"{self.code} : {self.title if self.title != None else 'Untitled'}"
+        return self.code
 
     def get_record(self):
         return self.record_set.last()
@@ -119,6 +119,11 @@ class Machine(models.Model):
         action = action.objects.update_or_create(machine = self, defaults = {"date": date})
         return action
 
+    def get_action(self, action: models.Model, default = None):
+        output = action.objects.filter(machine = self).first()
+        if output != None:
+            return output
+        return default
 
 class MachineAction(models.Model):
     machine = models.OneToOneField(Machine, on_delete = models.CASCADE)
@@ -137,6 +142,11 @@ class MachineAction(models.Model):
 class MachineDeleteAction(MachineAction):
     def run(self):
         self.machine.delete()
+
+
+class MachineDeleteRecordsAction(MachineAction):
+    def run(self):
+        self.machine.records.all().delete()
 
 
 class Record(models.Model):

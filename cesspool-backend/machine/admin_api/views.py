@@ -54,3 +54,39 @@ class AdminMachineCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors)
+
+
+class AdminMachineRecordAPIView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def delete(self, request, machine_code: str):
+        machine = get_object_or_404(models.Machine.objects.all(), code = machine_code)
+        machine.action_at(models.MachineDeleteRecordsAction, timezone.now() + timedelta(days = 1))
+        serializer = serializers.AdminMachineDetailSerializer(instance = machine)
+        
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+
+# abstract not used in ulrs
+class MachineAbortActionAPIView(APIView):
+    permission_classes = [IsAdminUser]
+    action = None
+
+    def get(self, request, machine_code: str):
+        if self.action != None:
+            machine = get_object_or_404(models.Machine.objects.all(), code = machine_code)
+            action = machine.get_action(self.action)
+
+            if action != None:
+                action.delete()
+
+        serializer = serializers.AdminMachineDetailSerializer(instance = machine)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+
+class MachineAbortDeleteAPIView(MachineAbortActionAPIView):
+    action = models.MachineDeleteAction
+
+
+class MachineAbortDeleteRecordsAPIView(MachineAbortActionAPIView):
+    action = models.MachineDeleteRecordsAction
