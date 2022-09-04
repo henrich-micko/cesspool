@@ -46,4 +46,6 @@ export interface MachineAdminType {
     mqtt: boolean;
     notification: boolean;
     autocorrect: boolean
+    delete_date: string|null
+    delete_records_date: string|null
 }

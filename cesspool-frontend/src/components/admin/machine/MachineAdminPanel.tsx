@@ -30,7 +30,7 @@ const AdminMachinePanel: React.FC<Props> = (props) => {
             <div className={styles.panel}>
                 <FontAwesomeIcon 
                     onClick={() => props.handleIcon("trash")} 
-                    className={styles.icon} 
+                    className={classNames(styles.icon, props.machine.delete_date !== null && styles.red)}
                     icon={faTrash} 
                 />
                 <FontAwesomeIcon 

@@ -15,7 +15,25 @@
             color: rgb(255, 78, 78);
             margin-bottom: 2em;
         }
+    }
 
-        
+    &.delete {
+        justify-content: space-between;
+
+        span {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+            font-size: 1.1em;
+        }
+
+        &.mobile {
+            justify-content: space-between;
+            flex-direction: column;
+
+            span {
+                margin-bottom: 1em;
+            }
+        }
     }
 }

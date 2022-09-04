@@ -30,6 +30,10 @@
 
         .icon {
             margin-right: 1em;
+
+            &.red {
+                color: rgb(255, 78, 78)
+            }
         }
 
         .icon:last-child {
@@ -55,14 +59,18 @@
             div:first-child {
                 margin-top: 0em;
             }
+
+            span {
+                font-size: 1.25em;
+            }
         }
 
         .panel {
             border-left: none;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             height: auto;
-            padding-top: 1em;
-            padding-bottom: 1em;
+            padding-top: 0.75em;
+            padding-bottom: 0.75em;
             padding-right: 2em;
         }
     }

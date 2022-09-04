@@ -82,3 +82,24 @@
         text-align: left;
     }
 }
+
+.theButton {
+    display: flex;
+    justify-content: right;
+
+    input[type=button] {
+        padding: 0.5em 0.7em 0.5em 0.7em;
+        font-size: 1em;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 0.3em 0.3em 0.3em 0.3em;
+
+        &.red {
+            color: rgb(255, 78, 78);
+        }
+
+        &.blue {
+            color: #61dafb;
+        }
+    }
+}
