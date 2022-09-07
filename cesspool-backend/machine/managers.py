@@ -2,7 +2,7 @@ from random import uniform
 from django.db.models import QuerySet, Model, Manager
 from django.utils import timezone
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 class MachineManager(Manager):
@@ -49,6 +49,7 @@ class MachineManager(Manager):
             kwargs["title"] = kwargs["title"].capitalize()
         
         return super().create(**kwargs)
+
 
 class RecordQuerySet(QuerySet):
     def get_level_average(self) -> int:

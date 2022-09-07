@@ -38,9 +38,13 @@ class MachineSerializer(serializers.ModelSerializer):
         return obj.battery
 
     def get_problems(self, obj: models.Machine):
-        problems_list = sorted(obj.problem_scan(), key = lambda item: item[0], reverse = True)
-        problems_dict = [models.Status.to_json(item) for item in problems_list]
-        return problems_dict
+        problems = models.scan_problems(obj)
+        sorted_problems = sorted(problems, key = lambda item: item.importance, reverse = True)
+
+        return [
+            {"detail": problem.detail, "importance": problem.importance}
+            for problem in problems
+        ]
 
     def get_last_update(self, obj: models.Machine):
         return obj.last_update

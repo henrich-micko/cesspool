@@ -75,7 +75,7 @@ class MachineAbortActionAPIView(APIView):
     def get(self, request, machine_code: str):
         if self.action != None:
             machine = get_object_or_404(models.Machine.objects.all(), code = machine_code)
-            action = machine.get_action(self.action)
+            action = machine.one_to_one(self.action)
 
             if action != None:
                 action.delete()

@@ -9,6 +9,7 @@ class MachineConfig(AppConfig):
 
     def ready(self):
         if os.environ.get('RUN_MAIN'):
+            from cesspool_backend import celery
             from . import mqtt
 
             if settings.MQTT_RUN:                

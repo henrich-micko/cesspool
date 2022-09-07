@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 
-from datetime import timedelta
-
+from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,9 +45,10 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     
     'corsheaders',
+    'django_celery_beat',
 
     'account.apps.AccountConfig',
-    'machine.apps.MachineConfig'
+    'machine.apps.MachineConfig',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +164,18 @@ MQTT_PORT = 18579
 MQTT_USERNAME = "micko"
 MQTT_PASSWORD = "HenrichMicko"
 MQTT_TOPIC = "#"
+
+# settings for celery
+CELERY_TIMEZONE = TIME_ZONE
+DJANGO_CELERY_BEAT_TZ_AWARE = False
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+CELERY_BEAT_SCHEDULE = {
+    "scan_machine_actions": {
+        'task': "machine.tasks.scan_machine_actions",
+        "schedule": timedelta(minutes = 1),
+    },
+}

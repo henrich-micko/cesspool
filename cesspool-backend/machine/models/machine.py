@@ -1,41 +1,9 @@
-from email.policy import default
-from platform import machine
-import string
-from tkinter.tix import Tree
-from xmlrpc.client import boolean
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
 
-from datetime import date, datetime, timedelta
+from datetime import datetime, date
+from machine import managers
 
-from . import managers
-
-
-class Status:
-    """
-    Status for problem scan level: int message:string
-    """
-    
-    NO_USER = [0, "Nenašiel sa použivatel"]
-    NO_RECORDS = [0, "Nenašiel sa žiaden záznam"]
-    NO_TITLE = [0, "Nie je nastavené meno"]
-    HIGHT_LEVEL = [1, "Vysoka hladina obsahu"]
-    LOW_BATTERY = [1, "Takmer vybitá bateria"]
-    OLD_RECORD = [1, "V dlhsej dobe nebol poskytnutý záznam"]
-
-    @staticmethod
-    def get(status: str, default = None) -> list[int, str]:
-        return getattr(Status, status, default)
-
-    @staticmethod
-    def to_json(status: str|list[int, str]) -> dict:
-        status = Status.get(status) if type(status) == str else status
-        return None if status == None else {
-            "importance": status[0],
-            "detail": status[1]
-        }
-        
 
 class Machine(models.Model):
     objects = managers.MachineManager()
@@ -43,6 +11,7 @@ class Machine(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
     title = models.CharField(max_length = 20, null = True, blank = True)
     code = models.CharField(max_length = 10, unique = True)
+    hight_level = models.IntegerField(default = 85)
     
     mqtt = models.BooleanField(default = True)
     notification = models.BooleanField(default = True)
@@ -74,19 +43,6 @@ class Machine(models.Model):
         record = self.get_record()
         return record.date if record != None else None 
 
-    def problem_scan(self) -> list[list[int, str]]:
-        output: list = []
-
-        if self.user == None: output.append(Status.NO_USER)
-        if self.title == None: output.append(Status.NO_TITLE)
-        if self.get_record() == None: output.append(Status.NO_RECORDS)
-        else:
-            if self.level_percent >= 80: output.append(Status.HIGHT_LEVEL)
-            if self.battery <= 10: output.append(Status.LOW_BATTERY)
-            if self.last_update <= timezone.now() - timedelta(days = 2): output.append(Status.OLD_RECORD)
-
-        return output
-        
     def release_date(self):
         records = self.record_set.all().time_period(days = 1)
         if len(records) < 2: return
@@ -119,34 +75,11 @@ class Machine(models.Model):
         action = action.objects.update_or_create(machine = self, defaults = {"date": date})
         return action
 
-    def get_action(self, action: models.Model, default = None):
-        output = action.objects.filter(machine = self).first()
+    def one_to_one(self, table: models.Model, default = None):
+        output = table.objects.filter(machine = self).first()
         if output != None:
             return output
         return default
-
-class MachineAction(models.Model):
-    machine = models.OneToOneField(Machine, on_delete = models.CASCADE)
-    date = models.DateTimeField()
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return f"{self.machine} at {self.date}"
-
-    def run(self):
-        pass
-
-
-class MachineDeleteAction(MachineAction):
-    def run(self):
-        self.machine.delete()
-
-
-class MachineDeleteRecordsAction(MachineAction):
-    def run(self):
-        self.machine.records.all().delete()
 
 
 class Record(models.Model):
@@ -178,7 +111,7 @@ class Record(models.Model):
         before_record = record if record != None else self.index(-1)
         return self.level_percent - before_record.level_percent if before_record != None else None
 
-    def is_valid(self, minimal_rise: int = 40) -> None|boolean:
+    def is_valid(self, minimal_rise: int = 40) -> None|bool:
         record_after = self.index(1)
         record_after_rise_percent = record_after.rise_percent() if record_after != None else None
         if record_after_rise_percent == None:

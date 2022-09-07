@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from datetime import datetime, timedelta
 
-from . import serializers, models
+from . import serializers, models, tasks
 
 
 class MachineDetailAPIView(APIView):
@@ -95,4 +95,5 @@ class MachineReleaseDateAPIView(APIView):
 
     def get(self, request, machine_code: str):
         machine = get_object_or_404(request.user.machine_set, code = machine_code)
+        tasks.wait.delay()
         return Response({"release_date": machine.release_date()}, status = status.HTTP_200_OK)

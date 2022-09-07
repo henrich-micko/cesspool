@@ -15,13 +15,13 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
         extra_kwargs = {"code": {"required": False}}
 
     def get_delete_date(self, obj):
-        action = obj.get_action(models.MachineDeleteAction)
+        action = obj.one_to_one(models.MachineDeleteAction)
         if action != None:
             return action.date
         return None
 
     def get_delete_records_date(self, obj):
-        action = obj.get_action(models.MachineDeleteRecordsAction)
+        action = obj.one_to_one(models.MachineDeleteRecordsAction)
         if action != None:
             return action.date
         return None
