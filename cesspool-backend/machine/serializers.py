@@ -21,6 +21,7 @@ class MachineSerializer(serializers.ModelSerializer):
             "problems",
             "level_percent", 
             "last_update",
+            "hight_level"
         ]
 
         extra_kwargs = {
@@ -39,7 +40,6 @@ class MachineSerializer(serializers.ModelSerializer):
 
     def get_problems(self, obj: models.Machine):
         problems = models.scan_problems(obj)
-        sorted_problems = sorted(problems, key = lambda item: item.importance, reverse = True)
 
         return [
             {"detail": problem.detail, "importance": problem.importance}

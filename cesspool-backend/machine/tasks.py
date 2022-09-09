@@ -1,11 +1,14 @@
 from django.utils import timezone
-
-from datetime import datetime
+from django.core.mail import send_mail
 
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
+from machine.models.problems import scan_problems
+from datetime import datetime
+
 from . import models
+from account.models import UserAccount
 
 
 logger = get_task_logger(__name__)
@@ -38,3 +41,14 @@ def scan_machine_actions(save = True):
             except BaseException as error:
                 if save:
                     raise error
+
+
+@shared_task
+def scan_machine_problems_and_send_email():
+    for user in UserAccount.objects.all():
+        problems = {}
+        for machine in user.machine_set.filter(notification = True):
+            machine_problems = scan_problems(machine)
+            problems[machine.code] = [problem for problem in machine_problems if not problem.is_sand]
+
+        send_mail(subject = "Problemy", from_email = "henrich.joen@gmail.com", message = str(problems), recipient_list = [user.email])

@@ -6,25 +6,21 @@ from datetime import timedelta
 from . import machine as machine_models
 
 
-class MachineProblemImportance(models.IntegerChoices):
-    WARNING = 0, ("warning")
-    ERROR = 1, ("error")
-
-    @classmethod
-    def get_by_name(cls, name: str, default = None):
-        for item in cls.choices:
-            if item[1] == name: return item[0]
-        return default
+WARNING = 0
+ERROR = 1
 
 
 class MachineBaseProblem(models.Model):
     machine = models.OneToOneField(machine_models.Machine, on_delete = models.CASCADE)
 
+    importance = None
+    detail = None
+
     class Meta:
         abstract = True
 
     def __str__(self):
-        return f"{self.importance}: {self.detail}"
+        return f"{self.machine}"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -32,22 +28,20 @@ class MachineBaseProblem(models.Model):
 
 
 class MachineBaseWarning(MachineBaseProblem):
-    importance = models.IntegerField(choices = MachineProblemImportance.choices, default = MachineProblemImportance.get_by_name("warning"))
+    importance = WARNING
 
     class Meta:
         abstract = True
-
 
 class MachineBaseError(MachineBaseProblem):
-    importance = models.IntegerField(choices = MachineProblemImportance.choices, default = MachineProblemImportance.get_by_name("error"))
     is_sand = models.BooleanField(default = False)
+    importance = ERROR
 
     class Meta:
         abstract = True
 
-
 class MachineNoRecordProblem(MachineBaseWarning):
-    detail = models.CharField(max_length = 20, default = "Nenašli sa záznmy")
+    detail = "Nenašli sa záznmy"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -55,7 +49,7 @@ class MachineNoRecordProblem(MachineBaseWarning):
 
 
 class MachineNoTitleProblem(MachineBaseWarning):
-    detail = models.CharField(max_length = 20, default = "Není natavený názov")
+    detail = "Není natavený názov"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -63,15 +57,15 @@ class MachineNoTitleProblem(MachineBaseWarning):
 
 
 class MachineHightLevelProblem(MachineBaseError):
-    detail = models.CharField(max_length = 20, default = "Vysoká hladina")
+    detail = "Vysoká hladina"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
-        return machine.level != None and machine.level > machine.hight_level
+        return machine.level_percent != None and machine.level_percent > machine.hight_level
 
 
 class MachineLowBatteryProblem(MachineBaseError):
-    detail = models.CharField(max_length = 20, default = "Slabá bateria")
+    detail = "Slabá bateria"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -79,7 +73,7 @@ class MachineLowBatteryProblem(MachineBaseError):
 
 
 class MachineDeathBatteryProblem(MachineBaseError):
-    detail = models.CharField(max_length = 20, default = "Vybitá bateria")
+    detail = "Vybitá bateria"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -87,7 +81,7 @@ class MachineDeathBatteryProblem(MachineBaseError):
 
 
 class MachineOldRecordProblem(MachineBaseError):
-    detail = models.CharField(max_length = 20, default = "Dlhšiu dobu sa neozíva")
+    detail = "Dlhšiu dobu sa neozíva"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -113,4 +107,4 @@ def scan_problems(machine: machine_models.Machine):
         elif machine.one_to_one(problem, False):
             machine.one_to_one(problem).delete()
 
-    return output
+    return sorted(output, key = lambda item: item.importance, reverse = True)

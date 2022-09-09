@@ -2,7 +2,6 @@ from .machine import Machine, Record
 from .actions import MachineBaseAction, MachineDeleteAction, MachineDeleteRecordsAction
 from .problems import (
     MachineBaseProblem,
-    MachineProblemImportance,
     MachineNoTitleProblem,
     MachineNoRecordProblem,
     MachineHightLevelProblem,
@@ -19,7 +18,6 @@ __all__ = [
     MachineDeleteAction,
     MachineDeleteRecordsAction,
     MachineBaseProblem,
-    MachineProblemImportance,
     MachineNoTitleProblem,
     MachineNoRecordProblem,
     MachineHightLevelProblem,

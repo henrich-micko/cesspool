@@ -179,3 +179,9 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": timedelta(minutes = 1),
     },
 }
+
+EMAIL_HOST = "stmp.gmail.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "henrich.micko@gmail.com"
+EMAIL_HOST_PASSWORD = "PxthoN39"
+EMAIL_USE_TLS = True
