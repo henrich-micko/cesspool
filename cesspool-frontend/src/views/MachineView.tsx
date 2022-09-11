@@ -1,55 +1,61 @@
 import React, { useState } from "react"
-
-// permissions
 import { IsAuthenticatedView } from "../permissions/Authenticated"
-
-// components
 import ListOfMachines from "../components/machine/ListOfMachines"
-
-// styles && icons
 import styles from "./MachineView.module.scss"
-
-// api
 import useAxios from "../hooks/useAxios"
 import { MachineType } from "../types"
 import NoContent from "../components/NoContent"
-import MachineNavigation from "../components/machine/MachineNavigation"
+import MenuOfMachines from "@components/machine/MenuOfMachine"
+import MachineBoard from "@components/machine/MachineBoard"
+import { useIsDesktop } from "@hooks/useIsMobile"
+import classNames from "classnames"
+import MachineDesktopBoard from "@components/machine/MachineDesktopBoard"
+import MachineDesktopProblems from "@components/machine/MachineDesktopProblems"
+import MachineDesktopSettings from "@components/machine/MachineDesktopSettings"
 
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
+	const [machineId, setMachineId] = useState<number>(0)
+	
 	const axios = useAxios()
+	const isDesktop = useIsDesktop()
 
 	const refreshMachines = () => {
 		axios.get("/machine/")
-			.then(res => setMachines(res.data))
+			.then(res => { setMachines(res.data) })
 			.catch(error => console.log(error))
 	}
 
-	const refreshMachine = (id: number) => {
+	const setMachine = (id: number, newMachine: MachineType) => {
 		if (machines === null) { return }
 		const machineCode = machines.at(id)?.code
 		if (machineCode === undefined) return
 
-		axios.get("machine/" + machineCode)
-			.then(res => {
-				setMachines(machines.map((machine, index) => {
-					if (index === id) {
-						return res.data
-					}
-					return machine
-				}))
-			})
-			.catch(error => console.log(error))
+		setMachines(machines.map((machine, index) => {
+			if (index === id) return newMachine
+			return machine
+		}))
 	}
+
+	const machine = machines !== undefined ? machines?.at(machineId) : undefined
 
 	return (
 		<IsAuthenticatedView onEffect={refreshMachines}>
-			<div className={styles.view}>
-				<MachineNavigation onPlus={() => {window.open('https://www.zumpomer.sk', '_blank')}} onRefresh={refreshMachines}/>
-
-				{machines !== null && machines.length !== 0 
-					? <ListOfMachines machines={machines} refresh={refreshMachine}/>
-					: machines !== null && 
+			<div className={classNames(styles.view, isDesktop && styles.desktop)}>
+				{machines !== null && machines.length !== 0  ? 
+					<>
+						<MenuOfMachines machines={machines} onClick={setMachineId} activate={machineId !== null ? machineId : undefined} />
+						{machine !== undefined && 
+							<>
+								<MachineDesktopBoard machine={machine} setMachine={refreshMachines}/>
+								<div>
+									<MachineDesktopProblems machine={machine} />
+									<MachineDesktopSettings machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)} />
+								</div>
+							</>
+						}
+					</> : 
+					machines !== null && 
 					  <NoContent missing="zariadenia"/>
 				}
 			</div>

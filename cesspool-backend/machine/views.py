@@ -1,5 +1,5 @@
-from urllib import request
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 from rest_framework import status
 from rest_framework.views import APIView, Response
@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from datetime import datetime, timedelta
 
-from . import serializers, models, tasks
+from . import serializers
 
 
 class MachineDetailAPIView(APIView):
@@ -95,5 +95,8 @@ class MachineReleaseDateAPIView(APIView):
 
     def get(self, request, machine_code: str):
         machine = get_object_or_404(request.user.machine_set, code = machine_code)
-        tasks.wait.delay()
-        return Response({"release_date": machine.release_date()}, status = status.HTTP_200_OK)
+        release_date = machine.release_date()
+        data = {
+            "release_date": release_date,
+        }
+        return Response(data, status = status.HTTP_200_OK)

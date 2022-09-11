@@ -3,13 +3,13 @@ import React from "react"
 // types
 import { MachineType } from "../../types"
 
-import MachinePanel from "./MachineBoard"
+import MachineBoard from "./MachineBoard"
 
-import styles from "./styles.module.scss"
+import styles from "@styles/components/machine/listOfMachines.module.scss"
 
 interface Props {
     machines: MachineType[],
-    refresh(id: number): void
+    setMachine(id: number, newMachine: MachineType): void
 }
 
 const ListOfMachines: React.FC<Props> = (props) => {
@@ -19,7 +19,7 @@ const ListOfMachines: React.FC<Props> = (props) => {
         <ul className={styles.listOfMachines}>        
             {machines.map((machine, index) => 
                 <li key={machine.id} className={styles.machineLi}>
-                    <MachinePanel machine={machine} refresh={() => props.refresh(index)}/>
+                    <MachineBoard machine={machine} setMachine={(newMachine: MachineType) => props.setMachine(index, newMachine)}/>
                 </li>
             )}
         </ul>

@@ -13,4 +13,9 @@
             width: 9em;
         }
     }
+
+    &.desktop {
+        display: flex;
+        width: 100%;
+    }
 }

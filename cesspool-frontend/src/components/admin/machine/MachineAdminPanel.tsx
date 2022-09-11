@@ -31,17 +31,22 @@ const AdminMachinePanel: React.FC<Props> = (props) => {
                 <FontAwesomeIcon 
                     onClick={() => props.handleIcon("trash")} 
                     className={classNames(styles.icon, props.machine.delete_date !== null && styles.red)}
-                    icon={faTrash} 
+                    icon={faTrash}
+                    size={isMobile ? "lg": undefined} 
+
                 />
                 <FontAwesomeIcon 
                     onClick={() => props.handleIcon("records")} 
-                    className={styles.icon} 
-                    icon={faCompactDisc} 
+                    className={classNames(styles.icon, props.machine.delete_records_date !== null && styles.red)}
+                    icon={faCompactDisc}
+                    size={isMobile ? "lg": undefined} 
+
                 />
                 <FontAwesomeIcon                
                     onClick={() => props.handleIcon("settings")} 
                     className={styles.icon}
                     icon={faSliders}
+                    size={isMobile ? "lg": undefined} 
                 />
             </div>
         </div>

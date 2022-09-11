@@ -12,18 +12,18 @@ interface Props {
     setMachine(newMachine: MachineAdminType): void
 }
 
-const MachineAdminDelete: React.FC<Props> = (props) => {
+const MachineAdminDeleteRecords: React.FC<Props> = (props) => {
     const isMobile = useIsMobile()
     const axios = useAxios()
 
     const handleDelete = () => {
-        axios.delete("/admin/machine/" + props.machine.code)
+        axios.delete("/admin/machine/" + props.machine.code + "/record/")
              .then(res => props.setMachine(res.data))
              .catch(error => console.log(error))
     }
 
     const handleRestore = () => {
-        axios.get("/admin/machine/" + props.machine.code + "/restore")
+        axios.get("/admin/machine/" + props.machine.code + "/record/restore")
              .then(res => props.setMachine(res.data))
              .catch(error => console.log(error))
     }
@@ -34,13 +34,18 @@ const MachineAdminDelete: React.FC<Props> = (props) => {
 
     return (
         <div className={classNames(styles.machineView, styles.delete, isMobile && styles.mobile)}>
-                {props.machine.delete_date === null ?
+                {props.machine.delete_records_date === null ?
                 <>
-                    <span>Vážne chcete odstraniť toto&nbsp;zariadenie&nbsp;?</span>
-                    <TheButton label={"Odstraniť"} onClick={handleDelete} type="red"/>
+                    {props.machine.records !== 0 ?
+                        <>
+                            <span>Vážne chcete odstraniť záznamy ?</span>
+                            <TheButton label={"Odstraniť"} onClick={handleDelete} type="red"/>
+                        </> :
+                        <span>Nenašli sa žiadne záznamy</span>
+                    }
                 </> :
                 <>
-                    <span>Chcete obnoviť zariadenie ({formatTime(props.machine.delete_date)})&nbsp;?</span>
+                    <span>Chcete obnoviť záznamy ({formatTime(props.machine.delete_records_date)}) ?</span>
                     <TheButton label={"Obnoviť"} onClick={handleRestore} type="blue"/>
                 </>
             }
@@ -48,4 +53,4 @@ const MachineAdminDelete: React.FC<Props> = (props) => {
     )
 }
 
-export default MachineAdminDelete
+export default MachineAdminDeleteRecords

@@ -3,14 +3,16 @@ import React from "react"
 // Styles && Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBatteryFull, faWater, faBatteryEmpty, faBatteryHalf, faBatteryQuarter, faBatteryThreeQuarters} from "@fortawesome/free-solid-svg-icons"
+import { MachineType } from "@types"
 
 interface LevelProps {
-    level?: number;
-    label?: string;
+    machine: MachineType
 }
 
-export const StatusLevel: React.FC<LevelProps> = ({level = undefined, label = undefined}: LevelProps) => {
-    const label_string = level === undefined ? "..." : label !== undefined ? label : "%"
+export const StatusLevel: React.FC<LevelProps> = (props) => {
+    const { machine } = props
+    const level = machine.level_percent !== null ? machine.level_percent : machine.level !== null ? machine.level : undefined
+    const label_string = level === undefined ? "..." : "%"
     
     return (
         <div>
@@ -22,10 +24,12 @@ export const StatusLevel: React.FC<LevelProps> = ({level = undefined, label = un
 
 
 interface BatteryProps {
-    battery?: number
+    machine: MachineType
 }
 
-export const StatusBattery: React.FC<BatteryProps> = ({battery = undefined}: BatteryProps) => {
+export const StatusBattery: React.FC<BatteryProps> = (props) => {
+    const battery = props.machine.battery !== null ? props.machine.battery : undefined
+
     const batteryIcon = battery === undefined || battery <= 10 ? faBatteryEmpty : 
                         battery <= 40 ? faBatteryQuarter :
                         battery <= 60 ? faBatteryHalf :

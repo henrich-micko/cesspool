@@ -11,7 +11,10 @@ import useIsMobile from "@hooks/useIsMobile"
 
 interface Props {
     children: React.ReactNode,
-    isActive?: boolean
+    isActive?: boolean,
+    label?: string,
+    className?: string
+    style?: {}
 }
 
 const TheBoard: React.FC<Props> = (props) => {
@@ -19,8 +22,24 @@ const TheBoard: React.FC<Props> = (props) => {
     const [animationParent] = useAutoAnimate<HTMLDivElement>()
 
     return (
-        <div ref={animationParent} className={classNames(styles.board, isMobile && styles.isMobile, props.isActive && styles.activate)}>
-            {props.children}
+        <div
+            style={props.style}
+            ref={animationParent} 
+            className={classNames(
+                styles.board, 
+                isMobile && styles.isMobile, 
+                props.isActive && styles.activate,
+                props.className
+            )}
+        >
+            {props.label &&
+                <div className={styles.header}>
+                    <h2>{props.label}</h2>
+                </div>
+            }
+            <div className={styles.body}>
+                {props.children}
+            </div>
         </div>
     )
 }

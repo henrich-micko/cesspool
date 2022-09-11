@@ -11,6 +11,7 @@ import MachineAdminPanel from "./MachineAdminPanel"
 import TheBoard from "@components/TheBoard"
 import MachineAdminSettings from "./views/MachineAdminSettings"
 import MachineAdminDelete from "./views/MachineAdminDelete"
+import MachineAdminDeleteRecords from "./views/MachineAdminDeleteRecords"
 
 interface Props {
     machine: MachineAdminType,
@@ -34,13 +35,16 @@ const MachineAdminBoard: React.FC<Props> = (props) => {
 
             {
                 machineView === "settings" ?
-                <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} users={props.users}/> :
+                    <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} users={props.users}/> :
 
                 machineView === "trash" ?
-                    <MachineAdminDelete machine={props.machine} setMachine={props.setMachine} />
-                
-                :undefined
-            }
+                    <MachineAdminDelete machine={props.machine} setMachine={props.setMachine} /> :
+
+                machineView === "records" ? 
+                    <MachineAdminDeleteRecords machine={props.machine} setMachine={props.setMachine} /> :
+
+                undefined
+                }
         </TheBoard>
     )
 }

@@ -1,7 +1,7 @@
 import React from "react"
 
 // styles && icons
-import styles from "./styles.module.scss"
+import styles from "@styles/components/machine/machineNavigation.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons"
 

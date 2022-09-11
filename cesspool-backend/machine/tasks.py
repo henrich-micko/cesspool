@@ -1,5 +1,7 @@
 from django.utils import timezone
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from django.conf import settings
+from django.template.loader import render_to_string
 
 from celery import shared_task
 from celery.utils.log import get_task_logger
@@ -49,6 +51,21 @@ def scan_machine_problems_and_send_email():
         problems = {}
         for machine in user.machine_set.filter(notification = True):
             machine_problems = scan_problems(machine)
-            problems[machine.code] = [problem for problem in machine_problems if not problem.is_sand]
+            machine_erros = [problem for problem in machine_problems if problem.importance and not problem.is_sand]
+            if not machine_erros:
+                continue
+            problems[machine] = machine_erros
+        
+        if not problems:
+            continue
 
-        send_mail(subject = "Problemy", from_email = "henrich.joen@gmail.com", message = str(problems), recipient_list = [user.email])
+        html_content = render_to_string("machine/problems.html", context = {"machines": problems})
+
+        msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [user.email])
+        msg.content_subtype = "html"
+        msg.send()
+
+        for machine in problems.keys():
+            for problem in problems[machine]:
+                problem.is_sand = True
+                problem.save()

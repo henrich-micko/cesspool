@@ -9,7 +9,7 @@ import { debounce } from "lodash-es"
 
 interface Props {
     label?: string;
-    value?: string;
+    value?: number|string;
     id?: string;
     onSubmit(value: string): void;
 }

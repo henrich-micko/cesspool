@@ -1,0 +1,64 @@
+.menuOfMachine {
+    ul {
+        list-style: none;
+        padding-left: 0em;
+        margin-bottom: 0em;
+        width: 22em;
+
+        li {
+            display: flex;
+            height: 3em;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            padding-left: 1em;
+            padding-right: 1em;
+            width: auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+            h3 {
+                margin-top: 0em;
+                margin-bottom: 0em;
+
+                &.red {
+                    color: rgb(255, 78, 78);
+                }
+
+                &.yellow {
+                    color: rgb(255, 255, 78);
+                }
+            }
+
+            .status {
+                width: auto;
+                height: 100%;
+                display: flex;
+                align-items: center;
+            
+                div {
+                    margin-left: 0.7em;
+                }
+            }
+            
+            &.activate {
+                border-left: 0.25em solid #61dafb;
+            }
+            
+        }
+
+        li:first-child {
+            margin-bottom: 0em;
+            margin-top: 0em;
+        }
+
+        li:last-child {
+            border-bottom: none;
+            margin-bottom: 0em;
+            border-radius: 0em 0em 0.6em 0.6em;
+
+            &.activate {
+                border-left: 0.25em solid #61dafb;
+            }
+        }
+    }
+}

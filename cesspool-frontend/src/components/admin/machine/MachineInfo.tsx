@@ -13,7 +13,7 @@ interface MachineCodeProps {
 export const MachineCode: React.FC<MachineCodeProps> = (props) => {
     return (
         <div className={styles.machineInfo}>
-            <FontAwesomeIcon icon={faCode} />
+            {/* <FontAwesomeIcon icon={faCode} /> */}
             <span>{props.code}</span>
         </div>
     )

@@ -1,0 +1,12 @@
+.machineNavigation {
+    display: flex;
+    justify-content: right;
+
+    .icon {
+        padding-right: 0.5em;
+    }
+
+    .icon:last-child {
+        padding-right: 0em;
+    }
+}

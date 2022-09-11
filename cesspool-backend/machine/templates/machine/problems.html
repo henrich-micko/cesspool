@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <div>
+            <p style="font-size: 1.1em;">
+                Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a href="#">stránke</a>
+            </p>
+            
+            {% for machine, problems in machines.items %}
+                <div style="padding-left: 0.5em; padding-right: 0.5em; margin-bottom: 1em;">
+                    <h2 style="margin: 0em;">
+                        {% if machine.title != None %}
+                            {{ machine.title }}
+                        {% else %}
+                            Untitled
+                        {% endif %}
+                    </h2>
+                    <ul style="padding-left: 1em; font-size: 1.1em; margin-bottom: 0.5em; margin-top: 0.25em;">
+                        {% for problem in problems %}
+                            <li>{{ problem.detail }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% if machine.last_update != None %}
+                        <em>Posledný záznam: {{ machine.last_update }} hladina: {{ machine.level }}% bateria: {{ machine.battery }}%</em>
+                    {% endif %}    
+                </div>
+            {% endfor %}
+
+            <p style="font-size: 1.1em;">
+                Ak nerozumiete týmto hláseniam, 
+                alebo potrebujete pomoc na ich vyriešenie kontaktuje nás
+                <a href="mailto:heno.micko@gmail.com">heno.micko@gmail.com</a>
+            </p>
+        </div>
+    </body>
+</html>

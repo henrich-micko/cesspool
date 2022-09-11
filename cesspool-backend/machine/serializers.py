@@ -21,7 +21,7 @@ class MachineSerializer(serializers.ModelSerializer):
             "problems",
             "level_percent", 
             "last_update",
-            "hight_level"
+            "hight_level",
         ]
 
         extra_kwargs = {

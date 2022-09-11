@@ -1,10 +1,10 @@
 import React, { useEffect, useState, ChangeEvent } from "react"
 
 // styles && icons
-import styles from "../styles.module.scss"
+import styles from "@styles/components/machine/machineView.module.scss"
 import classNames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faWarning, faX } from "@fortawesome/free-solid-svg-icons"
+import { faX } from "@fortawesome/free-solid-svg-icons"
 
 // types && api
 import { MachineType, RecordType } from "../../../types"
@@ -40,7 +40,7 @@ const ChartsView: React.FC<Props> = (props) => {
                 setRecords(res.data.records)
             })
             .catch(error => console.log(error))
-    }, [timePeriod])
+    }, [timePeriod, props.machine])
 
     const chartDataRecord= (record: RecordType): number => {
         const output = recordData === "level_percent" ? record.level_percent :

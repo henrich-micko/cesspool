@@ -8,7 +8,7 @@ import { IsAdminView } from "@permissions/Admin"
 const AdminAccountView: React.FC = () => {
     return (
         <IsAdminView>
-			<AdminNavigation onPlus={() => {}} onRefresh={() => {}}/>
+			<AdminNavigation handleIcon={(icon) => {}}/>
         </IsAdminView>
     )
 }

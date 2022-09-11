@@ -14,6 +14,7 @@ export interface MachineType {
     level_percent: number|null;
     rise_level: number;
     last_update: string|null;
+    hight_level: number;
 }
 
 export interface RecordType {
@@ -48,4 +49,5 @@ export interface MachineAdminType {
     autocorrect: boolean
     delete_date: string|null
     delete_records_date: string|null
+    records: number
 }

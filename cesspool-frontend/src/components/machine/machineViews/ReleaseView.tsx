@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 // styles && icons
-import styles from "../styles.module.scss"
+import styles from "@styles/components/machine/machineView.module.scss"
 import classNames from "classnames"
 
 // types
@@ -29,8 +29,9 @@ const ReleaseView: React.FC<Props> = (props) => {
             {releaseDate !== null
               ? 
                 <>
-                    <span>Hladina by mala dosiahnť 85% dňa <span className={styles.date}>{releaseDate}</span></span>
-                    <span>Posledný záznam: {props.machine.last_update?.split("T").at(0)}</span>
+                    <p>
+                        Hladina by mala dosiahnť 85% dňa {releaseDate}, posledný záznam: {props.machine.last_update?.split("T").at(0)}
+                    </p>
                 </>
 
               : <span>Bohužial sa s danými zaznamamy sa nepodaril vypočet</span>

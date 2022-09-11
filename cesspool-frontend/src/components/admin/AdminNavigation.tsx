@@ -4,12 +4,11 @@ import { NavLink } from "react-router-dom"
 // styles && icons
 import styles from "@styles/components/admin/adminNavigation.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons"
+import { faFilter, faPlusCircle, faRefresh, faSearch, faUser } from "@fortawesome/free-solid-svg-icons"
 
 
 interface Props {
-    onPlus(): void;
-    onRefresh(): void;
+    handleIcon(icon: string): void;
 }
 
 const AdminNavigation: React.FC<Props> = (props) => {
@@ -21,8 +20,26 @@ const AdminNavigation: React.FC<Props> = (props) => {
             </nav>
 
             <div className={styles.adminPanel}>
-                <FontAwesomeIcon className={styles.icon} icon={faPlusCircle} onClick={props.onPlus}/>
-                <FontAwesomeIcon className={styles.icon} icon={faRefresh} onClick={props.onRefresh} />
+                <FontAwesomeIcon 
+                    className={styles.icon} 
+                    icon={faSearch}
+                    onClick={() => props.handleIcon("search")}
+                />
+                <FontAwesomeIcon 
+                    className={styles.icon} 
+                    icon={faUser} 
+                    onClick={() => props.handleIcon("filter")}
+                />
+                <FontAwesomeIcon 
+                    className={styles.icon} 
+                    icon={faPlusCircle} 
+                    onClick={() => props.handleIcon("plus")}
+                />
+                <FontAwesomeIcon 
+                    className={styles.icon} 
+                    icon={faRefresh} 
+                    onClick={() => props.handleIcon("refresh")}
+                />
             </div>
         </div>
     )

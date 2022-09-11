@@ -1,0 +1,3 @@
+from machine.tasks import scan_machine_problems_and_send_email
+
+scan_machine_problems_and_send_email()

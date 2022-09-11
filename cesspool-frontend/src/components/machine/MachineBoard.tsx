@@ -16,10 +16,10 @@ import TheBoard from "@components/TheBoard"
 
 interface Props {
     machine: MachineType,
-    refresh(): void
+    setMachine(newMachine: MachineType): void
 }
 
-const Machine: React.FC<Props> = (props) => {
+const MachineBoard: React.FC<Props> = (props) => {
     const [machineView, setMachineView] = useState<string>("")    
     const isMobile = useIsMobile()
 
@@ -42,7 +42,7 @@ const Machine: React.FC<Props> = (props) => {
                 <ChartsView machine={machine} />
 
             : machineView === "settings" ?
-                <SettingsView machine={machine} refresh={props.refresh}/>
+                <SettingsView machine={machine} setMachine={props.setMachine}/>
 
             : machineView === "problems" ?
                 <ProblemsView machine={machine} />
@@ -56,4 +56,4 @@ const Machine: React.FC<Props> = (props) => {
     )
 }
 
-export default Machine
+export default MachineBoard

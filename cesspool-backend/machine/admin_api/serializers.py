@@ -8,10 +8,20 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
     user = serializers.EmailField(source = "user.email", default = None, allow_null = True)
     delete_date = serializers.SerializerMethodField()
     delete_records_date = serializers.SerializerMethodField()
+    records = serializers.SerializerMethodField(default = 0)
 
     class Meta:
         model = models.Machine
-        fields = ["user", "code", "mqtt", "notification", "autocorrect", "delete_date", "delete_records_date"]
+        fields = [
+            "user",
+            "code", 
+            "mqtt", 
+            "notification", 
+            "autocorrect", 
+            "delete_date", 
+            "delete_records_date",
+            "records"    
+        ]
         extra_kwargs = {"code": {"required": False}}
 
     def get_delete_date(self, obj):
@@ -25,6 +35,9 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
         if action != None:
             return action.date
         return None
+
+    def get_records(self, obj):
+        return len(obj.record_set.all())
 
     def update(self, instance, validated_data):
         for key in validated_data.keys():

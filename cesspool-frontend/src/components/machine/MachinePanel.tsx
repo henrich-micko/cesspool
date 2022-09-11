@@ -1,10 +1,10 @@
 import React from "react"
 
 // styles && icons
-import styles from "./styles.module.scss"
+import styles from "@styles/components/machine/machinePanel.module.scss"
 import classNames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faChartSimple, faSliders, faInfoCircle, faTriangleExclamation, faStopwatch } from "@fortawesome/free-solid-svg-icons"
+import { faChartSimple, faSliders, faTriangleExclamation, faStopwatch } from "@fortawesome/free-solid-svg-icons"
 
 // types and hooks
 import { MachineType } from "../../types"
@@ -31,14 +31,11 @@ const MachinePanel: React.FC<Props> = (props) => {
     return (
         <div className={classNames(styles.panel, isMobile ? styles.mobile : undefined)}>
             <div className={classNames(styles.titleWrapper, isMobile ? styles.mobile : undefined)}>
-                <h2>{machine.title !== null ? machine.title : "Untitled"}</h2>
+                <h2>{machine.title !== null ? machine.title : machine.code}</h2>
                 {isMobile &&
-                     <div className={classNames(styles.statusLevelDesktop, isMobile && styles.mobile)}>
-                        <StatusLevel
-                            level={machine.level_percent !== null ? machine.level_percent : machine.level !== null ? machine.level : undefined}
-                            label={machine.level_percent !== null ? "%" : machine.level !== null ? "l" : undefined}
-                        />
-                        <StatusBattery battery={machine.battery !== null ? machine.battery : undefined}/>
+                    <div className={classNames(styles.statusLevelDesktop, isMobile && styles.mobile)}>
+                        <StatusLevel machine={machine} />
+                        <StatusBattery machine={machine}/>
                     </div>
                 }
             </div>
@@ -46,11 +43,8 @@ const MachinePanel: React.FC<Props> = (props) => {
             <div className={classNames(styles.controlPanel, isMobile ? styles.mobile : undefined)}>
                 {!isMobile &&
                      <div className={styles.statusLevelDesktop}>
-                        <StatusLevel 
-                            level={machine.level_percent !== null ? machine.level_percent : machine.level !== null ? machine.level : undefined}
-                            label={machine.level_percent !== null ? "%" : machine.level !== null ? "l" : undefined}
-                        />
-                        <StatusBattery battery={machine.battery !== null ? machine.battery : undefined}/>
+                        <StatusLevel machine={machine} />
+                        <StatusBattery machine={machine}/>
                     </div>
                 }
 

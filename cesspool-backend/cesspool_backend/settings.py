@@ -178,10 +178,14 @@ CELERY_BEAT_SCHEDULE = {
         'task': "machine.tasks.scan_machine_actions",
         "schedule": timedelta(minutes = 1),
     },
+    "scan_machine_problems_and_send_email": {
+        "task": "machine.tasks.scan_machine_problems_and_send_email",
+        "schedule": timedelta(minutes = 1),
+    }
 }
 
-EMAIL_HOST = "stmp.gmail.com"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "henrich.micko@gmail.com"
-EMAIL_HOST_PASSWORD = "PxthoN39"
+EMAIL_HOST_USER = "zumpomersk@gmail.com"
+EMAIL_HOST_PASSWORD = "jggdggmedpihfxpu"
 EMAIL_USE_TLS = True

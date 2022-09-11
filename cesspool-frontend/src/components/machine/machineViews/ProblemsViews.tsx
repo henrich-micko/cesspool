@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 // styles && icons
-import styles from "../styles.module.scss"
+import styles from "@styles/components/machine/machineView.module.scss"
 import classNames from "classnames"
 
 // types
