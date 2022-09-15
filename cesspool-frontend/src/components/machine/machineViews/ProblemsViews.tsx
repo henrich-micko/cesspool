@@ -7,7 +7,7 @@ import classNames from "classnames"
 // types
 import { MachineType, ProblemType } from "../../../types"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faWarning } from "@fortawesome/free-solid-svg-icons"
+import { faSmile, faWarning } from "@fortawesome/free-solid-svg-icons"
 
 
 interface ProblemProps {
@@ -40,7 +40,15 @@ const ProblemsView: React.FC<ProblemViewProps> = (props) => {
                         </li>
                     )}
                 </ul>
-                : <div>Nenšiel sa žiaden problem</div> }
+                : 
+                <div>
+                    <span>Nenšiel sa žiaden problem</span>
+                    <FontAwesomeIcon 
+                        className={classNames(styles.icon, styles.yellow)} 
+                        icon={faSmile}
+                        style={{"marginLeft": "10px"}} 
+                    />
+                </div> }
         </div>
     )
 }

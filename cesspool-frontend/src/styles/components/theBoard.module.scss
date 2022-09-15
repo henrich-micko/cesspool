@@ -26,10 +26,21 @@
         height: fit-content;
         background-color: transparent;
         display: flex;
-        justify-content: left;
         margin-top: -20px;
-        padding-left: 0.7em;
 
+        &.left {
+            justify-content: left;
+            padding-left: 0.7em;
+        }
+
+        &.center {
+            justify-content: center;
+        }
+
+        &.right {
+            justify-content: right;
+            padding-right: 0.7em;
+        }
 
         h2 {
             padding: 0px 25px 0px 25px;

@@ -1,4 +1,17 @@
 .menuOfMachine {
+    .refreshWrapper {
+        display: flex;
+        justify-content: right;
+        padding-right: 0.65em;
+        margin-top: -1.5em;
+
+        div {
+            padding: 0.25em;
+            padding-top: 0em;
+            background-color: #282c34;;
+        }
+    }
+
     ul {
         list-style: none;
         padding-left: 0em;
@@ -19,14 +32,6 @@
             h3 {
                 margin-top: 0em;
                 margin-bottom: 0em;
-
-                &.red {
-                    color: rgb(255, 78, 78);
-                }
-
-                &.yellow {
-                    color: rgb(255, 255, 78);
-                }
             }
 
             .status {
@@ -38,12 +43,13 @@
                 div {
                     margin-left: 0.7em;
                 }
-            }
-            
+            }   
+        
             &.activate {
-                border-left: 0.25em solid #61dafb;
+                h3 {
+                    color: #61dafb;
+                }        
             }
-            
         }
 
         li:first-child {
@@ -55,10 +61,6 @@
             border-bottom: none;
             margin-bottom: 0em;
             border-radius: 0em 0em 0.6em 0.6em;
-
-            &.activate {
-                border-left: 0.25em solid #61dafb;
-            }
         }
     }
 }

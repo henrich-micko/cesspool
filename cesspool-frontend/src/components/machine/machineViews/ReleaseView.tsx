@@ -26,16 +26,11 @@ const ReleaseView: React.FC<Props> = (props) => {
 
     return (
         <div className={classNames(styles.machineView, styles.release)}>
-            {releaseDate !== null
-              ? 
-                <>
-                    <p>
-                        Hladina by mala dosiahnť 85% dňa {releaseDate}, posledný záznam: {props.machine.last_update?.split("T").at(0)}
-                    </p>
-                </>
-
-              : <span>Bohužial sa s danými zaznamamy sa nepodaril vypočet</span>
-            }
+            <p>
+                {releaseDate !== null &&
+                    <>Hladina by mala dosiahnť 85% dňa <u>{releaseDate}</u>, p</>}
+                    Posledný záznam zo dňa: {props.machine.last_update !== null ? <u>{props.machine.last_update?.split("T").at(0)}</u> : <span>...</span>}
+            </p>
         </div>
     )
 }

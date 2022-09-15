@@ -25,21 +25,32 @@ interface Props {
 
 const ChartsView: React.FC<Props> = (props) => {
     const [records, setRecords] = useState<RecordType[]>([])
-    const [isEnought, setIsEnought] = useState<boolean>(false)
 
     const [timePeriod, setTimePeriod] = useState<String>("day") // data/22-1-1 means spec date
     const [recordData, setRecordData] = useState<String>(props.machine.max_level !== null ? "level_percent" : "level")
+
+    const [yearSupport, setYearSupport] = useState<boolean>(false)
+    const [monthSupport, setMonthSupport] = useState<boolean>(false)
+    const [weekSupport, setWeekSupport] = useState<boolean>(false)
+    const [daySupport, setDaySupport] = useState<boolean>(false)
 
     const axios = useAxios()
     const isMobile = useIsMobile()
 
     useEffect(() => {
         axios.get("/machine/" + props.machine.code + "/records/" + timePeriod)
+            .then(res => setRecords(res.data))
+            .catch(error => console.log(error))
+
+        axios.get("/machine/" + props.machine.code + "/records/support/")
             .then(res => {
-                setIsEnought(res.data.is_enought)
-                setRecords(res.data.records)
+                setYearSupport(res.data.year)
+                setMonthSupport(res.data.month)
+                setWeekSupport(res.data.week)
+                setDaySupport(res.data.day)
             })
             .catch(error => console.log(error))
+
     }, [timePeriod, props.machine])
 
     const chartDataRecord= (record: RecordType): number => {
@@ -128,26 +139,23 @@ const ChartsView: React.FC<Props> = (props) => {
                                 
                         : <div>
                             <span>v úseku</span> 
-                                <select  onChange={handleTimePeriod}>
-                                    <option value="year">Rok</option>
-                                    <option value="month">Mesiac</option>
-                                    <option value="week">Tyždeň</option>
-                                    <option selected value="day">Deň</option>
+                                <select onChange={handleTimePeriod}>
+                                    {yearSupport && <option value="year">Rok</option>}
+                                    {monthSupport && <option value="month">Mesiac</option>}
+                                    {weekSupport && <option value="week">Tyždeň</option>}
+                                    {daySupport && <option selected value="day">Deň</option>}
                                 </select>
                         </div>
                     }
                 </div>
             </div>
             
-            {isEnought ? 
-                <Chart
-                    type="line"
-                    redraw={false} 
-                    options={options}
-                    data={data}
-                />
-              : <span className={styles.noRecords}>Nenašiel sa dostatok záznamov na tento výber</span>
-            } 
+            <Chart
+                type="line"
+                redraw={false} 
+                options={options}
+                data={data}
+            />
         </div>
     )
 }

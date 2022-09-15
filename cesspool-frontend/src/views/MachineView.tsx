@@ -44,13 +44,12 @@ const MachineView: React.FC = () => {
 			<div className={classNames(styles.view, isDesktop && styles.desktop)}>
 				{machines !== null && machines.length !== 0  ? 
 					<>
-						<MenuOfMachines machines={machines} onClick={setMachineId} activate={machineId !== null ? machineId : undefined} />
+						<MenuOfMachines machines={machines} onRefresh={refreshMachines} onClick={setMachineId} activate={machineId !== null ? machineId : undefined} />
 						{machine !== undefined && 
 							<>
 								<MachineDesktopBoard machine={machine} setMachine={refreshMachines}/>
 								<div>
 									<MachineDesktopProblems machine={machine} />
-									<MachineDesktopSettings machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)} />
 								</div>
 							</>
 						}

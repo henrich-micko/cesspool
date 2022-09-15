@@ -51,3 +51,10 @@ export interface MachineAdminType {
     delete_records_date: string|null
     records: number
 }
+
+export interface MachineRecordsSupportType {
+    year: boolean
+    month: boolean
+    week: boolean
+    day: boolean
+}
