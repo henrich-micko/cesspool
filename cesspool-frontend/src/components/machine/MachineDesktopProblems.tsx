@@ -9,9 +9,15 @@ interface Props {
     machine: MachineType
 }
 
+const styles = {
+    "paddingLeft": "1em", 
+    "paddingRight": "1em", 
+    "width": "15em",
+}
+
 const MachineDesktopProblems: React.FC<Props> = (props) => {
     return (
-        <TheBoard label="Problemy" style={{"marginLeft": "5em", "paddingLeft": "1em", "paddingRight": "1em", "width": "15em"}} align="left">
+        <TheBoard label="Problemy" style={styles} align="left">
             <ProblemsView machine={props.machine} />
         </TheBoard>
     )

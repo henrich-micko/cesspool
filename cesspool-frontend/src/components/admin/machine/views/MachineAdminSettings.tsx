@@ -9,9 +9,9 @@ import { MachineAdminType, UserType } from "@types"
 import useAxios from "@hooks/useAxios"
 
 // components
-import NumberInput from "@components/form/NumberInput"
 import SwithInput from "@components/form/SwitchInput"
 import SelectInput from "@components/form/SeletectInput"
+import TheInput from "@components/form/TheInput"
 
 interface Props {
     machine: MachineAdminType;
@@ -38,8 +38,8 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
             <div>
                 {error !== "" && <span className={styles.error}>{error}</span>}
 
-                <NumberInput 
-                    onSubmit={(value) => confMachine({code: value})}
+                <TheInput 
+                    onChange={(value) => confMachine({code: value})}
                     label="Code"
                     value={props.machine.code !== null ? props.machine.code : undefined}
                 />
@@ -48,7 +48,6 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
                     onSubmit={(value) => confMachine({user: value === "" ? null : value})}
                     label="User"
                     options={[["", "Nepridelený"], ...props.users.map(user => [user.email, user.email])]}
-                    value={props.machine.user !== null ? props.machine.user : undefined}
                     selected={props.machine.user}
                 />
 

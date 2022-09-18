@@ -1,0 +1,11 @@
+.view {
+    display: flex;
+    justify-content: center;
+
+    .machineWrapper {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-column-gap: 11em;
+        width: fit-content;
+    }
+}

@@ -19,16 +19,14 @@ const TheNaviagtion: React.FC = (props) => {
  
     return(
         <nav className={styles.navigation}>
-            <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Domov</NavLink>
-
             {!isLogged ?
                 <>
-                    <NavLink to="/account/login" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlásenie</NavLink>
-                    <NavLink to="/account/register" className={({ isActive }) => isActive ? styles.active : undefined}>Registrácia</NavLink>
+                    <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlasiť sa</NavLink>
                 </> :
                 <>
                     <NavLink to="/machine" className={({ isActive }) => isActive ? styles.active : undefined}>Zariadenia</NavLink>
-                    {user.is_superuser && <NavLink to="/admin/machine" className={() => isUrlActive("/admin") ? styles.active : undefined}>Admin</NavLink>}
+                    {user.is_superuser && <NavLink to="/admin/machine" className={() => isUrlActive("/admin") ? styles.active : undefined}>Machine admin</NavLink>}
+                    {user.is_superuser && <NavLink to="/admin/machine" className={() => isUrlActive("/adminx") ? styles.active : undefined}>Account admin</NavLink>}
                     <NavLink to="/account" className={({ isActive }) => isActive ? styles.active : undefined}>Učet{!isMobile && ": " + user.email }</NavLink>
                 </>
             }

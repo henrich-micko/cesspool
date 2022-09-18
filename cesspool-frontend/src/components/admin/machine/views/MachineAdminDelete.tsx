@@ -36,12 +36,12 @@ const MachineAdminDelete: React.FC<Props> = (props) => {
         <div className={classNames(styles.machineView, styles.delete, isMobile && styles.mobile)}>
                 {props.machine.delete_date === null ?
                 <>
-                    <span>Vážne chcete odstraniť toto&nbsp;zariadenie&nbsp;?</span>
-                    <TheButton label={"Odstraniť"} onClick={handleDelete} type="red"/>
+                    <span>Zariadenie sa odstrani&nbsp;po&nbsp;24&nbsp;hodinách</span>
+                    <TheButton label={"Odstraniť zariadenie"} onClick={handleDelete} type="red"/>
                 </> :
                 <>
                     <span>Chcete obnoviť zariadenie ({formatTime(props.machine.delete_date)})&nbsp;?</span>
-                    <TheButton label={"Obnoviť"} onClick={handleRestore} type="blue"/>
+                    <TheButton label={"Obnoviť zariadenie"} onClick={handleRestore} type="blue"/>
                 </>
             }
         </div>

@@ -1,10 +1,7 @@
 .machineView {
     display: flex;
 
-    padding-top: 1em;
-    padding-bottom: 1em;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1em;
 
     &.settings {
         display: flex;
@@ -36,5 +33,9 @@
                 margin-bottom: 1em;
             }
         }
+    }
+
+    &.delete:first-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 }

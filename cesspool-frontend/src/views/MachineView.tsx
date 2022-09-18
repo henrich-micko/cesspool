@@ -11,14 +11,12 @@ import { useIsDesktop } from "@hooks/useIsMobile"
 import classNames from "classnames"
 import MachineDesktopBoard from "@components/machine/MachineDesktopBoard"
 import MachineDesktopProblems from "@components/machine/MachineDesktopProblems"
-import MachineDesktopSettings from "@components/machine/MachineDesktopSettings"
 
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
 	const [machineId, setMachineId] = useState<number>(0)
 	
 	const axios = useAxios()
-	const isDesktop = useIsDesktop()
 
 	const refreshMachines = () => {
 		axios.get("/machine/")
@@ -41,16 +39,14 @@ const MachineView: React.FC = () => {
 
 	return (
 		<IsAuthenticatedView onEffect={refreshMachines}>
-			<div className={classNames(styles.view, isDesktop && styles.desktop)}>
+			<div className={classNames(styles.view)}>
 				{machines !== null && machines.length !== 0  ? 
 					<>
 						<MenuOfMachines machines={machines} onRefresh={refreshMachines} onClick={setMachineId} activate={machineId !== null ? machineId : undefined} />
 						{machine !== undefined && 
 							<>
 								<MachineDesktopBoard machine={machine} setMachine={refreshMachines}/>
-								<div>
-									<MachineDesktopProblems machine={machine} />
-								</div>
+								<MachineDesktopProblems machine={machine} />
 							</>
 						}
 					</> : 

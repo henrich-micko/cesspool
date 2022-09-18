@@ -1,24 +1,32 @@
-import TheButton from "@components/form/TheButton"
-import React from "react"
+import React, { createRef } from "react"
 
 // Styles && assets
-import logo from "../assets/logo.png"
-import styles from "./HomeView.module.scss"
+import styles from "@styles/views/homeView.module.scss"
+import AboutBoard from "@components/home/AboutBoard"
+import LoginForm from "@components/auth/LoginForm"
+import { IsNotAuthenticatedView } from "@permissions/Authenticated"
 
 
 const Home: React.FC = () => {    
-    return (
-        <div className={styles.view}>
-            <div className={styles.aboutWrapper}>
-                <h1>Žumpomer</h1>
-                <TheButton label="Navštivte našu stranku" onClick={() => {}} type="blue" />
-                <TheButton label="Kontaktuje nás" onClick={() => {}} type="blue" />
-            </div>
+    const loginFormRef = createRef<HTMLDivElement>()
+    
+    const handleSignInClick = () => {
+        if (loginFormRef !== null && loginFormRef.current !== null) {
+            loginFormRef.current.scrollIntoView({behavior: "smooth"})
+        }
+    }
 
-            <div className={styles.logoWrapper}>
-                <img src={logo} className={styles.logo} alt="logo" />
+    return (
+        <IsNotAuthenticatedView>
+            <div className={styles.view}>
+                <div className={styles.machineWrapper}>
+                    <AboutBoard signInClick={handleSignInClick} />
+                    <div ref={loginFormRef}>
+                        <LoginForm />
+                    </div>
+                </div>
             </div>
-        </div>
+        </IsNotAuthenticatedView>
     )
 }
 

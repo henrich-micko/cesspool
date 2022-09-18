@@ -8,8 +8,7 @@ import classNames from "classnames"
 import { MachineType } from "../../../types"
 
 import useAxios from "../../../hooks/useAxios"
-import TextInput from "../../form/TextInput"
-import NumberInput from "@components/form/NumberInput"
+import TheInput from "@components/form/TheInput"
 
 interface Props {
     machine: MachineType;
@@ -20,10 +19,6 @@ const SettingsView: React.FC<Props> = (props) => {
     const [error, setError] = useState<string>("")
 
     const axios = useAxios()
-
-    useEffect(() => {
-
-    }, [props.machine.title, props.machine.hight_level])
     
     // input elements
 	const handleTitle = (value: string) => {
@@ -51,14 +46,18 @@ const SettingsView: React.FC<Props> = (props) => {
     return (
         <div className={classNames(styles.machineView, styles.settings)}>
             <form onSubmit={event => {event.preventDefault()}}>
-                <TextInput
-                    onSubmit={handleTitle}
+                <TheInput
+                    type="text"
+                    onChange={handleTitle}
                     label="Názov"
+                    value={props.machine.title !== null ? props.machine.title : ""}
                 />
 
-                <NumberInput
-                    onSubmit={handleHightLevel}
+                <TheInput
+                    type="number"
+                    onChange={handleHightLevel}
                     label="Upozorniť&nbsp;pri&nbsp;%"
+                    value={props.machine.hight_level}
                 />
 
                 {error !== "" && <span className={styles.error}>{error}</span>}

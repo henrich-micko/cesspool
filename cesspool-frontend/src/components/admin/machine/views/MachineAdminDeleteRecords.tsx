@@ -38,15 +38,15 @@ const MachineAdminDeleteRecords: React.FC<Props> = (props) => {
                 <>
                     {props.machine.records !== 0 ?
                         <>
-                            <span>Vážne chcete odstraniť záznamy ?</span>
-                            <TheButton label={"Odstraniť"} onClick={handleDelete} type="red"/>
+                            <span>Všetky záznamy sa odstrania&nbsp;po&nbsp;24&nbsp;hodinách</span>
+                            <TheButton label={"Odstraniť zaznamy"} onClick={handleDelete} type="red"/>
                         </> :
                         <span>Nenašli sa žiadne záznamy</span>
                     }
                 </> :
                 <>
                     <span>Chcete obnoviť záznamy ({formatTime(props.machine.delete_records_date)}) ?</span>
-                    <TheButton label={"Obnoviť"} onClick={handleRestore} type="blue"/>
+                    <TheButton label={"Obnoviť zaznamy"} onClick={handleRestore} type="blue"/>
                 </>
             }
         </div>

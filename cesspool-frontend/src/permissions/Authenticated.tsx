@@ -22,7 +22,7 @@ export const IsAuthenticatedView: React.FC<Props> = ({ children, onEffect = null
         <>
             {isLogged 
                 ? children
-                : <Navigate to="/account/login" />
+                : <Navigate to="/" />
             }
         </>
     )
@@ -41,7 +41,7 @@ export const IsNotAuthenticatedView: React.FC<Props> = ({ children, onEffect = n
         <>
             {!isLogged 
                 ? children
-                : <Navigate to="/" />
+                : <Navigate to="/machine" />
             }
         </>
     )

@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from "react"
 
 // types
-import { MachineAdminType, MachineType, UserType } from "@types"
+import { MachineAdminType, UserType } from "@types"
 
 // components
 import NoContent from "@components/NoContent"
 
 // hooks
 import useAxios from "@hooks/useAxios"
-import ListOfAdminMachines from "@components/admin/machine/ListOfAdminMachine"
-import AdminNavigation from "@components/admin/AdminNavigation"
 import { IsAdminView } from "@permissions/Admin"
-import TextInput from "@components/form/TextInput"
 
-import styles from "@styles/views/admin/styles.module.scss"
+import styles from "@styles/views/admin/adminMachineView.module.scss"
+import MenuOfAdminMachines from "@components/admin/machine/MenuOfAdminMachine"
+import MachineDesktopAdminBoard from "@components/admin/machine/MachineDesktopAdminBoard"
+import MachineAdminDangerzone from "@components/admin/machine/MachineAdminDangerzone"
+import MachineCreate from "@components/admin/machine/MachineCreate"
 
 const AdminMachineView: React.FC = () => {
-	const [filter, setFilter] = useState<"code"|"filter"|null>(null)
-
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
-    const [users, setUsers] = useState<UserType[]>([])
+	const [machineId, setMachineId] = useState<number>(0) // -1 is reserved for new machine
+	const [users, setUsers] = useState<UserType[]>([])
 
     const axios = useAxios()
 
-	const refreshMachines = () => {
+	const refreshData = () => {
 		axios.get("/admin/machine/")
 			.then(res => setMachines(res.data))
+			.catch(error => console.log(error))
+		axios.get("/admin/account/")
+			.then(res => setUsers(res.data))
 			.catch(error => console.log(error))
     }
 
     useEffect(() => {
-		refreshMachines()
-		axios.get("/admin/account/")
-			 .then(res => setUsers(res.data))
-			 .catch(error => console.log(error))
+		refreshData()
 	}, [])
 
 	const setMachine = (id: number, newMachine: MachineAdminType) => {
@@ -47,25 +47,35 @@ const AdminMachineView: React.FC = () => {
 		}))
 	}
 
-	const handleIcon = (icon: string) => {
-		if (icon === "refresh") refreshMachines()
-		else if (icon === "search") setFilter("code")
-	}
+	useEffect(() => {
+		console.log(machineId)
+	}, [machineId])
+
+	const machine = machines !== undefined ? machines?.at(machineId) : undefined
+
     return (
         <IsAdminView>
-			<AdminNavigation handleIcon={handleIcon} />
+            {machines !== null && machines.length === 0 ? <NoContent missing="zariadnia" /> :
+				<div className={styles.view}>
+					{machines !== null &&
+						<>
+							<MenuOfAdminMachines activate={machineId} machines={machines} onClick={setMachineId} onRefresh={refreshData} />
+							
+							{(machine !== undefined && machineId !== -1) &&
+							<div className={styles.machineWrapper}>
+								<MachineDesktopAdminBoard machine={machine} users={users} setMachine={(newMachine: MachineAdminType) => setMachine(machineId, newMachine)} />
+								<MachineAdminDangerzone machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)} />
+							</div>
+							}
 
-			{filter === "code" ?
-				<div className={styles.search}>
-					<div className={styles.inputWrapper}>
-						<TextInput label="Code" onSubmit={() => {}} />
-					</div>
+							{machineId === -1 &&
+								<div className={styles.machineWrapper}>
+									<MachineCreate users={users} onSubmit={() => {}} />
+								</div>
+							}
+						</>
+					}
 				</div>
-			: undefined }
-
-            {machines !== null && machines.length === 0 ?
-                <NoContent missing="zariadnia" /> :
-				machines !== null && <ListOfAdminMachines machines={machines} setMachine={setMachine} users={users}/>
 			}
         </IsAdminView>
     )

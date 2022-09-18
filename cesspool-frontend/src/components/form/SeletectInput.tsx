@@ -6,7 +6,6 @@ import styles from "@styles/components/form/styles.module.scss"
 
 interface Props {
     label?: string;
-    value?: string;
     id?: string;
     onSubmit(value: string): void;
     options: string[][];

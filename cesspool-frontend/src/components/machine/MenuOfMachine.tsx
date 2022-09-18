@@ -4,27 +4,7 @@ import styles from "@styles/components/machine/MenuOfMachine.module.scss"
 import TheBoard from "@components/TheBoard"
 import { StatusBattery, StatusLevel, StatusProblem } from "@components/machine/StatusIcon"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons"
-
-
-interface MenuOfMachineLiNewProps {
-    index: number;
-    onClick(): void;
-}
-
-const MenuOfMachineLiNew: React.FC<MenuOfMachineLiNewProps> = (props) => {
-    return (
-        <li key={props.index}>
-            <h3>Pridať nové</h3>
-            <div className={styles.status}>
-                <FontAwesomeIcon 
-                    icon={faPlusCircle}
-                    size="1x"    
-                />
-            </div>
-        </li>
-    )
-}
+import { faRefresh } from "@fortawesome/free-solid-svg-icons"
 
 
 interface MenuOfMachineLiProps {
@@ -59,7 +39,7 @@ interface Props {
 const MenuOfMachines: React.FC<Props> = (props) => {
 
     return (
-        <TheBoard label="Zariadenia" className={styles.menuOfMachine} style={{"marginRight": "5em"}}>
+        <TheBoard label="Zariadenia" className={styles.menuOfMachine} style={{}}>
             <div className={styles.refreshWrapper}>
                 <div>
                     <FontAwesomeIcon

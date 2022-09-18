@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="119.32mm" height="87.636mm" version="1.1" viewBox="0 0 119.32 87.636" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<linearGradient id="a" x1="15.054" x2="159.17" y1="114.74" y2="114.74" gradientTransform="matrix(.813 0 0 .813 2.2909 31.725)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#61dafb" offset=".53035"/>
+<stop stop-color="#61dafb" stop-opacity="0" offset="1"/>
+</linearGradient>
+</defs>
+<g transform="translate(-12.637 -81.675)" fill="none">
+<path d="m14.612 167.59c36.686-44.017 36.686-44.017 36.686-44.017l7.3067 8.5162 37.919-45.96 15.54 16.214 18.942-19.64 0.6566-0.24078" stroke="url(#a)" stroke-width="1.6789"/>
+<ellipse cx="51.24" cy="123.89" rx=".9312" ry=".98965" stroke="#61dafb" stroke-width="2.3073"/>
+<ellipse cx="14.722" cy="167.17" rx=".9312" ry=".98965" stroke="#61dafb" stroke-width="2.3073"/>
+<ellipse cx="96.805" cy="86.391" rx=".9312" ry=".98965" stroke="#61dafb" stroke-width="2.3073"/>
+<ellipse cx="112.34" cy="102.82" rx=".9312" ry=".98965" stroke="#61dafb" stroke-opacity=".69067" stroke-width="2.3073"/>
+</g>
+</svg>

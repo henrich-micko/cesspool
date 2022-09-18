@@ -24,10 +24,15 @@ interface MachineUserProps {
 }
 
 export const MachineUser: React.FC<MachineUserProps> = (props) => {
+    const shortEmail = (email: string): string => {
+        if (email.length >= 15) return Array.from(email).slice(0, 15).join("") + "..."
+        return email
+    }
+
     return (
         <div className={styles.machineInfo}>
-            <FontAwesomeIcon icon={faUser} />
-            <span>{props.user !== null ? props.user : "Nepridelené"}</span>
+            <FontAwesomeIcon icon={faUser} style={{"marginRight": "0.25em"}} />
+            <span>{props.user !== null ? shortEmail(props.user) : "Nepridelené"}</span>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.textNumberInputWrapper {
+.theInput {
     width: 100%;
     display: flex;
     justify-content: left;
@@ -80,6 +80,7 @@
         border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
         display: block;
         text-align: left;
+        width: auto;
     }
 }
 

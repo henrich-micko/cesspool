@@ -1,0 +1,9 @@
+.view {
+   display: flex;
+
+   .machineWrapper {
+        margin-left: 5em;
+        display: grid;
+        grid-auto-rows: 19em;
+    }
+}

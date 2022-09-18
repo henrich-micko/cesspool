@@ -2,7 +2,7 @@ import React from "react"
 
 // Styles && Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBatteryFull, faWater, faBatteryEmpty, faBatteryHalf, faBatteryQuarter, faBatteryThreeQuarters, faWarning, faSmile} from "@fortawesome/free-solid-svg-icons"
+import { faBatteryFull, faWater, faBatteryEmpty, faBatteryHalf, faBatteryQuarter, faBatteryThreeQuarters, faWarning, faCircleCheck} from "@fortawesome/free-solid-svg-icons"
 import { MachineType } from "@types"
 
 interface Props {
@@ -48,7 +48,7 @@ export const StatusProblem: React.FC<Props> = (props) => {
     return (
         <div>
             <FontAwesomeIcon 
-                icon={problem !== undefined ? faWarning : faSmile}
+                icon={problem !== undefined ? faWarning : faCircleCheck}
                 style={{
                     "color": problem === undefined ? undefined : problem.importance === 0 ? yellow : problem.importance === 1 ? red : undefined
                 }}
