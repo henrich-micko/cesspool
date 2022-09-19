@@ -14,13 +14,14 @@ interface Props {
     onChange(value: string): void;
     type?: "number"|"text"
     behavior?: "auto"|"static"
+    maxLenght?: number
 }
 
 const TheInput: React.FC<Props> = (props) => {
     const input = React.createRef<HTMLInputElement>()
     
     const type = props.type === undefined ? "text" : props.type
-    const behavior = props.behavior !== undefined ? "auto" : props.behavior
+    const behavior = props.behavior === undefined ? "auto" : props.behavior
 
     useEffect(() => {
         if (input.current !== null && props.value !== undefined) input.current.value = String(props.value) 
@@ -51,6 +52,7 @@ const TheInput: React.FC<Props> = (props) => {
                 id={props.id}
                 type={type}
                 onChange={handleChange}
+                maxLength={props.maxLenght}
             />
         </div>
     )

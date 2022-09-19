@@ -51,6 +51,7 @@ const SettingsView: React.FC<Props> = (props) => {
                     onChange={handleTitle}
                     label="Názov"
                     value={props.machine.title !== null ? props.machine.title : ""}
+                    maxLenght={14}
                 />
 
                 <TheInput

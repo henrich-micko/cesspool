@@ -47,9 +47,13 @@ const AdminMachineView: React.FC = () => {
 		}))
 	}
 
-	useEffect(() => {
-		console.log(machineId)
-	}, [machineId])
+	const onCreate = (newMachine: MachineAdminType) => {
+		console.log(newMachine)
+		if (machines !== null) setMachines([...machines, newMachine])
+		else setMachines([newMachine])
+
+		if (machines !== null) setMachineId(machines.length)
+	}
 
 	const machine = machines !== undefined ? machines?.at(machineId) : undefined
 
@@ -70,7 +74,7 @@ const AdminMachineView: React.FC = () => {
 
 							{machineId === -1 &&
 								<div className={styles.machineWrapper}>
-									<MachineCreate users={users} onSubmit={() => {}} />
+									<MachineCreate users={users} onCreate={onCreate} />
 								</div>
 							}
 						</>

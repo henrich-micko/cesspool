@@ -24,12 +24,25 @@ const ReleaseView: React.FC<Props> = (props) => {
              .catch(error => console.log(error))
     }, [])
 
+    const formatDate = (date: string) => {
+        const datetime = date.split("T").at(0)
+        if (datetime === undefined) return
+
+        const year = datetime.split("-").at(0)
+        const month = datetime.split("-").at(1)
+        const day = datetime.split("-").at(2)
+
+        return year + " " + day + "." + month + "."
+    }
+
+    const date = props.machine.last_update !== null ? formatDate(props.machine.last_update) : null
+
     return (
         <div className={classNames(styles.machineView, styles.release)}>
             <p>
-                {releaseDate !== null &&
-                    <>Hladina by mala dosiahnť 85% dňa <u>{releaseDate}</u>, p</>}
-                    Posledný záznam zo dňa: {props.machine.last_update !== null ? <u>{props.machine.last_update?.split("T").at(0)}</u> : <span>...</span>}
+                {releaseDate !== null ?
+                    <>Hladina by mala dosiahnť 85% dňa <u>{releaseDate}</u>, p</> : <>P</>}
+                    osledný záznam zo dňa: {date !== null ? <u>{date}</u> : <span>...</span>}
             </p>
         </div>
     )

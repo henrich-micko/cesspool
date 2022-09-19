@@ -1,14 +1,15 @@
 import SelectInput from "@components/form/SeletectInput"
 import SwitchInput from "@components/form/SwitchInput"
 import TheButton from "@components/form/TheButton"
+import TheError from "@components/form/TheError"
 import TheInput from "@components/form/TheInput"
 import TheBoard from "@components/TheBoard"
 import useAxios from "@hooks/useAxios"
-import { MachineAdminType, MachineType, UserType } from "@types"
+import { MachineAdminType, UserType } from "@types"
 import React, { useEffect, useState } from "react"
 
 interface Props {
-    onSubmit(newMachine: MachineAdminType): void
+    onCreate(newMachine: MachineAdminType): void
     users: UserType[]
 }
 
@@ -39,13 +40,13 @@ const MachineCreate: React.FC<Props> = (props) => {
         }
 
         axios.post("/admin/machine/create/", data)
-             .then(res => console.log(res.data))
-             .catch(error => setError("Zle parametre"))
+             .then(res => props.onCreate(res.data))
+             .catch(error => setError("Nepodarilo sa nastaviť"))
     }
 
     return (
         <TheBoard label="Vytvoriť zariadenie">
-            <div style={{"width": "20em", "padding": "1em"}}>
+            <div style={{"width": "20em", "padding": "1em", "display": "flex", "flexDirection": "column"}}>
                 <TheInput
                     label="Code"
                     behavior="static"
@@ -78,14 +79,13 @@ const MachineCreate: React.FC<Props> = (props) => {
                     onSubmit={setAutoCorrect}
                 />
 
+                {error !== null && <TheError label={error} />}
+
                 <TheButton 
                     type="blue" 
                     onClick={handleSubmit} 
                     label="Vytvoriť" 
                 />
-
-                {error !== null && error}
-
             </div>
         </TheBoard>
     ) 

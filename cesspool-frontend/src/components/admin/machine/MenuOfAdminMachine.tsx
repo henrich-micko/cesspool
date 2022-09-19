@@ -3,7 +3,7 @@ import { MachineAdminType } from "@types"
 import styles from "@styles/components/admin/machine/menuOfAdminMachine.module.scss"
 import TheBoard from "@components/TheBoard"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle, faRefresh, faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faPlusCircle, faRefresh, faTrash, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
 import { MachineCode, MachineUser } from "./MachineInfo"
 import classNames from "classnames"
 
@@ -21,7 +21,9 @@ const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
             <MachineCode code={props.machine.code} />
             
             <div className={styles.userTrashWrapper}>
-                <MachineUser user={props.machine.user} />
+                <FontAwesomeIcon 
+                    icon={faUserAltSlash}
+                />
                 <FontAwesomeIcon 
                     className={classNames(styles.icon, props.machine.delete_records_date !== null || props.machine.delete_date !== null ? styles.red : undefined)}
                     icon={faTrash}

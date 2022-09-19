@@ -9,13 +9,20 @@ interface Props {
     machine: MachineType
 }
 
+const statusStyle = {
+    "display": "flex",
+    "width": "5em",
+    "justify-content": "right",
+    "align-items": "center"
+}
+
 export const StatusLevel: React.FC<Props> = (props) => {
     const { machine } = props
     const level = machine.level_percent !== null ? machine.level_percent : machine.level !== null ? machine.level : undefined
     const label_string = level === undefined ? "..." : "%"
     
     return (
-        <div>
+        <div style={statusStyle}>
             <span style={{marginRight: "0.25em"}}>{level?.toFixed(0)}{label_string}</span>
             <FontAwesomeIcon icon={faWater} />
         </div> 
@@ -33,7 +40,7 @@ export const StatusBattery: React.FC<Props> = (props) => {
                         faBatteryFull
                         
     return (
-        <div>
+        <div style={statusStyle}>            
             <span style={{marginRight: "0.25em"}}>{battery?.toFixed(0)}{battery !== undefined ? "%" : "..."}</span>
             <FontAwesomeIcon icon={batteryIcon} />
         </div> 

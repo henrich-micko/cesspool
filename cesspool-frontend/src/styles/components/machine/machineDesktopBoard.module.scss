@@ -1,16 +1,24 @@
 .machineBoard {
+    .settingsWrapper {
+        display: flex;
+        justify-content: right;
+        padding-right: 0.90em;
+        margin-top: -1.5em;
+
+        div {
+            padding: 0.25em;
+            padding-top: 0em;
+            background-color: #282c34;;
+        }
+    }
+
     h2 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
     .machineBoardBody {
         padding: 2em;
-        padding-bottom: 1em;
+        padding-bottom: 0em;
         width: 40em;
-    }
-
-    .footer {
-        padding-bottom: 1em;
-        padding-right: 1em;
     }
 }

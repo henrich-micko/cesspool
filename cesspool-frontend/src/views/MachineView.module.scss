@@ -1,6 +1,5 @@
 .view {
     display: flex;
-    justify-content: space-around;
 
     .noRecords {
         margin-top: 3em;
@@ -12,14 +11,15 @@
 
     .machineWrapper {
         display: flex;
-        justify-content: space-between;
+        column-gap: 4em;
         width: 100%;
-        padding-left: 7em;
+        padding-left: 4em;
     }
 
-    @media only screen and (max-width: 1850px) {
+    @media only screen and (max-width: 1766px) {
         .machineWrapper {
             flex-direction: column;
+            row-gap: 1em;
         }
     }
 }

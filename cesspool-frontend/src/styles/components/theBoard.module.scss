@@ -5,8 +5,8 @@
     width: fit-content;
     height: fit-content;
 
-    border: 2px solid white;
-    border-radius: 0.3em 0.3em 0.6em 0.6em;
+    border-radius: 0.45em 0.45em 0.45em 0.45em;
+    padding-top: 1em;
 
     margin-bottom: 3em;
 
@@ -22,7 +22,6 @@
         height: fit-content;
         background-color: transparent;
         display: flex;
-        margin-top: -20px;
 
         &.left {
             justify-content: left;
@@ -39,14 +38,12 @@
         }
 
         h2 {
-            padding: 0px 25px 0px 25px;
             width: fit-content;
             height: fit-content;
             background: #282c34;
             margin-top: 0em;
             margin-bottom: 0em;
-            padding-right: 0.5em;
-            padding-left: 0.5em;
+            padding-left: 0.25em;
         }
     }
 }

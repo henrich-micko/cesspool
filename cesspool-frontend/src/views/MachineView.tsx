@@ -11,10 +11,14 @@ import { useIsDesktop } from "@hooks/useIsMobile"
 import classNames from "classnames"
 import MachineDesktopBoard from "@components/machine/MachineDesktopBoard"
 import MachineDesktopProblems from "@components/machine/MachineDesktopProblems"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faList } from "@fortawesome/free-solid-svg-icons"
 
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
 	const [machineId, setMachineId] = useState<number>(0)
+
+	const [menuOfMachineBehavior, setMenuOfMachineBehavior] = useState<"static"|"hide"|"side">("hide")
 	
 	const axios = useAxios()
 
@@ -42,14 +46,31 @@ const MachineView: React.FC = () => {
 			<div className={classNames(styles.view)}>
 				{machines !== null && machines.length !== 0  ? 
 					<>
-						<MenuOfMachines machines={machines} onRefresh={refreshMachines} onClick={setMachineId} activate={machineId !== null ? machineId : undefined} />
+						<div>
+							<MenuOfMachines
+								behavior={menuOfMachineBehavior}
+								machines={machines}
+								onRefresh={refreshMachines} 
+								onClick={setMachineId} 
+								activate={machineId !== null ? machineId : undefined} 
+							/>
+						</div>
+
+						<FontAwesomeIcon
+							icon={faList}
+							onClick={() => {
+								if (menuOfMachineBehavior === "hide") setMenuOfMachineBehavior("side")
+								if (menuOfMachineBehavior === "side") setMenuOfMachineBehavior("hide")
+							}}
+						/>
+
 						{machine !== undefined && 
-							<>
-								<MachineDesktopBoard machine={machine} setMachine={refreshMachines}/>
-								<MachineDesktopProblems machine={machine} />
-							</>
+						<div className={styles.machineWrapper}>
+							<MachineDesktopBoard machine={machine} setMachine={refreshMachines}/>
+							<MachineDesktopProblems machine={machine} />
+						</div>
 						}
-					</> : 
+					</> :
 					machines !== null && 
 					  <NoContent missing="zariadenia"/>
 				}

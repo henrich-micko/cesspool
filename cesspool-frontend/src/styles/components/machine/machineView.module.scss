@@ -127,7 +127,7 @@
         justify-content: left;
 
         u {
-            color: #61dafb;
+            text-decoration: underline #61dafb;
         }
 
         .date {
@@ -136,6 +136,8 @@
     }
 
     &.problems {
+        padding: 1em;
+
         ul {
             padding-left: 0;
             list-style: none;

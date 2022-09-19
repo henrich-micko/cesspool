@@ -53,6 +53,20 @@ const ChartsView: React.FC<Props> = (props) => {
 
     }, [timePeriod, props.machine])
 
+    const getDate = () => {
+        const date = timePeriod.split("/").at(1)
+        if (date === undefined) return 
+
+        const datetime = date.split("T").at(0)
+        if (datetime === undefined) return
+
+        const year = datetime.split("-").at(0)
+        const month = datetime.split("-").at(1)
+        const day = datetime.split("-").at(2)
+
+        return year + " " + day + "." + month + "."
+    }
+
     const chartDataRecord= (record: RecordType): number => {
         const output = recordData === "level_percent" ? record.level_percent :
             recordData === "level" ? record.level :
@@ -127,7 +141,7 @@ const ChartsView: React.FC<Props> = (props) => {
                         ? <div>
                             <span>z dňa</span> 
                             <span className={styles.date}>
-                                {timePeriod.split("/").at(1)}
+                                {getDate()}
                                 
                                 <FontAwesomeIcon 
                                     className={styles.closeIcon}

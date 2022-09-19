@@ -11,6 +11,8 @@ import ReleaseView from "./machineViews/ReleaseView"
 import TheButton from "@components/form/TheButton"
 import PopUp from "@components/PopUp"
 import SettingsView from "./machineViews/SettingsView"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleExclamation, faSliders } from "@fortawesome/free-solid-svg-icons"
 
 interface Props {
     machine: MachineType
@@ -22,13 +24,18 @@ const MachineDesktopBoard: React.FC<Props> = (props) => {
 
     return (
         <TheBoard className={styles.machineBoard} label={props.machine.title !== null ? props.machine.title : props.machine.code }>
+            <div className={styles.settingsWrapper}>
+                <div>
+                    <FontAwesomeIcon
+                        icon={faSliders}
+                        onClick={() => setSettings(true)}
+                    />
+                </div>
+            </div>
+            
             <div className={styles.machineBoardBody}>
                 <ChartsView machine={props.machine} />
                 <ReleaseView machine={props.machine} />
-            </div>
-
-            <div className={styles.footer}>
-                <TheButton label="Nastavenia" type="blue" onClick={() => setSettings(true)} />
             </div>
 
             {settings && 

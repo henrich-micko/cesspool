@@ -26,10 +26,8 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
     const axios = useAxios()
 
     const confMachine = (data: {code?: string; user?: string|null; mqtt?: boolean, notification?: boolean, autocorrect?: boolean}) => {
-        setError("")
-        
         axios.put("/admin/machine/" + props.machine.code + "/", data)
-             .then(res => props.setMachine(res.data))
+             .then(res => { setError(""); props.setMachine(res.data) })
              .catch(error => setError("Neplatný typ udaja"))
     }
 
@@ -38,7 +36,7 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
             <div>
                 {error !== "" && <span className={styles.error}>{error}</span>}
 
-                <TheInput 
+                <TheInput
                     onChange={(value) => confMachine({code: value})}
                     label="Code"
                     value={props.machine.code !== null ? props.machine.code : undefined}

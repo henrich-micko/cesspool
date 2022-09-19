@@ -9,10 +9,8 @@ interface Props {
     machine: MachineType
 }
 
-const styles = {
-    "paddingLeft": "1em", 
-    "paddingRight": "1em", 
-    "width": "15em",
+const styles = { 
+    "width": "100%",
 }
 
 const MachineDesktopProblems: React.FC<Props> = (props) => {
