@@ -6,15 +6,15 @@ import classNames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faX } from "@fortawesome/free-solid-svg-icons"
 
-// types && api
-import { MachineType, RecordType } from "../../../types"
-import useAxios from "../../../hooks/useAxios"
+// types && hooks
+import { MachineType, RecordType } from "@types"
+import useAxios from "@hooks/useAxios"
+import useIsMobile from "@hooks/useIsMobile"
 
 // charts
 import { Chart as ChartJS, registerables, ChartOptions } from 'chart.js';
 import { Chart } from 'react-chartjs-2'
 import 'chartjs-adapter-moment';
-import useIsMobile from "../../../hooks/useIsMobile"
 
 ChartJS.register(...registerables);
 
@@ -23,7 +23,7 @@ interface Props {
     machine: MachineType
 }
 
-const ChartsView: React.FC<Props> = (props) => {
+const MachineChart: React.FC<Props> = (props) => {
     const [records, setRecords] = useState<RecordType[]>([])
 
     const [timePeriod, setTimePeriod] = useState<String>("day") // data/22-1-1 means spec date
@@ -174,4 +174,4 @@ const ChartsView: React.FC<Props> = (props) => {
     )
 }
 
-export default ChartsView
+export default MachineChart

@@ -1,0 +1,39 @@
+.themedBox {
+    width: fit-content;
+    height: fit-content;
+
+    margin-top: 1em;
+    margin-bottom: 3em;
+
+    padding-top: 1em;
+
+    background: #1e1f25;
+    border-radius: 0.45em 0.45em 0.45em 0.45em;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    .header {
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        
+        h2 {
+            display: inline;
+            width: auto;
+            height: fit-content;
+
+            margin-top: 0em;
+            margin-bottom: 0em;
+            
+            padding-left: 0.65em;
+        }
+
+        .propsHeader {
+            width: fit-content;
+            height: 100%;
+            padding-right: 1em;
+        }
+    }
+}

@@ -1,59 +1,51 @@
 import React, { useState } from "react"
 
-// mobile respo
-import useIsMobile from "../../hooks/useIsMobile"
+// types && styles && icons
+import { MachineType } from "@types"
+import styles from "@styles/components/machine/machineBoard.module.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSliders } from "@fortawesome/free-solid-svg-icons"
 
-// api
-import { MachineType } from "../../types"
+// components
+import MachineChart from "./MachineChart"
+import MachineDates from "./MachineDates"
+import PopUp from "@components/PopUp"
+import MachineSettings from "./MachineSettings"
+import ThemedBox from "@components/ThemedBox"
 
-// conponents
-import MachinePanel from "./MachinePanel"
-import ChartsView from "./machineViews/ChartsView"
-import SettingsView from "./machineViews/SettingsView"
-import ProblemsView from "./machineViews/ProblemsViews"
-import ReleaseView from "./machineViews/ReleaseView"
-import TheBoard from "@components/TheBoard"
 
 interface Props {
-    machine: MachineType,
+    machine: MachineType
     setMachine(newMachine: MachineType): void
 }
 
-const MachineBoard: React.FC<Props> = (props) => {
-    const [machineView, setMachineView] = useState<string>("")    
-    const isMobile = useIsMobile()
-
-    const { machine } = props
-
-    const handleIcon = (iconName: string) => {
-        setMachineView(prevState => {
-            return prevState === iconName ? "" : iconName
-        })
-    }
+const MachineDesktopBoard: React.FC<Props> = (props) => {
+    const [settings, setSettings] = useState<boolean>(false)
 
     return (
-        <TheBoard isActive={machineView !== "" && !isMobile}>
-            {/* Top panel */}
-            <MachinePanel machine={machine} handleIcon={handleIcon} />
-
-            {/* Body machineView */}
-
-            { machineView === "charts" ?
-                <ChartsView machine={machine} />
-
-            : machineView === "settings" ?
-                <SettingsView machine={machine} setMachine={props.setMachine}/>
-
-            : machineView === "problems" ?
-                <ProblemsView machine={machine} />
-                
-            : machineView === "release" ?
-                <ReleaseView machine={machine} />
-
-            : <></>
+        <ThemedBox 
+            className={styles.machineBoard} 
+            label={props.machine.title !== null ? props.machine.title : props.machine.code }
+            header={
+                <div className={styles.settingsWrapper}>
+                    <FontAwesomeIcon
+                        icon={faSliders}
+                        onClick={() => setSettings(true)}
+                    />
+                </div>
+            }> 
+                <div className={styles.machineBoardBody}>
+                    <MachineChart machine={props.machine} />
+                    <MachineDates machine={props.machine} />
+                </div>
+            {
+                settings && 
+                <PopUp label={"Nastavenia zariadenia"} onClickClose={() => setSettings(false)}>
+                    <MachineSettings machine={props.machine} setMachine={props.setMachine} />
+                </PopUp>
             }
-        </TheBoard>
+        </ThemedBox>
     )
 }
 
-export default MachineBoard
+export default MachineDesktopBoard

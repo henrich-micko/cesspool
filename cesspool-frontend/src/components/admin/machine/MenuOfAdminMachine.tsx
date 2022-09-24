@@ -1,7 +1,7 @@
 import React from "react"
 import { MachineAdminType } from "@types"
 import styles from "@styles/components/admin/machine/menuOfAdminMachine.module.scss"
-import TheBoard from "@components/TheBoard"
+import ThemedBox from "@components/ThemedBox"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlusCircle, faRefresh, faTrash, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
 import { MachineCode, MachineUser } from "./MachineInfo"
@@ -60,7 +60,7 @@ interface Props {
 const MenuOfAdminMachines: React.FC<Props> = (props) => {
 
     return (
-        <TheBoard label="Zariadenia" className={styles.menuOfMachine} style={{}}>
+        <ThemedBox label="Zariadenia" className={styles.menuOfMachine} style={{}}>
             <div className={styles.refreshWrapper}>
                 <div>
                     <FontAwesomeIcon
@@ -81,7 +81,7 @@ const MenuOfAdminMachines: React.FC<Props> = (props) => {
                 />
                 )}
             </ul>
-        </TheBoard>
+        </ThemedBox>
     )
 }
 

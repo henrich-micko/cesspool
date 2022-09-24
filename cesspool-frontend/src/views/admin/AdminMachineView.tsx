@@ -15,6 +15,7 @@ import MenuOfAdminMachines from "@components/admin/machine/MenuOfAdminMachine"
 import MachineDesktopAdminBoard from "@components/admin/machine/MachineDesktopAdminBoard"
 import MachineAdminDangerzone from "@components/admin/machine/MachineAdminDangerzone"
 import MachineCreate from "@components/admin/machine/MachineCreate"
+import TheNaviagtion from "@components/TheNaviagtion"
 
 const AdminMachineView: React.FC = () => {
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
@@ -59,6 +60,8 @@ const AdminMachineView: React.FC = () => {
 
     return (
         <IsAdminView>
+			<TheNaviagtion />
+
             {machines !== null && machines.length === 0 ? <NoContent missing="zariadnia" /> :
 				<div className={styles.view}>
 					{machines !== null &&

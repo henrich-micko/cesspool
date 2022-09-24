@@ -1,24 +1,60 @@
 .navigation {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 18.5em;
+	z-index: 97;
+
+	background: #1e1f25;
+
 	padding: 0 1.25em;
-	display: flex;
-	justify-content: right;
 
-	vertical-align: middle;
-	background: transparent;
-	white-space: nowrap;
+	.header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 
-	a {
-		color: white;
-		font-size: 1.1em;
-		font-weight: 800;
-		text-decoration: none;
-
-		cursor: pointer;
-		padding: 0.7em 0.65em;
-		display: inline-block;
-
-		&.active {
-			border-bottom: 2px solid #61dafb;
+		h1 {
+			text-align: left;
+			font-size: 1.7em;
 		}
+	}
+
+	nav {
+		display: flex;
+		flex-direction: column;
+
+		vertical-align: middle;
+		background: transparent;
+		white-space: nowrap;
+
+		a {
+			display: inline-block;
+
+			text-align: left;
+			border-radius: 0.5em;
+			color: #b5b7bf;
+			font-size: 1.1em;
+			font-weight: 800;
+			text-decoration: none;
+			margin-top: 0.5em;
+
+			cursor: pointer;
+			padding: 0.7em 1em;
+
+			&.active {
+				color: white;
+				background-color: #26272d;
+			}
+
+			.icon {
+				margin-right: 0.75em;
+			}
+		}
+	}
+
+	.childrenWrapper {
+		margin-top: 3em;
 	}
 }

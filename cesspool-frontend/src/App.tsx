@@ -19,18 +19,16 @@ function App() {
   return (
     <AuthProvider>
       <div className="App">
-        <header>
-          <TheNaviagtion />
-        </header>
-
         <main className="content">
-          <Routes>
-              <Route path="/" element={<HomeView />} />
-              <Route path="/account" element={<AccountView />} />
-              <Route path="/machine" element={<MachineView />} />
-              <Route path="/admin/machine/" element={<AdminMachineView />} />
-              <Route path="/admin/account/" element={<AdminAccountView />} />
-          </Routes>
+            <div className="viewWrapper">
+              <Routes>
+                  <Route path="/" element={<HomeView />} />
+                  <Route path="/account" element={<AccountView />} />
+                  <Route path="/machine" element={<MachineView />} />
+                  <Route path="/admin/machine/" element={<AdminMachineView />} />
+                  <Route path="/admin/account/" element={<AdminAccountView />} />
+              </Routes>
+            </div>
         </main>
       </div>
     </AuthProvider>

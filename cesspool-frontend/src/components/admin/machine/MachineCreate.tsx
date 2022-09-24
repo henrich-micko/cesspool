@@ -3,7 +3,7 @@ import SwitchInput from "@components/form/SwitchInput"
 import TheButton from "@components/form/TheButton"
 import TheError from "@components/form/TheError"
 import TheInput from "@components/form/TheInput"
-import TheBoard from "@components/TheBoard"
+import ThemedBox from "@components/ThemedBox"
 import useAxios from "@hooks/useAxios"
 import { MachineAdminType, UserType } from "@types"
 import React, { useEffect, useState } from "react"
@@ -45,7 +45,7 @@ const MachineCreate: React.FC<Props> = (props) => {
     }
 
     return (
-        <TheBoard label="Vytvoriť zariadenie">
+        <ThemedBox label="Vytvoriť zariadenie">
             <div style={{"width": "20em", "padding": "1em", "display": "flex", "flexDirection": "column"}}>
                 <TheInput
                     label="Code"
@@ -87,7 +87,7 @@ const MachineCreate: React.FC<Props> = (props) => {
                     label="Vytvoriť" 
                 />
             </div>
-        </TheBoard>
+        </ThemedBox>
     ) 
 }
 

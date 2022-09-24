@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 // styles && icons
 import styles from "@styles/components/machine/machineView.module.scss"
 import classNames from "classnames"
 
-// types
-import { MachineType } from "../../../types"
+// types && hooks
+import { MachineType } from "@types"
+import useAxios from "@hooks/useAxios"
 
-import useAxios from "../../../hooks/useAxios"
+// components
 import TheInput from "@components/form/TheInput"
 
 interface Props {

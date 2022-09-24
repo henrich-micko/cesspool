@@ -1,15 +1,11 @@
 .machineBoard {
+    width: 45em;
+    max-width: 100%;
+
     .settingsWrapper {
         display: flex;
         justify-content: right;
-        padding-right: 0.90em;
-        margin-top: -1.5em;
-
-        div {
-            padding: 0.25em;
-            padding-top: 0em;
-            background-color: #282c34;;
-        }
+        align-items: center;
     }
 
     h2 {
@@ -19,6 +15,5 @@
     .machineBoardBody {
         padding: 2em;
         padding-bottom: 0em;
-        width: 40em;
     }
 }

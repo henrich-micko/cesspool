@@ -8,7 +8,7 @@ import { MachineAdminType, UserType } from "../../../types"
 
 // components
 import MachineAdminPanel from "./MachineAdminPanel"
-import TheBoard from "@components/TheBoard"
+import ThemedBox from "@components/ThemedBox"
 import MachineAdminSettings from "./views/MachineAdminSettings"
 import MachineAdminDelete from "./views/MachineAdminDelete"
 import MachineAdminDeleteRecords from "./views/MachineAdminDeleteRecords"
@@ -30,7 +30,7 @@ const MachineAdminBoard: React.FC<Props> = (props) => {
     }
 
     return (
-        <TheBoard isActive={machineView !== "" && (!isMobile && machineView !== "info")}>
+        <ThemedBox>
             <MachineAdminPanel handleIcon={handleIcon} machine={props.machine} />
 
             {
@@ -45,7 +45,7 @@ const MachineAdminBoard: React.FC<Props> = (props) => {
 
                 undefined
                 }
-        </TheBoard>
+        </ThemedBox>
     )
 }
 

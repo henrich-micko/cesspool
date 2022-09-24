@@ -1,5 +1,12 @@
 .view {
     display: flex;
+    margin-left: 20.5em;
+
+    display: flex;
+    column-gap: 5em;
+    width: 100%;
+    max-width: 90%;
+    padding-left: 4em;
 
     .noRecords {
         margin-top: 3em;
@@ -9,17 +16,14 @@
         }
     }
 
-    .machineWrapper {
-        display: flex;
-        column-gap: 4em;
-        width: 100%;
-        padding-left: 4em;
+    @media only screen and (max-width: 1765px) {
+        flex-direction: column;
+        row-gap: 0.5em;
+        width: fit-content;
     }
 
-    @media only screen and (max-width: 1766px) {
-        .machineWrapper {
-            flex-direction: column;
-            row-gap: 1em;
-        }
+    @media only screen and (max-width: 1375px) {
+        padding-left: 0em;
+        max-width: 100%;
     }
 }

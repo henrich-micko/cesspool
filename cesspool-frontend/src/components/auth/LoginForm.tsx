@@ -6,7 +6,7 @@ import styles from "@styles/components/auth/loginForm.module.scss"
 
 // Context
 import AuthContext from "@context/AuthContext"
-import TheBoard from "@components/TheBoard";
+import ThemedBox from "@components/ThemedBox";
 import { useMaxWidth } from "@hooks/useIsMobile";
 
 const LoginForm: React.FC = () => {
@@ -37,10 +37,9 @@ const LoginForm: React.FC = () => {
     }
 
     return (
-        <TheBoard 
+        <ThemedBox 
             label="Prihlásiť sa" 
             className={styles.formWrapper}
-            align="center"
             style={{
                 "width": "20em", 
                 "marginTop": "5em", 
@@ -82,7 +81,7 @@ const LoginForm: React.FC = () => {
                     />
                 </div>
             </form>
-        </TheBoard>
+        </ThemedBox>
     )
 }
 

@@ -1,36 +1,60 @@
-import React, { useContext } from "react"
+import React, { ReactNode, useContext } from "react"
 import { NavLink } from "react-router-dom"
  
 // styles
 import styles from "@styles/components/theNavigation.module.scss"
 
 // context && hooks
-import AuthContext from "../context/AuthContext"
-import useIsMobile from "../hooks/useIsMobile"
+import AuthContext from "@context/AuthContext"
+import useIsMobile from "@hooks/useIsMobile"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconProp } from "@fortawesome/fontawesome-svg-core"
+import { faHome, faInfoCircle, faServer, faSignOut, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 
+interface TheNaviagtionLinkProps {
+    to: string
+    icon: IconProp
+    children: ReactNode
+}
 
-const TheNaviagtion: React.FC = (props) => {
+const TheNaviagtionLink: React.FC<TheNaviagtionLinkProps> = (props) => {
+    return (
+        <NavLink to={props.to} className={({ isActive }) => isActive ? styles.active : undefined}>
+            <FontAwesomeIcon className={styles.icon} icon={props.icon} />
+            {props.children}
+        </NavLink>
+    )
+}
+
+interface Props {
+    children?: ReactNode
+}
+
+const TheNaviagtion: React.FC<Props> = (props) => {
     const { isLogged, user } = useContext(AuthContext)
-    const isMobile = useIsMobile()
 
-    const isUrlActive = (url: string): boolean => {
-        return window.location.pathname.startsWith(url)
-    }
- 
     return(
-        <nav className={styles.navigation}>
-            {!isLogged ?
-                <>
-                    <NavLink to="/" className={({ isActive }) => isActive ? styles.active : undefined}>Prihlasiť sa</NavLink>
-                </> :
-                <>
-                    <NavLink to="/machine" className={({ isActive }) => isActive ? styles.active : undefined}>Zariadenia</NavLink>
-                    {user.is_superuser && <NavLink to="/admin/machine" className={() => isUrlActive("/admin") ? styles.active : undefined}>Machine admin</NavLink>}
-                    {user.is_superuser && <NavLink to="/admin/machine" className={() => isUrlActive("/adminx") ? styles.active : undefined}>Account admin</NavLink>}
-                    <NavLink to="/account" className={({ isActive }) => isActive ? styles.active : undefined}>Učet{!isMobile && ": " + user.email }</NavLink>
-                </>
+        <div className={styles.navigation}>
+            <div className={styles.header}>
+                <h1>Cesspool</h1>
+                <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
+            </div>
+
+            {isLogged &&
+                <nav>
+                    <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
+                    {user.is_superuser && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
+                    {user.is_superuser && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
+                    <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
+                </nav>
             }
-        </nav>
+
+            {props.children !== undefined &&
+                <div className={styles.childrenWrapper}>
+                    {props.children}
+                </div>
+            }
+        </div>
     )
 }
 

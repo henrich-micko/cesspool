@@ -1,11 +1,13 @@
 import React from "react"
+
+// types && styles && icons
 import { MachineType } from "@types"
 import styles from "@styles/components/machine/MenuOfMachine.module.scss"
-import TheBoard from "@components/TheBoard"
-import { StatusBattery, StatusLevel, StatusProblem } from "@components/machine/StatusIcon"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRefresh, faSliders } from "@fortawesome/free-solid-svg-icons"
-import classNames from "classnames"
+import { faRefresh } from "@fortawesome/free-solid-svg-icons"
+
+// components
+import { StatusBattery, StatusLevel, StatusProblem } from "./MachineIcons"
 
 
 interface MenuOfMachineLiProps {
@@ -16,10 +18,13 @@ interface MenuOfMachineLiProps {
 }
 
 const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
+    let label = props.machine.title !== null ? props.machine.title : props.machine.code
+    if (label.length >= 7) label = Array.from(label).slice(0, 5).join("") + "..."
+
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
             <h3 className={props.isActive ? styles.activate : undefined}>
-                {props.machine.title !== null ? props.machine.title : props.machine.code}
+                {label}
             </h3>
 
             <div className={styles.status}>
@@ -34,32 +39,28 @@ const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
 }
 
 interface Props {
-    machines: MachineType[]
-    onClick(id: number): void
+    machines: MachineType[]|null
     activate?: number
     onRefresh(): void
-    behavior: "static" | "side" | "hide"
+    onClose(): void
+    onClick(id: number): void
 }
 
 const MenuOfMachines: React.FC<Props> = (props) => {
 
     return (
-        <TheBoard 
-            label="Zariadenia" 
-            className={classNames(styles.menuOfMachine, props.behavior === "side" && styles.sideBar, props.behavior === "hide" && styles.hide)}
-            style={{"position": props.behavior === "side" ? "fixed" : "relative"}}
-        >
-            <div className={styles.refreshWrapper}>
-                <div>
-                    <FontAwesomeIcon
-                        icon={faRefresh}
-                        onClick={props.onRefresh}
-                    />
-                </div>
-            </div>
+        <div className={styles.menuOfMachine}>
+            <div className={styles.header}>
+                <h2>Moje zariadenia</h2>
 
+                <FontAwesomeIcon
+                    icon={faRefresh}
+                    onClick={props.onRefresh}
+                />
+            </div>
+            
             <ul>
-                {props.machines.map((machine, index) =>
+                {props.machines !== null && props.machines.map((machine, index) =>
                     <MenuOfMachineLi 
                         isActive={props.activate === index}
                         index={index} 
@@ -68,7 +69,7 @@ const MenuOfMachines: React.FC<Props> = (props) => {
                 />
                 )}
             </ul>
-        </TheBoard>
+        </div>
     )
 }
 

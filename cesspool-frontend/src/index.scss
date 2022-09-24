@@ -4,7 +4,7 @@
 body {
 	font-size: 16px;
 	color: white;
-	background-color: #282c34;
+	background-color: #131517;
 }
 
 a {
@@ -25,10 +25,6 @@ h1 {
 	letter-spacing: -1px;
 }
 
-h1:first-child {
-	margin-top: 0;
-}
-
 .App {
 	font: {
 		size: 1em;
@@ -44,15 +40,15 @@ h1:first-child {
 }
 
 header {
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	margin-bottom: 3em;
 }
 
 .content {
+	display: flex;
+
 	font-size: 1.15em;
 	line-height: 1.5em;
 	// padding: 1.5em 1.75em;
-	padding: 1em 2em 1em;
 }
 
 article {

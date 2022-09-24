@@ -4,16 +4,15 @@ import React, { useEffect, useState } from "react"
 import styles from "@styles/components/machine/machineView.module.scss"
 import classNames from "classnames"
 
-// types
-import { MachineType } from "../../../types"
-
-import useAxios from "../../../hooks/useAxios"
+// types && hooks
+import { MachineType } from "@types"
+import useAxios from "@hooks/useAxios"
 
 interface Props {
     machine: MachineType
 }
 
-const ReleaseView: React.FC<Props> = (props) => {
+const MachineDates: React.FC<Props> = (props) => {
     const [releaseDate, setReleaseDate] = useState<string|null>(null)
     
     const axios = useAxios()
@@ -48,4 +47,4 @@ const ReleaseView: React.FC<Props> = (props) => {
     )
 }
 
-export default ReleaseView
+export default MachineDates

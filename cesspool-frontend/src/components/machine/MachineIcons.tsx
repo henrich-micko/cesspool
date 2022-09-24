@@ -50,7 +50,7 @@ export const StatusBattery: React.FC<Props> = (props) => {
 export const StatusProblem: React.FC<Props> = (props) => {
     const problem = props.machine.problems.at(0)
     const yellow = "rgb(255, 255, 78)"
-    const red = "rgb(255, 78, 78)"
+    const red = "#e45447"
     
     return (
         <div>

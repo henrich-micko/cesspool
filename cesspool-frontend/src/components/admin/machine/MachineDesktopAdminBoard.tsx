@@ -1,4 +1,4 @@
-import TheBoard from "@components/TheBoard"
+import ThemedBox from "@components/ThemedBox"
 import { MachineAdminType, UserType } from "@types"
 import React from "react"
 import MachineAdminSettings from "./views/MachineAdminSettings"
@@ -11,11 +11,11 @@ interface Props {
 
 const MachineDesktopAdminBoard: React.FC<Props> = (props) => {
     return (
-        <TheBoard label={props.machine.code}>
+        <ThemedBox label={props.machine.code}>
             <div>
                 <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} users={props.users} />
             </div>
-        </TheBoard>
+        </ThemedBox>
     ) 
 }
 

@@ -11,9 +11,9 @@ const useIsMobile = (): boolean => {
 export default useIsMobile
 
 export const useIsTablet = (): boolean => {
-    return useMaxWidth("60em")
+    return useMaxWidth("1375px")
 }
 
 export const useIsDesktop = (): boolean => {
-    return !useMaxWidth("60em")
+    return !useMaxWidth("1375px")
 }
