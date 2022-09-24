@@ -56,6 +56,7 @@ const MenuOfMachines: React.FC<Props> = (props) => {
                 <FontAwesomeIcon
                     icon={faRefresh}
                     onClick={props.onRefresh}
+                    className={styles.icon}
                 />
             </div>
             
