@@ -1,8 +1,5 @@
 import { Route, Routes } from "react-router-dom"
 
-// Components
-import TheNaviagtion from './components/TheNaviagtion'
-
 // Context
 import { AuthProvider } from './context/AuthContext'
 
@@ -11,7 +8,7 @@ import HomeView from './views/HomeView'
 import AccountView from './views/account/AccountView'
 import MachineView from "./views/MachineView"
 import AdminAccountView from "./views/admin/AdminAccountView"
-import AdminMachineView from "./views/admin/AdminMachineView"
+import AdminMachineView from "./views/admin/MachineViewAdmin"
 
 // Permissions
 

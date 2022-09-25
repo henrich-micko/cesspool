@@ -1,10 +1,11 @@
-import React from "react"
-import { MachineAdminType } from "@types"
-import styles from "@styles/components/admin/machine/menuOfAdminMachine.module.scss"
+import React, { useEffect, useState } from "react"
+import { MachineAdminType, UserType } from "@types"
+import styles from "@styles/components/machine/menuOfMachineAdmin.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilter, faPlusCircle, faRefresh, faTrash, faUser, faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
-import { MachineCode } from "./MachineInfo"
+import { faFilter, faFilterCircleXmark, faPlusCircle, faRefresh, faTrash, faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
+import useAxios from "@hooks/useAxios"
+import SelectInput from "@components/form/SeletectInput"
 
 
 interface MenuOfMachineLiProps {
@@ -17,7 +18,7 @@ interface MenuOfMachineLiProps {
 const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
-            <MachineCode code={props.machine.code} />
+            <h3>{props.machine.code}</h3>
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
@@ -57,7 +58,26 @@ interface Props {
     onRefresh(): void
 }
 
-const MenuOfAdminMachines: React.FC<Props> = (props) => {
+const MenuOfMachineAdmin: React.FC<Props> = (props) => {
+    const [filter, setFilter] = useState<string|null>(null)
+    const [users, setUsers] = useState<UserType[]>([])
+
+    const axios = useAxios()
+
+    useEffect(() => {
+        axios.get("/admin/account/")
+             .then(res => setUsers(res.data))
+             .catch(error => console.log(error))
+    }, [])
+
+    const handleFilter = () => {
+        if (filter === null && users.length !== 0) {
+            const user = users.at(1)?.email
+            user !== undefined && setFilter(user)
+        } else {
+            setFilter(null)
+        }
+    }
 
     return (
         <div className={styles.menuOfAdminMachine}>
@@ -66,8 +86,8 @@ const MenuOfAdminMachines: React.FC<Props> = (props) => {
 
                 <div>
                     <FontAwesomeIcon
-                        icon={faFilter}
-                        onClick={props.onRefresh}
+                        icon={filter === null ? faFilter : faFilterCircleXmark}
+                        onClick={handleFilter}
                         className={styles.icon}
                     />
 
@@ -79,19 +99,32 @@ const MenuOfAdminMachines: React.FC<Props> = (props) => {
                 </div>
             </div>
 
+            {
+                filter !== null &&
+                <div className={styles.filter}>
+                    <SelectInput 
+                        onSubmit={(value) => setFilter(value)}
+                        label="Učet"
+                        options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
+                        selected={filter}
+                    />
+                </div>
+            }
+
             <ul>
                 <MenuOfMachineNewLi onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>
                 {props.machines !== null && props.machines.map((machine, index) =>
+                    (filter === null || filter === machine.user || (filter === "" && machine.user === null)) && 
                     <MenuOfMachineLi 
                         isActive={props.activate === index}
                         index={index} 
                         machine={machine} 
                         onClick={props.onClick} 
-                />
+                    />
                 )}
             </ul>
         </div>
     )
 }
 
-export default MenuOfAdminMachines
+export default MenuOfMachineAdmin

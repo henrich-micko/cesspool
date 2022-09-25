@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 // types
-import { MachineAdminType, UserType } from "@types"
+import { MachineAdminType } from "@types"
 
 // components
 import NoContent from "@components/NoContent"
@@ -10,12 +10,10 @@ import NoContent from "@components/NoContent"
 import useAxios from "@hooks/useAxios"
 import { IsAdminView } from "@permissions/Admin"
 
-import styles from "@styles/views/admin/adminMachineView.module.scss"
-import MenuOfAdminMachines from "@components/admin/machine/MenuOfAdminMachine"
+import styles from "@styles/views/admin/machineViewAdmin.module.scss"
+import MenuOfAdminMachines from "@components/machine/MenuOfMachineAdmin"
 import TheNaviagtion from "@components/TheNaviagtion"
-import MachineBoard from "@components/machine/MachineBoard"
 import MachineProblems from "@components/machine/MachineProblems"
-import MachineAdminBoard from "@components/admin/machine/MachineAdminBoard"
 import MachineBoardAdmin from "@components/machine/MachineBoardAdmin"
 import MachineDeleteBoard from "@components/machine/MachineDeleteBoard"
 import MachineCreate from "@components/machine/MachineCreate"

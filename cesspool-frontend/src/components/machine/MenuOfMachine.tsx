@@ -2,7 +2,7 @@ import React from "react"
 
 // types && styles && icons
 import { MachineType } from "@types"
-import styles from "@styles/components/machine/MenuOfMachine.module.scss"
+import styles from "@styles/components/machine/menuOfMachine.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRefresh } from "@fortawesome/free-solid-svg-icons"
 

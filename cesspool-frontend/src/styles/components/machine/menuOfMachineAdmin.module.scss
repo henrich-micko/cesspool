@@ -18,6 +18,15 @@
         }
     }
 
+    .filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        padding-bottom: 0.5em;
+    }
+
     ul {
         list-style: none;
         padding-left: 0em;
