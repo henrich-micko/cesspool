@@ -42,7 +42,6 @@ interface Props {
     machines: MachineType[]|null
     activate?: number
     onRefresh(): void
-    onClose(): void
     onClick(id: number): void
 }
 

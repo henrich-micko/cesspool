@@ -1,0 +1,20 @@
+.machineSettings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    row-gap: 0.7em;
+
+    padding: 1.5em;
+
+    .error {
+        color: rgb(255, 78, 78);
+        font-size: 1.1em;
+    }
+}
+
+/* settings for basic machine (not admin) */
+#machineSettings {
+    width: 17em;
+}

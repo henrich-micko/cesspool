@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 
 // styles && icons
-import styles from "@styles/components/machine/machineView.module.scss"
-import classNames from "classnames"
+import styles from "@styles/components/machine/machineSettings.module.scss"
 
 // types && hooks
 import { MachineType } from "@types"
@@ -16,7 +15,7 @@ interface Props {
     setMachine(newMachine: MachineType): void
 }
 
-const SettingsView: React.FC<Props> = (props) => {
+const MachineSettings: React.FC<Props> = (props) => {
     const [error, setError] = useState<string>("")
 
     const axios = useAxios()
@@ -45,27 +44,25 @@ const SettingsView: React.FC<Props> = (props) => {
 
 
     return (
-        <div className={classNames(styles.machineView, styles.settings)}>
-            <form onSubmit={event => {event.preventDefault()}}>
-                {error !== "" && <span className={styles.error}>{error}</span>}
+        <div className={styles.machineSettings} id={styles.machineSettings}>
+            <TheInput
+                type="text"
+                onChange={handleTitle}
+                label="Názov"
+                value={props.machine.title !== null ? props.machine.title : ""}
+                maxLenght={14}
+            />
 
-                <TheInput
-                    type="text"
-                    onChange={handleTitle}
-                    label="Názov"
-                    value={props.machine.title !== null ? props.machine.title : ""}
-                    maxLenght={14}
-                />
+            <TheInput
+                type="number"
+                onChange={handleHightLevel}
+                label="Upozorniť&nbsp;pri&nbsp;%"
+                value={props.machine.hight_level}
+            />
 
-                <TheInput
-                    type="number"
-                    onChange={handleHightLevel}
-                    label="Upozorniť&nbsp;pri&nbsp;%"
-                    value={props.machine.hight_level}
-                />
-            </form>
+            {error !== "" && <span className={styles.error}>{error}</span>}
         </div>
     )
 }
 
-export default SettingsView
+export default MachineSettings

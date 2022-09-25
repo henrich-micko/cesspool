@@ -1,16 +1,20 @@
-.menuOfMachine {
-    width: fit-content;
-
-    .refreshWrapper {
+.menuOfAdminMachine {
+    .header {
         display: flex;
-        justify-content: right;
-        padding-right: 0.65em;
-        margin-top: -1.5em;
+        justify-content: space-between;
+        align-items: center;
+        
+        h2 {
+            font-size: 1.5em;
+        }
 
-        div {
-            padding: 0.25em;
-            padding-top: 0em;
-            background-color: #282c34;;
+        .icon {
+            cursor: pointer;
+            margin-right: 0.7em;
+        }
+
+        .icon:last-child {
+            margin-right: 0em;
         }
     }
 
@@ -18,22 +22,29 @@
         list-style: none;
         padding-left: 0em;
         margin-bottom: 0em;
-        max-width: 30em;
-        max-height: 30em;
+        max-height: 15em;
         overflow: hidden; 
         overflow-y: scroll;
+        margin-top: 0em;
 
         li {
             display: flex;
             height: 3em;
-            width: auto;
             justify-content: space-between;
             align-items: center;
             text-align: left;
             padding-left: 1em;
             padding-right: 1em;
             width: auto;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b5b7bf;
+            cursor: pointer;
+
+            h3 {
+                width: auto;
+                margin-top: 0em;
+                margin-bottom: 0em;
+                font-size: 1.1em;
+            }
 
             .status {
                 width: auto;
@@ -47,9 +58,9 @@
             }
 
             &.activate {
-                span:first-child {
-                    color: #61dafb;
-                }
+				background-color: #26272d;
+                border-radius: 0.45em;
+                color: white;
             }
 
             div:first-child {
@@ -58,10 +69,8 @@
 
             .userTrashWrapper {
                 display: flex;
-
-                div {
-                    margin-right: 1em;
-                }
+                width: 3em;
+                justify-content: space-between;
 
                 .icon {
                     &.red {
@@ -74,12 +83,6 @@
         li:first-child {
             margin-bottom: 0em;
             margin-top: 0em;
-        }
-
-        li:last-child {
-            border-bottom: none;
-            margin-bottom: 0em;
-            border-radius: 0em 0em 0.6em 0.6em;
         }
     }
 }

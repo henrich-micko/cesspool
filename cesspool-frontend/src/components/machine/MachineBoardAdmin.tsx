@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 // types && styles && icons
-import { MachineType } from "@types"
+import { MachineAdminType } from "@types"
 import styles from "@styles/components/machine/machineBoard.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSliders } from "@fortawesome/free-solid-svg-icons"
@@ -10,22 +10,30 @@ import { faSliders } from "@fortawesome/free-solid-svg-icons"
 import MachineChart from "./MachineChart"
 import MachineDates from "./MachineDates"
 import PopUp from "@components/PopUp"
-import MachineSettings from "./MachineSettings"
 import ThemedBox from "@components/ThemedBox"
+import MachineAdminSettings from "./MachineSettingsAdmin"
 
 
 interface Props {
-    machine: MachineType
-    setMachine(newMachine: MachineType): void
+    machine: MachineAdminType
+    setMachine(newMachine: MachineAdminType): void
 }
 
-const MachineBoard: React.FC<Props> = (props) => {
+const MachineBoardAdmin: React.FC<Props> = (props) => {
     const [settings, setSettings] = useState<boolean>(false)
 
     return (
         <ThemedBox 
             className={styles.machineBoard} 
-            label={props.machine.title !== null ? props.machine.title : props.machine.code }
+            label={
+                <h2 className={styles.user}>
+                    {props.machine.code}
+                    {
+                        props.machine.user !== null &&
+                        <span>/ {props.machine.user}</span>
+                    }
+                </h2>
+            }
             header={
                 <div className={styles.settingsWrapper}>
                     <FontAwesomeIcon
@@ -41,11 +49,11 @@ const MachineBoard: React.FC<Props> = (props) => {
             {
                 settings && 
                 <PopUp label={"Nastavenia"} onClickClose={() => setSettings(false)}>
-                    <MachineSettings machine={props.machine} setMachine={props.setMachine} />
+                    <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} />
                 </PopUp>
             }
         </ThemedBox>
     )
 }
 
-export default MachineBoard
+export default MachineBoardAdmin

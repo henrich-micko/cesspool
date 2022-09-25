@@ -16,15 +16,6 @@ import TheNaviagtion from "@components/TheNaviagtion"
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
 	const [machineId, setMachineId] = useState<number>(0)
-	
-	const [menuOfMachineBehavior, setMenuOfMachineBehavior] = useState<"static"|"side">("side")
-	const isDesktop = !useMaxWidth("1375px")
-	
-	useEffect(() => {
-		if (isDesktop) setMenuOfMachineBehavior("static")
-		else (setMenuOfMachineBehavior("side"))
-
-	}, [isDesktop])
 
 	const axios = useAxios()
 
@@ -54,12 +45,11 @@ const MachineView: React.FC = () => {
 					machines={machines}
 					onRefresh={refreshMachines} 
 					onClick={setMachineId}
-					onClose={() => setMenuOfMachineBehavior("static")}
 					activate={machineId !== null ? machineId : undefined} 
 				/>
 			</TheNaviagtion>
 
-			<div className={classNames(styles.view)}>
+			<div className={styles.view}>
 				{
 					machine !== undefined && 
 					<div className={styles.machineWrapper}>

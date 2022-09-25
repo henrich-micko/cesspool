@@ -1,13 +1,13 @@
 import React, { useEffect, useState, ChangeEvent } from "react"
 
 // styles && icons
-import styles from "@styles/components/machine/machineView.module.scss"
+import styles from "@styles/components/machine/machineChart.module.scss"
 import classNames from "classnames"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faX } from "@fortawesome/free-solid-svg-icons"
 
 // types && hooks
-import { MachineType, RecordType } from "@types"
+import { MachineAdminType, MachineType, RecordType } from "@types"
 import useAxios from "@hooks/useAxios"
 import useIsMobile from "@hooks/useIsMobile"
 
@@ -20,14 +20,14 @@ ChartJS.register(...registerables);
 
 
 interface Props {
-    machine: MachineType
+    machine: MachineType|MachineAdminType
 }
 
 const MachineChart: React.FC<Props> = (props) => {
     const [records, setRecords] = useState<RecordType[]>([])
 
     const [timePeriod, setTimePeriod] = useState<String>("day") // data/22-1-1 means spec date
-    const [recordData, setRecordData] = useState<String>(props.machine.max_level !== null ? "level_percent" : "level")
+    const [recordData, setRecordData] = useState<String>("level_percent")
 
     const [yearSupport, setYearSupport] = useState<boolean>(false)
     const [monthSupport, setMonthSupport] = useState<boolean>(false)
@@ -123,16 +123,14 @@ const MachineChart: React.FC<Props> = (props) => {
     }
     
     return (
-        <div className={classNames(styles.machineView, styles.charts)}>
+        <div className={styles.machineChart}>
             <div className={classNames(styles.optionPanel, isMobile && styles.mobile)}>
                 <div>    
                     <span>Zobraziť</span> 
                     <select onChange={handleRecordData}>
                         <option value="battery">Bateriu</option>
-                        <option selected={props.machine.max_level === null} value="level">Hladinu l</option>
-                        {props.machine.max_level !== null &&
-                            <option selected value="level_percent">Hladinu %</option>
-                        }
+                        <option value="level">Hladinu l</option>
+                        <option selected value="level_percent">Hladinu %</option>
                     </select>
                 </div>
 

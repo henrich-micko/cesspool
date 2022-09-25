@@ -7,7 +7,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-    label?: string
+    label?: string|React.ReactNode
     header?: React.ReactNode
 }
 
@@ -23,8 +23,12 @@ const ThemedBox: React.FC<Props> = (props) => {
         <div ref={animationParent} className={classNames(styles.themedBox, propsClassName)} {...rest}>
             {props.label &&
                 <div className={classNames(styles.header)}>
-                    <h2>{props.label}</h2>
-                    
+                    {
+                        typeof props.label === "string" ?
+                        <h2>{props.label}</h2>
+                        : props.label !== undefined && props.label
+                    }
+
                     <div className={styles.propsHeader}>
                         {props.header !== undefined && props.header}
                     </div>

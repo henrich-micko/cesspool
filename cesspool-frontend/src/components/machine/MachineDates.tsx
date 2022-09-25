@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react"
 
 // styles && icons
-import styles from "@styles/components/machine/machineView.module.scss"
-import classNames from "classnames"
+import styles from "@styles/components/machine/machineDates.module.scss"
 
 // types && hooks
-import { MachineType } from "@types"
+import { MachineAdminType, MachineType } from "@types"
 import useAxios from "@hooks/useAxios"
 
 interface Props {
-    machine: MachineType
+    machine: MachineType|MachineAdminType
 }
 
 const MachineDates: React.FC<Props> = (props) => {
@@ -37,7 +36,7 @@ const MachineDates: React.FC<Props> = (props) => {
     const date = props.machine.last_update !== null ? formatDate(props.machine.last_update) : null
 
     return (
-        <div className={classNames(styles.machineView, styles.release)}>
+        <div className={styles.machineDates}>
             <p>
                 {releaseDate !== null ?
                     <>Hladina by mala dosiahnť 85% dňa <u>{releaseDate}</u>, p</> : <>P</>}

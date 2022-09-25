@@ -1,10 +1,9 @@
 import React from "react"
 import { MachineAdminType } from "@types"
 import styles from "@styles/components/admin/machine/menuOfAdminMachine.module.scss"
-import ThemedBox from "@components/ThemedBox"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle, faRefresh, faTrash, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
-import { MachineCode, MachineUser } from "./MachineInfo"
+import { faFilter, faPlusCircle, faRefresh, faTrash, faUser, faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
+import { MachineCode } from "./MachineInfo"
 import classNames from "classnames"
 
 
@@ -22,7 +21,8 @@ const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
-                    icon={faUserAltSlash}
+                    className={styles.icon}
+                    icon={props.machine.user === null ? faUserAltSlash : faUserAlt}
                 />
                 <FontAwesomeIcon 
                     className={classNames(styles.icon, props.machine.delete_records_date !== null || props.machine.delete_date !== null ? styles.red : undefined)}
@@ -51,7 +51,7 @@ const MenuOfMachineNewLi: React.FC<MenuOfAdminMachineNewLi> = (props) => {
 }
 
 interface Props {
-    machines: MachineAdminType[]
+    machines: MachineAdminType[]|null
     onClick(id: number): void
     activate?: number
     onRefresh(): void
@@ -60,19 +60,28 @@ interface Props {
 const MenuOfAdminMachines: React.FC<Props> = (props) => {
 
     return (
-        <ThemedBox label="Zariadenia" className={styles.menuOfMachine} style={{}}>
-            <div className={styles.refreshWrapper}>
+        <div className={styles.menuOfAdminMachine}>
+            <div className={styles.header}>
+                <h2>Zariadenia</h2>
+
                 <div>
+                    <FontAwesomeIcon
+                        icon={faFilter}
+                        onClick={props.onRefresh}
+                        className={styles.icon}
+                    />
+
                     <FontAwesomeIcon
                         icon={faRefresh}
                         onClick={props.onRefresh}
+                        className={styles.icon}
                     />
                 </div>
             </div>
 
             <ul>
                 <MenuOfMachineNewLi onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>
-                {props.machines.map((machine, index) =>
+                {props.machines !== null && props.machines.map((machine, index) =>
                     <MenuOfMachineLi 
                         isActive={props.activate === index}
                         index={index} 
@@ -81,7 +90,7 @@ const MenuOfAdminMachines: React.FC<Props> = (props) => {
                 />
                 )}
             </ul>
-        </ThemedBox>
+        </div>
     )
 }
 

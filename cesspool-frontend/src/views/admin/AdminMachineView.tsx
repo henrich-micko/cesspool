@@ -12,24 +12,23 @@ import { IsAdminView } from "@permissions/Admin"
 
 import styles from "@styles/views/admin/adminMachineView.module.scss"
 import MenuOfAdminMachines from "@components/admin/machine/MenuOfAdminMachine"
-import MachineDesktopAdminBoard from "@components/admin/machine/MachineDesktopAdminBoard"
-import MachineAdminDangerzone from "@components/admin/machine/MachineAdminDangerzone"
-import MachineCreate from "@components/admin/machine/MachineCreate"
 import TheNaviagtion from "@components/TheNaviagtion"
+import MachineBoard from "@components/machine/MachineBoard"
+import MachineProblems from "@components/machine/MachineProblems"
+import MachineAdminBoard from "@components/admin/machine/MachineAdminBoard"
+import MachineBoardAdmin from "@components/machine/MachineBoardAdmin"
+import MachineDeleteBoard from "@components/machine/MachineDeleteBoard"
+import MachineCreate from "@components/machine/MachineCreate"
 
 const AdminMachineView: React.FC = () => {
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
 	const [machineId, setMachineId] = useState<number>(0) // -1 is reserved for new machine
-	const [users, setUsers] = useState<UserType[]>([])
 
     const axios = useAxios()
 
 	const refreshData = () => {
 		axios.get("/admin/machine/")
 			.then(res => setMachines(res.data))
-			.catch(error => console.log(error))
-		axios.get("/admin/account/")
-			.then(res => setUsers(res.data))
 			.catch(error => console.log(error))
     }
 
@@ -49,41 +48,49 @@ const AdminMachineView: React.FC = () => {
 	}
 
 	const onCreate = (newMachine: MachineAdminType) => {
-		console.log(newMachine)
 		if (machines !== null) setMachines([...machines, newMachine])
 		else setMachines([newMachine])
 
 		if (machines !== null) setMachineId(machines.length)
 	}
 
-	const machine = machines !== undefined ? machines?.at(machineId) : undefined
+	const machine = (machines !== undefined && machineId !== -1) ? machines?.at(machineId) : undefined
+	if (machine === undefined && machineId !== -1 && machines !== null && machines.length !== 0) setMachineId(0)
 
     return (
         <IsAdminView>
-			<TheNaviagtion />
+			<TheNaviagtion>
+				<MenuOfAdminMachines 
+					activate={machineId}
+					machines={machines}
+					onClick={setMachineId}
+					onRefresh={refreshData} 
+				/>
+			</TheNaviagtion>
 
-            {machines !== null && machines.length === 0 ? <NoContent missing="zariadnia" /> :
-				<div className={styles.view}>
-					{machines !== null &&
-						<>
-							<MenuOfAdminMachines activate={machineId} machines={machines} onClick={setMachineId} onRefresh={refreshData} />
-							
-							{(machine !== undefined && machineId !== -1) &&
-							<div className={styles.machineWrapper}>
-								<MachineDesktopAdminBoard machine={machine} users={users} setMachine={(newMachine: MachineAdminType) => setMachine(machineId, newMachine)} />
-								<MachineAdminDangerzone machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)} />
-							</div>
-							}
+            <div className={styles.view}>
+				{
+					machine !== undefined &&
+					<>
+						<div className={styles.machineWrapper}>
+							<MachineBoardAdmin machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
+							<MachineProblems machine={machine} />
+						</div>
 
-							{machineId === -1 &&
-								<div className={styles.machineWrapper}>
-									<MachineCreate users={users} onCreate={onCreate} />
-								</div>
-							}
-						</>
-					}
-				</div>
-			}
+						<MachineDeleteBoard machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
+					</>
+				}
+
+				{
+					machineId === -1 &&
+					<MachineCreate onCreate={onCreate}/>
+				}
+				
+				{
+					(machines !== null && machines.length === 0)  &&
+					<NoContent missing="zariadenia"/>
+				}
+			</div>
         </IsAdminView>
     )
 }

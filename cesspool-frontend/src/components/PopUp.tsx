@@ -22,7 +22,7 @@ const PopUp: React.FC<Props> = (props) => {
             <PageMusk />
             <div className={styles.popup}>
                 <div className={styles.header}>
-                    <h3>{props.label !== undefined ? props.label : "Hello world"}</h3>
+                    <h2>{props.label !== undefined ? props.label : "Hello world"}</h2>
                     <FontAwesomeIcon
                         icon={faClose}
                         onClick={props.onClickClose}

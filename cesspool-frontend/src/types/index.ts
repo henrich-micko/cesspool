@@ -8,7 +8,6 @@ export interface MachineType {
     title: string|null;
     code: string;
     level: number|null;
-    max_level: number|null;
     battery: number|null;
     problems: ProblemType[];
     level_percent: number|null;
@@ -50,6 +49,8 @@ export interface MachineAdminType {
     delete_date: string|null
     delete_records_date: string|null
     records: number
+    last_update: string|null
+    problems: ProblemType[]
 }
 
 export interface MachineRecordsSupportType {

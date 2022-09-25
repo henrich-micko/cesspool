@@ -6,10 +6,10 @@ import styles from "@styles/components/theNavigation.module.scss"
 
 // context && hooks
 import AuthContext from "@context/AuthContext"
-import useIsMobile, { useMaxWidth } from "@hooks/useIsMobile"
+import { useMaxWidth } from "@hooks/useIsMobile"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
-import { faClose, faHome, faInfoCircle, faList, faServer, faSignOut, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
+import { faClose, faHome, faInfoCircle, faListUl, faServer, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
 
 interface TheNaviagtionLinkProps {
@@ -83,7 +83,7 @@ const TheNaviagtion: React.FC<Props> = (props) => {
                 (behavior === "dynamic-hidden" || behavior === "dynamic-viewed") &&
                 <div className={styles.navigationHeadder}>
                     <h1>{currentView()}</h1>
-                    <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faList : faClose} onClick={handleBehaviorIcon} size="lg"/>
+                    <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faListUl : faClose} onClick={handleBehaviorIcon} size="lg"/>
                 </div> 
             }
         </>

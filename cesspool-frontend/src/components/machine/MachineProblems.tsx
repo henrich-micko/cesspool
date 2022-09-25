@@ -1,13 +1,13 @@
 import React from "react"
 
 // styles && icons
-import styles from "@styles/components/machine/machineView.module.scss"
+import styles from "@styles/components/machine/machineProblems.module.scss"
 import classNames from "classnames"
 
 // types
-import { MachineType, ProblemType } from "@types"
+import { MachineAdminType, MachineType, ProblemType } from "@types"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSmile, faWarning } from "@fortawesome/free-solid-svg-icons"
+import { faThumbsUp, faWarning } from "@fortawesome/free-solid-svg-icons"
 import ThemedBox from "@components/ThemedBox"
 
 
@@ -30,14 +30,14 @@ const Problem: React.FC<ProblemProps> = (props) => {
 }
 
 interface ProblemViewProps {
-    machine: MachineType
+    machine: MachineType|MachineAdminType
 }
 
 const ProblemsView: React.FC<ProblemViewProps> = (props) => {
     
     return (
         <ThemedBox label="Problemy" style={{"width": "auto"}}>
-            <div className={classNames(styles.machineView, styles.problems)}>
+            <div className={styles.machineProblems}>
                 {props.machine.problems.length !== 0 ?
                     <ul>
                         {props.machine.problems.map((item, index) => 
@@ -47,13 +47,12 @@ const ProblemsView: React.FC<ProblemViewProps> = (props) => {
                         )}
                     </ul>
                     : 
-                    <div>
-                        <span>Nenšiel sa žiaden problem</span>
+                    <div className={styles.noProblemWrapper}>
                         <FontAwesomeIcon 
-                            className={classNames(styles.icon, styles.yellow)} 
-                            icon={faSmile}
-                            style={{"marginLeft": "10px"}} 
+                            className={styles.icon} 
+                            icon={faThumbsUp}
                         />
+                        <span>Tak sa zdá že tu není žiaden problem</span>
                     </div> }
             </div>
         </ThemedBox>
