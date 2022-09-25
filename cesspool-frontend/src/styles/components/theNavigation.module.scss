@@ -32,6 +32,8 @@
 	padding: 0 1.7em;
 	padding-bottom: 2em;
 
+	transition: left 1s;
+
 	.headder {
 		display: flex;
 		justify-content: space-between;
@@ -45,6 +47,10 @@
 		.icon {
 			cursor: pointer;
 		}
+	}
+
+	&.hidden {
+		left: -100%;
 	}
 
 	nav {
