@@ -47,6 +47,8 @@ const SettingsView: React.FC<Props> = (props) => {
     return (
         <div className={classNames(styles.machineView, styles.settings)}>
             <form onSubmit={event => {event.preventDefault()}}>
+                {error !== "" && <span className={styles.error}>{error}</span>}
+
                 <TheInput
                     type="text"
                     onChange={handleTitle}
@@ -61,8 +63,6 @@ const SettingsView: React.FC<Props> = (props) => {
                     label="Upozorniť&nbsp;pri&nbsp;%"
                     value={props.machine.hight_level}
                 />
-
-                {error !== "" && <span className={styles.error}>{error}</span>}
             </form>
         </div>
     )

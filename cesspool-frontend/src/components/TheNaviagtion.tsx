@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from "react"
+import React, { ReactNode, useContext, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
  
 // styles
@@ -6,10 +6,10 @@ import styles from "@styles/components/theNavigation.module.scss"
 
 // context && hooks
 import AuthContext from "@context/AuthContext"
-import useIsMobile from "@hooks/useIsMobile"
+import useIsMobile, { useMaxWidth } from "@hooks/useIsMobile"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
-import { faHome, faInfoCircle, faServer, faSignOut, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
+import { faClose, faHome, faInfoCircle, faList, faServer, faSignOut, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 
 interface TheNaviagtionLinkProps {
     to: string
@@ -32,29 +32,63 @@ interface Props {
 
 const TheNaviagtion: React.FC<Props> = (props) => {
     const { isLogged, user } = useContext(AuthContext)
+    
+    const isUnderMiddleSize = useMaxWidth("1335px")
+    const [behavior, setBehavior] = useState<"static"|"dynamic-hidden"|"dynamic-viewed">()
 
-    return(
-        <div className={styles.navigation}>
-            <div className={styles.header}>
-                <h1>Cesspool</h1>
-                <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
-            </div>
+    useEffect(() => {
+        setBehavior(isUnderMiddleSize ? "dynamic-viewed" : "static")
+    }, [isUnderMiddleSize])
 
-            {isLogged &&
-                <nav>
-                    <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
-                    {user.is_superuser && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
-                    {user.is_superuser && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
-                    <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
-                </nav>
-            }
+    const handleBehaviorIcon = () => {
+        if (behavior === "dynamic-hidden") setBehavior("dynamic-viewed")
+        else if (behavior === "dynamic-viewed") setBehavior("dynamic-hidden")
+    }
 
-            {props.children !== undefined &&
-                <div className={styles.childrenWrapper}>
-                    {props.children}
+    const currentView = () => {
+        const path = window.location.pathname
+
+        if (path === "/machine") return "Zariadenia"
+        if (path === "/admin/machine") return "Zariadenia admin"
+        if (path === "/admin/account") return "Uživatelia admin"
+        if (path === "/account") return "Môj učet"
+    }
+
+    return (
+        <>
+            {
+                (behavior === "static" || behavior === "dynamic-viewed") &&
+                <div className={styles.navigation}>
+                    <div className={styles.headder}>
+                        <h1>Cesspool</h1>
+                        <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
+                    </div>
+
+                    {isLogged &&
+                        <nav>
+                            <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
+                            {user.is_superuser && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
+                            {user.is_superuser && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
+                            <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
+                        </nav>
+                    }
+
+                    {props.children !== undefined &&
+                        <div className={styles.childrenWrapper}>
+                            {props.children}
+                        </div>
+                    }
                 </div>
             }
-        </div>
+
+            {
+                (behavior === "dynamic-hidden" || behavior === "dynamic-viewed") &&
+                <div className={styles.navigationHeadder}>
+                    <h1>{currentView()}</h1>
+                    <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faList : faClose} onClick={handleBehaviorIcon} size="lg"/>
+                </div> 
+            }
+        </>
     )
 }
 

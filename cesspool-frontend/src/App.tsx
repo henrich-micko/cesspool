@@ -20,15 +20,13 @@ function App() {
     <AuthProvider>
       <div className="App">
         <main className="content">
-            <div className="viewWrapper">
-              <Routes>
-                  <Route path="/" element={<HomeView />} />
-                  <Route path="/account" element={<AccountView />} />
-                  <Route path="/machine" element={<MachineView />} />
-                  <Route path="/admin/machine/" element={<AdminMachineView />} />
-                  <Route path="/admin/account/" element={<AdminAccountView />} />
-              </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<HomeView />} />
+                <Route path="/account" element={<AccountView />} />
+                <Route path="/machine" element={<MachineView />} />
+                <Route path="/admin/machine/" element={<AdminMachineView />} />
+                <Route path="/admin/account/" element={<AdminAccountView />} />
+            </Routes>
         </main>
       </div>
     </AuthProvider>

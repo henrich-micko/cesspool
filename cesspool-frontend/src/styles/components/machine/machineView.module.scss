@@ -116,6 +116,7 @@
 
         .error {
             color: rgb(255, 78, 78);
+            margin-bottom: 0.5em;
         }
     }
 
@@ -139,30 +140,38 @@
         ul {
             padding-left: 0;
             list-style: none;
-            width: auto;
 
             li {
                 margin-bottom: 0.5em;
+                
+                .problem {
+                    display: flex;
+
+                    span {
+                        width: 100%;
+                        text-align: left;
+                    }
+
+                    .iconWrapper {
+                        height: 100%;
+                        width: fit-content;
+            
+                        margin-right: 0.5em;
+
+                        &.red {
+                            color: rgb(255, 78, 78);
+                        }
+            
+                        &.yellow {
+                            color: rgb(255, 255, 78);
+                        }
+                    }
+                }
             }
+
             li:last-child {
                 margin-bottom: 0em;
             }
-        }
-
-        .icon {
-            margin-right: 0.25em;
-        
-            &.red {
-                color: rgb(255, 78, 78);
-            }
-
-            &.yellow {
-                color: rgb(255, 255, 78);
-            }
-        }
-
-        p {
-            width: 100%;
         }
     }
 }

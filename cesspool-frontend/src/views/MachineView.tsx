@@ -60,17 +60,17 @@ const MachineView: React.FC = () => {
 			</TheNaviagtion>
 
 			<div className={classNames(styles.view)}>
-				{machines !== null && machines.length !== 0  ? 
-					<>
-						{machine !== undefined && 
-						<>
-							<MachineBoard machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
-							<MachineProblems machine={machine} />
-						</>
-						}
-					</> :
-					machines !== null && 
-					  <NoContent missing="zariadenia"/>
+				{
+					machine !== undefined && 
+					<div className={styles.machineWrapper}>
+						<MachineBoard machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
+						<MachineProblems machine={machine} />
+					</div>
+				}
+				
+				{
+					(machines !== null && machines.length === 0)  &&
+					<NoContent missing="zariadenia"/>
 				}
 			</div>
 		</IsAuthenticatedView>

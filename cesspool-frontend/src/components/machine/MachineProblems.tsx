@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 
 // styles && icons
 import styles from "@styles/components/machine/machineView.module.scss"
@@ -19,9 +19,13 @@ const Problem: React.FC<ProblemProps> = (props) => {
     const iconClass = props.problem.importance === 0 ? styles.yellow : styles.red
 
     return (
-        <article>
-            <FontAwesomeIcon icon={faWarning} className={classNames(styles.icon, iconClass)}/> <span>{props.problem.detail}</span>
-        </article>
+        <div className={styles.problem}>
+            <div className={classNames(styles.iconWrapper, iconClass)}>
+                <FontAwesomeIcon icon={faWarning} />
+            </div>
+
+            <span>{props.problem.detail}</span>
+        </div>
     )
 }
 
