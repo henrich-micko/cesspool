@@ -1,0 +1,14 @@
+.tableOfMachine {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    th, td {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 0.45em 0.25em;
+    }
+}

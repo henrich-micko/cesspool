@@ -2,12 +2,11 @@ import React, { useState, ChangeEvent, FormEvent, useContext } from "react"
 import { Link } from "react-router-dom";
 
 // Styles
-import styles from "@styles/components/auth/loginForm.module.scss"
+import styles from "@styles/components/account/accountLogin.module.scss"
 
 // Context
 import AuthContext from "@context/AuthContext"
-import ThemedBox from "@components/ThemedBox";
-import { useMaxWidth } from "@hooks/useIsMobile";
+import ThemedBox from "@components/ThemedBox"
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("")

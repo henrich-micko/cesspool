@@ -3,7 +3,7 @@ import React, { createRef } from "react"
 // Styles && assets
 import styles from "@styles/views/homeView.module.scss"
 import AboutBoard from "@components/home/AboutBoard"
-import LoginForm from "@components/auth/LoginForm"
+import LoginForm from "@components/account/AccountLogin"
 import { IsNotAuthenticatedView } from "@permissions/Authenticated"
 
 

@@ -1,0 +1,28 @@
+.machineBoard {
+    width: 45em;
+    max-width: 100%;
+
+    .settingsWrapper {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .machineBoardBody {
+        padding: 2em;
+    }
+
+    .user {        
+        display: flex;
+        align-items: center;
+
+        span {
+            font-size: 0.6em;
+            margin-left: 0.3em;
+        }            
+    }
+}

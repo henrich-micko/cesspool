@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext'
 import HomeView from './views/HomeView'
 import AccountView from './views/account/AccountView'
 import MachineView from "./views/MachineView"
-import AdminAccountView from "./views/admin/AdminAccountView"
+import AdminAccountView from "./views/admin/AccountViewAdmin"
 import AdminMachineView from "./views/admin/MachineViewAdmin"
 
 // Permissions
@@ -20,7 +20,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomeView />} />
                 <Route path="/account" element={<AccountView />} />
-                <Route path="/machine/:id" element={<MachineView />} />
+                <Route path="/machine" element={<MachineView />} />
                 <Route path="/admin/machine/" element={<AdminMachineView />} />
                 <Route path="/admin/account/" element={<AdminAccountView />} />
             </Routes>

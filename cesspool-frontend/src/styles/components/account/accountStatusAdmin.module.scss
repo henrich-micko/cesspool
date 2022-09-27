@@ -1,0 +1,18 @@
+.accountStatusWrapper {
+    display: flex;
+    justify-content: left;
+
+    margin-bottom: 1em;
+
+    .accountStatus {
+        display: flex;
+        align-items: center;
+
+        margin-right: 2em;
+
+        h3 {
+            margin: 0em;
+            margin-left: 0.5em;
+        }
+    }
+}
