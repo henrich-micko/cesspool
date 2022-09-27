@@ -150,7 +150,7 @@ const MachineChart: React.FC<Props> = (props) => {
                         </div>
                                 
                         : <div>
-                            <span>v úseku</span> 
+                            <span>Za posledný</span> 
                                 <select onChange={handleTimePeriod}>
                                     {yearSupport && <option value="year">Rok</option>}
                                     {monthSupport && <option value="month">Mesiac</option>}

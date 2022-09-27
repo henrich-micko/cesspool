@@ -20,7 +20,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomeView />} />
                 <Route path="/account" element={<AccountView />} />
-                <Route path="/machine" element={<MachineView />} />
+                <Route path="/machine/:id" element={<MachineView />} />
                 <Route path="/admin/machine/" element={<AdminMachineView />} />
                 <Route path="/admin/account/" element={<AdminAccountView />} />
             </Routes>

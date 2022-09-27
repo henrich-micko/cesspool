@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { IsAuthenticatedView } from "../permissions/Authenticated"
 import styles from "./MachineView.module.scss"
 import useAxios from "../hooks/useAxios"
 import { MachineType } from "../types"
 import NoContent from "../components/NoContent"
 import MenuOfMachines from "@components/machine/MenuOfMachine"
-import { useMaxWidth } from "@hooks/useIsMobile"
-import classNames from "classnames"
 import MachineBoard from "@components/machine/MachineBoard"
 import MachineProblems from "@components/machine/MachineProblems"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faList } from "@fortawesome/free-solid-svg-icons"
 import TheNaviagtion from "@components/TheNaviagtion"
 
 const MachineView: React.FC = () => {

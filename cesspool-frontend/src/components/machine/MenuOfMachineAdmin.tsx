@@ -82,7 +82,7 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
-                <h2>Zariadenia</h2>
+                <h2>Všetky zariadenia</h2>
 
                 <div>
                     <FontAwesomeIcon
@@ -102,17 +102,18 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
             {
                 filter !== null &&
                 <div className={styles.filter}>
-                    <SelectInput 
-                        onSubmit={(value) => setFilter(value)}
-                        label="Učet"
-                        options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
-                        selected={filter}
-                    />
+                    <div>
+                        <SelectInput 
+                            onSubmit={(value) => setFilter(value)}
+                            options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
+                            selected={filter}
+                        />
+                    </div>
                 </div>
             }
 
             <ul>
-                <MenuOfMachineNewLi onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>
+                {filter === null && <MenuOfMachineNewLi onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>}
                 {props.machines !== null && props.machines.map((machine, index) =>
                     (filter === null || filter === machine.user || (filter === "" && machine.user === null)) && 
                     <MenuOfMachineLi 

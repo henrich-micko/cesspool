@@ -22,6 +22,11 @@ interface Props {
 const MachineBoardAdmin: React.FC<Props> = (props) => {
     const [settings, setSettings] = useState<boolean>(false)
 
+    const handleSettingsSubmit = (newMachine: MachineAdminType) => {
+        props.setMachine(newMachine)
+        setSettings(false)
+    }
+
     return (
         <ThemedBox 
             className={styles.machineBoard} 
@@ -49,7 +54,7 @@ const MachineBoardAdmin: React.FC<Props> = (props) => {
             {
                 settings && 
                 <PopUp label={"Nastavenia"} onClickClose={() => setSettings(false)}>
-                    <MachineAdminSettings machine={props.machine} setMachine={props.setMachine} />
+                    <MachineAdminSettings machine={props.machine} setMachine={handleSettingsSubmit} />
                 </PopUp>
             }
         </ThemedBox>

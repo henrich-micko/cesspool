@@ -11,6 +11,7 @@ import useAxios from "@hooks/useAxios"
 import SwithInput from "@components/form/SwitchInput"
 import SelectInput from "@components/form/SeletectInput"
 import TheInput from "@components/form/TheInput"
+import TheButton from "@components/form/TheButton"
 
 interface Props {
     machine: MachineAdminType;
@@ -21,9 +22,23 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
     const [error, setError] = useState<string>()
     const [users, setUsers] = useState<UserType[]>([])
 
+    const [code, setCode] = useState<string>(props.machine.code)
+    const [user, setUser] = useState<string|null>(props.machine.user)
+    const [mqtt, setMqtt] = useState<boolean>(props.machine.mqtt)
+    const [notification, setNotification] = useState<boolean>(props.machine.notification)
+    const [autocorrect, setAutocorrect] = useState<boolean>(props.machine.autocorrect)
+
     const axios = useAxios()
 
-    const confMachine = (data: {code?: string; user?: string|null; mqtt?: boolean, notification?: boolean, autocorrect?: boolean}) => {
+    const saveMachine = () => {
+        const data = {
+            code: code,
+            user: user,
+            mqtt: mqtt,
+            notification: notification,
+            autocorrect: autocorrect
+        }
+
         axios.put("/admin/machine/" + props.machine.code + "/", data)
              .then(res => { setError(""); props.setMachine(res.data) })
              .catch(error => setError("Nepodarilo sa nastaviť"))
@@ -37,41 +52,45 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
 
     return (
         <div className={styles.machineSettings}>
-            <TheInput
-                onChange={(value) => confMachine({code: value})}
-                label="Code"
-                value={props.machine.code !== null ? props.machine.code : undefined}
-                behavior="auto"
-                maxLenght={10}
-            />
+            <div className={styles.formWrapper} id={styles.formWrapperAdmin}>
+                <TheInput
+                    onChange={setCode}
+                    label="Code"
+                    value={code !== null ? code : undefined}
+                    behavior="static"
+                    maxLenght={10}
+                />
 
-            <SelectInput 
-                onSubmit={(value) => confMachine({user: value === "" ? null : value})}
-                label="User"
-                options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
-                selected={props.machine.user}
-            />
+                <SelectInput 
+                    onSubmit={(value) => setUser(value === "" ? null : value)}
+                    label="Vlastník"
+                    options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
+                    selected={user}
+                />
 
-            <SwithInput
-                onSubmit={(value) => confMachine({mqtt: value})}
-                label="Mqtt"
-                value={props.machine.mqtt}
-            />
+                <SwithInput
+                    onSubmit={setMqtt}
+                    label="Ukladanie&nbsp;záznamov"
+                    value={mqtt}
+                />
 
-            <SwithInput
-                onSubmit={(value) => confMachine({notification: value})}
-                label="Notifikacie"
-                value={props.machine.notification}
-            />
+                <SwithInput
+                    onSubmit={setNotification}
+                    label="Notifikacie"
+                    value={notification}
+                />
 
-            <SwithInput
-                onSubmit={(value) => confMachine({autocorrect: value})}
-                label="Autocorrect"
-                value={props.machine.autocorrect}
-            />
+                <SwithInput
+                    onSubmit={setAutocorrect}
+                    label="Autocorrect"
+                    value={autocorrect}
+                />
+            </div>
 
-            {error !== "" && <span className={styles.error}>{error}</span>}
-
+            <div className={styles.buttonWrapper}>
+                <span className={styles.error}>{error}</span>
+                <TheButton label="Potvrdiť" type="blue" onClick={saveMachine} />
+            </div>
         </div>
     )
 }

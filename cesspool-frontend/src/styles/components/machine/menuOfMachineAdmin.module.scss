@@ -20,11 +20,18 @@
 
     .filter {
         display: flex;
+        height: 3em;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        text-align: left;
+        padding-left: 1em;
+        padding-right: 1em;
+        width: auto;
+        background-color: #26272d;
+        border-radius: 0.45em;
+        color: white;
 
-        padding-bottom: 0.5em;
+        margin-bottom: 1em;
     }
 
     ul {
