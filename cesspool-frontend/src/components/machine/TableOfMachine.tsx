@@ -3,7 +3,7 @@ import React from "react"
 import { MachineAdminType } from "@types"
 import styles from "@styles/components/machine/tableOfMachine.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCab, faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCheckCircle, faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 
 interface ValueIconProps {
     value: boolean
@@ -35,7 +35,7 @@ const TableOfMachine: React.FC<Props> = (props) => {
         {   
             props.machines !== null && props.machines.map((item) => 
                 <tr>
-                    <td>{item.code}</td>
+                    <td>{item.code}{item.title !== null && " / " + item.title}</td>
                     <td><ValueIcon value={item.mqtt} /></td>
                     <td><ValueIcon value={item.notification} /></td>
                     <td><ValueIcon value={item.autocorrect} /></td>

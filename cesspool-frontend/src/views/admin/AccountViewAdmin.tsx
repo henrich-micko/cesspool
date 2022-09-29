@@ -26,16 +26,14 @@ const AdminViewAccount: React.FC = () => {
 		refreshData()
 	}, [])
 
-	// const setUser = (id: number, newUser: UserType) => {
-	// 	if (users === null) { return }
-	// 	const machineCode = users.at(id)?.code
-	// 	if (machineCode === undefined) return
+	const setUser = (id: number, newUser: UserType) => {
+		if (users === null) { return }
 
-	// 	setUsers(users.map((user, index) => {
-	// 		if (index === id) return newUser
-	// 		return machine
-	// 	}))
-	// }
+		setUsers(users.map((user, index) => {
+			if (index === id) return newUser
+			return user
+		}))
+	}
 
 	const onCreate = (newUser: UserType) => {
 		if (users !== null) setUsers([...users, newUser])
@@ -63,7 +61,7 @@ const AdminViewAccount: React.FC = () => {
 					user !== undefined &&
 					<>
 						<div className={styles.machineWrapper}>
-							<AccountBoardAdmin user={user} setUser={(newUser) => {}} />
+							<AccountBoardAdmin user={user} setUser={newUser => setUser(userId, newUser)} />
 						</div>
 					</>
 				}

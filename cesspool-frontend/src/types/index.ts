@@ -32,6 +32,7 @@ export interface ContextUserType {
 }
 
 export interface UserType {
+    pk: Number
     email: string;
     is_active: boolean;
     is_superuser: boolean;
@@ -50,7 +51,8 @@ export interface MachineAdminType {
     delete_records_date: string|null
     records: number
     last_update: string|null
-    problems: ProblemType[]
+    problems: ProblemType[],
+    title: string|null
 }
 
 export interface MachineRecordsSupportType {

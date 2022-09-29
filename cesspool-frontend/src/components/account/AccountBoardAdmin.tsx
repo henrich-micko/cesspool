@@ -12,6 +12,7 @@ import ThemedBox from "@components/ThemedBox"
 import AccountStatusAdmin from "./AccountStatusAdmin"
 import TableOfMachine from "@components/machine/TableOfMachine"
 import useAxios from "@hooks/useAxios"
+import AccountSettingsAdmin from "./AccountSettingsAdmin"
 
 interface Props {
     user: UserType
@@ -25,10 +26,10 @@ const AccountBoardAdmin: React.FC<Props> = (props) => {
     const axios = useAxios()
 
     useEffect(() => {
-        axios.get("/admin/machine")
+        axios.get("/admin/machine/user/" + props.user.pk)
              .then(res => setMachines(res.data))
              .catch(error => console.log(error))
-    })
+    }, [props.user])
 
     const handleSettingsSubmit = (newUser: UserType) => {
         props.setUser(newUser)
@@ -60,7 +61,7 @@ const AccountBoardAdmin: React.FC<Props> = (props) => {
             {
                 settings && 
                 <PopUp label={"Nastavenia"} onClickClose={() => setSettings(false)}>
-
+                    <AccountSettingsAdmin account={props.user} setAccount={handleSettingsSubmit} />
                 </PopUp>
             }
         </ThemedBox>

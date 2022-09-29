@@ -13,12 +13,13 @@ interface MenuOfMachineLiProps {
     machine: MachineAdminType
     onClick(id: number): void
     isActive: boolean
+    viewTitle: boolean
 }
 
 const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
-            <h3>{props.machine.code}</h3>
+            <h3>{props.machine.code}{(props.viewTitle && props.machine.title !== null) && " / " + props.machine.title}</h3>
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
@@ -120,7 +121,8 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
                         isActive={props.activate === index}
                         index={index} 
                         machine={machine} 
-                        onClick={props.onClick} 
+                        onClick={props.onClick}
+                        viewTitle={filter !== null}
                     />
                 )}
             </ul>
