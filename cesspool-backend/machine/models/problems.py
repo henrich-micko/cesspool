@@ -41,7 +41,7 @@ class MachineBaseError(MachineBaseProblem):
         abstract = True
 
 class MachineNoRecordProblem(MachineBaseWarning):
-    detail = "Nenašli sa záznmy"
+    detail = "Nenašli sa zatial záznamy"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -49,7 +49,7 @@ class MachineNoRecordProblem(MachineBaseWarning):
 
 
 class MachineNoTitleProblem(MachineBaseWarning):
-    detail = "Není natavený názov"
+    detail = "Není natavený názov: nastavenia > názov"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -57,7 +57,10 @@ class MachineNoTitleProblem(MachineBaseWarning):
 
 
 class MachineHightLevelProblem(MachineBaseError):
-    detail = "Vysoká hladina"
+    
+    @property
+    def detail(self):
+        return f"Vysoka hladina: nad {self.machine.hight_level}%"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
@@ -65,23 +68,34 @@ class MachineHightLevelProblem(MachineBaseError):
 
 
 class MachineLowBatteryProblem(MachineBaseError):
-    detail = "Slabá bateria"
+    
+    @property
+    def detail(self):
+        return f"Takmer vybita bateria: {self.machine.battery}%"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
-        return machine.battery != None and machine.battery < 5
+        return machine.battery != None and machine.battery < 2
 
 
 class MachineDeathBatteryProblem(MachineBaseError):
-    detail = "Vybitá bateria"
+    detail = "Dlahšie sa neozíva: vybitá bateria"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:
-        return machine.battery != None and machine.battery < 2 and machine.last_update <= timezone.now() - timedelta(days = 2)
+        return machine.battery != None and machine.battery < 1 and machine.last_update <= timezone.now() - timedelta(days = 2)
 
 
 class MachineOldRecordProblem(MachineBaseError):
-    detail = "Dlhšiu dobu sa neozíva"
+    @property
+    def detail(self):
+        respond_time = timezone.now() - self.machine.last_update
+        
+        if respond_time.days != None:
+            return f"Dlhšiu dobu sa neoziva: viac ako {respond_time.days} dní"
+        
+        else:
+            return "Dlhšiu dobu sa neoziva: menej ako deň"
 
     @classmethod
     def scan_for_machine(cls, machine: machine_models.Machine) -> bool:

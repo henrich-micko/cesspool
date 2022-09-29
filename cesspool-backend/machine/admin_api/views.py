@@ -1,4 +1,5 @@
 from datetime import timedelta
+from readline import insert_text
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
@@ -10,6 +11,7 @@ from rest_framework.permissions import IsAdminUser
 from machine import models
 from . import serializers
 
+from account.models import UserAccount
 
 # list of machines
 class AdminMachineListAPIView(ListAPIView):
@@ -17,6 +19,16 @@ class AdminMachineListAPIView(ListAPIView):
     serializer_class = serializers.AdminMachineDetailSerializer
     permission_classes = [IsAdminUser]
 
+
+class AdminMachineListOfUserAPIView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request, user_pk: int):
+        user = get_object_or_404(UserAccount.objects.all(), pk = user_pk)
+        machines = user.machine_set.all()
+        serializer = serializers.AdminMachineDetailSerializer(machines, many = True)
+
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
 class AdminMachineAPIView(APIView):
     permission_classes = [IsAdminUser]
@@ -53,7 +65,7 @@ class AdminMachineCreateAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors)
+        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 
 class AdminMachineRecordAPIView(APIView):
@@ -90,3 +102,15 @@ class MachineAbortDeleteAPIView(MachineAbortActionAPIView):
 
 class MachineAbortDeleteRecordsAPIView(MachineAbortActionAPIView):
     action = models.MachineDeleteRecordsAction
+
+
+class MachineCodeGenerateAPIView(APIView):
+    permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        machine_code = models.Machine.objects.get_machine_code()
+        data = {
+            "code": machine_code
+        }
+
+        return Response(data, status = status.HTTP_200_OK)

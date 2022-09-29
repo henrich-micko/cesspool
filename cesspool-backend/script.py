@@ -1,3 +1,5 @@
-from machine.tasks import scan_machine_problems_and_send_email
+from machine import models
 
-scan_machine_problems_and_send_email()
+print(
+    models.Machine.objects.get_machine_code()
+)

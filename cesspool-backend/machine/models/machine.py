@@ -9,8 +9,8 @@ class Machine(models.Model):
     objects = managers.MachineManager()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
-    title = models.CharField(max_length = 20, null = True, blank = True)
-    code = models.CharField(max_length = 10, unique = True)
+    title = models.CharField(max_length = 14, null = True, blank = True)
+    code = models.CharField(max_length = 10, unique = True, blank = False, null = False)
     hight_level = models.IntegerField(default = 85)
     
     mqtt = models.BooleanField(default = True)

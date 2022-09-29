@@ -1,4 +1,6 @@
-from random import uniform
+from platform import machine
+from random import randint, random, uniform
+from typing import List
 from django.db.models import QuerySet, Model, Manager
 from django.utils import timezone
 
@@ -50,6 +52,22 @@ class MachineManager(Manager):
         
         return super().create(**kwargs)
 
+    def get_machine_code(self):   
+        def machine_code_list_to_string(machine_code: List[int]):
+            return "".join([str(i) for i in machine_code])
+
+        def machine_code_exists(machine_code: str):
+            return self.filter(code = machine_code).first() != None
+
+        machine_code = [0]
+
+        while machine_code_exists(machine_code_list_to_string(machine_code)):
+            if machine_code[-1] != 9: 
+                machine_code[-1] += 1
+            else:
+                machine_code.append(0)
+
+        return machine_code_list_to_string(machine_code)
 
 class RecordQuerySet(QuerySet):
     def get_level_average(self) -> int:

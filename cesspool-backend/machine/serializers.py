@@ -49,7 +49,6 @@ class MachineSerializer(serializers.ModelSerializer):
     def get_last_update(self, obj: models.Machine):
         return obj.last_update
 
-
 class RecordSerializer(serializers.ModelSerializer):
     level_percent = serializers.SerializerMethodField(default = None)
 
