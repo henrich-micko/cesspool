@@ -6,25 +6,24 @@ from rest_framework.permissions import IsAuthenticated
 
 from datetime import datetime, timedelta
 
-from machine.models.machine import Machine
-
-from . import serializers
+from . import serializers, models
 
 
-def get_machine_via_user(user, code):
-    if user.is_staff:
-        machines = Machine.objects.all()
+def get_machine_from_user(user, code):
+    if user.is_superuser:
+        machines = models.Machine.objects.all()
     else:
         machines = user.machine_set.objects.all()
 
     return get_object_or_404(machines, code = code)
+
 
 class MachineDetailAPIView(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request, machine_code: str|None = None) -> Response:
         if machine_code != None: 
-            machine = get_machine_via_user(request.user, code = machine_code)
+            machine = get_machine_from_user(request.user, code = machine_code)
             machine_serializer = serializers.MachineSerializer(instance = machine)
         else:
             machine_serializer = serializers.MachineSerializer(instance = request.user.machine_set, many = True)
@@ -36,7 +35,7 @@ class MachineConfAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def put(self, request, machine_code: str):
-        machine = get_machine_via_user(request.user, code = machine_code)
+        machine = get_machine_from_user(request.user, code = machine_code)
         serializer = serializers.MachineSerializer(instance = machine, data = request.data)
         if serializer.is_valid():
             serializer.save()
@@ -48,7 +47,7 @@ class RecordsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, machine_code: str, time_period: str):
-        machine = get_machine_via_user(request.user, code = machine_code)
+        machine = get_machine_from_user(request.user, code = machine_code)
 
         match time_period:
             case "day": 
@@ -76,7 +75,7 @@ class RecordsSupportAPIView(APIView):
         return output
 
     def get(self, request, machine_code: str):
-        machine = get_machine_via_user(request.user, code = machine_code)
+        machine = get_machine_from_user(request.user, code = machine_code)
         
         data = {
             "year": self.get_records_timedelta(machine, days = 365) >= timedelta(days = 31),
@@ -92,7 +91,7 @@ class DateRecordsAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, machine_code: str, date: str):
-        machine = get_machine_via_user(request.user, code = machine_code)
+        machine = get_machine_from_user(request.user, code = machine_code)
         
         date = datetime.strptime(date, "%Y-%m-%d")
         timerange = [date, date + timedelta(days = 1)]
@@ -103,13 +102,11 @@ class DateRecordsAPIView(APIView):
         return Response(data = serializer.data, status = status.HTTP_200_OK)
 
 
-# this is not included in basic Machine view
-# because it took to much time to run
 class MachineReleaseDateAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, machine_code: str):
-        machine = get_machine_via_user(request.user, code = machine_code)
+        machine = get_machine_from_user(request.user, code = machine_code)
         release_date = machine.release_date()
         data = {
             "release_date": release_date,

@@ -76,6 +76,12 @@ class RecordQuerySet(QuerySet):
             output += obj.level
         return output/len(self.all())
 
+    def get_level_percent_average(self) -> int:
+        output = 0
+        for obj in self.all():
+            output += obj.level
+        return output/len(self.all())
+
     def time_period(self, **kwargs) -> QuerySet[Model]:
         record = self.last()
         if record == None: return RecordQuerySet(self.model, using = self._db).none()
