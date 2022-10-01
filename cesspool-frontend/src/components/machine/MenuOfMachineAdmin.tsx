@@ -35,28 +35,13 @@ const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
     )
 }
 
-interface MenuOfAdminMachineNewLi {
-    onClick(): void
-    index: number
-    isActive: boolean
-}
-
-const MenuOfMachineNewLi: React.FC<MenuOfAdminMachineNewLi> = (props) => {
-    return (
-        <li key={props.index} onClick={props.onClick} className={props.isActive ? styles.activate : undefined}>
-            <span style={{"fontSize": "1.2em"}}>Pridať</span>
-            <FontAwesomeIcon
-                icon={faPlusCircle}
-            />
-        </li>
-    )
-}
 
 interface Props {
     machines: MachineAdminType[]|null
     onClick(id: number): void
     activate?: number
     onRefresh(): void
+    onAdd(): void
 }
 
 const MenuOfMachineAdmin: React.FC<Props> = (props) => {
@@ -83,9 +68,15 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
-                <h2>Všetky zariadenia</h2>
+                <h2>Zariadenia admin</h2>
 
                 <div>
+                    <FontAwesomeIcon
+                        icon={faPlusCircle}
+                        onClick={props.onAdd}
+                        className={styles.icon}
+                    />
+
                     <FontAwesomeIcon
                         icon={filter === null ? faFilter : faFilterCircleXmark}
                         onClick={handleFilter}
@@ -114,7 +105,6 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
             }
 
             <ul>
-                {filter === null && <MenuOfMachineNewLi onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>}
                 {props.machines !== null && props.machines.map((machine, index) =>
                     (filter === null || filter === machine.user || (filter === "" && machine.user === null)) && 
                     <MenuOfMachineLi 

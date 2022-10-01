@@ -29,3 +29,14 @@
         }
     }
 }
+
+.formWrapper {
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    flex-direction: column;
+
+    row-gap: 1.2em;
+
+    padding-top: 2em;
+}

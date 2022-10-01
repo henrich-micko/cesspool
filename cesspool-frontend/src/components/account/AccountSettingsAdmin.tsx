@@ -22,7 +22,7 @@ const AccountSettingsAdmin: React.FC<Props> = (props) =>{
     const axios = useAxios()
 
     const saveAccount = () => {
-        const data = {email: email, isActivate: isActivate, isSuperUser: isSuperUser}
+        const data = {email: email, is_active: isActivate, is_superuser: isSuperUser}
         console.log(data)
         axios.put("/admin/account/" + props.account.pk + "/", data)
              .then(res => props.setAccount(res.data))

@@ -17,10 +17,13 @@ import MachineProblems from "@components/machine/MachineProblems"
 import MachineBoardAdmin from "@components/machine/MachineBoardAdmin"
 import MachineDeleteBoard from "@components/machine/MachineDeleteBoard"
 import MachineCreate from "@components/machine/MachineCreate"
+import PopUp from "@components/PopUp"
 
 const AdminMachineView: React.FC = () => {
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
 	const [machineId, setMachineId] = useState<number>(0) // -1 is reserved for new machine
+
+	const [viewCreate, setViewCreate] = useState<boolean>(false)
 
     const axios = useAxios()
 
@@ -50,10 +53,12 @@ const AdminMachineView: React.FC = () => {
 		else setMachines([newMachine])
 
 		if (machines !== null) setMachineId(machines.length)
+		
+		setViewCreate(false)
 	}
 
-	const machine = (machines !== undefined && machineId !== -1) ? machines?.at(machineId) : undefined
-	if (machine === undefined && machineId !== -1 && machines !== null && machines.length !== 0) setMachineId(0)
+	const machine = (machines !== undefined) ? machines?.at(machineId) : undefined
+	if (machine === undefined && machines !== null && machines.length !== 0) setMachineId(0)
 
     return (
         <IsAdminView>
@@ -62,7 +67,8 @@ const AdminMachineView: React.FC = () => {
 					activate={machineId}
 					machines={machines}
 					onClick={setMachineId}
-					onRefresh={refreshData} 
+					onRefresh={refreshData}
+					onAdd={() => setViewCreate(true)}
 				/>
 			</TheNaviagtion>
 
@@ -80,8 +86,10 @@ const AdminMachineView: React.FC = () => {
 				}
 
 				{
-					machineId === -1 &&
-					<MachineCreate onCreate={onCreate}/>
+					viewCreate && 
+					<PopUp label="Nové zariadenie" onClickClose={() => setViewCreate(false)}>
+						<MachineCreate onCreate={onCreate} />
+					</PopUp>
 				}
 				
 				{

@@ -17,8 +17,6 @@ const MachineCreate: React.FC<Props> = (props) => {
     const [error, setError] = useState<string|null>(null)
     const [users, setUsers] = useState<UserType[]>([])
 
-    console.log(users)
-
     const [code, setCode] = useState<string>("")
     const [user, setUser] = useState<string>("")
     const [mqtt, setMqtt] = useState<boolean>(true)
@@ -52,7 +50,7 @@ const MachineCreate: React.FC<Props> = (props) => {
     }
 
     return (
-        <ThemedBox label="Vytvoriť zariadenie" className={styles.machineCreate}>
+        <div className={styles.machineCreate}>
             <div className={styles.formWrapper}>
                 <TheInput
                     label="Code"
@@ -87,14 +85,16 @@ const MachineCreate: React.FC<Props> = (props) => {
                 />
             </div>
 
-            {error !== null && <TheError label={error} />}
+            <div className={styles.buttonWrapper}>
+                <span className={styles.error}>{error}</span>
 
-            <TheButton 
-                type="blue" 
-                onClick={handleSubmit} 
-                label="Vytvoriť"
-            />
-        </ThemedBox>
+                <TheButton
+                    label="Potvrdiť"
+                    onClick={handleSubmit}
+                    type="blue"
+                />
+            </div>
+        </div>
     ) 
 }
 
