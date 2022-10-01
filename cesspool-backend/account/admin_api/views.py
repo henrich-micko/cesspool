@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
@@ -17,7 +18,6 @@ class AdminAccountListAPIView(ListAPIView):
     serializer_class = account_serializer.UserAccountSerializer
     permission_classes = [IsAdminUser]
 
-
 class UserAccountAPIView(APIView):
     permission_classes = [IsAdminUser]
 
@@ -29,6 +29,16 @@ class UserAccountAPIView(APIView):
             return Response(serializer.data, status = status.HTTP_200_OK)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
+    def get(self, request, user_pk: int):
+        user = get_object_or_404(models.UserAccount.objects.all(), pk = user_pk)
+        serializer = account_serializer.UserAccountSerializer(instance = user, data = request.data)
+        return Response(serializer.data, status = status.HTTP_200_OK)
+
+    def delete(self, request, user_pk: int):
+        user = get_object_or_404(models.UserAccount.objects.all(), pk = user_pk)
+        user.action_at(models.AccountDeleteAction)
+        serializer = account_serializer.UserAccountSerializer(instance = user, data = request.data)
+        return Response(serializer.data, status = status.HTTP_200_OK)
 
 class UserAccountCreateAPIView(APIView):
     permission_classes = [IsAdminUser]
@@ -39,3 +49,28 @@ class UserAccountCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+class UserAbortActionAPIView(APIView):
+    permission_classes = [IsAdminUser]
+    action = None
+
+    def get(self, request, user_pk: str):
+        if self.action != None:
+            user = get_object_or_404(models.UserAccount.objects.all(), pk = user_pk)
+            action = user.one_to_one(self.action)
+
+            if action != None:
+                action.delete()
+
+            serializer = serializers.AdminMachineDetailSerializer(instance = user)
+            return Response(serializer.data, status = status.HTTP_200_OK)
+
+        raise ValueError("Action cant be sat to None")
+
+
+class UserAbortDeleteAPIView(UserAbortActionAPIView):
+    action = models.AccountDeleteAction
+
+
+class UserAbortDeleteMachinesAPIView(UserAbortActionAPIView):
+    action = models.AccountDeleteMachinesAction

@@ -23,5 +23,5 @@ class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.UserAccount
-        fields = ["pk", "email", "is_active", "date_joined", "is_superuser"]
+        fields = ["pk", "email", "is_active", "date_joined", "is_staff"]
         extra_kwargs = {"email": {"required": False}}

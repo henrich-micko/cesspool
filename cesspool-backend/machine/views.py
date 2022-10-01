@@ -10,10 +10,10 @@ from . import serializers, models
 
 
 def get_machine_from_user(user, code):
-    if user.is_superuser:
+    if user.is_staff:
         machines = models.Machine.objects.all()
     else:
-        machines = user.machine_set.objects.all()
+        machines = user.machine_set.all()
 
     return get_object_or_404(machines, code = code)
 

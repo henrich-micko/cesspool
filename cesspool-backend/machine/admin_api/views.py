@@ -92,8 +92,10 @@ class MachineAbortActionAPIView(APIView):
             if action != None:
                 action.delete()
 
-        serializer = serializers.AdminMachineDetailSerializer(instance = machine)
-        return Response(serializer.data, status = status.HTTP_200_OK)
+            serializer = serializers.AdminMachineDetailSerializer(instance = machine)
+            return Response(serializer.data, status = status.HTTP_200_OK)
+        
+        raise ValueError("Action cant be None")
 
 
 class MachineAbortDeleteAPIView(MachineAbortActionAPIView):

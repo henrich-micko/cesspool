@@ -54,7 +54,7 @@ class RecordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Record
-        fields = ["level", "battery", "level_percent", "date", "id"]
+        fields = ["id", "level", "battery", "level_percent", "date"]
 
     def get_level_percent(self, obj):
         return obj.level_percent

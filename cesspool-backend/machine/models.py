@@ -4,15 +4,16 @@ from django.utils import timezone
 
 from datetime import datetime, date, timedelta
 
-from . import managers
+from . import managers, validators
 
 
 class Machine(models.Model):
     objects = managers.MachineManager()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True)
+    code = models.CharField(max_length = 10, unique = True, blank = False, null = False, validators = [validators.validate_machine_code])
+
     title = models.CharField(max_length = 14, null = True, blank = True)
-    code = models.CharField(max_length = 10, unique = True, blank = False, null = False)
     hight_level = models.IntegerField(default = 85)
     
     mqtt = models.BooleanField(default = True)
@@ -27,13 +28,31 @@ class Machine(models.Model):
     
     @property
     def level(self) -> int|None:
-        record = self.get_record()
-        return record.level if record != None else None
+        records = self.record_set.last_n(5)
+
+        if len(records) > 1:
+            return records.get_level_average()
+
+        if len(records) == 1:
+            return records.last().level
+
+        last_record = self.get_record()
+        if last_record == None: return None
+        return last_record.level
 
     @property
     def level_percent(self) -> int|None:
-        record = self.get_record()
-        return record.level_percent if record != None else None 
+        records = self.record_set.last_n(5)
+
+        if len(records) > 1:
+            return records.get_level_percent_average()
+
+        if len(records) == 1:
+            return records.last().level_percent
+
+        last_record = self.get_record()
+        if last_record == None: return None
+        return last_record.level_percent
 
     @property
     def battery(self) -> int|None:

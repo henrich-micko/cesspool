@@ -79,7 +79,7 @@ class RecordQuerySet(QuerySet):
     def get_level_percent_average(self) -> int:
         output = 0
         for obj in self.all():
-            output += obj.level
+            output += obj.level_percent
         return output/len(self.all())
 
     def time_period(self, **kwargs) -> QuerySet[Model]:
@@ -105,3 +105,9 @@ class RecordQuerySet(QuerySet):
         if len(records) >= 2:
             return records.first().date - records.last().date
         return default
+
+    def last_n(self, n: int):
+        return self.all().order_by('-id')[:n]
+
+    def first_n(self, n: int):
+        return self.all().order_by('id')[:n]

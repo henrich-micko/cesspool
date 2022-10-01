@@ -61,10 +61,12 @@ def scan_machine_problems_and_send_email():
 
         html_content = render_to_string("machine/problems.html", context = {"machines": problems})
 
-        if settings.DEBUG:
-            send_to = settings.EMAIL_HOST_USER
-        else:
-            send_to = user.email
+        # if settings.DEBUG:
+        #     send_to = settings.EMAIL_HOST_USER
+        # else:
+        #     send_to = user.email
+
+        send_to = user.email
 
         msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
         msg.content_subtype = "html"

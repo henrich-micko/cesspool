@@ -6,13 +6,13 @@ class UserAccountSerializer(ModelSerializer):
     
     class Meta:
         model = models.UserAccount
-        fields = ["pk", "email", "is_superuser", "is_active"]
-        extra_kwargs = {"email": {"required": False}, "pk": {"read_only": True}, "is_active": {"read_only": True}}
+        fields = ["pk", "email", "is_staff", "is_active"]
+        extra_kwargs = {"email": {"required": False}, "pk": {"read_only": True}}
 
 
 class UserAccountCreateSerializer(ModelSerializer):
 
     class Meta:
         model = models.UserAccount
-        fields = ["pk", "email", "is_superuser"]
-        extra_kwargs = {"email": {"required": True}, "pk": {"read_only": True}, "is_superuser": {"default": False}}
+        fields = ["pk", "email", "is_staff"]
+        extra_kwargs = {"email": {"required": True}, "pk": {"read_only": True}, "is_staff": {"default": False}}
