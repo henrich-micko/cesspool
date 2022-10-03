@@ -20,8 +20,22 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class UserAccountSerializer(serializers.ModelSerializer):
+    delete_date = serializers.SerializerMethodField(default = None)
+    delete_machines_date = serializers.SerializerMethodField(default = None)
 
     class Meta:
         model = models.UserAccount
-        fields = ["pk", "email", "is_active", "date_joined", "is_staff"]
+        fields = ["pk", "email", "is_active", "date_joined", "is_staff", "delete_date", "delete_machines_date"]
         extra_kwargs = {"email": {"required": False}}
+
+    def get_delete_date(self, obj):
+        action = obj.one_to_one(models.AccountDeleteAction)
+        if action != None:
+            return action.date
+        return None
+
+    def get_delete_machines_date(self, obj):
+        action = obj.one_to_one(models.AccountDeleteMachinesAction)
+        if action != None:
+            return action.date
+        return None

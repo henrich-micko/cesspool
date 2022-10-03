@@ -24,8 +24,14 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def action_at(self, action: models.Model, date: datetime):
-        action = action.objects.update_or_create(machine = self, defaults = {"date": date})
+        action = action.objects.update_or_create(user = self, defaults = {"date": date})
         return action
+    
+    def one_to_one(self, table: models.Model, default = None):
+        output = table.objects.filter(user = self).first()
+        if output != None:
+            return output
+        return default
 
 class AccountBaseAction(models.Model):
     user = models.OneToOneField(UserAccount, on_delete = models.CASCADE)
@@ -39,11 +45,6 @@ class AccountBaseAction(models.Model):
 
     def run(self):
         pass
-    
-    @classmethod
-    def get_children(cls):
-        rel_objs = cls._meta.get_all_related_objects()
-        return [getattr(cls, x.get_accessor_name()) for x in rel_objs if x.model != type(cls)]
 
 class AccountDeleteAction(AccountBaseAction):
     def run(self):
