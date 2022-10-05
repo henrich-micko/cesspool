@@ -18,7 +18,6 @@ class Machine(models.Model):
     
     mqtt = models.BooleanField(default = True)
     notification = models.BooleanField(default = True)
-    autocorrect = models.BooleanField(default = True)
 
     def __str__(self) -> str:
         return self.code

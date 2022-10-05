@@ -20,7 +20,6 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
             "code", 
             "mqtt", 
             "notification", 
-            "autocorrect", 
             "delete_date", 
             "delete_records_date",
             "records",
