@@ -6,6 +6,7 @@ import TheInput from "@components/form/TheInput"
 import SwitchInput from "@components/form/SwitchInput"
 import TheButton from "@components/form/TheButton"
 import useAxios from "@hooks/useAxios"
+import TheForm from "@components/form/TheForm"
 
 interface Props {
     account: UserType
@@ -30,8 +31,8 @@ const AccountSettingsAdmin: React.FC<Props> = (props) =>{
     }
 
     return (
-        <div className={styles.machineSettings}>
-            <div className={styles.formWrapper} id={styles.formWrapperAdmin}>
+        <TheForm error={error} onClick={saveAccount}>
+            <>
                 <TheInput
                     onChange={setEmail}
                     label="Email"
@@ -51,13 +52,8 @@ const AccountSettingsAdmin: React.FC<Props> = (props) =>{
                     label="Admin"
                     value={isSuperUser}
                 />
-            </div>
-
-            <div className={styles.buttonWrapper}>
-                <span className={styles.error}>{error}</span>
-                <TheButton label="Potvrdiť" type="blue" onClick={saveAccount} />
-            </div>
-        </div>
+            </>
+        </TheForm>
     )
 }
 

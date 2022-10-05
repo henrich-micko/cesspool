@@ -7,6 +7,7 @@ import { UserType } from "@types"
 import React, { useState } from "react"
 
 import styles from "@styles/components/machine/machineSettings.module.scss"
+import TheForm from "@components/form/TheForm"
 
 
 interface Props {
@@ -29,32 +30,26 @@ const AccountCreateAdmin: React.FC<Props> = (props) => {
 
         axios.post("/admin/account/create/", data)
              .then(res => props.onCreate(res.data))
-             .catch(error => setError("Nepodarilo sa nastaviť"))
+             .catch(error => setError("Nepodaril sa vytvoriť"))
         }
 
     return (
-        <div className={styles.formWrapper}>
-            <TheInput
-                label="Email"
-                behavior="static"
-                value={email}
-                onChange={setEmail}
-            />
+        <TheForm error={error} onClick={handleSubmit}>
+            <>
+                <TheInput
+                    label="Email"
+                    behavior="static"
+                    value={email}
+                    onChange={setEmail}
+                />
 
-            <SwitchInput 
-                onSubmit={setIsSuperUser}
-                label="Admin"
-                value={isSuperUser}
-            />
-
-            {error !== null && <TheError label={error} />}
-
-            <TheButton 
-                type="blue" 
-                onClick={handleSubmit} 
-                label="Vytvoriť"
-            />
-    </div>
+                <SwitchInput 
+                    onSubmit={setIsSuperUser}
+                    label="Admin"
+                    value={isSuperUser}
+                />
+            </>
+        </TheForm>
     )
 }
 

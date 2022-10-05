@@ -5,7 +5,7 @@ import TheNaviagtion from "@components/TheNaviagtion"
 import MenuOfAccountAdmin from "@components/account/MenuOfAccountAdmin"
 import { UserType } from "@types"
 import useAxios from "@hooks/useAxios"
-import styles from "@styles/views/admin/accountViewAdmin.module.scss"
+import styles from "@styles/views/global/viewWithNavigation.module.scss"
 import AccountBoardAdmin from "@components/account/AccountBoardAdmin"
 import PopUp from "@components/PopUp"
 import AccountCreateAdmin from "@components/account/AccountCreateAdmin"
@@ -67,7 +67,7 @@ const AdminViewAccount: React.FC = () => {
                 {
 					user !== undefined &&
 					<>
-						<div className={styles.machineWrapper}>
+						<div className={styles.verticalWrapper}>
 							<AccountBoardAdmin user={user} setUser={newUser => setUser(userId, newUser)} />
 						</div>
 						<AccountDeleteBoard user={user} setUser={newUser => setUser(userId, newUser)}/>

@@ -12,6 +12,7 @@ import SwithInput from "@components/form/SwitchInput"
 import SelectInput from "@components/form/SeletectInput"
 import TheInput from "@components/form/TheInput"
 import TheButton from "@components/form/TheButton"
+import TheForm from "@components/form/TheForm"
 
 interface Props {
     machine: MachineAdminType;
@@ -49,8 +50,8 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
     }, [])
 
     return (
-        <div className={styles.machineSettings}>
-            <div className={styles.formWrapper} id={styles.formWrapperAdmin}>
+        <TheForm error={error} onClick={saveMachine}>
+            <>
                 <TheInput
                     onChange={setCode}
                     label="Code"
@@ -77,14 +78,8 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
                     label="Notifikacie"
                     value={notification}
                 />
-
-            </div>
-
-            <div className={styles.buttonWrapper}>
-                <span className={styles.error}>{error}</span>
-                <TheButton label="Potvrdiť" type="blue" onClick={saveMachine} />
-            </div>
-        </div>
+            </>
+        </TheForm>
     )
 }
 

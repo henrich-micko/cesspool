@@ -10,7 +10,7 @@ import NoContent from "@components/NoContent"
 import useAxios from "@hooks/useAxios"
 import { IsAdminView } from "@permissions/Admin"
 
-import styles from "@styles/views/admin/machineViewAdmin.module.scss"
+import styles from "@styles/views/global/viewWithNavigation.module.scss"
 import MenuOfAdminMachines from "@components/machine/MenuOfMachineAdmin"
 import TheNaviagtion from "@components/TheNaviagtion"
 import MachineProblems from "@components/machine/MachineProblems"
@@ -76,7 +76,7 @@ const AdminMachineView: React.FC = () => {
 				{
 					machine !== undefined &&
 					<>
-						<div className={styles.machineWrapper}>
+						<div className={styles.verticalWrapper}>
 							<MachineBoardAdmin machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
 							<MachineProblems machine={machine} />
 						</div>

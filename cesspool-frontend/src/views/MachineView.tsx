@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { IsAuthenticatedView } from "../permissions/Authenticated"
-import styles from "./MachineView.module.scss"
+import styles from "@styles/views/global/viewWithNavigation.module.scss"
 import useAxios from "../hooks/useAxios"
 import { MachineType } from "../types"
 import NoContent from "../components/NoContent"
@@ -48,7 +48,7 @@ const MachineView: React.FC = () => {
 			<div className={styles.view}>
 				{
 					machine !== undefined && 
-					<div className={styles.machineWrapper}>
+					<div className={styles.verticalWrapper}>
 						<MachineBoard machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
 						<MachineProblems machine={machine} />
 					</div>

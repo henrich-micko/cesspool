@@ -1,20 +1,17 @@
 import SelectInput from "@components/form/SeletectInput"
 import SwitchInput from "@components/form/SwitchInput"
-import TheButton from "@components/form/TheButton"
-import TheError from "@components/form/TheError"
 import TheInput from "@components/form/TheInput"
-import ThemedBox from "@components/ThemedBox"
 import useAxios from "@hooks/useAxios"
 import { MachineAdminType, UserType } from "@types"
 import React, { useEffect, useState } from "react"
-import styles from "@styles/components/machine/machineCreate.module.scss"
+import TheForm from "@components/form/TheForm"
 
 interface Props {
     onCreate(newMachine: MachineAdminType): void
 }
 
 const MachineCreate: React.FC<Props> = (props) => {
-    const [error, setError] = useState<string|null>(null)
+    const [error, setError] = useState<string>("")
     const [users, setUsers] = useState<UserType[]>([])
 
     const [code, setCode] = useState<string>("")
@@ -48,8 +45,8 @@ const MachineCreate: React.FC<Props> = (props) => {
     }
 
     return (
-        <div className={styles.machineCreate}>
-            <div className={styles.formWrapper}>
+        <TheForm onClick={handleSubmit} error={error} >
+            <>
                 <TheInput
                     label="Code"
                     behavior="static"
@@ -75,18 +72,8 @@ const MachineCreate: React.FC<Props> = (props) => {
                     value={notification}
                     onSubmit={setNotification}
                 />
-            </div>
-
-            <div className={styles.buttonWrapper}>
-                <span className={styles.error}>{error}</span>
-
-                <TheButton
-                    label="Potvrdiť"
-                    onClick={handleSubmit}
-                    type="blue"
-                />
-            </div>
-        </div>
+            </>
+        </TheForm>
     ) 
 }
 

@@ -10,6 +10,7 @@ import useAxios from "@hooks/useAxios"
 // components
 import TheInput from "@components/form/TheInput"
 import TheButton from "@components/form/TheButton"
+import TheForm from "@components/form/TheForm"
 
 interface Props {
     machine: MachineType;
@@ -39,8 +40,8 @@ const MachineSettings: React.FC<Props> = (props) => {
 
 
     return (
-        <div className={styles.machineSettings}>
-            <div className={styles.formWrapper} style={{"width": "17em"}}>
+        <TheForm error={error} onClick={saveMachine}>
+            <>
                 <TheInput
                     type="text"
                     onChange={setTitle}
@@ -57,18 +58,8 @@ const MachineSettings: React.FC<Props> = (props) => {
                     value={props.machine.hight_level}
                     behavior="static"
                 />
-            </div>
-
-            <div className={styles.buttonWrapper}>
-                <span className={styles.error}>{error}</span>
-
-                <TheButton
-                    label="Potvrdiť"
-                    onClick={saveMachine}
-                    type="blue"
-                />
-            </div>
-        </div>
+            </>
+        </TheForm>
     )
 }
 
