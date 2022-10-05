@@ -1,0 +1,25 @@
+.list {
+    list-style: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.45em;
+
+    padding: 0em;
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 0.5em 1em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        h3 {
+            margin: 0em;
+        }
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+}

@@ -14,13 +14,13 @@ const MachineAdminDeleteRecords: React.FC<Props> = (props) => {
     const axios = useAxios()
 
     const handleDelete = () => {
-        axios.delete("/admin/machine/" + props.machine.code + "/record/")
+        axios.delete("/admin/machine/" + props.machine.code + "/delete-record/")
              .then(res => props.setMachine(res.data))
              .catch(error => console.log(error))
     }
 
     const handleRestore = () => {
-        axios.get("/admin/machine/" + props.machine.code + "/record/restore")
+        axios.get("/admin/machine/" + props.machine.code + "/delete-record/restore")
              .then(res => props.setMachine(res.data))
              .catch(error => console.log(error))
     }

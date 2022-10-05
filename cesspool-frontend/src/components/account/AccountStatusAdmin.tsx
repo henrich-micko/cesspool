@@ -13,13 +13,8 @@ const AccountStatusAdmin: React.FC<Props> = (props) => {
     return (
         <div className={styles.accountStatusWrapper}>
             <div className={styles.accountStatus}>
-                <FontAwesomeIcon icon={props.user.is_superuser ? faUserAstronaut : faUserAlt} />
-                <h3>{props.user.is_superuser ? "Admin" : "Použivatel"}</h3>
-            </div>
-
-            <div className={styles.accountStatus}>
-                <FontAwesomeIcon icon={props.user.is_active ? faUnlock : faLock} />
-                <h3>{props.user.is_active ? "aktivovaný" : "v kóme"}</h3>
+                <FontAwesomeIcon icon={props.user.is_staff ? faUserAstronaut : faUserAlt} />
+                <span>{props.user.is_staff ? "Admin" : "Použivatel"}</span>
             </div>
         </div>
     )

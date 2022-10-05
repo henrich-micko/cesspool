@@ -33,7 +33,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
             axios.get("http://localhost:8000/api/account/whoami/", {headers: {Authorization: "Token " + authToken}})
                 .then(res => setUser(res.data))
                 .catch(error => error.response.status === 401 && logoutUser())
-        } else setUser({email: null, is_active: null, is_superuser: null, date_joined: null})
+        } else setUser({email: null, is_active: null, is_staff: null, date_joined: null})
     }, [authToken])
 
 

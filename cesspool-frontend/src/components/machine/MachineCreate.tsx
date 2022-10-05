@@ -21,7 +21,6 @@ const MachineCreate: React.FC<Props> = (props) => {
     const [user, setUser] = useState<string>("")
     const [mqtt, setMqtt] = useState<boolean>(true)
     const [notification, setNotification] = useState<boolean>(true)
-    const [autocorrect, setAutoCorrect] = useState<boolean>(true)
     
     const axios = useAxios()
 
@@ -41,7 +40,6 @@ const MachineCreate: React.FC<Props> = (props) => {
             user: user !== "" ? user : null,
             mqtt: mqtt,
             notification: notification,
-            autocorrect: autocorrect
         }
 
         axios.post("/admin/machine/create/", data)
@@ -76,12 +74,6 @@ const MachineCreate: React.FC<Props> = (props) => {
                     label="Notifikacie"
                     value={notification}
                     onSubmit={setNotification}
-                />
-
-                <SwitchInput
-                    label="Autocorrect"
-                    value={autocorrect}
-                    onSubmit={setAutoCorrect}
                 />
             </div>
 

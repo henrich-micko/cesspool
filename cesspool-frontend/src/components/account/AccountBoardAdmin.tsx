@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 // types && styles && icons
 import { MachineAdminType, UserType } from "@types"
@@ -13,6 +13,8 @@ import AccountStatusAdmin from "./AccountStatusAdmin"
 import TableOfMachine from "@components/machine/TableOfMachine"
 import useAxios from "@hooks/useAxios"
 import AccountSettingsAdmin from "./AccountSettingsAdmin"
+import AccountInfo from "./AccountInfo"
+import AuthContext from "@context/AuthContext"
 
 interface Props {
     user: UserType
@@ -22,6 +24,8 @@ interface Props {
 const AccountBoardAdmin: React.FC<Props> = (props) => {
     const [settings, setSettings] = useState<boolean>(false)
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
+
+    const loggedUser = useContext(AuthContext).user
 
     const axios = useAxios()
 
@@ -42,7 +46,7 @@ const AccountBoardAdmin: React.FC<Props> = (props) => {
             label={
                 <div>
                     <h2 className={styles.user}>
-                        {props.user.email}
+                        {props.user.email} {props.user.email === loggedUser.email && " - ja"}
                     </h2>
                 </div>
             }
@@ -55,8 +59,7 @@ const AccountBoardAdmin: React.FC<Props> = (props) => {
                 </div>
             }> 
                 <div className={styles.machineBoardBody}>
-                    <AccountStatusAdmin user={props.user} />
-                    <TableOfMachine machines={machines} />
+                    <AccountInfo account={props.user} />
                 </div> 
             {
                 settings && 

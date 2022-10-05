@@ -68,7 +68,7 @@ export const DataContextProvider: React.FC<Props> = (props) => {
     }
 
     const refreshMachinesAdmin = (): Type["machinesAdmin"] => {
-        if (!user.is_superuser) 
+        if (!user.is_staff) 
             setMachinesAdmin(null)
         
         else axios.get("/admin/machine/")
@@ -79,7 +79,7 @@ export const DataContextProvider: React.FC<Props> = (props) => {
     }
 
     const refreshUsers = (): Type["users"] => {
-        if (!user.is_superuser) 
+        if (!user.is_staff) 
             setUsers(null)
         
         else axios.get("/admin/account/")

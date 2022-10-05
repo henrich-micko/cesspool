@@ -26,7 +26,6 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
     const [user, setUser] = useState<string|null>(props.machine.user)
     const [mqtt, setMqtt] = useState<boolean>(props.machine.mqtt)
     const [notification, setNotification] = useState<boolean>(props.machine.notification)
-    const [autocorrect, setAutocorrect] = useState<boolean>(props.machine.autocorrect)
 
     const axios = useAxios()
 
@@ -36,7 +35,6 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
             user: user,
             mqtt: mqtt,
             notification: notification,
-            autocorrect: autocorrect
         }
 
         axios.put("/admin/machine/" + props.machine.code + "/", data)
@@ -80,11 +78,6 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
                     value={notification}
                 />
 
-                <SwithInput
-                    onSubmit={setAutocorrect}
-                    label="Autocorrect"
-                    value={autocorrect}
-                />
             </div>
 
             <div className={styles.buttonWrapper}>

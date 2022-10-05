@@ -7,12 +7,17 @@ import { UserType } from "@types"
 import useAxios from "@hooks/useAxios"
 import styles from "@styles/views/admin/accountViewAdmin.module.scss"
 import AccountBoardAdmin from "@components/account/AccountBoardAdmin"
+import PopUp from "@components/PopUp"
+import AccountCreateAdmin from "@components/account/AccountCreateAdmin"
+import AccountDeleteBoard from "@components/account/AccountDeleteBoard"
 
 
 
 const AdminViewAccount: React.FC = () => {
     const [users, setUsers] = useState<UserType[]|null>(null)
 	const [userId, setUserId] = useState<number>(0) // -1 is reserved for new machine
+
+	const [viewCreate, setViewCreate] = useState<boolean>(false)
 
     const axios = useAxios()
 
@@ -40,6 +45,7 @@ const AdminViewAccount: React.FC = () => {
 		else setUsers([newUser])
 
 		if (users !== null) setUserId(users.length)
+		setViewCreate(false)
 	}
 
 	const user = (users !== undefined && userId !== -1) ? users?.at(userId) : undefined
@@ -52,7 +58,8 @@ const AdminViewAccount: React.FC = () => {
 					activate={userId}
 					users={users}
 					onClick={setUserId}
-					onRefresh={refreshData} 
+					onRefresh={refreshData}
+					onAdd={() => setViewCreate(true)}
 				/>
 			</TheNaviagtion>
 
@@ -63,7 +70,16 @@ const AdminViewAccount: React.FC = () => {
 						<div className={styles.machineWrapper}>
 							<AccountBoardAdmin user={user} setUser={newUser => setUser(userId, newUser)} />
 						</div>
+						<AccountDeleteBoard user={user} setUser={newUser => setUser(userId, newUser)}/>
+
 					</>
+				}
+
+				{
+					viewCreate && 
+					<PopUp label="Nový učet" onClickClose={() => setViewCreate(false)}>
+						<AccountCreateAdmin onCreate={onCreate} />
+					</PopUp>
 				}
 			</div>
         </IsAdminView>

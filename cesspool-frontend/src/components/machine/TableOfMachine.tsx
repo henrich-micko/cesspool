@@ -38,7 +38,6 @@ const TableOfMachine: React.FC<Props> = (props) => {
                     <td>{item.code}{item.title !== null && " / " + item.title}</td>
                     <td><ValueIcon value={item.mqtt} /></td>
                     <td><ValueIcon value={item.notification} /></td>
-                    <td><ValueIcon value={item.autocorrect} /></td>
                 </tr>
         )}
       </table> 

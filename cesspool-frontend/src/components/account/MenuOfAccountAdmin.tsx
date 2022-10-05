@@ -1,8 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { UserType } from "@types"
 import styles from "@styles/components/account/menuOfAccountAdmin.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlusCircle, faRefresh, faUserAstronaut, faUserAlt, faTrash, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
+import { faPlusCircle, faRefresh, faUserAstronaut, faUserAlt, faTrash } from "@fortawesome/free-solid-svg-icons"
+import classNames from "classnames"
+import AuthContext from "@context/AuthContext"
 
 
 interface AccountItemProps {
@@ -19,32 +21,15 @@ const AccountItem: React.FC<AccountItemProps> = (props) => {
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
-                    className={styles.icon}
-                    icon={props.account.is_superuser ? faUserAstronaut : faUserAlt}
+                    className={classNames(styles.icon, !props.account.is_active && styles.red)}
+                    icon={props.account.is_staff ? faUserAstronaut : faUserAlt}
                 />
 
                 <FontAwesomeIcon
-                    className={styles.icon}
+                    className={classNames(styles.icon, (props.account.delete_date !== null || props.account.delete_machines_date !== null) && styles.red)}
                     icon={faTrash}
                 />
             </div>
-        </li>
-    )
-}
-
-interface NewAccountItemProps {
-    onClick(): void
-    index: number
-    isActive: boolean
-}
-
-const NewAccountItem: React.FC<NewAccountItemProps> = (props) => {
-    return (
-        <li key={props.index} onClick={props.onClick} className={props.isActive ? styles.activate : undefined}>
-            <span style={{"fontSize": "1.2em"}}>Pridať</span>
-            <FontAwesomeIcon
-                icon={faPlusCircle}
-            />
         </li>
     )
 }
@@ -54,15 +39,24 @@ interface Props {
     onClick(id: number): void
     activate?: number
     onRefresh(): void
+    onAdd(): void
 }
 
 const MenuOfAccountAdmin: React.FC<Props> = (props) => {
+    const { user } = useContext(AuthContext)
+
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
                 <h2>Všetci kontá</h2>
 
                 <div>
+                    <FontAwesomeIcon
+                        icon={faPlusCircle}
+                        onClick={props.onAdd}
+                        className={styles.icon}
+                    />
+
                     <FontAwesomeIcon
                         icon={faRefresh}
                         onClick={props.onRefresh}
@@ -71,10 +65,8 @@ const MenuOfAccountAdmin: React.FC<Props> = (props) => {
                 </div>
             </div>
 
-            <ul>
-                <NewAccountItem onClick={() => props.onClick(-1)} index={-1} isActive={props.activate === -1}/>
-                
-                {props.users !== null && props.users.map((account, index) =>
+            <ul>                
+                {props.users !== null && props.users.map((account, index) => account.email !== user.email &&
                     <AccountItem 
                         isActive={props.activate === index}
                         index={index} 

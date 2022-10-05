@@ -24,7 +24,7 @@ const AccountCreateAdmin: React.FC<Props> = (props) => {
     const handleSubmit = () => {
         const data = {
             email: email,
-            is_superuser: isSuperUser
+            is_staff: isSuperUser
         }
 
         axios.post("/admin/account/create/", data)

@@ -27,7 +27,7 @@ export interface RecordType {
 export interface ContextUserType {
     email: string|null;
     is_active: boolean|null;
-    is_superuser: boolean|null;
+    is_staff: boolean|null;
     date_joined: string|null;
 }
 
@@ -35,8 +35,10 @@ export interface UserType {
     pk: Number
     email: string;
     is_active: boolean;
-    is_superuser: boolean;
+    is_staff: boolean;
     date_joined: string;
+    delete_date: string|null
+    delete_machines_date: string|null
 }
 
 
@@ -46,7 +48,6 @@ export interface MachineAdminType {
     user: string|null;
     mqtt: boolean;
     notification: boolean;
-    autocorrect: boolean
     delete_date: string|null
     delete_records_date: string|null
     records: number

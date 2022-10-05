@@ -17,12 +17,12 @@ const AccountSettingsAdmin: React.FC<Props> = (props) =>{
 
     const [email, setEmail] = useState<string>(props.account.email)
     const [isActivate, setIsActivate] = useState<boolean>(props.account.is_active)
-    const [isSuperUser, setIsSuperUser] = useState<boolean>(props.account.is_superuser)
+    const [isSuperUser, setIsSuperUser] = useState<boolean>(props.account.is_staff)
 
     const axios = useAxios()
 
     const saveAccount = () => {
-        const data = {email: email, is_active: isActivate, is_superuser: isSuperUser}
+        const data = {email: email, is_active: isActivate, is_staff: isSuperUser}
         console.log(data)
         axios.put("/admin/account/" + props.account.pk + "/", data)
              .then(res => props.setAccount(res.data))

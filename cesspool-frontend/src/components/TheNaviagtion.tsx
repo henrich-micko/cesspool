@@ -66,8 +66,8 @@ const TheNaviagtion: React.FC<Props> = (props) => {
                 {isLogged &&
                     <nav>
                         <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
-                        {user.is_superuser && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
-                        {user.is_superuser && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
+                        {user.is_staff && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
+                        {user.is_staff && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
                         <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
                     </nav>
                 }
