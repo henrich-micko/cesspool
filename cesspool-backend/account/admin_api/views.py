@@ -14,10 +14,16 @@ from account import serializers as account_serializer
 from . import serializers
 
 # list of machines
-class AdminAccountListAPIView(ListAPIView):
-    queryset = models.UserAccount.objects.all()
-    serializer_class = account_serializer.UserAccountSerializer
+class AdminAccountListAPIView(APIView):
     permission_classes = [IsAdminUser]
+
+    def get(self, request):
+        users = models.UserAccount.objects.all()
+        if request.GET.get("include_me", False):
+            users = users.exclude(pk = request.user.pk)
+
+        serializer = account_serializer.UserAccountSerializer(instance = users, many = True)
+        return Response(data = serializer.data, status = status.HTTP_200_OK)
 
 class UserAccountAPIView(APIView):
     permission_classes = [IsAdminUser]

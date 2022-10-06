@@ -10,7 +10,6 @@ from . import models
 
 logger = get_task_logger(__name__)
 
-# used in 'scan_machine_actions' for check time now with actions.date
 def time_minutes_equals_or_higher(datetime_a: datetime, datetime_b: datetime):
     return (
         datetime_a > datetime_b or
