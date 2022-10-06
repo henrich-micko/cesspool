@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from celery import shared_task
 from celery.utils.log import get_task_logger
 
-from machine.models.problems import scan_problems
+from .models import scan_problems
 from datetime import datetime
 
 from . import models
@@ -70,7 +70,11 @@ def scan_machine_problems_and_send_email():
 
         msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
         msg.content_subtype = "html"
-        msg.send()
+        
+        try:
+            msg.send()
+        except:
+            return
 
         for machine in problems.keys():
             for problem in problems[machine]:

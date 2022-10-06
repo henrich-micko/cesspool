@@ -44,4 +44,5 @@ class UserAccountAdmin(UserAdmin):
     ordering = ["id"]
 
 
+admin.site.register(models.ResetPasswordToken)
 admin.site.register(models.UserAccount, UserAccountAdmin)

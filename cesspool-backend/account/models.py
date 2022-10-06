@@ -6,6 +6,7 @@ from datetime import datetime
 
 from .managers import UserAccountManager
 
+import random, string
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     objects = UserAccountManager()
@@ -53,3 +54,31 @@ class AccountDeleteAction(AccountBaseAction):
 class AccountDeleteMachinesAction(AccountBaseAction):
     def run(self):
         self.user.machine_set.all().delete()
+
+def get():
+    return "x"
+
+class ResetPasswordToken(models.Model):
+    user = models.OneToOneField(UserAccount, on_delete = models.CASCADE)
+    code = models.CharField(max_length = 8, default = get)
+
+    def __str__(self):
+        return str(self.user)
+    
+    @classmethod
+    def generate_code(cls, length: int):
+        output = ""
+
+        for i in range(length):
+            new_char = random.choice(string.ascii_letters)
+            if random.randint(0, 1):
+                new_char = new_char.upper()
+
+            output += new_char
+        
+        return output
+
+
+
+
+

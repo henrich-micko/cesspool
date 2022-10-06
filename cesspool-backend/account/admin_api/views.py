@@ -8,7 +8,7 @@ from rest_framework import status
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
-from account import models
+from account import models, tasks
 from account import serializers as account_serializer
 
 from . import serializers
@@ -53,7 +53,8 @@ class UserAccountCreateAPIView(APIView):
     def post(self, request):
         serializer = account_serializer.UserAccountSerializer(data = request.data)
         if serializer.is_valid():
-            serializer.save()
+            user = serializer.save()
+            tasks.send_welcome_email.delay(user_pk = user.pk)
             
             return Response(serializer.data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
