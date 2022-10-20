@@ -1,52 +1,49 @@
 import React from "react"
-
-// types && styles && icons
-import { MachineType } from "@types"
+import { MachineForMenu } from "@types"
 import styles from "@styles/components/machine/menuOfMachine.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRefresh } from "@fortawesome/free-solid-svg-icons"
-
-// components
 import { StatusBattery, StatusLevel, StatusProblem } from "./MachineIcons"
+import { maxLength } from "formats"
+import TheLoading from "@components/TheLoading"
 
 
-interface MenuOfMachineLiProps {
+interface MachineItemProps {
     index: number
-    machine: MachineType
-    onClick(id: number): void
     isActive: boolean
+    title: string
+    level: number
+    battery: number
+    topProblem: null | "warning" | "error"
+    onClick(index: number): void
 }
 
-const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
-    let label = props.machine.title !== null ? props.machine.title : props.machine.code
-    if (label.length >= 7) label = Array.from(label).slice(0, 5).join("") + "..."
-
+const MachineItem: React.FC<MachineItemProps> = (props) => {
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
             <h3 className={props.isActive ? styles.activate : undefined}>
-                {label}
+                {maxLength(props.title, 6)}
             </h3>
 
             <div className={styles.status}>
                 <div className={styles.level}>
-                    <StatusLevel machine={props.machine} />
-                    <StatusBattery machine={props.machine} />
+                    <StatusLevel level={props.level} />
+                    <StatusBattery battery={props.battery} />
                 </div>
-                <StatusProblem machine={props.machine} />
+                <StatusProblem topProblem={props.topProblem} />
             </div>
         </li>
     )
 }
 
 interface Props {
-    machines: MachineType[]|null
+    machines: MachineForMenu[]|null
     activate?: number
-    onRefresh(): void
-    onClick(id: number): void
+    onRefreshClick(): void
+    onMachineClick(id: number): void
 }
 
 const MenuOfMachines: React.FC<Props> = (props) => {
-
     return (
         <div className={styles.menuOfMachine}>
             <div className={styles.header}>
@@ -54,21 +51,29 @@ const MenuOfMachines: React.FC<Props> = (props) => {
 
                 <FontAwesomeIcon
                     icon={faRefresh}
-                    onClick={props.onRefresh}
+                    onClick={props.onRefreshClick}
                     className={styles.icon}
                 />
             </div>
             
             <ul>
                 {props.machines !== null && props.machines.map((machine, index) =>
-                    <MenuOfMachineLi 
+                    <MachineItem 
+                        index={index}
                         isActive={props.activate === index}
-                        index={index} 
-                        machine={machine} 
-                        onClick={props.onClick} 
-                />
+                        title={machine.title}
+                        topProblem={machine.topProblem}
+                        battery={machine.battery}
+                        level={machine.level}
+                        onClick={props.onMachineClick} 
+                    />
                 )}
             </ul>
+
+            {
+                props.machines === null &&
+                <TheLoading />
+            }
         </div>
     )
 }

@@ -9,6 +9,8 @@ import AccountView from './views/account/AccountView'
 import MachineView from "./views/MachineView"
 import AdminAccountView from "./views/admin/AccountViewAdmin"
 import AdminMachineView from "./views/admin/MachineViewAdmin"
+import AccountChangePassword from "@views/account/AccountChangePasswordSubmit"
+import AccountActivateView from "@views/account/AccountActivateView"
 
 // Permissions
 
@@ -23,6 +25,8 @@ function App() {
                 <Route path="/machine" element={<MachineView />} />
                 <Route path="/admin/machine/" element={<AdminMachineView />} />
                 <Route path="/admin/account/" element={<AdminAccountView />} />
+                <Route path="/account/reset-password/:token" element={<AccountChangePassword />} />
+                <Route path="/account/activate/:token" element={<AccountActivateView />} />
             </Routes>
         </main>
       </div>

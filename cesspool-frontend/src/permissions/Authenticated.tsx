@@ -10,17 +10,17 @@ interface Props {
     onEffect?: Function|null,
 }
 
-// If it's not authenticated view login link 
+// If it's not authenticated view login link
 export const IsAuthenticatedView: React.FC<Props> = ({ children, onEffect = null }) => {
     const {isLogged} = React.useContext(AuthContext)
 
     useEffect(() => {
         if (onEffect !== null && isLogged) onEffect()
     }, [])
- 
+
     return(
         <>
-            {isLogged 
+            {isLogged
                 ? children
                 : <Navigate to="/" />
             }
@@ -39,7 +39,7 @@ export const IsNotAuthenticatedView: React.FC<Props> = ({ children, onEffect = n
 
     return(
         <>
-            {!isLogged 
+            {!isLogged
                 ? children
                 : <Navigate to="/machine" />
             }

@@ -5,14 +5,14 @@ export interface ProblemType {
 
 export interface MachineType {
     id: number;
-    title: string|null;
+    title: string;
     code: string;
-    level: number|null;
-    battery: number|null;
+    level: number;
+    battery: number;
     problems: ProblemType[];
-    level_percent: number|null;
+    level_percent: number;
     rise_level: number;
-    last_update: string|null;
+    last_update: string;
     hight_level: number;
 }
 
@@ -51,7 +51,7 @@ export interface MachineAdminType {
     delete_date: string|null
     delete_records_date: string|null
     records: number
-    last_update: string|null
+    last_update: string
     problems: ProblemType[],
     title: string|null
 }
@@ -61,4 +61,18 @@ export interface MachineRecordsSupportType {
     month: boolean
     week: boolean
     day: boolean
+}
+
+export interface MachineForMenu {
+    title: string
+    level: number
+    topProblem: null | "warning" | "error"
+    battery: number
+}
+
+export interface MachineForAdminMenu {
+    title: string|null
+    code: string
+    user: string|null
+    delete: boolean
 }

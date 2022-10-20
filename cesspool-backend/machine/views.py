@@ -20,14 +20,14 @@ def get_machine_from_user(user, code):
 
 class MachineDetailAPIView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     def get(self, request, machine_code: str|None = None) -> Response:
-        if machine_code != None: 
+        if machine_code != None:
             machine = get_machine_from_user(request.user, code = machine_code)
             machine_serializer = serializers.MachineSerializer(instance = machine)
         else:
             machine_serializer = serializers.MachineSerializer(instance = request.user.machine_set, many = True)
-        
+
         return Response(machine_serializer.data, status = status.HTTP_200_OK)
 
 
@@ -50,15 +50,15 @@ class RecordsAPIView(APIView):
         machine = get_machine_from_user(request.user, code = machine_code)
 
         match time_period:
-            case "day": 
-                records = machine.record_set.time_period(days = 1)            
+            case "day":
+                records = machine.record_set.time_period(days = 1)
             case "week":
                 records = machine.record_set.time_period(weeks = 1)
-            case "month": 
+            case "month":
                 records = machine.record_set.time_period(days = 31)
-            case "year": 
+            case "year":
                 records = machine.record_set.time_period(days = 365).last_by(lambda item: item.date.strftime("%Y-%m-%d"))
-            case other: 
+            case other:
                 return Response(status = status.HTTP_400_BAD_REQUEST)
 
         records_serializer = serializers.RecordSerializer(records, many = True)
@@ -69,14 +69,14 @@ class RecordsSupportAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get_records_timedelta(self, machine, **kwargs):
-        output = machine.record_set.time_period(**kwargs).timedelta() 
+        output = machine.record_set.time_period(**kwargs).timedelta()
         if output == None:
             return timedelta(seconds = 0)
         return output
 
     def get(self, request, machine_code: str):
         machine = get_machine_from_user(request.user, code = machine_code)
-        
+
         data = {
             "year": self.get_records_timedelta(machine, days = 365) >= timedelta(days = 31),
             "month": self.get_records_timedelta(machine, weeks = 31) >= timedelta(days = 6, hours = 23),
@@ -92,10 +92,10 @@ class DateRecordsAPIView(APIView):
 
     def get(self, request, machine_code: str, date: str):
         machine = get_machine_from_user(request.user, code = machine_code)
-        
+
         date = datetime.strptime(date, "%Y-%m-%d")
         timerange = [date, date + timedelta(days = 1)]
-        
+
         records = machine.record_set.filter(date__range = timerange)
 
         serializer = serializers.RecordSerializer(many = True, instance = records)

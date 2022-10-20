@@ -12,7 +12,7 @@ interface Props {
     value?: number|string;
     id?: string;
     onChange(value: string): void;
-    type?: "number"|"text"
+    type?: "number"|"text"|"email"
     behavior?: "auto"|"static"
     maxLenght?: number
 }

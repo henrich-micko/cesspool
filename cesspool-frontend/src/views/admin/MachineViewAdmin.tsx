@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 // types
-import { MachineAdminType } from "@types"
+import { MachineAdminType, MachineForAdminMenu } from "@types"
 
 // components
 import NoContent from "@components/NoContent"
@@ -18,10 +18,12 @@ import MachineBoardAdmin from "@components/machine/MachineBoardAdmin"
 import MachineDeleteBoard from "@components/machine/MachineDeleteBoard"
 import MachineCreate from "@components/machine/MachineCreate"
 import PopUp from "@components/PopUp"
+import TheLoading from "@components/TheLoading"
 
-const AdminMachineView: React.FC = () => {
+
+const MachineViewAmdin: React.FC = () => {
     const [machines, setMachines] = useState<MachineAdminType[]|null>(null)
-	const [machineId, setMachineId] = useState<number>(0) // -1 is reserved for new machine
+	const [machineIndex, setMachineIndex] = useState<number>(0) // -1 is reserved for new machine
 
 	const [viewCreate, setViewCreate] = useState<boolean>(false)
 
@@ -52,23 +54,32 @@ const AdminMachineView: React.FC = () => {
 		if (machines !== null) setMachines([...machines, newMachine])
 		else setMachines([newMachine])
 
-		if (machines !== null) setMachineId(machines.length)
+		if (machines !== null) setMachineIndex(machines.length)
 		
 		setViewCreate(false)
 	}
 
-	const machine = (machines !== undefined) ? machines?.at(machineId) : undefined
-	if (machine === undefined && machines !== null && machines.length !== 0) setMachineId(0)
+	const machineToMachineForAminMenu = (machine: MachineAdminType): MachineForAdminMenu => {
+		return {
+			title: machine.title !== null ? machine.title : null,
+			code: machine.code,
+			user: machine.user,
+			delete: machine.delete_date !== null || machine.delete_records_date !== null
+		}
+	}
+
+	const machine = (machines !== undefined) ? machines?.at(machineIndex) : undefined
+	if (machine === undefined && machines !== null && machines.length !== 0) setMachineIndex(0)
 
     return (
         <IsAdminView>
 			<TheNaviagtion>
 				<MenuOfAdminMachines 
-					activate={machineId}
-					machines={machines}
-					onClick={setMachineId}
-					onRefresh={refreshData}
-					onAdd={() => setViewCreate(true)}
+					activate={machineIndex}
+					machines={machines !== null ? machines.map(m => machineToMachineForAminMenu(m)) : null}
+					onMachineClick={setMachineIndex}
+					onRefreshClick={refreshData}
+					onAddClick={() => setViewCreate(true)}
 				/>
 			</TheNaviagtion>
 
@@ -77,12 +88,26 @@ const AdminMachineView: React.FC = () => {
 					machine !== undefined &&
 					<>
 						<div className={styles.verticalWrapper}>
-							<MachineBoardAdmin machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
-							<MachineProblems machine={machine} />
+							<MachineBoardAdmin 
+								user={machine.user}
+								code={machine.code}
+								mqtt={machine.mqtt}
+								notification={machine.notification}
+								last_update={machine.last_update}
+								setMachine={(newMachine) => setMachine(machineIndex, newMachine)}
+							/>
+							<MachineProblems problems={machine.problems} />
 						</div>
 
-						<MachineDeleteBoard machine={machine} setMachine={(newMachine) => setMachine(machineId, newMachine)}/>
+						<MachineDeleteBoard machine={machine} setMachine={(newMachine) => setMachine(machineIndex, newMachine)}/>
 					</>
+				}
+
+				{
+					machines === null &&
+					<div className={styles.verticalWrapper}>
+						<TheLoading />
+					</div>
 				}
 
 				{
@@ -101,4 +126,4 @@ const AdminMachineView: React.FC = () => {
     )
 }
 
-export default AdminMachineView
+export default MachineViewAmdin

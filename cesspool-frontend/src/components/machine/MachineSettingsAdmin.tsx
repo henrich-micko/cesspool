@@ -15,7 +15,10 @@ import TheButton from "@components/form/TheButton"
 import TheForm from "@components/form/TheForm"
 
 interface Props {
-    machine: MachineAdminType;
+    code: string
+    user: string|null
+    mqtt: boolean
+    notification: boolean
     setMachine(newMachine: MachineAdminType): void
 }
 
@@ -23,10 +26,10 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
     const [error, setError] = useState<string>()
     const [users, setUsers] = useState<UserType[]>([])
 
-    const [code, setCode] = useState<string>(props.machine.code)
-    const [user, setUser] = useState<string|null>(props.machine.user)
-    const [mqtt, setMqtt] = useState<boolean>(props.machine.mqtt)
-    const [notification, setNotification] = useState<boolean>(props.machine.notification)
+    const [code, setCode] = useState<string>(props.code)
+    const [user, setUser] = useState<string|null>(props.user)
+    const [mqtt, setMqtt] = useState<boolean>(props.mqtt)
+    const [notification, setNotification] = useState<boolean>(props.notification)
 
     const axios = useAxios()
 
@@ -38,7 +41,7 @@ const MachineAdminSettings: React.FC<Props> = (props) => {
             notification: notification,
         }
 
-        axios.put("/admin/machine/" + props.machine.code + "/", data)
+        axios.put("/admin/machine/" + props.code + "/", data)
              .then(res => { setError(""); props.setMachine(res.data) })
              .catch(error => setError("Nepodarilo sa nastaviť"))
     }

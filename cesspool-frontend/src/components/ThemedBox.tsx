@@ -9,6 +9,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
     label?: string|React.ReactNode
     header?: React.ReactNode
+    type?: "light" | "dark"
 }
 
 const ThemedBox: React.FC<Props> = (props) => {
@@ -17,10 +18,10 @@ const ThemedBox: React.FC<Props> = (props) => {
     const { label, children, ...rest } = props;
     
     const propsClassName = rest.className
-    delete rest.className 
+    delete rest.className
 
     return (
-        <div ref={animationParent} className={classNames(styles.themedBox, propsClassName)} {...rest}>
+        <div ref={animationParent} className={classNames(styles.themedBox, propsClassName, props.type === "light" && styles.light)} {...rest}>
             {props.label &&
                 <div className={classNames(styles.header)}>
                     {

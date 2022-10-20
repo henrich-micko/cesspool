@@ -1,7 +1,6 @@
 import React from "react"
 import styles from "@styles/components/account/accountInfo.module.scss"
-import { UserType } from "@types"
-import AccountStatusAdmin from "./AccountStatusAdmin"
+import { ContextUserType, UserType } from "@types"
 
 interface ItemProps {
     label: string
@@ -17,7 +16,7 @@ const Item: React.FC<ItemProps> = (props) => {
 }
 
 interface Props {
-    account: UserType
+    account: UserType|ContextUserType
 }
 
 const AccountInfo: React.FC<Props> = (props) => {
@@ -42,9 +41,12 @@ const AccountInfo: React.FC<Props> = (props) => {
                 <span>{props.account.is_staff ? "Admin" : "Puživatel"}</span>
             </Item>
 
-            <Item label="Dátum vytvorenia">
-                <span>{formatDate(props.account.date_joined)} {formatTime(props.account.date_joined)}</span>
-            </Item>
+            {
+                (props.account.date_joined !== null && props.account.date_joined !== undefined) && 
+                <Item label="Dátum vytvorenia">
+                    <span>{formatDate(props.account.date_joined)} {formatTime(props.account.date_joined)}</span>
+                </Item>
+            }
 
             <Item label="Počet zariadení">
                 <span>10</span>

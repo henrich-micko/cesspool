@@ -16,6 +16,8 @@ interface defaultValueTypes {
 }
 
 
+const url = "http://192.168.1.151:8000/api/"
+
 // Context
 const AuthContext = createContext<defaultValueTypes>({} as defaultValueTypes)
 export default AuthContext
@@ -30,7 +32,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     // set user after token is set
     useEffect(() => {
         if (authToken !== null) {
-            axios.get("http://localhost:8000/api/account/whoami/", {headers: {Authorization: "Token " + authToken}})
+            axios.get(url + "account/whoami/", {headers: {Authorization: "Token " + authToken}})
                 .then(res => setUser(res.data))
                 .catch(error => error.response.status === 401 && logoutUser())
         } else setUser({email: null, is_active: null, is_staff: null, date_joined: null})
@@ -43,7 +45,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
             "password": password
         }
 
-        await axios.post("http://localhost:8000/api/account/login/", data)
+        await axios.post(url + "account/login/", data)
             .then(res => {
                 const token = res.data.token
 
@@ -65,7 +67,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     const logoutUserAll = async (onError: Function|null = null) => {
         if (!isLogged) return
 
-        axios.get("http://localhost:8000/api/account/logoutall/", {
+        axios.get(url + "account/logoutall/", {
             headers: {
                 Authorization: "Token " + authToken
             }   
@@ -83,7 +85,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
             "password": password
         }
         
-        await axios.post("http://localhost:8000/api/account/create/", data)
+        await axios.post(url + "account/create/", data)
             .then(res => {
                 const token = res.data.token
 

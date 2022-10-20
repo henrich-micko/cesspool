@@ -45,4 +45,5 @@ class UserAccountAdmin(UserAdmin):
 
 
 admin.site.register(models.ResetPasswordToken)
+admin.site.register(models.ActivateUserToken)
 admin.site.register(models.UserAccount, UserAccountAdmin)

@@ -20,7 +20,7 @@ ChartJS.register(...registerables);
 
 
 interface Props {
-    machine: MachineType|MachineAdminType
+    code: string
 }
 
 const MachineChart: React.FC<Props> = (props) => {
@@ -38,11 +38,11 @@ const MachineChart: React.FC<Props> = (props) => {
     const isMobile = useIsMobile()
 
     useEffect(() => {
-        axios.get("/machine/" + props.machine.code + "/records/" + timePeriod)
+        axios.get("/machine/" + props.code + "/records/" + timePeriod)
             .then(res => setRecords(res.data))
             .catch(error => console.log(error))
 
-        axios.get("/machine/" + props.machine.code + "/records/support/")
+        axios.get("/machine/" + props.code + "/records/support/")
             .then(res => {
                 setYearSupport(res.data.year)
                 setMonthSupport(res.data.month)
@@ -51,7 +51,7 @@ const MachineChart: React.FC<Props> = (props) => {
             })
             .catch(error => console.log(error))
 
-    }, [timePeriod, props.machine])
+    }, [timePeriod, props.code])
 
     const getDate = () => {
         const date = timePeriod.split("/").at(1)

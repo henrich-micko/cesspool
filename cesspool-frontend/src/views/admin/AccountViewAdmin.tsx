@@ -22,7 +22,7 @@ const AdminViewAccount: React.FC = () => {
     const axios = useAxios()
 
 	const refreshData = () => {
-		axios.get("/admin/account/")
+		axios.get("/admin/account?include_me=false")
 			.then(res => setUsers(res.data))
 			.catch(error => console.log(error))
     }

@@ -9,12 +9,16 @@ import AuthContext from "../../context/AuthContext"
 
 // Permissions
 import { IsNotAuthenticatedView } from "../../permissions/Authenticated";
+import PopUp from "@components/PopUp";
+import AccountChangePassword from "@components/account/AccountChangePassword";
 
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [errorMessage, setErrorMessage] = useState("")
+
+    const [viewResetPassword, setViewResetPassword] = useState<boolean>(false)
 
     const {loginUser} = useContext(AuthContext)
 
@@ -70,9 +74,9 @@ const Login: React.FC = () => {
                             {errorMessage}
                         </div>
 
-                        <Link to="/forgot-password">
+                        <span onClick={() => setViewResetPassword(false)}>
                             Zabudli ste heslo ?
-                        </Link>
+                        </span>
                         
                         <div className={styles.buttonWrapper}>
                             <input
@@ -83,6 +87,14 @@ const Login: React.FC = () => {
                     </form>
                 </div>
             </div>
+
+            {
+                viewResetPassword &&
+                <PopUp label="Zabudol som heslo" onClickClose={() => setViewResetPassword(false)}>
+                    <AccountChangePassword onSubmit={console.log} />
+                </PopUp>
+            }
+
         </IsNotAuthenticatedView>
     )
 }

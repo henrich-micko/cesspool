@@ -1,11 +1,25 @@
 .view {
     display: flex;
     justify-content: center;
+    margin-top: 5em;
 
-    .machineWrapper {
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-column-gap: 11em;
-        width: fit-content;
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 15em;
     }
-}
+
+    @media only screen and (max-width: 1345px) {
+        .wrapper {
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        margin-top: 2em;
+    }
+
+    .loginWrapper {
+        display: flex;
+        justify-content: center;
+    }
+} 

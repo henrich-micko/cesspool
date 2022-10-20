@@ -12,10 +12,16 @@ import MachineDates from "./MachineDates"
 import PopUp from "@components/PopUp"
 import ThemedBox from "@components/ThemedBox"
 import MachineAdminSettings from "./MachineSettingsAdmin"
+import { useMaxWidth } from "@hooks/useIsMobile"
+import { maxLenghtEmail } from "formats"
 
 
 interface Props {
-    machine: MachineAdminType
+    code: string
+    user: string|null
+    last_update: string
+    mqtt: boolean
+    notification: boolean
     setMachine(newMachine: MachineAdminType): void
 }
 
@@ -27,15 +33,17 @@ const MachineBoardAdmin: React.FC<Props> = (props) => {
         setSettings(false)
     }
 
+    const viewEmail = useMaxWidth("15000px")
+
     return (
         <ThemedBox 
             className={styles.machineBoard} 
             label={
                 <h2 className={styles.user}>
-                    {props.machine.code}
+                    {props.code}
                     {
-                        props.machine.user !== null &&
-                        <span>/ {props.machine.user}</span>
+                        props.user !== null &&
+                        <span>/ {false ? props.user : props.user.split("@").at(0)}</span>
                     }
                 </h2>
             }
@@ -48,13 +56,18 @@ const MachineBoardAdmin: React.FC<Props> = (props) => {
                 </div>
             }> 
                 <div className={styles.machineBoardBody}>
-                    <MachineChart machine={props.machine} />
-                    <MachineDates machine={props.machine} />
+                    <MachineChart code={props.code} />
+                    <MachineDates last_update={props.last_update} code={props.code} />
                 </div>
             {
                 settings && 
                 <PopUp label={"Nastavenia"} onClickClose={() => setSettings(false)}>
-                    <MachineAdminSettings machine={props.machine} setMachine={handleSettingsSubmit} />
+                    <MachineAdminSettings 
+                        code={props.code}
+                        user={props.user}
+                        mqtt={props.mqtt}
+                        notification={props.notification}
+                        setMachine={handleSettingsSubmit} />
                 </PopUp>
             }
         </ThemedBox>

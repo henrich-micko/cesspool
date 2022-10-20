@@ -1,61 +1,15 @@
-.formWrapper {
-    h2 {
-        font-size: 1.6em;
-    }
+.input {
+    color: #fff;
+    font-size: 1em;
+    background: none;
+    border: none;
+    border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
+    display: block;
+    text-align: left;
+    margin: 0 auto 0.5em;
 
-    form {
-        padding-top: 50px;
+}
 
-        input[type=email],
-        input[type=password] {
-            color: #fff;
-            font-size: 1em;
-            background: none;
-            border: none;
-            border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
-            display: block;
-            text-align: left;
-            margin: 0 auto 0.5em;
-        }
-
-        input[type=email],
-        input[type=password]:focus {
-            outline: none;
-        }
-
-        input[type=password] {
-            margin-top: 2em;
-
-            &.invalid {
-                border-bottom-color: rgb(255, 78, 78);
-            }
-        }
-
-        .errorMessage {
-            color: rgb(255, 78, 78);
-            font-size: 1em;
-        }
-
-        a {
-            font-size: 0.9em;
-            color: white;
-        }
-
-        .buttonWrapper {
-            margin-top: 3.1em;
-            display: flex;
-            justify-content: right;
-            padding: 1em;
-
-            input[type=submit] {
-                padding: 0.5em 0.7em 0.5em 0.7em;
-                font-size: 1em;
-                background-color: transparent;
-                color: #61dafb;
-                border: 2px solid white;
-                border-radius: 0.3em 0.3em 0.3em 0.3em;
-            }
-
-        }
-    }
+.input:focus {
+    outline: none;
 }

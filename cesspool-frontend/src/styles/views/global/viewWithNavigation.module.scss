@@ -26,14 +26,4 @@
             max-width: 95%;
         }
     }
-
-    @media only screen and (max-width: 1765px) and (min-width: 1336px) {
-        align-items: center;
-
-        .verticalWrapper {
-            flex-direction: column;
-            row-gap: 0.5em;
-            width: fit-content;
-        }
-    }
 }

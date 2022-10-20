@@ -15,9 +15,13 @@ interface AccountItemProps {
 }
 
 const AccountItem: React.FC<AccountItemProps> = (props) => {
+    const formatEmail = (email: string) => {
+        return email.length > 14 ? email.split("@").at(0) : email
+    }
+    
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
-            <h3>{props.account.email}</h3>
+            <h3>{formatEmail(props.account.email)}</h3>
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
@@ -43,8 +47,6 @@ interface Props {
 }
 
 const MenuOfAccountAdmin: React.FC<Props> = (props) => {
-    const { user } = useContext(AuthContext)
-
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
@@ -66,7 +68,7 @@ const MenuOfAccountAdmin: React.FC<Props> = (props) => {
             </div>
 
             <ul>                
-                {props.users !== null && props.users.map((account, index) => account.email !== user.email &&
+                {props.users !== null && props.users.map((account, index) =>
                     <AccountItem 
                         isActive={props.activate === index}
                         index={index} 

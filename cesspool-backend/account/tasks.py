@@ -42,19 +42,26 @@ def scan_user_actions(save = True):
                     raise error
 
 @shared_task
-def send_welcome_email(user_pk) -> bool:
-    user = models.UserAccount.objects.get(email = "henrich.micko@spsjm.eu")
-    html_content = render_to_string("account/welcome_email.html", context = {"user": user})
+def send_welcome_email(user_pk, token_pk):
+    user = models.UserAccount.objects.get(pk = user_pk)
+    token = models.ActivateUserToken.objects.get(pk = token_pk)
 
-
-    # if settings.DEBUG:
-    #     send_to = settings.EMAIL_HOST_USER
-    # else:
-    #     send_to = user.email
-
+    html_content = render_to_string("account/welcome_email.html", context = {"user": user, "token": token.token})
     send_to = user.email
 
-    msg = EmailMessage("Bol Vám pridelený učet", html_content, settings.EMAIL_HOST_USER, [send_to])
+    msg = EmailMessage("Bol Vám vytvorený učet na žumpomer.sk", html_content, settings.EMAIL_HOST_USER, [send_to])
+    msg.content_subtype = "html"
+    
+    msg.send()
+
+@shared_task
+def send_reset_password_token_email(token_pk):
+    token = models.ResetPasswordToken.objects.get(pk = token_pk)
+    html_content = render_to_string("account/reset_password_email.html", context = {"token": token.token})
+
+    send_to = token.user.email
+    
+    msg = EmailMessage("Restovanie hesla zumpomer.sk", html_content, settings.EMAIL_HOST_USER, [send_to])
     msg.content_subtype = "html"
     
     msg.send()

@@ -1,33 +1,37 @@
 import React, { useEffect, useState } from "react"
-import { MachineAdminType, UserType } from "@types"
+import { MachineAdminType, MachineForAdminMenu, UserType } from "@types"
 import styles from "@styles/components/machine/menuOfMachineAdmin.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter, faFilterCircleXmark, faPlusCircle, faRefresh, faTrash, faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
 import useAxios from "@hooks/useAxios"
 import SelectInput from "@components/form/SeletectInput"
+import TheLoading from "@components/TheLoading"
 
 
-interface MenuOfMachineLiProps {
+interface AdminMachineItemProps {
     index: number
-    machine: MachineAdminType
-    onClick(id: number): void
+    code: string
+    title: string|null
     isActive: boolean
     viewTitle: boolean
+    delete: boolean
+    user: string|null
+    onClick(index: number): void
 }
 
-const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
+const AdminMachineItem: React.FC<AdminMachineItemProps> = (props) => {
     return (
         <li key={props.index} onClick={() => props.onClick(props.index)} className={props.isActive ? styles.activate : undefined}>
-            <h3>{props.machine.code}{(props.viewTitle && props.machine.title !== null) && " / " + props.machine.title}</h3>
+            <h3>{props.code}{(props.viewTitle && props.title !== null) && " / " + props.title}</h3>
             
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
                     className={styles.icon}
-                    icon={props.machine.user === null ? faUserAltSlash : faUserAlt}
+                    icon={props.user !== null ? faUserAltSlash : faUserAlt}
                 />
                 <FontAwesomeIcon 
-                    className={classNames(styles.icon, props.machine.delete_records_date !== null || props.machine.delete_date !== null ? styles.red : undefined)}
+                    className={classNames(styles.icon, props.delete && styles.red)}
                     icon={faTrash}
                 />
             </div>
@@ -37,11 +41,11 @@ const MenuOfMachineLi: React.FC<MenuOfMachineLiProps> = (props) => {
 
 
 interface Props {
-    machines: MachineAdminType[]|null
-    onClick(id: number): void
+    machines: MachineForAdminMenu[]|null
+    onMachineClick(index: number): void
     activate?: number
-    onRefresh(): void
-    onAdd(): void
+    onRefreshClick(): void
+    onAddClick(): void
 }
 
 const MenuOfMachineAdmin: React.FC<Props> = (props) => {
@@ -73,7 +77,7 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
                 <div>
                     <FontAwesomeIcon
                         icon={faPlusCircle}
-                        onClick={props.onAdd}
+                        onClick={props.onAddClick}
                         className={styles.icon}
                     />
 
@@ -85,7 +89,7 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
 
                     <FontAwesomeIcon
                         icon={faRefresh}
-                        onClick={props.onRefresh}
+                        onClick={props.onRefreshClick}
                         className={styles.icon}
                     />
                 </div>
@@ -107,15 +111,22 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
             <ul>
                 {props.machines !== null && props.machines.map((machine, index) =>
                     (filter === null || filter === machine.user || (filter === "" && machine.user === null)) && 
-                    <MenuOfMachineLi 
+                    <AdminMachineItem 
                         isActive={props.activate === index}
                         index={index} 
-                        machine={machine} 
-                        onClick={props.onClick}
+                        onClick={props.onMachineClick}
+                        title={machine.title}
+                        user={machine.user}
+                        code={machine.code}
                         viewTitle={filter !== null}
+                        delete={machine.delete}
                     />
                 )}
             </ul>
+
+            {
+                props.machines === null && <TheLoading />
+            }
         </div>
     )
 }

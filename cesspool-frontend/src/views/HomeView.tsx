@@ -19,9 +19,11 @@ const Home: React.FC = () => {
     return (
         <IsNotAuthenticatedView>
             <div className={styles.view}>
-                <div className={styles.machineWrapper}>
-                    <AboutBoard signInClick={handleSignInClick} />
-                    <div ref={loginFormRef}>
+                <div className={styles.wrapper}>
+                    <div ref={loginFormRef} className={styles.loginWrapper}>
+                        <AboutBoard signInClick={handleSignInClick} />
+                    </div>
+                    <div ref={loginFormRef} className={styles.loginWrapper}>
                         <LoginForm />
                     </div>
                 </div>

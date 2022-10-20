@@ -56,13 +56,13 @@ const MachineCreate: React.FC<Props> = (props) => {
 
                 <SelectInput 
                     onSubmit={setUser}
-                    label="User"
+                    label="Vlastník"
                     options={[["", "Nepridelený"], ...users.map(user => [user.email, user.email])]}
                     selected={user}
                 />
 
                 <SwitchInput
-                    label="Mqtt"
+                    label="Ukladanie&nbsp;záznamov"
                     value={mqtt}
                     onSubmit={setMqtt}
                 />
