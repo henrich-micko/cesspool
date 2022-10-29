@@ -3,18 +3,10 @@ import React from "react"
 import styles from "@styles/components/home/aboutBoard.module.scss"
 import { ChartsFunctionBox, EmailFunctionBox, TimerFunctionBox } from "./FuntionBox"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faColonSign, faComment, faLink, faSign, faSignIn, faUser } from "@fortawesome/free-solid-svg-icons"
+import { faComment, faLink, faUser } from "@fortawesome/free-solid-svg-icons"
 import ChartLine from "@assets/chartline.svg"
-import useIsMobile, { useMaxWidth } from "@hooks/useIsMobile"
 
-interface Props {
-    signInClick(): void
-}
-
-const AboutBoard: React.FC<Props> = (props) => {
-    const viewChart = !useMaxWidth("1230px")
-    const isMobile = useIsMobile()
-
+const AboutBoard: React.FC = () => {
     return (
         <div className={styles.aboutBoard}>
             <h1>Žumpomer</h1>
@@ -46,21 +38,7 @@ const AboutBoard: React.FC<Props> = (props) => {
                 </ul>
             </div>
 
-            {viewChart && <img className={styles.chartSvg} src={ChartLine} alt="" />}
-
-            {isMobile && 
-                <div className={styles.footer}>
-                    <div onClick={props.signInClick}>
-                        <FontAwesomeIcon
-                            className={styles.icon}
-                            icon={faUser}
-                            size={"2x"}
-                        />
-                        <span>Prihlasiť sa ?</span>
-                    </div>
-                </div>
-            }
-
+            <img className={styles.chartSvg} src={ChartLine} alt="" />
         </div>
     )
 }

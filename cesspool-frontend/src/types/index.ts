@@ -41,7 +41,6 @@ export interface UserType {
     delete_machines_date: string|null
 }
 
-
 export interface MachineAdminType {
     id: number;
     code: string;

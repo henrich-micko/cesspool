@@ -10,7 +10,7 @@ import AccountBoardAdmin from "@components/account/AccountBoardAdmin"
 import PopUp from "@components/PopUp"
 import AccountCreateAdmin from "@components/account/AccountCreateAdmin"
 import AccountDeleteBoard from "@components/account/AccountDeleteBoard"
-
+import TheLoading from "@components/TheLoading"
 
 
 const AdminViewAccount: React.FC = () => {
@@ -57,9 +57,9 @@ const AdminViewAccount: React.FC = () => {
 				<MenuOfAccountAdmin 
 					activate={userId}
 					users={users}
-					onClick={setUserId}
-					onRefresh={refreshData}
-					onAdd={() => setViewCreate(true)}
+					onMachineClick={setUserId}
+					onRefreshClick={refreshData}
+					onAddClick={() => setViewCreate(true)}
 				/>
 			</TheNaviagtion>
 
@@ -71,7 +71,6 @@ const AdminViewAccount: React.FC = () => {
 							<AccountBoardAdmin user={user} setUser={newUser => setUser(userId, newUser)} />
 						</div>
 						<AccountDeleteBoard user={user} setUser={newUser => setUser(userId, newUser)}/>
-
 					</>
 				}
 
@@ -80,6 +79,10 @@ const AdminViewAccount: React.FC = () => {
 					<PopUp label="Nový učet" onClickClose={() => setViewCreate(false)}>
 						<AccountCreateAdmin onCreate={onCreate} />
 					</PopUp>
+				}
+
+				{
+					users === null && <TheLoading />
 				}
 			</div>
         </IsAdminView>

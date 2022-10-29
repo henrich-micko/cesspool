@@ -45,7 +45,6 @@ const AccountActivateView: React.FC = () => {
         <>
             {
                 !redirect ?
-                <IsNotAuthenticatedView>
                     <div className={styles.view} >
                         <ThemedBox label="Aktivovať učet" className={styles.box}>
                             <TheForm onClick={handleSubmit} error={error}>
@@ -72,9 +71,7 @@ const AccountActivateView: React.FC = () => {
                                 </>
                             </TheForm>
                         </ThemedBox>
-                    </div>
-                </IsNotAuthenticatedView> :
-                
+                    </div> :
                 <Navigate to="/" />
             }
         </>

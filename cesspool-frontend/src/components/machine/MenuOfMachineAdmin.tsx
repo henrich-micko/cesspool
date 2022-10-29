@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { MachineAdminType, MachineForAdminMenu, UserType } from "@types"
+import { MachineForAdminMenu, UserType } from "@types"
 import styles from "@styles/components/machine/menuOfMachineAdmin.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilter, faFilterCircleXmark, faPlusCircle, faRefresh, faTrash, faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons"
@@ -72,7 +72,7 @@ const MenuOfMachineAdmin: React.FC<Props> = (props) => {
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
-                <h2>Zariadenia admin</h2>
+                <h2>Zariadenia</h2>
 
                 <div>
                     <FontAwesomeIcon

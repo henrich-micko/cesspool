@@ -1,4 +1,3 @@
-import { IsNotAuthenticatedView } from "@permissions/Authenticated"
 import React, { useEffect, useState, ChangeEvent } from "react"
 import ThemedBox from "@components/ThemedBox"
 import TheForm from "@components/form/TheForm"
@@ -45,7 +44,6 @@ const AccountChangePassword: React.FC = () => {
         <>
             {
                 !redirect ?
-                <IsNotAuthenticatedView>
                     <div className={styles.view} >
                         <ThemedBox label="Zmeniť heslo" className={styles.box}>
                             <TheForm onClick={handleSubmit} error={error}>
@@ -73,7 +71,7 @@ const AccountChangePassword: React.FC = () => {
                             </TheForm>
                         </ThemedBox>
                     </div>
-                </IsNotAuthenticatedView> : <Navigate to="/" />
+                : <Navigate to="/" />
             }
         </>
     )

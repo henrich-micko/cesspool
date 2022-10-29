@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+FRONTEND_HOST = "http://192.168.1.151:3000/"
 
 # Application definition
 
@@ -189,5 +189,3 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = "zumpomersk@gmail.com"
 EMAIL_HOST_PASSWORD = "jggdggmedpihfxpu"
 EMAIL_USE_TLS = True
-
-FRONTEND_URL = "http://localhost:3000"

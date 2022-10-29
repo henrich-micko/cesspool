@@ -48,10 +48,6 @@ const AccountInfo: React.FC<Props> = (props) => {
                 </Item>
             }
 
-            <Item label="Počet zariadení">
-                <span>10</span>
-            </Item>
-
             <Item label="Je aktivovaný">
                 <span>{props.account.is_active ? "Ano" : "Nie"}</span>
             </Item>

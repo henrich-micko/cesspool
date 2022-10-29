@@ -1,5 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react"
-import { Link } from "react-router-dom";
+import React, { useState, ChangeEvent, useContext } from "react"
 
 // Styles
 import styles from "@styles/components/account/accountLogin.module.scss"
@@ -35,6 +34,7 @@ const LoginForm: React.FC = () => {
     }
 
     const handleSubmit = () => {    
+        console.log("nice nigga")
         loginUser(email, password, handleError)
     }
 
@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
             }}
         >
 
-            <TheForm onClick={handleSubmit} error={errorMessage}>
+            <TheForm onClick={(handleSubmit)} error={errorMessage}>
                 <>
                     <input
                         className={styles.input}

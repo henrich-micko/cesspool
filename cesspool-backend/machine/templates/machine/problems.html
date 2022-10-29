@@ -4,7 +4,7 @@
     <body>
         <div>
             <p style="font-size: 1.1em;">
-                Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a href="#">stránke</a>
+                Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a href="{{ url }}">stránke</a>.
             </p>
             
             {% for machine, problems in machines.items %}
@@ -26,12 +26,6 @@
                     {% endif %}    
                 </div>
             {% endfor %}
-
-            <p style="font-size: 1.1em;">
-                Ak nerozumiete týmto hláseniam, 
-                alebo potrebujete pomoc na ich vyriešenie kontaktuje nás
-                <a href="mailto:heno.micko@gmail.com">heno.micko@gmail.com</a>
-            </p>
         </div>
     </body>
 </html>

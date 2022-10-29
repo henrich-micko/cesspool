@@ -46,7 +46,7 @@ def send_welcome_email(user_pk, token_pk):
     user = models.UserAccount.objects.get(pk = user_pk)
     token = models.ActivateUserToken.objects.get(pk = token_pk)
 
-    html_content = render_to_string("account/welcome_email.html", context = {"user": user, "token": token.token})
+    html_content = render_to_string("account/welcome_email.html", context = {"user": user, "url": settings.FRONTEND_HOST + "account/activate/" + token.token})
     send_to = user.email
 
     msg = EmailMessage("Bol Vám vytvorený učet na žumpomer.sk", html_content, settings.EMAIL_HOST_USER, [send_to])
@@ -57,7 +57,7 @@ def send_welcome_email(user_pk, token_pk):
 @shared_task
 def send_reset_password_token_email(token_pk):
     token = models.ResetPasswordToken.objects.get(pk = token_pk)
-    html_content = render_to_string("account/reset_password_email.html", context = {"token": token.token})
+    html_content = render_to_string("account/reset_password_email.html", context = {"url": settings.FRONTEND_HOST + "account/reset-password/" + token.token})
 
     send_to = token.user.email
     

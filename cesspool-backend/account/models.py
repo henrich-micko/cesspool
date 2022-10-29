@@ -9,7 +9,6 @@ from .managers import UserAccountManager
 import random, string
 
 def generate_code(lenght: int = 10, check = None):
-    
     while True:
         output = ""
 

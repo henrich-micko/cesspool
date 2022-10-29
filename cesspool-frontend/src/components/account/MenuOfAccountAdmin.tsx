@@ -1,10 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import { UserType } from "@types"
 import styles from "@styles/components/account/menuOfAccountAdmin.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlusCircle, faRefresh, faUserAstronaut, faUserAlt, faTrash } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
-import AuthContext from "@context/AuthContext"
+import TheLoading from "@components/TheLoading"
 
 
 interface AccountItemProps {
@@ -40,28 +40,28 @@ const AccountItem: React.FC<AccountItemProps> = (props) => {
 
 interface Props {
     users: UserType[]|null
-    onClick(id: number): void
+    onMachineClick(id: number): void
     activate?: number
-    onRefresh(): void
-    onAdd(): void
+    onRefreshClick(): void
+    onAddClick(): void
 }
 
 const MenuOfAccountAdmin: React.FC<Props> = (props) => {
     return (
         <div className={styles.menuOfAdminMachine}>
             <div className={styles.header}>
-                <h2>Všetci kontá</h2>
+                <h2>Použivatelia</h2>
 
                 <div>
                     <FontAwesomeIcon
                         icon={faPlusCircle}
-                        onClick={props.onAdd}
+                        onClick={props.onAddClick}
                         className={styles.icon}
                     />
 
                     <FontAwesomeIcon
                         icon={faRefresh}
-                        onClick={props.onRefresh}
+                        onClick={props.onRefreshClick}
                         className={styles.icon}
                     />
                 </div>
@@ -73,10 +73,16 @@ const MenuOfAccountAdmin: React.FC<Props> = (props) => {
                         isActive={props.activate === index}
                         index={index} 
                         account={account} 
-                        onClick={props.onClick} 
+                        onClick={props.onMachineClick} 
                     />
                 )}
             </ul>
+
+            {
+                props.users === null &&
+                <TheLoading />
+            }
+
         </div>
     )
 }
