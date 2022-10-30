@@ -32,13 +32,13 @@ __pycache__
 
 /cesspool-backend/db.sqlite3
 
-# Python # 
-*.py[cod] 
-*$py.class 
+# Python #
+*.py[cod]
+*$py.class
 
-# installer logs 
-/cesspool-backend/pip-log.txt 
-/cesspool-backend/pip-delete-this-directory.txt 
+# installer logs
+/cesspool-backend/pip-log.txt
+/cesspool-backend/pip-delete-this-directory.txt
 
 # env
 /cesspool-backend/env
