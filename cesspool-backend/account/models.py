@@ -8,7 +8,7 @@ from .managers import UserAccountManager
 
 import random, string
 
-def generate_code(lenght: int = 10, check = None):
+def generate_code(lenght: int = 8, check = None):
     while True:
         output = ""
 
@@ -17,7 +17,7 @@ def generate_code(lenght: int = 10, check = None):
             if random.randint(0, 1):
                 new_char = new_char.upper()
             output += new_char
-    
+
         if check == None or check(token = output):
             break
 
@@ -91,6 +91,3 @@ def get_activate_user_token_date():
 
 class ActivateUserToken(TokenForUser):
     expired_date = models.DateTimeField(default = get_activate_user_token_date)
-
-def get():
-    return

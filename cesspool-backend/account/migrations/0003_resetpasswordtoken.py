@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name='ResetPasswordToken',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(default=account.models.get, max_length=8)),
+                ('code', models.CharField(default=account.models.generate_code, max_length=8)),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

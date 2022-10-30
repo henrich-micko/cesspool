@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from datetime import timedelta
 from pathlib import Path
+from os import environ
 
 from celery.schedules import crontab
 
@@ -26,9 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+print( environ.get("DJANGO_DEBUG") )
+DEBUG = environ.get("DJANGO_DEBUG") == "1"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [environ.get("DJANGO_ALLOWED_HOSTS")]
 FRONTEND_HOST = "http://192.168.1.151:3000/"
 
 # Application definition
@@ -43,7 +45,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
-    
+
     'corsheaders',
     'django_celery_beat',
 
@@ -53,9 +55,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    
+
     'corsheaders.middleware.CorsMiddleware',
-    
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,11 +92,14 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': environ.get('PSQL_NAME'),
+        'USER': environ.get('PSQL_USER'),
+        'PASSWORD': environ.get('PSQL_PASSWORD'),
+        'HOST': environ.get('PSQL_HOST'),
+        'PORT': environ.get('PSQL_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -156,7 +161,7 @@ TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
-# settings for mqtt 
+# settings for mqtt
 
 MQTT_RUN = False
 MQTT_HOST = "backend.zumpomer.sk"

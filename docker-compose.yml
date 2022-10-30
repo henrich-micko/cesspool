@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  django:
+    container_name: cesspool-backend
+    build:
+      context: ./cesspool-backend
+    env_file:
+      - ./cesspool-backend/.env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./cesspool-backend:/cesspool-backend
+    depends_on:
+      - psql
+  psql:
+    container_name: db
+    image: "postgres:14.1-alpine"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
