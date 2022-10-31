@@ -59,7 +59,7 @@ def scan_machine_problems_and_send_email():
         if not problems:
             continue
 
-        html_content = render_to_string("machine/problems.html", context = {"machines": problems, "url": settings.FRONTEND_URL})
+        html_content = render_to_string("machine/problems.html", context = {"machines": problems, "url": settings.REACT_HOST})
 
         # if settings.DEBUG:
         #     send_to = settings.EMAIL_HOST_USER

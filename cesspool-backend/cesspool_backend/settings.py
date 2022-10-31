@@ -14,8 +14,6 @@ from datetime import timedelta
 from pathlib import Path
 from os import environ
 
-from celery.schedules import crontab
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,7 +27,8 @@ SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DJANGO_DEBUG") == "1"
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-FRONTEND_URL = FRONTEND_HOST = "http://192.168.1.151:3000/"
+
+REACT_HOST = environ.get('REACT_HOST')
 
 # Application definition
 
@@ -91,11 +90,11 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('DB_NAME'),
-        'USER': environ.get('DB_USER'),
-        'PASSWORD': environ.get('DB_PASS'),
-        'HOST': environ.get('DB_HOST'),
-        "PORT": environ.get("DB_PORT")
+        'NAME': environ.get('POSTGRES_NAME'),
+        'USER': environ.get('POSTGRES_USER'),
+        'PASSWORD': environ.get('POSTGRES_PASSWORD'),
+        'HOST': environ.get('_POSTGRES_HOST'),
+        "PORT": environ.get("_POSTGRES__PORT")
     }
 }
 
