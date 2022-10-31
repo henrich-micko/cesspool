@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DJANGO_DEBUG") == "1"
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-FRONTEND_HOST = "http://192.168.1.151:3000/"
+FRONTEND_URL = FRONTEND_HOST = "http://192.168.1.151:3000/"
 
 # Application definition
 
@@ -172,8 +172,8 @@ MQTT_TOPIC = "#"
 CELERY_TIMEZONE = TIME_ZONE
 DJANGO_CELERY_BEAT_TZ_AWARE = False
 
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
 CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CELERY_BEAT_SCHEDULE = {
@@ -189,6 +189,6 @@ CELERY_BEAT_SCHEDULE = {
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "zumpomersk@gmail.com"
-EMAIL_HOST_PASSWORD = "jggdggmedpihfxpu"
+EMAIL_HOST_USER = "zumpomer.app@gmail.com"
+EMAIL_HOST_PASSWORD = "wiedzpyzdjfwzxtz"
 EMAIL_USE_TLS = True

@@ -28,30 +28,18 @@ class Machine(models.Model):
     @property
     def level(self) -> int|None:
         records = self.record_set.last_n(5)
-
-        if len(records) > 1:
-            return records.get_level_average()
-
-        if len(records) == 1:
-            return records.last().level
-
-        last_record = self.get_record()
-        if last_record == None: return None
-        return last_record.level
+        if not records:
+            return None
+        
+        return records.get_level_average()
 
     @property
     def level_percent(self) -> int|None:
         records = self.record_set.last_n(5)
-
-        if len(records) > 1:
-            return records.get_level_percent_average()
-
-        if len(records) == 1:
-            return records.last().level_percent
-
-        last_record = self.get_record()
-        if last_record == None: return None
-        return last_record.level_percent
+        if not records:
+            return None
+        
+        return records.get_level_percent_average()
 
     @property
     def battery(self) -> int|None:

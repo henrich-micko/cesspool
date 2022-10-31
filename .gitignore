@@ -48,3 +48,6 @@ __pycache__
 
 # Editor files
 .vscode
+
+# celery
+/cesspool-backend/celerybeat-schedule
