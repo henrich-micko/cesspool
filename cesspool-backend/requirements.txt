@@ -4,3 +4,5 @@ django-cors-headers
 paho-mqtt
 celery
 redis
+django_celery_beat
+psycopg2-binary

@@ -2,21 +2,31 @@ version: "3.8"
 
 services:
   django:
-    container_name: cesspool-backend
     build:
       context: ./cesspool-backend
-    env_file:
-      - ./cesspool-backend/.denv
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - ./cesspool-backend:/cesspool-backend
+    command: >
+      sh -c "python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DJANGO_DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=0.0.0.0 *
+      - DB_HOST=db
+      - DB_NAME=app
+      - DB_USER=postgres
+      - DB_PASS=peeGiey3
+      - DB_PORT=5432
     depends_on:
-      - psql
-  psql:
-    container_name: db
+      - db
+
+  db:
     image: "postgres:14.1-alpine"
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=peeGiey3
+    ports:
+      - "5432:5432"

@@ -28,8 +28,7 @@ SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get("DJANGO_DEBUG") == "1"
-
-ALLOWED_HOSTS = [environ.get("DJANGO_ALLOWED_HOSTS")]
+ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 FRONTEND_HOST = "http://192.168.1.151:3000/"
 
 # Application definition
@@ -92,11 +91,11 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('PSQL_NAME'),
-        'USER': environ.get('PSQL_USER'),
-        'PASSWORD': environ.get('PSQL_PASSWORD'),
-        'HOST': environ.get('PSQL_HOST'),
-        'PORT': environ.get('PSQL_PORT'),
+        'NAME': environ.get('DB_NAME'),
+        'USER': environ.get('DB_USER'),
+        'PASSWORD': environ.get('DB_PASS'),
+        'HOST': environ.get('DB_HOST'),
+        "PORT": environ.get("DB_PORT")
     }
 }
 
