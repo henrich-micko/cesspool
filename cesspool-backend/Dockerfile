@@ -2,14 +2,23 @@ FROM python:3.10-alpine
 
 ENV PYTHONUNBUFFERED 1
 
-RUN apk add --update --no-cache postgresql-client
-RUN apk add --update --no-cache --virtual .tmp-build-deps \ 
-    gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
-RUN pip install --upgrade pip
-RUN apk del .tmp-build-deps
+COPY . /cesspool-backend
 
-RUN mkdir /cesspool-backend
-COPY . cesspool-backend
 WORKDIR /cesspool-backend
+EXPOSE 8000
 
-RUN pip install -r /cesspool-backend/requirements.txt
+RUN python -m venv /py && \
+    /py/bin/pip install --upgrade pip && \
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-deps \
+        build-base postgresql-dev musl-dev linux-headers && \
+    /py/bin/pip install -r /cesspool-backend/requirements.txt && \
+    apk del .tmp-deps && \
+    adduser --disabled-password --no-create-home kettu && \
+    mkdir -p /vol/web/static && \
+    chown -R kettu:kettu /vol && \
+    chmod -R 755 /vol
+
+ENV PATH="/scripts:/py/bin:$PATH"
+
+USER kettu

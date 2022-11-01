@@ -22,12 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4vd%2q9a=p)&$#wv(94t299q!61b9iiwqg%yln%up65a1j6ahu'
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = environ.get("DJANGO_DEBUG") == "1"
-ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
-
+DEBUG = bool(int(environ.get("DJANGO_DEBUG"), 0))
+ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "").split(' ')
 REACT_HOST = environ.get('REACT_HOST')
 
 # Application definition
@@ -132,7 +131,8 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/static/'
+STATIC_ROOT = "/vol/web/static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -160,7 +160,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 # settings for mqtt
 
-MQTT_RUN = False
+MQTT_RUN = DEBUG
 MQTT_HOST = "backend.zumpomer.sk"
 MQTT_PORT = 18579
 MQTT_USERNAME = "micko"
