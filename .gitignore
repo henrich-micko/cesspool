@@ -51,4 +51,5 @@ __pycache__
 
 # celery
 /cesspool-backend/celerybeat-schedule
-/.env
+
+.env
