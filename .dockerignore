@@ -40,11 +40,5 @@ __pycache__
 /cesspool-backend/pip-log.txt
 /cesspool-backend/pip-delete-this-directory.txt
 
-# env
-/cesspool-backend/env
-/cesspool-backend/.env
-/cesspool-backend/venv
-/cesspool-backend/.venv
-
 # Editor files
 .vscode
