@@ -24,3 +24,5 @@ urlpatterns = [
     path("api/admin/machine/", include("machine.admin_api.urls")),
     path("api/admin/account/", include("account.admin_api.urls")),
 ]
+
+print("xxxxxx")

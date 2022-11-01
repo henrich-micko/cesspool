@@ -23,11 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ.get("DJANGO_SECRET_KEY")
+if SECRET_KEY == None:
+    raise ValueError("DJANGO_SECRET_KEY is None.")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(int(environ.get("DJANGO_DEBUG"), 0))
+DEBUG = bool(int(environ.get("DJANGO_DEBUG", "1"), 0))
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "").split(' ')
-REACT_HOST = environ.get('REACT_HOST')
+REACT_HOST = environ.get('REACT_HOST', "http://localhost:8000")
 
 # Application definition
 
@@ -154,18 +156,29 @@ REST_FRAMEWORK = {
 # Change for public !!!
 CORS_ALLOW_ALL_ORIGINS = True
 
-TEST_RUNNER = "redgreenunittest.django.runner.RedGreenDiscoverRunner"
-
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 # settings for mqtt
-
-MQTT_RUN = DEBUG
-MQTT_HOST = "backend.zumpomer.sk"
-MQTT_PORT = 18579
-MQTT_USERNAME = "micko"
-MQTT_PASSWORD = "HenrichMicko"
+MQTT_RUN = not DEBUG
+MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
+MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
+MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
 MQTT_TOPIC = "#"
+
+if environ.get("DJANGO_MQTT_PORT", False):
+    MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT"))
+else: 
+    MQTT_PORT = None
+    
+if MQTT_RUN and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
+    raise ValueError(f"""
+        MQTT_RUN is True but some env var are missing
+        
+        DJANGO_MQTT_HOST={MQTT_HOST}
+        DJANGO_MQTT_PORT={MQTT_PORT}
+        DJANGO_MQTT_USERNAME={MQTT_USERNAME}
+        DJANGO_MQTT_PASS={MQTT_PASSWORD}
+    """)
 
 # settings for celery
 CELERY_TIMEZONE = TIME_ZONE
@@ -183,11 +196,25 @@ CELERY_BEAT_SCHEDULE = {
     "scan_machine_problems_and_send_email": {
         "task": "machine.tasks.scan_machine_problems_and_send_email",
         "schedule": timedelta(minutes = 1),
+    },
+    "scan_account_actions": {
+        "task": "account.tasks.scan_user_actions",
+        "schedule": timedelta(minutes = 1),
     }
 }
 
+# email settings
+SEND_EMAIL = not DEBUG
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "zumpomer.app@gmail.com"
-EMAIL_HOST_PASSWORD = "wiedzpyzdjfwzxtz"
+EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", None)
+EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", None)
 EMAIL_USE_TLS = True
+
+if SEND_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
+    raise ValueError(f"""
+        SEND_EMAIL is True but some env var are missing
+
+        DJANGO_EMAIL_HOST_USER={EMAIL_HOST_USER}
+        DJANGO_EMAIL_HOST_PASS={EMAIL_HOST_PASSWORD}
+    """)

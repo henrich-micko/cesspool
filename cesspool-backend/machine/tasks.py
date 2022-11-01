@@ -59,22 +59,21 @@ def scan_machine_problems_and_send_email():
         if not problems:
             continue
 
-        html_content = render_to_string("machine/problems.html", context = {"machines": problems, "url": settings.REACT_HOST})
+        if settings.SEND_EMAIL:
+            html_content = render_to_string("machine/problems.html", context = {"machines": problems, "url": settings.REACT_HOST})
 
-        # if settings.DEBUG:
-        #     send_to = settings.EMAIL_HOST_USER
-        # else:
-        #     send_to = user.email
+            send_to = user.email
 
-        send_to = user.email
-
-        msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
-        msg.content_subtype = "html"
-        
-        try:
-            msg.send()
-        except:
-            return
+            msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
+            msg.content_subtype = "html"
+            
+            try:
+                msg.send()
+            except:
+                return
+            
+        else:
+            logger.info(f"Problems for user {user} {problems}")    
 
         for machine in problems.keys():
             for problem in problems[machine]:

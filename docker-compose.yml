@@ -14,7 +14,7 @@ services:
       sh -c "python3 manage.py migrate &&
              python3 manage.py collectstatic --no-input &&
              python3 manage.py wait_for_db &&
-             uwsgi --socket :9000 --workers 4 --master --enable-threads --module cesspool_backend.wsgi"
+             python3 manage.py runserver 0.0.0.0:8000"
     enviroment:
       - DJANGO_DEBUG=1
       - DJANGO_ALLOWED_HOSTS=0.0.0.0
