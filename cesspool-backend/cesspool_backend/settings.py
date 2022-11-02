@@ -24,12 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = environ.get("DJANGO_SECRET_KEY")
 if SECRET_KEY == None:
-    raise ValueError("DJANGO_SECRET_KEY is None.")
+    raise ValueError("DJANGO_SECRET_KEY is not set in env vars")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(environ.get("DJANGO_DEBUG", "1"), 0))
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "").split(' ')
-REACT_HOST = environ.get('REACT_HOST', "http://localhost:8000")
 
 # Application definition
 
@@ -159,7 +158,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 # settings for mqtt
-MQTT_RUN = not DEBUG
+USE_MQTT = not DEBUG
 MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
 MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
 MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
@@ -170,9 +169,9 @@ if environ.get("DJANGO_MQTT_PORT", False):
 else: 
     MQTT_PORT = None
     
-if MQTT_RUN and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
+if USE_MQTT and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
     raise ValueError(f"""
-        MQTT_RUN is True but some env var are missing
+        USE_MQTT is True but some env var are missing
         
         DJANGO_MQTT_HOST={MQTT_HOST}
         DJANGO_MQTT_PORT={MQTT_PORT}
@@ -204,16 +203,16 @@ CELERY_BEAT_SCHEDULE = {
 }
 
 # email settings
-SEND_EMAIL = not DEBUG
+USE_EMAIL = not DEBUG
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
 EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", None)
 EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", None)
 EMAIL_USE_TLS = True
 
-if SEND_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
+if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
     raise ValueError(f"""
-        SEND_EMAIL is True but some env var are missing
+        USE_EMAIL is True but some env var are missing
 
         DJANGO_EMAIL_HOST_USER={EMAIL_HOST_USER}
         DJANGO_EMAIL_HOST_PASS={EMAIL_HOST_PASSWORD}

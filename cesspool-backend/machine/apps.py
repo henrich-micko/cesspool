@@ -8,22 +8,23 @@ class MachineConfig(AppConfig):
     name = 'machine'
 
     def ready(self):
+        if not settings.USE_MQTT:
+            return
+        
         is_mqtt_running = bool(int(os.environ.get("IS_MQTT_RUNNING", "0"), 0))
 
-        if not is_mqtt_running:            
-            from cesspool_backend import celery
+        if not is_mqtt_running:
             from . import mqtt
 
-            if settings.MQTT_RUN:                
-                client = mqtt.MqttClient(
-                    host = settings.MQTT_HOST,
-                    port = settings.MQTT_PORT,
-                    topic = settings.MQTT_TOPIC,
-                    username = settings.MQTT_USERNAME,
-                    password = settings.MQTT_PASSWORD,
-                )
+            client = mqtt.MqttClient(
+                host = settings.MQTT_HOST,
+                port = settings.MQTT_PORT,
+                topic = settings.MQTT_TOPIC,
+                username = settings.MQTT_USERNAME,
+                password = settings.MQTT_PASSWORD,
+            )
 
-                client.connect()
-                client.loop_start()
+            client.connect()
+            client.loop_start()
             
             os.environ["IS_MQTT_RUNNING"] = "1"
