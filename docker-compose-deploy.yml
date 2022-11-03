@@ -114,6 +114,10 @@ services:
       - redis
       - django
 
+  react:
+    build:
+      context: ./cesspool-frontend
+
 volumes:
   postgres-data:
   static-data:
