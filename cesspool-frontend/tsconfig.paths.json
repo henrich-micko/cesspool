@@ -1,0 +1,15 @@
+{    
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@assets/*": ["assets/*"],
+            "@components/*": ["components/*"],
+            "@context/*": ["context/*"],
+            "@hooks/*": ["hooks/*"],
+            "@types": ["types/index.ts"],
+            "@permissions/*": ["permissions/*"],
+            "@views/*": ["views/*"],
+            "@styles/*": ["styles/*"],
+        }    
+    }
+}

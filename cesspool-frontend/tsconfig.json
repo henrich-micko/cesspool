@@ -2,16 +2,6 @@
   "compilerOptions": {
     "baseUrl": "./src/",
     "jsx": "react-jsx",
-    "paths": {
-        "@assets/*": ["assets/*"],
-        "@components/*": ["components/*"],
-        "@context/*": ["context/*"],
-        "@hooks/*": ["hooks/*"],
-        "@types": ["types/index.ts"],
-        "@permissions/*": ["permissions/*"],
-        "@views/*": ["views/*"],
-        "@styles/*": ["styles/*"],
-    },
     "target": "es5",
     "lib": [
       "dom",
@@ -30,10 +20,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
     "useUnknownInCatchVariables": false
   },
   "include": [
     "src"
-  ]
+  ],
+  "extends": "./tsconfig.paths.json"
 }
