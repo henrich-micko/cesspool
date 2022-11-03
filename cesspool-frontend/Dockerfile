@@ -1,9 +1,8 @@
-FROM node:15.13-alpine
-
-COPY . cesspool-frontend
-WORKDIR /cesspool-frontend
-
-RUN yarn install
-RUN yarn run build
-
-CMD ["yarn", "start"]
+FROM node:alpine
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+COPY ./ ./
+RUN rm -rf node_modules
+RUN npm i --legacy-peer-deps
+CMD ["npm", "run", "start"]

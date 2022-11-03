@@ -2,7 +2,7 @@
 # React application
 
 # dependencies
-/cesspool-frontend/node_modules
+/cesspool-frontend/node_modules/
 /cesspool-frontend/.pnp
 /cesspool-frontend/.pnp.js
 

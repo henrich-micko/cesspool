@@ -4,15 +4,15 @@ server {
 
     location /static {
         alias /vol/static;
-    }
+    };
 
     location /api {
         uwsgi_pass ${APP_HOST}:${APP_PORT};
         include /etc/nginx/uwsgi_params;
         client_max_body_size 10M;
-    }
+    };
 
     location / {
-        root /var/www/react
-    }
+        root /var/www/react;
+    };
 }

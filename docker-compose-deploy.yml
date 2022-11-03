@@ -1,6 +1,10 @@
 version: "3.8"
 
 services:
+  react:
+    build:
+      context: ./cesspool-frontend
+
   django:
     build:
       context: ./cesspool-backend
@@ -113,10 +117,6 @@ services:
       - db
       - redis
       - django
-
-  react:
-    build:
-      context: ./cesspool-frontend
 
 volumes:
   postgres-data:
