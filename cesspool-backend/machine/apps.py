@@ -12,7 +12,7 @@ class MachineConfig(AppConfig):
             return
         
         is_mqtt_running = bool(int(os.environ.get("IS_MQTT_RUNNING", "0"), 0))
-
+        print(is_mqtt_running)
         if not is_mqtt_running:
             from . import mqtt
 

@@ -29,6 +29,11 @@ if SECRET_KEY == None:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(environ.get("DJANGO_DEBUG", "1"), 0))
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "").split(' ')
+print(ALLOWED_HOSTS)
+if DEBUG:
+    REACT_HOST = "127.0.0.1"
+else:
+    REACT_HOST = ALLOWED_HOSTS[0]
 
 # Application definition
 
@@ -158,7 +163,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 # settings for mqtt
-USE_MQTT = not DEBUG
+USE_MQTT = not DEBUG and bool(int(environ.get("IS_MAIN", "0"), 0))
 MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
 MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
 MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
