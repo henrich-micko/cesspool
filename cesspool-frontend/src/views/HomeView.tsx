@@ -14,7 +14,6 @@ const Home: React.FC = () => {
     return (
         <IsNotAuthenticatedView>
             <div className={styles.view}>
-                Whats up
                 <div className={styles.wrapper}>
                     <div className={styles.loginWrapper}>
                         {viewAboutBoard && <AboutBoard />}
