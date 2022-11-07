@@ -1,6 +1,4 @@
 import SwitchInput from "@components/form/SwitchInput"
-import TheButton from "@components/form/TheButton"
-import TheError from "@components/form/TheError"
 import TheInput from "@components/form/TheInput"
 import useAxios from "@hooks/useAxios"
 import { UserType } from "@types"

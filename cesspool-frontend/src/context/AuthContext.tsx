@@ -16,7 +16,7 @@ interface defaultValueTypes {
 }
 
 
-const url = "http://vps-12428f3e.vps.ovh.net/api/"
+const url = "/api/"
 
 // Context
 const AuthContext = createContext<defaultValueTypes>({} as defaultValueTypes)

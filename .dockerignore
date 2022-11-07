@@ -9,9 +9,6 @@
 # testing
 /cesspool-frontend/coverage
 
-# production
-/cesspool-frontend/build
-
 # misc
 /cesspool-frontend/.DS_Store
 /cesspool-frontend/.env.local

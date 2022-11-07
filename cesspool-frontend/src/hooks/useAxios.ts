@@ -10,7 +10,7 @@ const useAxios = () => {
     const {authToken, isLogged, logoutUser} = useContext(AuthContext)
 
     const axiosInstance = axios.create({
-        baseURL: "http://vps-12428f3e.vps.ovh.net/api/",
+        baseURL: "/api/",
         headers: {
             "Content-type": "application/json",
         },

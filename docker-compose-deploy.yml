@@ -1,10 +1,6 @@
 version: "3.8"
 
 services:
-  react:
-    build:
-      context: ./cesspool-frontend
-
   django:
     build:
       context: ./cesspool-backend
@@ -21,7 +17,7 @@ services:
              python3 manage.py wait_for_db &&
              uwsgi --socket :9000 --workers 4 --master --enable-threads --module cesspool_backend.wsgi"
     environment:
-      - DJANGO_DEBUG=1
+      - DJANGO_DEBUG=0
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_MQTT_HOST=${DJANGO_MQTT_HOST}
@@ -52,13 +48,14 @@ services:
 
   proxy:
     build:
-      context: ./proxy
+      context: .
+      dockerfile: ./proxy/Dockerfile
     restart: 
       always
     depends_on:
       - django
     ports:
-      - 80:8000
+      - "80:8000"
     volumes:
       - static-data:/vol/static
 
