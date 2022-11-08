@@ -1,16 +1,14 @@
 import axios from "axios";
-
 import { useContext } from "react";
 
-// Context
-import AuthContext from "../context/AuthContext";
-
+import AuthContext from "@context/AuthContext";
+import { apiUrl } from "../settings";
 
 const useAxios = () => {
     const {authToken, isLogged, logoutUser} = useContext(AuthContext)
 
     const axiosInstance = axios.create({
-        baseURL: "/api/",
+        baseURL: apiUrl,
         headers: {
             "Content-type": "application/json",
         },
@@ -29,8 +27,6 @@ const useAxios = () => {
 
     axiosInstance.interceptors.request.use(
         config => {
-            console.log("go")
-
             if (authToken !== null && config.headers !== undefined) {
                 config.headers.Authorization = "Token " + authToken
             }

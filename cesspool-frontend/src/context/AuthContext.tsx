@@ -2,6 +2,7 @@ import React, { FC, createContext, useState, ReactNode, useEffect } from "react"
 import axios from "axios"
 
 import { ContextUserType } from "../types";
+import { apiUrl } from "../settings";
 
 // Types for default values and defalut values for context
 interface defaultValueTypes {
@@ -16,9 +17,8 @@ interface defaultValueTypes {
 }
 
 
-const url = "/api/"
+const url = apiUrl
 
-// Context
 const AuthContext = createContext<defaultValueTypes>({} as defaultValueTypes)
 export default AuthContext
 
