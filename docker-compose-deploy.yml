@@ -17,7 +17,7 @@ services:
              python3 manage.py wait_for_db &&
              uwsgi --socket :9000 --workers 4 --master --enable-threads --module cesspool_backend.wsgi"
     environment:
-      - DJANGO_DEBUG=0
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_MQTT_HOST=${DJANGO_MQTT_HOST}
