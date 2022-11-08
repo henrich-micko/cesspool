@@ -34,6 +34,7 @@ const MachineSettings: React.FC<Props> = (props) => {
         axios.put("machine/" + props.code + "/conf/", {hight_level: hightLevel, title: title !== "" ? title : null})
             .then((res) => { props.setMachine(res.data); setError("") })
             .catch(error => setError("Nepodarilo sa nastaviť"))
+        console.log("n")
 	}
 
 

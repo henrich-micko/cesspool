@@ -9,9 +9,6 @@ const useAxios = () => {
 
     const axiosInstance = axios.create({
         baseURL: apiUrl,
-        headers: {
-            "Content-type": "application/json",
-        },
     });
 
     axiosInstance.interceptors.response.use(
