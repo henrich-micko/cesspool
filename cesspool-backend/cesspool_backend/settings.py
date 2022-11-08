@@ -158,7 +158,10 @@ REST_FRAMEWORK = {
 }
 
 # Change for public !!!
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "localhost",
+    REACT_HOST
+]
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 

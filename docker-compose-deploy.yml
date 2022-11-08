@@ -58,6 +58,7 @@ services:
       - "80:8000"
     volumes:
       - static-data:/vol/static
+      - ./cesspool_frontend:/cesspool_frontend
 
   redis:
     image: redis:alpine

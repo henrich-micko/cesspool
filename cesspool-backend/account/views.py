@@ -44,7 +44,7 @@ class ResetPasswordAPIView(APIView):
             token = models.ResetPasswordToken.objects.create(user = user)
             tasks.send_reset_password_token_email.delay(token_pk = token.pk)
 
-            return Response({"token": token.token}, status = status.HTTP_200_OK)
+            return Response(status = status.HTTP_200_OK)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 # send token and new password

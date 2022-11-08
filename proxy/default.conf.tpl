@@ -14,5 +14,6 @@ server {
 
     location / {
         root /usr/share/nginx/html;
+        try_files $uri /index.html;
     }
 }
