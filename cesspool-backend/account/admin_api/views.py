@@ -51,7 +51,7 @@ class UserAccountCreateAPIView(APIView):
     permission_classes = [IsAdminUser]
 
     def post(self, request):
-        serializer = account_serializer.UserAccountSerializer(data = request.data)
+        serializer = serializer.UserAccountCreateSerializer(data = request.data)
         if serializer.is_valid():
             user = serializer.save()
             user.set_password(models.generate_code(8))
