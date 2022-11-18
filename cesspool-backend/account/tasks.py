@@ -47,10 +47,10 @@ def send_welcome_email(user_pk, token_pk):
     token = models.ActivateUserToken.objects.get(pk = token_pk)
 
     if settings.USE_EMAIL:
-        html_content = render_to_string("account/welcome_email.html", context = {"user": user, "url": settings.REACT_HOST + "account/activate/" + token.token})
+        html_content = render_to_string("account/welcome_email.html", context = {"user": user, "website": settings.REACT_HOST, "website_activate": settings.REACT_HOST + "/account/activate/" + token.token})
         send_to = user.email
 
-        msg = EmailMessage("Bol Vám vytvorený učet na žumpomer.sk", html_content, settings.EMAIL_HOST_USER, [send_to])
+        msg = EmailMessage("Bol Vám vytvorený učet", html_content, settings.EMAIL_HOST_USER, [send_to])
         msg.content_subtype = "html"
         
         msg.send()
@@ -63,10 +63,10 @@ def send_reset_password_token_email(token_pk):
     token = models.ResetPasswordToken.objects.get(pk = token_pk)
 
     if settings.USE_EMAIL:
-        html_content = render_to_string("account/reset_password_email.html", context = {"url": settings.REACT_HOST + "account/reset-password/" + token.token})
+        html_content = render_to_string("account/reset_password_email.html", context = {"website_reset_pass": settings.REACT_HOST + "/account/reset-password/" + token.token})
         send_to = token.user.email
         
-        msg = EmailMessage("Restovanie hesla zumpomer.sk", html_content, settings.EMAIL_HOST_USER, [send_to])
+        msg = EmailMessage("Restovanie hesla", html_content, settings.EMAIL_HOST_USER, [send_to])
         msg.content_subtype = "html"
         msg.send()
     

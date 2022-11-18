@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-
 <html lang="en">
+    <head>
+        <style>
+            content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #1e1f25;
+            }
+
+            .activate {
+                background-color: #1e1f25;
+                color: white;
+                padding: 0.5em 1em;
+                border-radius: 0.5em;
+                text-decoration: none;
+            }
+
+            .website {
+                color: #1e1f25;
+            }
+        </style>
+    </head>
     <body>
-        <h3>Vitaj!</h3>
-        <em>Od teraz sa už o žumpu starať nemusiš...</em>
-        <p>Aktivuje svoje učet <a href="{{ url }}">tu</a>.</p>
-        <p>Ak si nestihol do 2 týždňoch prejdi na našu stranku a zvol zabudol som heslo.</p>
+        <content>
+            <h2>Vitaj u nás!</h2>
+            <p>Aktivuj svoj účet, pokial si to nestihol prejdi na našu <a class="website" href="{{ website }}">stránku</a>,<br> 
+               klikni zabudol som heslo, zadaj svoj email a počkaj na email.</a></p>
+            <a class="activate" href="{{ website_activate }}">Aktivovať učet</a>
+        </content>
     </body>
 </html>

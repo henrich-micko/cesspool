@@ -60,11 +60,11 @@ def scan_machine_problems_and_send_email():
             continue
 
         if settings.USE_EMAIL:
-            html_content = render_to_string("machine/problems.html", context = {"machines": problems, "url": settings.REACT_HOST})
+            html_content = render_to_string("machine/problems.html", context = {"machines": problems, "website": settings.REACT_HOST})
 
             send_to = user.email
 
-            msg = EmailMessage("Problemy so zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
+            msg = EmailMessage("Problémy s Vašími zariadeniami", html_content, settings.EMAIL_HOST_USER, [send_to])
             msg.content_subtype = "html"
             
             try:
