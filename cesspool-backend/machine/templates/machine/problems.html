@@ -2,7 +2,7 @@
 <html>
     <head>
         <style>
-            content {
+            .content {
                 display: flex;
                 justify-content: left;
                 align-items: center;
@@ -19,8 +19,6 @@
             }
 
             .machine {
-                display: flex;
-                flex-direction: column;
                 border: 2px solid #1e1f25;
                 border-radius: 0.5em;
                 padding: 0.5em 1em;
@@ -39,7 +37,7 @@
         </style>
     </head>
     <body>
-        <content>
+        <div class="content">
             <h3>
                 Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a  id=website href="{{ website }}">stránke</a>.
             </h3>
@@ -63,6 +61,6 @@
                     <span>Posledný zaznam: {{ machine.last_update }}</span>
                 </div>
             {% endfor %}
-        </content>
+            </div>
     </body>
 </html>

@@ -14,16 +14,18 @@
                 color: #1e1f25;
             }
 
-            .activate {
-                background-color: #1e1f25;
-                color: white;
-                padding: 0.5em 1em;
-                border-radius: 0.5em;
-                text-decoration: none;
-            }
-
             .website {
                 color: #1e1f25;
+            }
+
+            .button {
+                border: 2px solid #1e1f25;
+                padding: 0.5em 1em;
+                border-radius: 0.5em;
+            }
+
+            .link {
+                text-decoration: none;
             }
         </style>
     </head>
@@ -32,7 +34,7 @@
             <h2>Vitaj u nás!</h2>
             <p>Aktivuj svoj účet, pokial si to nestihol prejdi na našu <a class="website" href="{{ website }}">stránku</a>,<br> 
                klikni zabudol som heslo, zadaj svoj email a počkaj na email.</a></p>
-            <a class="activate" href="{{ website_activate }}">Aktivovať učet</a>
+            <a class="link" href="{{ website_activate }}"><div class="button">Aktivovať učet</div></a>
         </content>
     </body>
 </html>
