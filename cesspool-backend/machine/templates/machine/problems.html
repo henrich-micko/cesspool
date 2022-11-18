@@ -2,13 +2,6 @@
 <html>
     <head>
         <style>
-            .content {
-                display: flex;
-                justify-content: left;
-                align-items: center;
-                flex-direction: column;
-            }
-
             body {
                 font-family: Arial, Helvetica, sans-serif;
                 color: #1e1f25;
@@ -24,6 +17,7 @@
                 padding: 0.5em 1em;
                 min-width: 12.5em;
                 margin-bottom: 2em;
+                width: fit-content;
             }
 
             h2 {
@@ -37,9 +31,9 @@
         </style>
     </head>
     <body>
-        <div class="content">
+        <div>
             <h3>
-                Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a  id=website href="{{ website }}">stránke</a>.
+                Na vašich zariadeniach došlo ku týmto problemom, viac sa dozviete na <a  id=website href="{{ website }}">{{ website }}</a>.
             </h3>
             
             {% for machine, problems in machines.items %}
