@@ -60,7 +60,9 @@ class UserAccountCreateAPIView(APIView):
             token = models.ActivateUserToken.objects.create(user = user)
             tasks.send_welcome_email.delay(user_pk = user.pk, token_pk = token.pk)
     
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
+            user_data = account_serializer.UserAccountSerializer(user).data
+
+            return Response(serializer.user_data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 class UserAbortActionAPIView(APIView):
