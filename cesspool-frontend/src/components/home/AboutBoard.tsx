@@ -18,17 +18,17 @@ const AboutBoard: React.FC = () => {
             </div>
 
             <div className={styles.getBox}>
-                <span>Mali by ste zaujem o naše zariadenie ?</span>
+                <span>Mali by ste záujem o naše zariadenie ?</span>
 
                 <ul>
                     <li>
                         <FontAwesomeIcon icon={faLink} className={styles.icon}/>
-                        <span>Vyplnte formulár na našej stránke</span>
+                        <span>Vyplnte formulár na našej <a href="https://zumpomer.sk">stránke</a></span>
                     </li>
 
                     <li>
                         <FontAwesomeIcon icon={faComment} className={styles.icon}/>
-                        <span>Čo najrychlejsie sa vám ozveme</span>
+                        <span>Kozultácia</span>
                     </li>
 
                     <li>

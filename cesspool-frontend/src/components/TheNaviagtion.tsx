@@ -34,7 +34,7 @@ interface Props {
 const TheNaviagtion: React.FC<Props> = (props) => {
     const { isLogged, user } = useContext(AuthContext)
     
-    const isUnderMiddleSize = useMaxWidth("1335px")
+    const isUnderMiddleSize = useMaxWidth("1700px")
     const [behavior, setBehavior] = useState<"static"|"dynamic-hidden"|"dynamic-viewed">()
 
     useEffect(() => {
@@ -57,31 +57,27 @@ const TheNaviagtion: React.FC<Props> = (props) => {
 
     return (
         <>
-            {
-
-                behavior !== "dynamic-hidden" &&
-                <div className={classNames(styles.navigation)}>
-                    <div className={styles.headder}>
-                        <h1>Cesspool</h1>
-                        <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
-                    </div>
-
-                    {isLogged &&
-                        <nav>
-                            <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
-                            {user.is_staff && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
-                            {user.is_staff && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
-                            <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
-                        </nav>
-                    }
-
-                    {props.children !== undefined &&
-                        <div className={styles.childrenWrapper}>
-                            {props.children}
-                        </div>
-                    }
+            <div className={classNames(styles.navigation, behavior === "dynamic-hidden" && styles.hidden)}>
+                <div className={styles.headder}>
+                    <h1>Cesspool</h1>
+                    <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
                 </div>
-            }
+
+                {isLogged &&
+                    <nav>
+                        <TheNaviagtionLink to="/machine" icon={faHome}>Zariadenia</TheNaviagtionLink>
+                        {user.is_staff && <TheNaviagtionLink to="/admin/machine" icon={faServer}>Zariadenia admin</TheNaviagtionLink>}
+                        {user.is_staff && <TheNaviagtionLink to="/admin/account" icon={faUserAstronaut}>Uživatelia admin</TheNaviagtionLink>}
+                        <TheNaviagtionLink to="/account" icon={faUser}>Môj učet</TheNaviagtionLink>
+                    </nav>
+                }
+
+                {props.children !== undefined &&
+                    <div className={styles.childrenWrapper}>
+                        {props.children}
+                    </div>
+                }
+            </div>
 
             {
                 (behavior === "dynamic-hidden" || behavior === "dynamic-viewed") &&
