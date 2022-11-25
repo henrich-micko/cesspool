@@ -94,7 +94,7 @@ const TheNaviagtion: React.FC<Props> = (props) => {
                 (behavior === "dynamic-hidden" || behavior === "dynamic-viewed") &&
                 <div className={styles.navigationHeadder}>
                     <h1>{currentView()}</h1>
-                    {viewMenuIcon && <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faListUl : faClose} onClick={handleBehaviorIcon} size="lg"/>}
+                    {(viewMenuIcon || behavior === "dynamic-hidden") && <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faListUl : faClose} onClick={handleBehaviorIcon} size="lg"/>}
                 </div> 
             }
         </>
