@@ -62,7 +62,7 @@ class UserAccountCreateAPIView(APIView):
     
             user_data = account_serializer.UserAccountSerializer(user).data
 
-            return Response(serializer.user_data, status = status.HTTP_201_CREATED)
+            return Response(user_data, status = status.HTTP_201_CREATED)
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
 
 class UserAbortActionAPIView(APIView):

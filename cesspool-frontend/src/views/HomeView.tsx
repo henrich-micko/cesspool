@@ -9,7 +9,7 @@ import { useMaxWidth } from "@hooks/useIsMobile"
 
 
 const Home: React.FC = () => {
-    const viewAboutBoard = !useMaxWidth("1230px")
+    const viewAboutBoard = !useMaxWidth("1345px")
 
     return (
         <IsNotAuthenticatedView>

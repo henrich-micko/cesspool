@@ -6,11 +6,12 @@ import styles from "@styles/components/theNavigation.module.scss"
 
 // context && hooks
 import AuthContext from "@context/AuthContext"
-import { useMaxWidth } from "@hooks/useIsMobile"
+import useIsMobile, { useMaxWidth } from "@hooks/useIsMobile"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { IconProp } from "@fortawesome/fontawesome-svg-core"
 import { faClose, faHome, faInfoCircle, faListUl, faServer, faUser, faUserAstronaut } from "@fortawesome/free-solid-svg-icons"
 import classNames from "classnames"
+import { useSwipeable } from "react-swipeable"
 
 interface TheNaviagtionLinkProps {
     to: string
@@ -35,11 +36,17 @@ const TheNaviagtion: React.FC<Props> = (props) => {
     const { isLogged, user } = useContext(AuthContext)
     
     const isUnderMiddleSize = useMaxWidth("1700px")
+    const viewMenuIcon = !useMaxWidth("470px");
     const [behavior, setBehavior] = useState<"static"|"dynamic-hidden"|"dynamic-viewed">()
 
     useEffect(() => {
         setBehavior(isUnderMiddleSize ? "dynamic-viewed" : "static")
     }, [isUnderMiddleSize])
+
+    useEffect(() => {
+        document.body.style.overflow = ""
+        if (behavior === "dynamic-viewed") document.body.style.overflow = "hidden"
+    }, [behavior])
 
     const handleBehaviorIcon = () => {
         if (behavior === "dynamic-hidden") setBehavior("dynamic-viewed")
@@ -55,9 +62,13 @@ const TheNaviagtion: React.FC<Props> = (props) => {
         if (path === "/account") return "Môj učet"
     }
 
+    const handlers = useSwipeable({
+        onSwiped: (eventData) => eventData.dir === "Left" && setBehavior("dynamic-hidden"),
+      });
+
     return (
         <>
-            <div className={classNames(styles.navigation, behavior === "dynamic-hidden" && styles.hidden)}>
+            <div className={classNames(styles.navigation, behavior === "dynamic-hidden" && styles.hidden)} {...handlers}>
                 <div className={styles.headder}>
                     <h1>Cesspool</h1>
                     <FontAwesomeIcon className={styles.icon} icon={faInfoCircle} onClick={() => window.open("https://zumpomer.sk")} />
@@ -83,7 +94,7 @@ const TheNaviagtion: React.FC<Props> = (props) => {
                 (behavior === "dynamic-hidden" || behavior === "dynamic-viewed") &&
                 <div className={styles.navigationHeadder}>
                     <h1>{currentView()}</h1>
-                    <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faListUl : faClose} onClick={handleBehaviorIcon} size="lg"/>
+                    {viewMenuIcon && <FontAwesomeIcon icon={behavior === "dynamic-hidden" ? faListUl : faClose} onClick={handleBehaviorIcon} size="lg"/>}
                 </div> 
             }
         </>

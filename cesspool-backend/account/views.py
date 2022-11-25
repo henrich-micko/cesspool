@@ -92,7 +92,7 @@ class ActivateUserAPIView(APIView):
         
         if serializer.is_valid():
             token_string = serializer.validated_data.get("token")
-            token = models.ActivateUserToken.objects.get(token = token_string)
+            token = models.Activat866571176afdeUserToken.objects.get(token = token_string)
             user = token.user
 
             user.set_password(serializer.validated_data.get("password"))
