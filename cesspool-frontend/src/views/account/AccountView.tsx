@@ -15,7 +15,7 @@ const AccountView: React.FC = () => {
 
     return (
         <IsAuthenticatedView>
-            <TheNaviagtion />
+            <TheNaviagtion hidden={true} />
             
             <div className={styles.view}>
                 <div className={styles.verticalWrapper}>
