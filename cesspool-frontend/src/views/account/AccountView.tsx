@@ -15,7 +15,7 @@ const AccountView: React.FC = () => {
 
     return (
         <IsAuthenticatedView>
-            <TheNaviagtion hidden={true} />
+            <TheNaviagtion defaultBehavior="dynamic-hidden" />
             
             <div className={styles.view}>
                 <div className={styles.verticalWrapper}>

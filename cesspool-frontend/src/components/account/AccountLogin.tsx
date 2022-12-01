@@ -79,7 +79,7 @@ const LoginForm: React.FC = () => {
             {
                 viewResetPassword &&
                 <PopUp label="Zabudol som heslo" onClickClose={() => setViewResetPassword(false)}>
-                    <AccountChangePassword onSubmit={console.log} />
+                    <AccountChangePassword onSubmit={() => setViewResetPassword(false)} />
                 </PopUp>
             }
 

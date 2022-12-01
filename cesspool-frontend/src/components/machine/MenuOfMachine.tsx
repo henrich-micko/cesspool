@@ -68,6 +68,10 @@ const MenuOfMachines: React.FC<Props> = (props) => {
                         onClick={props.onMachineClick} 
                     />
                 )}
+
+                {props.machines !== null && props.machines.length === 0 &&
+                    <h3>...</h3>
+                }
             </ul>
 
             {

@@ -30,7 +30,7 @@ const TheNaviagtionLink: React.FC<TheNaviagtionLinkProps> = (props) => {
 
 interface Props {
     children?: ReactNode
-    hidden?: boolean
+    defaultBehavior?: "static"|"dynamic-hidden"|"dynamic-viewed"
 }
 
 const TheNaviagtion: React.FC<Props> = (props) => {
@@ -41,7 +41,7 @@ const TheNaviagtion: React.FC<Props> = (props) => {
     const [behavior, setBehavior] = useState<"static"|"dynamic-hidden"|"dynamic-viewed">()
 
     useEffect(() => {
-        setBehavior(isUnderMiddleSize ? props.hidden ? "dynamic-hidden" : "dynamic-viewed" : "static")
+        setBehavior(isUnderMiddleSize ? props.defaultBehavior !== undefined ? props.defaultBehavior : "dynamic-viewed" : "static")
     }, [isUnderMiddleSize])
 
     useEffect(() => {

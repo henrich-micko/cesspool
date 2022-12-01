@@ -22,6 +22,7 @@ const AccountChangePassword: React.FC<Props> = (props) => {
                 setError("")
             })
             .catch(() => setError("Neplatný email"))
+        props.onSubmit(email)
     }
 
     return (

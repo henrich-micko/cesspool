@@ -13,6 +13,7 @@ import TheLoading from "@components/TheLoading"
 const MachineView: React.FC = () => {
 	const [machines, setMachines] = useState<MachineType[]|null>(null) // null means is before records
 	const [machineIndex, setMachineIndex] = useState<number>(0)
+	const [isNavigationHidden, setIsNavigationHidden] = useState<boolean>(false)
 
 	const axios = useAxios()
 
@@ -50,7 +51,10 @@ const MachineView: React.FC = () => {
 				<MenuOfMachines
 					machines={machines !== null ? machines.map(machineToMachineForMenu) : null}
 					onRefreshClick={refreshMachines} 
-					onMachineClick={setMachineIndex}
+					onMachineClick={(id) => {
+						setMachineIndex(id)
+						setIsNavigationHidden(true)
+					}}
 					activate={machineIndex !== null ? machineIndex : undefined} 
 				/>
 			</TheNaviagtion>

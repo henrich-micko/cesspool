@@ -56,6 +56,7 @@ const AccountChangePassword: React.FC = () => {
                                         value={password}
                                         onChange={handlePassword}
                                         required={true}
+                                        maxLength={10}
                                     />
 
                                     <input
@@ -66,6 +67,7 @@ const AccountChangePassword: React.FC = () => {
                                         value={password2}
                                         onChange={handlePassword2}
                                         required={true}
+                                        maxLength={10}
                                     />
                                 </>
                             </TheForm>
