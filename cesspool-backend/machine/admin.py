@@ -14,3 +14,7 @@ class RecordAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Machine)
 admin.site.register(models.Record, RecordAdmin)
+
+# regiester problems
+for problem in models.PROBLEMS:
+    admin.site.register(problem)

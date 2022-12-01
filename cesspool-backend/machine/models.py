@@ -264,19 +264,19 @@ class MachineOldRecordProblem(MachineBaseError):
         return machine.battery != None and machine.battery > 2 and machine.last_update <= timezone.now() - timedelta(days = 2)
 
 
+PROBLEMS  = [
+    MachineNoTitleProblem,
+    MachineNoRecordProblem,
+    MachineHightLevelProblem,
+    MachineLowBatteryProblem,
+    MachineOldRecordProblem,
+    MachineDeathBatteryProblem
+]
+
 def scan_problems(machine: Machine):
-    problems = [
-        MachineNoTitleProblem,
-        MachineNoRecordProblem,
-        MachineHightLevelProblem,
-        MachineLowBatteryProblem,
-        MachineOldRecordProblem,
-        MachineDeathBatteryProblem
-    ]
-    
     output = []
 
-    for problem in problems:
+    for problem in PROBLEMS:
         if problem.scan_for_machine(machine):
             output.append(problem.objects.get_or_create(machine = machine)[0])
 

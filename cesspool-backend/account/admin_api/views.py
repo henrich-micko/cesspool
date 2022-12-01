@@ -55,6 +55,7 @@ class UserAccountCreateAPIView(APIView):
         if serializer.is_valid():
             user = serializer.save()
             user.set_password(models.generate_code(8))
+            user.is_active = False
             user.save()
             
             token = models.ActivateUserToken.objects.create(user = user)
