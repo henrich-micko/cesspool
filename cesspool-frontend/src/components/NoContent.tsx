@@ -10,8 +10,8 @@ const NoContent: React.FC<Props> = (props) => {
     const message = "Nenašli sa žiadne " + props.missing
 
     return (
-        <div style={{marginTop: "3em", display: "flex", justifyContent: "center"}}>
-			<h2>{message}</h2>
+        <div style={{marginTop: "3em", display: "flex", justifyContent: "center", maxWidth: "80%"}}>
+			<h2 style={{textAlign: "left"}}>{message}</h2>
             <img style={{width: "2em", marginLeft: "0.5em"}} src={EmojyLogo} alt="Thinking emojy" />
 		</div>
     )
