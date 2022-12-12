@@ -13,6 +13,7 @@ class RecordAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.Machine)
+admin.site.register(models.MachineToUser)
 admin.site.register(models.Record, RecordAdmin)
 
 # regiester problems

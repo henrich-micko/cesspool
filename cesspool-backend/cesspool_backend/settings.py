@@ -22,14 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get("DJANGO_SECRET_KEY")
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "default")
 if SECRET_KEY == None:
     raise ValueError("DJANGO_SECRET_KEY is not set in env vars")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(environ.get("DJANGO_DEBUG", "1"), 0))
-ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "").split(' ')
-print(ALLOWED_HOSTS)
+ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "*").split(' ')
+
 if DEBUG:
     REACT_HOST = "127.0.0.1"
 else:
@@ -92,14 +92,22 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': environ.get('DB_NAME', "name"),
+#         'USER': environ.get('DB_USER', "user"),
+#         'PASSWORD': environ.get('DB_PASSWORD', "password"),
+#         'HOST': environ.get('DB_HOST', "host"),
+#         "PORT": environ.get("DB_PORT", "port")
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('DB_NAME'),
-        'USER': environ.get('DB_USER'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
-        'HOST': environ.get('DB_HOST'),
-        "PORT": environ.get("DB_PORT")
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase', # This is where you put the name of the db file. 
+                 # If one doesn't exist, it will be created at migration time.
     }
 }
 
@@ -174,7 +182,7 @@ MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
 MQTT_TOPIC = "#"
 
 if environ.get("DJANGO_MQTT_PORT", False):
-    MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT"))
+    MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT", 1234))
 else: 
     MQTT_PORT = None
     
@@ -215,8 +223,8 @@ CELERY_BEAT_SCHEDULE = {
 USE_EMAIL = not DEBUG
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", None)
-EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", None)
+EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", "x")
+EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", "x")
 EMAIL_USE_TLS = True
 
 if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
@@ -226,3 +234,13 @@ if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
         DJANGO_EMAIL_HOST_USER={EMAIL_HOST_USER}
         DJANGO_EMAIL_HOST_PASS={EMAIL_HOST_PASSWORD}
     """)
+
+# for running command "account.setup_groups"
+USER_GROUPS = {
+    "default": [
+        "machine.own_machine",
+        "machine.view_machine",
+        "machine.view_record",
+        "machine.change_machinetouser"
+    ],
+}

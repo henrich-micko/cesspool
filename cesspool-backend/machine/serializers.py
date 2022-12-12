@@ -10,24 +10,44 @@ class MachineSerializer(serializers.ModelSerializer):
     problems = serializers.SerializerMethodField(default = None)
     last_update = serializers.SerializerMethodField(default = None)
 
+    title = serializers.SerializerMethodField(default = None)
+    hight_level = serializers.SerializerMethodField(default = 0)
+
+    def __init__(self, user = None, instance = None, **kwargs):
+        super().__init__(instance, **kwargs)
+
+        self.user = user
+
     class Meta:
         model = models.Machine
         fields = [
             "id",
-            "title", 
             "level",
             "code",
             "battery", 
             "problems",
             "level_percent", 
             "last_update",
-            "hight_level",
+            "title",
+            "hight_level"
         ]
 
         extra_kwargs = {
             "id": {"read_only": True}, 
             "code": {"read_only": True}
         }
+
+    def get_title(self, obj: models.Machine):
+        mtu = models.MachineToUser.objects.filter(user = self.user, machine = obj).first()
+        if mtu == None:
+            return None
+        return mtu.title
+
+    def get_hight_level(self, obj: models.Machine):
+        mtu = models.MachineToUser.objects.filter(user = self.user, machine = obj).first()
+        if mtu == None:
+            return None
+        return mtu.hight_level
 
     def get_level(self, obj: models.Machine):
         return obj.level
@@ -49,12 +69,24 @@ class MachineSerializer(serializers.ModelSerializer):
     def get_last_update(self, obj: models.Machine):
         return obj.last_update
 
+class MachineToUser(serializers.ModelSerializer):
+    
+    class Meta:
+        model = models.MachineToUser
+        fields = [
+            "id",
+            "title",
+            "hight_level"
+        ]
+
 class RecordSerializer(serializers.ModelSerializer):
-    level_percent = serializers.SerializerMethodField(default = None)
 
     class Meta:
         model = models.Record
-        fields = ["id", "level", "battery", "level_percent", "date"]
-
-    def get_level_percent(self, obj):
-        return obj.level_percent
+        fields = [
+            "id",
+            "level", 
+            "battery", 
+            "level_percent", 
+            "date", 
+        ]

@@ -1,22 +1,20 @@
-from email.policy import default
-from typing import OrderedDict
 from rest_framework import serializers
 from machine import models
 
-import account
 
-class AdminMachineDetailSerializer(serializers.ModelSerializer):
-    user = serializers.EmailField(source = "user.email", default = None, allow_null = True)
+class MachineDetialForAdminSerializer(serializers.ModelSerializer):
+    
+    users = serializers.SerializerMethodField()
     delete_date = serializers.SerializerMethodField()
     delete_records_date = serializers.SerializerMethodField()
-    records = serializers.SerializerMethodField(default = 0)
-    last_update = serializers.SerializerMethodField(default = None)
-    problems = serializers.SerializerMethodField(default = None)
+    records = serializers.SerializerMethodField()
+    last_update = serializers.SerializerMethodField()
+    problems = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Machine
         fields = [
-            "user",
+            "users",
             "code", 
             "mqtt", 
             "notification", 
@@ -25,9 +23,11 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
             "records",
             "last_update",
             "problems",
-            "title",
         ]
         extra_kwargs = {"code": {"required": False}}
+
+    def get_users(self, obj):
+        return [mtu.user.email for mtu in obj.machinetouser_set.all()]
 
     def get_delete_date(self, obj):
         action = obj.one_to_one(models.MachineDeleteAction)
@@ -54,23 +54,6 @@ class AdminMachineDetailSerializer(serializers.ModelSerializer):
 
     def get_records(self, obj):
         return len(obj.record_set.all())
-
-    def validate(self, attrs: OrderedDict):
-        if "user" in attrs.keys():
-            if "user" not in self.initial_data.keys():
-                del attrs["user"]
-
-            else:
-                email = attrs["user"]["email"]
-                if email == None:
-                    attrs["user"] = None        
-                elif email:
-                    user = account.models.UserAccount.objects.filter(email = email).first()
-                    if user == None:
-                        raise serializers.ValidationError({"user": "User doesn't exists"})
-                    attrs["user"] = user
-
-        return super().validate(attrs)
 
     def create(self, validated_data):
         if not "code" in validated_data.keys():

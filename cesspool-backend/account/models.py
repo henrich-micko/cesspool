@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from django.http import Http404
 
 from datetime import datetime, timedelta
 
@@ -48,6 +49,18 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         if output != None:
             return output
         return default
+
+    def get_machine_to_user(self, code = None):
+        mtus = self.machinetouser_set.all()
+        if code == None:
+            return mtus
+        return mtus.filter(machine__code = code).first()
+
+    def get_machine_to_user_or_404(self, *argv, **kwargs):
+        output = self.get_machine_to_user(*argv, **kwargs)
+        if output == None: 
+            raise Http404()
+        return output
 
 class AccountBaseAction(models.Model):
     user = models.OneToOneField(UserAccount, on_delete = models.CASCADE)
