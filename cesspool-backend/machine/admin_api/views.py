@@ -53,6 +53,8 @@ class AdminMachineAPIView(APIView):
                     mtu.delete()
         else:
             users_to_add.remove("*")
+
+        print(request.data)
         
         for user_email in users_to_add:
             try: user = UserAccount.objects.get(email = user_email)
@@ -60,7 +62,6 @@ class AdminMachineAPIView(APIView):
                 return Response({"users": f"User {user_email} doesnt exists"}, status = status.HTTP_400_BAD_REQUEST)
 
             models.MachineToUser.objects.get_or_create(user = user, machine = machine)
-
 
         serializer = serializers.MachineDetialForAdminSerializer(instance = machine, data = request.data)
         if serializer.is_valid():

@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from machine import models
 
-
 class MachineDetialForAdminSerializer(serializers.ModelSerializer):
     
     users = serializers.SerializerMethodField()
@@ -54,6 +53,10 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
 
     def get_records(self, obj):
         return len(obj.record_set.all())
+
+    def validate(self, attrs):
+        print(attrs)
+        return super().validate(attrs)
 
     def create(self, validated_data):
         if not "code" in validated_data.keys():
