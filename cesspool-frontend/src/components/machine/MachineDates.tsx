@@ -20,7 +20,7 @@ const MachineDates: React.FC<Props> = (props) => {
         const month = datetime.split("-").at(1)
         const day = datetime.split("-").at(2)
 
-        return year + " " + day + "." + month + "."
+        return day + "." + month + ". " + year
     }
 
     const date = props.last_update !== null ? formatDate(props.last_update) : null

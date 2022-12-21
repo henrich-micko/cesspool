@@ -28,7 +28,7 @@ const AdminMachineItem: React.FC<AdminMachineItemProps> = (props) => {
             <div className={styles.userTrashWrapper}>
                 <FontAwesomeIcon 
                     className={styles.icon}
-                    icon={props.user !== null ? faUserAltSlash : faUserAlt}
+                    icon={props.user === null ? faUserAltSlash : faUserAlt}
                 />
                 <FontAwesomeIcon 
                     className={classNames(styles.icon, props.delete && styles.red)}

@@ -36,7 +36,7 @@ interface ProblemViewProps {
 const ProblemsView: React.FC<ProblemViewProps> = (props) => {
     
     return (
-        <ThemedBox label="Problemy" style={{"width": "auto"}}>
+        <ThemedBox label="Problemy" style={{"width": "100%"}}>
             <div className={styles.machineProblems}>
                 {props.problems.length !== 0 ?
                     <ul>
@@ -52,7 +52,7 @@ const ProblemsView: React.FC<ProblemViewProps> = (props) => {
                             className={styles.icon} 
                             icon={faThumbsUp}
                         />
-                        <span>Tak sa zdá že tu není žiaden problem</span>
+                        <span>Bez problemov </span>
                     </div> }
             </div>
         </ThemedBox>
