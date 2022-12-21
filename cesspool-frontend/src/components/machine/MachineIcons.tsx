@@ -11,7 +11,7 @@ const statusStyle = {
 
 interface StatusLevelProps {
     level: number
-    levelType?: "%"|"l"
+    levelType?: "%"|"m"
 }
 
 export const StatusLevel: React.FC<StatusLevelProps> = (props) => {    
@@ -36,7 +36,7 @@ export const StatusBattery: React.FC<StatusBatteryProps> = (props) => {
                         
     return (
         <div style={statusStyle}>            
-            <span style={{marginRight: "0.25em"}}>{props.battery?.toFixed(0)}{props.battery !== undefined ? "%" : "..."}</span>
+            <span style={{marginRight: "0.25em"}}>{props.battery?.toFixed(0)}{props.battery !== undefined ? "V" : "..."}</span>
             <FontAwesomeIcon icon={batteryIcon} />
         </div> 
     )

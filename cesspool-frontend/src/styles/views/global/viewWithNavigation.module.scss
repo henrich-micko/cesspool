@@ -2,28 +2,18 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-
-    margin-left: 21.5em;
+    align-items: center;
     
-    padding: 1.25em 3.4em;
+    padding: 1.25em 0em;
+    width: 100%;
 
     .verticalWrapper {
         display: flex;
         gap: 4em;
         width: 100%;
-    }
-
-    @media only screen and (max-width: 1750px) {
-        margin-left: 0em;
-        padding: 1.2em 0em;
-        width: 100%;
-        align-items: center;
-
-        .verticalWrapper {
-            flex-direction: column;
-            row-gap: 0.5em;
-            width: fit-content;
-            max-width: 95%;
-        }
+        flex-direction: column;
+        row-gap: 0.5em;
+        width: fit-content;
+        max-width: 95%;
     }
 }

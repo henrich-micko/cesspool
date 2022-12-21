@@ -64,7 +64,7 @@ const MachineChart: React.FC<Props> = (props) => {
         const month = datetime.split("-").at(1)
         const day = datetime.split("-").at(2)
 
-        return year + " " + day + "." + month + "."
+        return day + "." + month + "." + year
     }
 
     const chartDataRecord= (record: RecordType): number => {
@@ -82,11 +82,25 @@ const MachineChart: React.FC<Props> = (props) => {
         scales: {
             x: {
                 min: records.length !== 0 ? records.at(0)?.date : "",
-                type: "time", 
+                type: "time",
+                ticks: {
+                    font: {
+                        size: 16,
+                    }
+                },
                 time: {
                     unit: unit
                 }
             },
+            y: {
+                min: -10,
+                max: 110,
+                ticks: {
+                    font: {
+                        size: 16,
+                    }
+                },
+            }
         },
 
         plugins: {
@@ -129,7 +143,7 @@ const MachineChart: React.FC<Props> = (props) => {
                     <span>Zobraziť</span> 
                     <select onChange={handleRecordData}>
                         <option value="battery">Bateriu</option>
-                        <option value="level">Hladinu l</option>
+                        <option value="level">Hladinu m</option>
                         <option selected value="level_percent">Hladinu %</option>
                     </select>
                 </div>
