@@ -1,9 +1,6 @@
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
-
 from datetime import datetime, date, timedelta
-
 from . import managers, validators
 
 
@@ -60,6 +57,14 @@ class Machine(models.Model):
         if output != None:
             return output
         return default
+
+    def assign_to_users(self, users, remove_not_included = False):
+        for user in users: 
+            MachineToUser.objects.get_or_create(user = user, machine = self)
+        
+        if remove_not_included:
+            for mtu in self.machinetouser_set.all():
+                if mtu.user not in users: mtu.delete()
 
 class MachineToUser(models.Model):
     machine = models.ForeignKey(Machine, on_delete = models.CASCADE)

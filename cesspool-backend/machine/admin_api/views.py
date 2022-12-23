@@ -13,12 +13,12 @@ from . import serializers
 
 from account.models import UserAccount
 
+
 # list of machines
 class AdminMachineListAPIView(ListAPIView):
     queryset = models.Machine.objects.all()
     serializer_class = serializers.MachineDetialForAdminSerializer
     permission_classes = [IsAdminUser]
-
 
 class AdminMachineListOfUserAPIView(APIView):
     permission_classes = [IsAdminUser]
@@ -43,26 +43,6 @@ class AdminMachineAPIView(APIView):
     def put(self, request, machine_code: str):
         machine = get_object_or_404(models.Machine.objects.all(), code = machine_code)
         
-        # TODO: move to serializer
-        users_to_add = request.data.pop("users", [])
-        include_old_users = "*" in users_to_add
-
-        if not include_old_users:
-            for mtu in machine.machinetouser_set.all():
-                if mtu.user.email not in users_to_add:
-                    mtu.delete()
-        else:
-            users_to_add.remove("*")
-
-        print(request.data)
-        
-        for user_email in users_to_add:
-            try: user = UserAccount.objects.get(email = user_email)
-            except UserAccount.DoesNotExist: 
-                return Response({"users": f"User {user_email} doesnt exists"}, status = status.HTTP_400_BAD_REQUEST)
-
-            models.MachineToUser.objects.get_or_create(user = user, machine = machine)
-
         serializer = serializers.MachineDetialForAdminSerializer(instance = machine, data = request.data)
         if serializer.is_valid():
             serializer.save()

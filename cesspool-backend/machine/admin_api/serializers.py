@@ -1,9 +1,38 @@
 from rest_framework import serializers
+from rest_framework.validators import ValidationError
+
 from machine import models
+from account.models import UserAccount
+
+
+def remove_from_list(array, value):
+    if value in array:
+        array.remove(value)
+        return True
+    return False
+
+class MachineUsersField(serializers.ListField):
+
+    def __init__(self, **kwargs):
+        kwargs["child"] = serializers.EmailField()
+        super().__init__(**kwargs)
+        self.validators.append(MachineUsersField._validate_user_exists)
+
+    @staticmethod
+    def _validate_user_exists(value):
+        for user_email in value:
+            try: UserAccount.objects.get(email = user_email)
+            except UserAccount.DoesNotExist:
+                raise ValidationError(f"User {user_email} doesnt exists")
+
+    def get_attribute(self, instance):
+        mtu = models.MachineToUser.objects.filter(machine = instance)
+        users = [i.user.email for i in mtu]
+        return users
 
 class MachineDetialForAdminSerializer(serializers.ModelSerializer):
     
-    users = serializers.SerializerMethodField()
+    users = MachineUsersField()
     delete_date = serializers.SerializerMethodField()
     delete_records_date = serializers.SerializerMethodField()
     records = serializers.SerializerMethodField()
@@ -24,9 +53,6 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
             "problems",
         ]
         extra_kwargs = {"code": {"required": False}}
-
-    def get_users(self, obj):
-        return [mtu.user.email for mtu in obj.machinetouser_set.all()]
 
     def get_delete_date(self, obj):
         action = obj.one_to_one(models.MachineDeleteAction)
@@ -55,11 +81,31 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
         return len(obj.record_set.all())
 
     def validate(self, attrs):
-        print(attrs)
         return super().validate(attrs)
 
     def create(self, validated_data):
         if not "code" in validated_data.keys():
             validated_data["code"] = models.Machine.objects.get_machine_code()
 
-        return super().create(validated_data)
+        users = [
+            UserAccount.objects.get(email = e) for e in validated_data.pop("users", [])
+        ]
+        
+        instance = super().create(validated_data)
+        instance.assign_to_users(
+            users = users,
+            remove_not_included = True
+        )
+
+        return instance
+
+    def update(self, instance, validated_data):
+        users = [
+            UserAccount.objects.get(email = e) for e in validated_data.pop("users", [])
+        ]
+        self.instance.assign_to_users(
+            users = users,
+            remove_not_included = True
+        )
+
+        return super().update(instance, validated_data)
