@@ -4,6 +4,8 @@ from rest_framework.validators import ValidationError
 from machine import models
 from account.models import UserAccount
 
+from location.models import City
+from location.serializers import CityField
 
 def remove_from_list(array, value):
     if value in array:
@@ -39,6 +41,8 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
     last_update = serializers.SerializerMethodField()
     problems = serializers.SerializerMethodField()
 
+    city = CityField()
+
     class Meta:
         model = models.Machine
         fields = [
@@ -51,8 +55,16 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
             "records",
             "last_update",
             "problems",
+            "city",
         ]
-        extra_kwargs = {"code": {"required": False}}
+        extra_kwargs = {
+            "code": {
+                "required": False
+            }, 
+            "users": {
+                "required": False
+            }
+        }
 
     def get_delete_date(self, obj):
         action = obj.one_to_one(models.MachineDeleteAction)
@@ -87,25 +99,32 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
         if not "code" in validated_data.keys():
             validated_data["code"] = models.Machine.objects.get_machine_code()
 
+        users = validated_data.pop("users")
+        city = validated_data.pop("city")
+
+        instance = super().create(validated_data)
+        self.on_save(instance, {"users": users, "city": city, **validated_data})
+
+        return instance
+
+    def update(self, instance, validated_data):
+        self.on_save(instance, validated_data)
+
+        return super().update(instance, validated_data)
+
+    def on_save(self, instance, validated_data):
         users = [
             UserAccount.objects.get(email = e) for e in validated_data.pop("users", [])
         ]
-        
-        instance = super().create(validated_data)
+
         instance.assign_to_users(
             users = users,
             remove_not_included = True
         )
 
-        return instance
-
-    def update(self, instance, validated_data):
-        users = [
-            UserAccount.objects.get(email = e) for e in validated_data.pop("users", [])
-        ]
-        self.instance.assign_to_users(
-            users = users,
-            remove_not_included = True
-        )
-
-        return super().update(instance, validated_data)
+        city_title = validated_data.pop("city", None)
+        if city_title != None:
+            city, created = City.objects.get_or_create(title = city_title)
+   
+            instance.city = city
+            instance.save()

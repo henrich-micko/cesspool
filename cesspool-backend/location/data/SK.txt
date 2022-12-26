@@ -1,0 +1,2888 @@
+Lučenec/Ábelová
+Rimavská Sobota/Abovce
+Galanta/Abrahám
+Bardejov/Abrahámovce
+Kežmarok/Abrahámovce
+Turčianske Teplice/Abramová
+Prešov/Abranovce
+Trenčín/Adamovské Kochanovce
+Humenné/Adidovce
+Nitra/Alekšince
+Nové Zámky/Andovce
+Bardejov/Andrejová
+Topoľčany/Ardanovce
+Rožňava/Ardovo
+Spišská Nová Ves/Arnutovce
+Vranov nad Topľou/Babie
+Zvolen/Babiná
+Nitra/Babindol
+Rimavská Sobota/Babinec
+Námestovo/Babín
+Brezno/Bacúch
+Zvolen/Bacúrov
+Trebišov/Bačka
+Trebišov/Bačkov
+Košice-okolie/Bačkovík
+Banská Bystrica/Badín
+Banská Štiavnica/Baďan
+Michalovce/Bajany
+Komárno/Bajč
+Prešov/Bajerov
+Sabinov/Bajerovce
+Levice/Bajka
+Nové Zámky/Bajtava
+Dunajská Streda/Baka
+Banská Bystrica/Baláže
+Levoča/Baldovce
+Veľký Krtíš/Balog nad Ipľom
+Dunajská Streda/Baloň
+Piešťany/Banka
+Banská Štiavnica/Banská Belá
+Banská Bystrica/Banská Bystrica
+Banská Štiavnica/Banská Štiavnica
+Vranov nad Topľou/Banské
+Banská Štiavnica/Banský Studenec
+Stropkov/Baňa
+Trebišov/Bara
+Rimavská Sobota/Barca
+Bardejov/Bardejov
+Nové Zámky/Bardoňovo
+Žiar nad Hronom/Bartošova Lehôtka
+Bardejov/Bartošovce
+Košice-okolie/Baška
+Humenné/Baškovce
+Sobrance/Baškovce
+Piešťany/Bašovce
+Poprad/Batizovce
+Nitra/Báb
+Dunajská Streda/Báč
+Nitra/Bádice
+Pezinok/Báhoň
+Nové Zámky/Bánov
+Bánovce nad Bebravou/Bánovce nad Bebravou
+Michalovce/Bánovce nad Ondavou
+Rimavská Sobota/Bátka
+Veľký Krtíš/Bátorová
+Komárno/Bátorove Kosihy
+Levice/Bátovce
+Nové Mesto nad Váhom/Beckov
+Levoča/Beharovce
+Bardejov/Becherov
+Nové Zámky/Belá
+Žilina/Belá
+Martin/Belá-Dulice
+Snina/Belá nad Cirochou
+Zlaté Moravce/Beladice
+Svidník/Belejovce
+Rimavská Sobota/Belín
+Lučenec/Belina
+Topoľčany/Belince
+Dunajská Streda/Bellova Ves
+Bardejov/Beloveža
+Banská Štiavnica/Beluj
+Púchov/Beluša
+Košice-okolie/Belža
+Košice-okolie/Beniakovce
+Martin/Benice
+Vranov nad Topľou/Benkovce
+Liptovský Mikuláš/Beňadiková
+Svidník/Beňadikovce
+Námestovo/Beňadovo
+Sobrance/Beňatina
+Brezno/Beňuš
+Senec/Bernolákovo
+Prešov/Bertotovce
+Levice/Beša
+Michalovce/Beša
+Nové Zámky/Bešeňov
+Ružomberok/Bešeňová
+Spišská Nová Ves/Betlanovce
+Rožňava/Betliar
+Sobrance/Bežovce
+Košice-okolie/Bidovce
+Trebišov/Biel
+Levice/Bielovce
+Trnava/Biely Kostol
+Levoča/Bijacovce
+Lučenec/Biskupice
+Topoľčany/Biskupová
+Žilina/Bitarová
+Senica/Bílkove Humence
+Nové Zámky/Bíňa
+Trnava/Bíňovce
+Dunajská Streda/Blahová
+Dunajská Streda/Blatná na Ostrove
+Sobrance/Blatná Polianka
+Senec/Blatné
+Sobrance/Blatné Remety
+Sobrance/Blatné Revištia
+Martin/Blatnica
+Košice-okolie/Blažice
+Turčianske Teplice/Blažovce
+Topoľčany/Blesovce
+Rimavská Sobota/Blhovce
+Trenčín/Bobot
+Námestovo/Bobrov
+Liptovský Mikuláš/Bobrovček
+Liptovský Mikuláš/Bobrovec
+Liptovský Mikuláš/Bobrovník
+Košice-okolie/Bočiar
+Dunajská Streda/Bodíky
+Považská Bystrica/Bodiná
+Turčianske Teplice/Bodorová
+Sabinov/Bodovce
+Svidník/Bodružal
+Komárno/Bodza
+Komárno/Bodzianske Lúky
+Bardejov/Bogliarka
+Košice-okolie/Bohdanovce
+Trnava/Bohdanovce nad Trnavou
+Dunajská Streda/Boheľov
+Ilava/Bohunice
+Levice/Bohunice
+Rožňava/Bohúňovo
+Topoľčany/Bojná
+Prievidza/Bojnice
+Hlohovec/Bojničky
+Senec/Boldog
+Trnava/Boleráz
+Ilava/Bolešov
+Košice-okolie/Boliarov
+Trebišov/Boľ
+Lučenec/Boľkovce
+Turčianske Teplice/Borcová
+Bánovce nad Bebravou/Borčany
+Ilava/Borčice
+Malacky/Borinka
+Trnava/Borová
+Piešťany/Borovce
+Senica/Borský Mikuláš
+Senica/Borský Svätý Jur
+Trebišov/Borša
+Levice/Bory
+Nové Mesto nad Váhom/Bošáca
+Partizánske/Bošany
+Rimavská Sobota/Bottovo
+Trebišov/Boťany
+Rožňava/Bôrka
+Michalovce/Bracovce
+Nitra/Branč
+Nové Zámky/Branovo
+Brezno/Braväcovo
+Rožňava/Brdárka
+Trebišov/Brehov
+Žarnovica/Brehy
+Humenné/Brekov
+Humenné/Brestov
+Prešov/Brestov
+Medzilaborce/Brestov nad Laborcom
+Trnava/Brestovany
+Myjava/Brestovec
+Komárno/Brestovec
+Prešov/Bretejovce
+Rožňava/Bretka
+Námestovo/Breza
+Žilina/Brezany
+Trebišov/Brezina
+Zvolen/Breziny
+Stropkov/Breznica
+Poltár/Breznička
+Stropkov/Breznička
+Brezno/Brezno
+Bánovce nad Bebravou/Brezolupy
+Bardejov/Brezov
+Myjava/Brezová pod Bradlom
+Snina/Brezovec
+Sabinov/Brezovica
+Tvrdošín/Brezovica
+Sabinov/Brezovička
+Bardejov/Brezovka
+Prešov/Brežany
+Levice/Brhlovce
+Turčianske Teplice/Brieštie
+Skalica/Brodské
+Partizánske/Brodzany
+Nové Mesto nad Váhom/Brunovce
+Stropkov/Brusnica
+Veľký Krtíš/Brusník
+Banská Bystrica/Brusno
+Levoča/Brutovce
+Nové Zámky/Bruty
+Považská Bystrica/Brvnište
+Rožňava/Brzotín
+Bardejov/Buclovany
+Trnava/Bučany
+Zvolen/Budča
+Rimavská Sobota/Budikovany
+Košice-okolie/Budimír
+Lučenec/Budiná
+Michalovce/Budince
+Turčianske Teplice/Budiš
+Michalovce/Budkovce
+Pezinok/Budmerice
+Levoča/Buglovce
+Trnava/Buková
+Stropkov/Bukovce
+Košice-okolie/Bukovec
+Myjava/Bukovec
+Liptovský Mikuláš/Bukovina
+Lučenec/Bulhary
+Košice-okolie/Bunetice
+Sobrance/Bunkovce
+Veľký Krtíš/Bušince
+Kežmarok/Bušovce
+Košice-okolie/Buzica
+Lučenec/Buzitka
+Komárno/Búč
+Brezno/Bystrá
+Stropkov/Bystrá
+Spišská Nová Ves/Bystrany
+Vranov nad Topľou/Bystré
+Prievidza/Bystričany
+Martin/Bystrička
+Trebišov/Byšta
+Bytča/Bytča
+Žiar nad Hronom/Bzenica
+Prešov/Bzenov
+Nové Mesto nad Váhom/Bzince pod Javorinou
+Dolný Kubín/Bziny
+Krupina/Bzovík
+Zvolen/Bzovská Lehôtka
+Stropkov/Bžany
+Nitra/Cabaj-Čápor
+Vranov nad Topľou/Cabov
+Rimavská Sobota/Cakov
+Trebišov/Cejkov
+Svidník/Cernina
+Senica/Cerová
+Krupina/Cerovo
+Košice-okolie/Cestice
+Prievidza/Cigeľ
+Bardejov/Cigeľka
+Svidník/Cigla
+Bánovce nad Bebravou/Cimenná
+Poltár/Cinobaňa
+Trnava/Cífer
+Nitra/Čab
+Medzilaborce/Čabalovce
+Medzilaborce/Čabiny
+Krupina/Čabradský Vrbovok
+Čadca/Čadca
+Nové Mesto nad Váhom/Čachtice
+Levice/Čajkov
+Levice/Čaka
+Nitra/Čakajovce
+Lučenec/Čakanovce
+Košice-okolie/Čakanovce
+Dunajská Streda/Čakany
+Vranov nad Topľou/Čaklov
+Komárno/Čalovec
+Lučenec/Čamovce
+Košice-okolie/Čaňa
+Zlaté Moravce/Čaradice
+Pezinok/Častá
+Senica/Častkov
+Nové Mesto nad Váhom/Častkovce
+Levice/Čata
+Senec/Čataj
+Prievidza/Čavoj
+Senica/Čáry
+Veľký Krtíš/Čebovce
+Michalovce/Čečehov
+Košice-okolie/Čečejovce
+Nové Zámky/Čechy
+Nitra/Čechynce
+Krupina/Čekovce
+Veľký Krtíš/Čeláre
+Považská Bystrica/Čelkova Lehota
+Veľký Krtíš/Čelovce
+Prešov/Čelovce
+Nitra/Čeľadice
+Topoľčany/Čeľadince
+Trebišov/Čeľovce
+Dunajská Streda/Čenkovce
+Rimavská Sobota/Čerenčany
+Prievidza/Čereňany
+Trebišov/Čerhov
+Banská Bystrica/Čerín
+Topoľčany/Čermany
+Nové Zámky/Černík
+Humenné/Černina
+Trebišov/Černochov
+Medzilaborce/Čertižné
+Sabinov/Červená Voda
+Prešov/Červenica
+Sabinov/Červenica pri Sabinove
+Hlohovec/Červeník
+Zlaté Moravce/Červený Hrádok
+Ilava/Červený Kameň
+Kežmarok/Červený Kláštor
+Veľký Krtíš/Červeňany
+Poltár/České Brezovo
+Michalovce/Čičarovce
+Vranov nad Topľou/Čičava
+Žilina/Čičmany
+Trebišov/Čierna
+Bánovce nad Bebravou/Čierna Lehota
+Rožňava/Čierna Lehota
+Trebišov/Čierna nad Tisou
+Galanta/Čierna Voda
+Čadca/Čierne
+Zlaté Moravce/Čierne Kľačany
+Vranov nad Topľou/Čierne nad Topľou
+Michalovce/Čierne Pole
+Brezno/Čierny Balog
+Galanta/Čierny Brod
+Rimavská Sobota/Čierny Potok
+Nitra/Čifáre
+Dunajská Streda/Čiližská Radvaň
+Tvrdošín/Čimhová
+Stará Ľubovňa/Čirč
+Košice-okolie/Čižatice
+Komárno/Číčov
+Rimavská Sobota/Číž
+Rožňava/Čoltovo
+Turčianske Teplice/Čremošné
+Rožňava/Čučma
+Snina/Čukalovce
+Veľký Krtíš/Dačov Lom
+Sabinov/Daletice
+Spišská Nová Ves/Danišovce
+Trebišov/Dargov
+Vranov nad Topľou/Davidov
+Košice-okolie/Debraď
+Humenné/Dedačov
+Komárno/Dedina Mládeže
+Nové Zámky/Dedinka
+Rožňava/Dedinky
+Trnava/Dechtice
+Banská Štiavnica/Dekýš
+Levice/Demandice
+Liptovský Mikuláš/Demänovská Dolina
+Prešov/Demjata
+Vranov nad Topľou/Detrík
+Detva/Detva
+Detva/Detvianska Huta
+Levice/Devičany
+Krupina/Devičie
+Bánovce nad Bebravou/Dežerice
+Martin/Diaková
+Šaľa/Diakovce
+Prievidza/Diviacka Nová Ves
+Prievidza/Diviaky nad Nitricou
+Lučenec/Divín
+Žilina/Divina
+Žilina/Divinka
+Trnava/Dlhá
+Čadca/Dlhá nad Kysucou
+Dolný Kubín/Dlhá nad Oravou
+Šaľa/Dlhá nad Váhom
+Rožňava/Dlhá Ves
+Vranov nad Topľou/Dlhé Klčovo
+Snina/Dlhé nad Cirochou
+Žilina/Dlhé Pole
+Levoča/Dlhé Stráže
+Svidník/Dlhoňa
+Prievidza/Dlžín
+Trebišov/Dobrá
+Zvolen/Dobrá Niva
+Trnava/Dobrá Voda
+Lučenec/Dobroč
+Dunajská Streda/Dobrohošť
+Svidník/Dobroslava
+Rožňava/Dobšiná
+Púchov/Dohňany
+Senica/Dojč
+Veľký Krtíš/Dolinka
+Púchov/Dolná Breznica
+Trnava/Dolná Krupá
+Brezno/Dolná Lehota
+Považská Bystrica/Dolná Mariková
+Banská Bystrica/Dolná Mičiná
+Trenčín/Dolná Poruba
+Levice/Dolná Seč
+Galanta/Dolná Streda
+Veľký Krtíš/Dolná Strehová
+Trenčín/Dolná Súča
+Žilina/Dolná Tižina
+Žiar nad Hronom/Dolná Trnávka
+Žiar nad Hronom/Dolná Ves
+Žiar nad Hronom/Dolná Ždaňa
+Trnava/Dolné Dubové
+Púchov/Dolné Kočkovce
+Nitra/Dolné Lefantovce
+Trnava/Dolné Lovčice
+Krupina/Dolné Mladonice
+Bánovce nad Bebravou/Dolné Naštice
+Nitra/Dolné Obdokovce
+Trnava/Dolné Orešany
+Hlohovec/Dolné Otrokovce
+Veľký Krtíš/Dolné Plachtince
+Galanta/Dolné Saliby
+Levice/Dolné Semerovce
+Nové Mesto nad Váhom/Dolné Srnie
+Veľký Krtíš/Dolné Strháre
+Hlohovec/Dolné Trhovište
+Prievidza/Dolné Vestenice
+Rimavská Sobota/Dolné Zahorany
+Hlohovec/Dolné Zelenice
+Krupina/Dolný Badín
+Dunajská Streda/Dolný Bar
+Banská Bystrica/Dolný Harmanec
+Žilina/Dolný Hričov
+Galanta/Dolný Chotár
+Martin/Dolný Kalník
+Dolný Kubín/Dolný Kubín
+Považská Bystrica/Dolný Lieskov
+Piešťany/Dolný Lopašov
+Nové Zámky/Dolný Ohaj
+Levice/Dolný Pial
+Dunajská Streda/Dolný Štál
+Kysucké Nové Mesto/Dolný Vadičov
+Pezinok/Doľany
+Levoča/Doľany
+Levice/Domadice
+Krupina/Domaníky
+Považská Bystrica/Domaniža
+Levoča/Domaňovce
+Banská Bystrica/Donovaly
+Brezno/Drábsko
+Michalovce/Drahňov
+Piešťany/Drahovce
+Levoča/Dravce
+Rimavská Sobota/Dražice
+Martin/Dražkovce
+Krupina/Drážovce
+Rimavská Sobota/Drienčany
+Sabinov/Drienica
+Prešov/Drienov
+Košice-okolie/Drienovec
+Krupina/Drienovo
+Prešov/Drienovská Nová Ves
+Trenčín/Drietoma
+Rožňava/Drnava
+Rimavská Sobota/Drňa
+Košice-okolie/Družstevná pri Hornáde
+Levice/Drženice
+Revúca/Držkovce
+Bardejov/Dubinné
+Ilava/Dubnica nad Váhom
+Bánovce nad Bebravou/Dubnička
+Nové Zámky/Dubník
+Rimavská Sobota/Dubno
+Trenčín/Dubodiel
+Pezinok/Dubová
+Svidník/Dubová
+Piešťany/Dubovany
+Skalica/Dubovce
+Turčianske Teplice/Dubové
+Zvolen/Dubové
+Rimavská Sobota/Dubovec
+Sabinov/Dubovica
+Piešťany/Ducové
+Krupina/Dudince
+Svidník/Dukovce
+Ilava/Dulov
+Prešov/Dulova Ves
+Komárno/Dulovce
+Rimavská Sobota/Dulovo
+Senec/Dunajská Lužná
+Čadca/Dunajov
+Dunajská Streda/Dunajská Streda
+Dunajská Streda/Dunajský Klátov
+Stropkov/Duplín
+Levoča/Dúbrava
+Liptovský Mikuláš/Dúbrava
+Snina/Dúbrava
+Banská Bystrica/Dúbravica
+Michalovce/Dúbravka
+Detva/Dúbravy
+Topoľčany/Dvorany nad Nitrou
+Bánovce nad Bebravou/Dvorec
+Trebišov/Dvorianky
+Hlohovec/Dvorníky
+Košice-okolie/Dvorníky-Včeláre
+Nové Zámky/Dvory nad Žitavou
+Sabinov/Ďačov
+Martin/Ďanová
+Vranov nad Topľou/Ďapalovce
+Poltár/Ďubákovo
+Žilina/Ďurčiná
+Vranov nad Topľou/Ďurďoš
+Košice-okolie/Ďurďošík
+Považská Bystrica/Ďurďové
+Košice-okolie/Ďurkov
+Stará Ľubovňa/Ďurková
+Veľký Krtíš/Ďurkovce
+Trebišov/Egreš
+Žilina/Fačkov
+Michalovce/Falkušovce
+Levice/Farná
+Sobrance/Fekišovce
+Rimavská Sobota/Figa
+Svidník/Fijaš
+Lučenec/Fiľakovo
+Lučenec/Fiľakovské Kováče
+Prešov/Fintice
+Martin/Folkušová
+Stará Ľubovňa/Forbasy
+Bardejov/Frička
+Bardejov/Fričkovce
+Prešov/Fričovce
+Prešov/Fulianka
+Dunajská Streda/Gabčíkovo
+Bardejov/Gaboltov
+Malacky/Gajary
+Galanta/Galanta
+Liptovský Mikuláš/Galovany
+Poprad/Gánovce
+Galanta/Gáň
+Nové Zámky/Gbelce
+Skalica/Gbely
+Žilina/Gbeľany
+Košice-okolie/Geča
+Gelnica/Gelnica
+Revúca/Gemer
+Rimavská Sobota/Gemerček
+Rožňava/Gemerská Hôrka
+Rožňava/Gemerská Panica
+Rožňava/Gemerská Poloma
+Revúca/Gemerská Ves
+Rimavská Sobota/Gemerské Dechtáre
+Rimavská Sobota/Gemerské Michalovce
+Revúca/Gemerské Teplice
+Rimavská Sobota/Gemerský Jablonec
+Revúca/Gemerský Sad
+Prešov/Geraltov
+Bardejov/Gerlachov
+Poprad/Gerlachov
+Vranov nad Topľou/Giglovce
+Svidník/Giraltovce
+Vranov nad Topľou/Girovce
+Veľký Krtíš/Glabušovce
+Rožňava/Gočaltovo
+Rožňava/Gočovo
+Nitra/Golianovo
+Rimavská Sobota/Gortva
+Liptovský Mikuláš/Gôtovany
+Levoča/Granč-Petrovce
+Lučenec/Gregorova Vieska
+Prešov/Gregorovce
+Stropkov/Gribov
+Humenné/Gruzovce
+Košice-okolie/Gyňov
+Tvrdošín/Habovka
+Medzilaborce/Habura
+Košice-okolie/Hačava
+Turčianske Teplice/Háj
+Košice-okolie/Háj
+Topoľčany/Hajná Nová Ves
+Rimavská Sobota/Hajnáčka
+Šaľa/Hájske
+Stará Ľubovňa/Hajtovka
+Bánovce nad Bebravou/Haláčovce
+Lučenec/Halič
+Stará Ľubovňa/Haligovce
+Nové Mesto nad Váhom/Haluzice
+Senec/Hamuliakovo
+Prievidza/Handlová
+Sabinov/Hanigovce
+Prešov/Haniska
+Košice-okolie/Haniska
+Rožňava/Hanková
+Bardejov/Hankovce
+Humenné/Hankovce
+Vranov nad Topľou/Hanušovce nad Topľou
+Levoča/Harakovce
+Bardejov/Harhaj
+Spišská Nová Ves/Harichovce
+Banská Bystrica/Harmanec
+Michalovce/Hatalov
+Považská Bystrica/Hatné
+Stropkov/Havaj
+Kežmarok/Havka
+Svidník/Havranec
+Michalovce/Hažín
+Humenné/Hažín nad Cirochou
+Bardejov/Hažlín
+Gelnica/Helcmanovce
+Brezno/Heľpa
+Rožňava/Henckovce
+Gelnica/Henclová
+Vranov nad Topľou/Hencovce
+Prešov/Hendrichovce
+Košice-okolie/Herľany
+Prešov/Hermanovce
+Vranov nad Topľou/Hermanovce nad Topľou
+Bardejov/Hertník
+Bardejov/Hervartov
+Banská Bystrica/Hiadeľ
+Spišská Nová Ves/Hincovce
+Tvrdošín/Hladovka
+Senica/Hlboké
+Bytča/Hlboké nad Váhom
+Žiar nad Hronom/Hliník nad Hronom
+Vranov nad Topľou/Hlinné
+Sobrance/Hlivištia
+Hlohovec/Hlohovec
+Stará Ľubovňa/Hniezdne
+Spišská Nová Ves/Hnilčík
+Spišská Nová Ves/Hnilec
+Michalovce/Hnojné
+Rimavská Sobota/Hnúšťa
+Rimavská Sobota/Hodejov
+Rimavská Sobota/Hodejovec
+Košice-okolie/Hodkovce
+Žarnovica/Hodruša-Hámre
+Levice/Hokovce
+Vranov nad Topľou/Holčíkovce
+Komárno/Holiare
+Dunajská Streda/Holice
+Skalica/Holíč
+Lučenec/Holiša
+Kežmarok/Holumnica
+Rožňava/Honce
+Levice/Hontianska Vrbica
+Krupina/Hontianske Moravce
+Krupina/Hontianske Nemce
+Krupina/Hontianske Tesáre
+Levice/Hontianske Trsťany
+Púchov/Horná Breznica
+Šaľa/Horná Kráľová
+Trnava/Horná Krupá
+Dolný Kubín/Horná Lehota
+Brezno/Horná Lehota
+Považská Bystrica/Horná Mariková
+Banská Bystrica/Horná Mičiná
+Ilava/Horná Poruba
+Dunajská Streda/Horná Potôň
+Levice/Horná Seč
+Nové Mesto nad Váhom/Horná Streda
+Veľký Krtíš/Horná Strehová
+Trenčín/Horná Súča
+Turčianske Teplice/Horná Štubňa
+Prievidza/Horná Ves
+Žiar nad Hronom/Horná Ves
+Žiar nad Hronom/Horná Ždaňa
+Trnava/Horné Dubové
+Žarnovica/Horné Hámre
+Topoľčany/Horné Chlebany
+Nitra/Horné Lefantovce
+Krupina/Horné Mladonice
+Dunajská Streda/Horné Mýto
+Bánovce nad Bebravou/Horné Naštice
+Topoľčany/Horné Obdokovce
+Trnava/Horné Orešany
+Hlohovec/Horné Otrokovce
+Veľký Krtíš/Horné Plachtince
+Banská Bystrica/Horné Pršany
+Galanta/Horné Saliby
+Levice/Horné Semerovce
+Trenčín/Horné Srnie
+Veľký Krtíš/Horné Strháre
+Topoľčany/Horné Štitáre
+Hlohovec/Horné Trhovište
+Levice/Horné Turovce
+Prievidza/Horné Vestenice
+Rimavská Sobota/Horné Zahorany
+Hlohovec/Horné Zelenice
+Krupina/Horný Badín
+Dunajská Streda/Horný Bar
+Žilina/Horný Hričov
+Martin/Horný Kalník
+Považská Bystrica/Horný Lieskov
+Levice/Horný Pial
+Detva/Horný Tisovník
+Kysucké Nové Mesto/Horný Vadičov
+Sobrance/Horňa
+Trenčín/Horňany
+Púchov/Horovce
+Michalovce/Horovce
+Galanta/Hoste
+Rimavská Sobota/Hostice
+Zlaté Moravce/Hostie
+Rimavská Sobota/Hostišovce
+Snina/Hostovice
+Nitra/Hosťová
+Zlaté Moravce/Hosťovce
+Košice-okolie/Hosťovce
+Poprad/Hozelec
+Poprad/Hôrka
+Nové Mesto nad Váhom/Hôrka nad Váhom
+Žilina/Hôrky
+Žarnovica/Hrabičov
+Prešov/Hrabkov
+Snina/Hrabová Roztoka
+Svidník/Hrabovčík
+Bardejov/Hrabovec
+Humenné/Hrabovec nad Laborcom
+Trenčín/Hrabovka
+Bardejov/Hrabské
+Spišská Nová Ves/Hrabušice
+Kežmarok/Hradisko
+Partizánske/Hradište
+Poltár/Hradište
+Senica/Hradište pod Vrátnom
+Nové Mesto nad Váhom/Hrádok
+Nové Mesto nad Váhom/Hrachovište
+Rimavská Sobota/Hrachovo
+Stará Ľubovňa/Hraničné
+Poprad/Hranovnica
+Trebišov/Hraň
+Myjava/Hrašné
+Košice-okolie/Hrašovík
+Trebišov/Hrčeľ
+Rožňava/Hrhov
+Trebišov/Hriadky
+Žilina/Hričovské Podhradie
+Detva/Hriňová
+Gelnica/Hrišovce
+Levice/Hrkovce
+Revúca/Hrlica
+Trnava/Hrnčiarovce nad Parnou
+Poltár/Hrnčiarska Ves
+Poltár/Hrnčiarske Zalužany
+Banská Bystrica/Hrochoť
+Stará Ľubovňa/Hromoš
+Brezno/Hronec
+Levice/Hronovce
+Banská Bystrica/Hronsek
+Zvolen/Hronská Breznica
+Žiar nad Hronom/Hronská Dúbrava
+Levice/Hronské Kľačany
+Levice/Hronské Kosihy
+Žarnovica/Hronský Beňadik
+Senec/Hrubá Borša
+Nitra/Hruboňovo
+Humenné/Hrubov
+Senec/Hrubý Šúr
+Veľký Krtíš/Hrušov
+Rožňava/Hrušov
+Topoľčany/Hrušovany
+Rimavská Sobota/Hrušovo
+Námestovo/Hruštín
+Dunajská Streda/Hubice
+Piešťany/Hubina
+Sabinov/Hubošovce
+Ružomberok/Hubová
+Rimavská Sobota/Hubovo
+Revúca/Hucín
+Humenné/Hudcovce
+Nové Zámky/Hul
+Humenné/Humenné
+Kežmarok/Huncovce
+Svidník/Hunkovce
+Senec/Hurbanova Ves
+Komárno/Hurbanovo
+Sobrance/Husák
+Rimavská Sobota/Husiná
+Bardejov/Hutka
+Liptovský Mikuláš/Huty
+Dunajská Streda/Hviezdoslavov
+Bytča/Hvozdnica
+Liptovský Mikuláš/Hybe
+Košice-okolie/Hýľov
+Rimavská Sobota/Chanava
+Dolný Kubín/Chlebnice
+Humenné/Chlmec
+Nové Zámky/Chľaba
+Stará Ľubovňa/Chmeľnica
+Prešov/Chmeľov
+Bardejov/Chmeľová
+Prešov/Chmeľovec
+Prešov/Chminianska Nová Ves
+Prešov/Chminianske Jakubovany
+Prešov/Chmiňany
+Zlaté Moravce/Choča
+Trenčín/Chocholná-Velčice
+Sobrance/Choňkovce
+Senec/Chorvátsky Grob
+Košice-okolie/Chorváty
+Stropkov/Chotča
+Komárno/Chotín
+Topoľčany/Chrabrany
+Rimavská Sobota/Chrámec
+Veľký Krtíš/Chrastince
+Košice-okolie/Chrastné
+Spišská Nová Ves/Chrasť nad Hornádom
+Prievidza/Chrenovec-Brusno
+Skalica/Chropov
+Veľký Krtíš/Chrťany
+Piešťany/Chtelnica
+Bánovce nad Bebravou/Chudá Lehota
+Revúca/Chvalová
+Myjava/Chvojnica
+Prievidza/Chvojnica
+Partizánske/Chynorany
+Revúca/Chyžné
+Senec/Igram
+Kežmarok/Ihľany
+Žiar nad Hronom/Ihráč
+Ilava/Ilava
+Spišská Nová Ves/Iliašovce
+Banská Štiavnica/Ilija
+Komárno/Imeľ
+Sobrance/Inovce
+Levice/Iňa
+Michalovce/Iňačovce
+Veľký Krtíš/Ipeľské Predmostie
+Levice/Ipeľské Úľany
+Levice/Ipeľský Sokolec
+Dolný Kubín/Istebné
+Ružomberok/Ivachnová
+Turčianske Teplice/Ivančiná
+Rimavská Sobota/Ivanice
+Senec/Ivanka pri Dunaji
+Nitra/Ivanka pri Nitre
+Trenčín/Ivanovce
+Komárno/Iža
+Liptovský Mikuláš/Ižipovce
+Michalovce/Ižkovce
+Pezinok/Jablonec
+Senica/Jablonica
+Myjava/Jablonka
+Levoča/Jablonov
+Rožňava/Jablonov nad Turňou
+Malacky/Jablonové
+Bytča/Jablonové
+Humenné/Jabloň
+Levice/Jabloňovce
+Topoľčany/Jacovce
+Dunajská Streda/Jahodná
+Gelnica/Jaklovce
+Sabinov/Jakovany
+Stará Ľubovňa/Jakubany
+Malacky/Jakubov
+Sabinov/Jakubova Voľa
+Liptovský Mikuláš/Jakubovany
+Sabinov/Jakubovany
+Stropkov/Jakušovce
+Snina/Jalová
+Prievidza/Jalovec
+Liptovský Mikuláš/Jalovec
+Hlohovec/Jalšové
+Krupina/Jalšovík
+Liptovský Mikuláš/Jamník
+Spišská Nová Ves/Jamník
+Rimavská Sobota/Janice
+Košice-okolie/Janík
+Dunajská Streda/Janíky
+Humenné/Jankovce
+Prešov/Janov
+Žiar nad Hronom/Janova Lehota
+Bardejov/Janovce
+Galanta/Jánovce
+Poprad/Jánovce
+Prešov/Janovík
+Brezno/Jarabá
+Stará Ľubovňa/Jarabina
+Nitra/Jarok
+Sabinov/Jarovnice
+Považská Bystrica/Jasenica
+Brezno/Jasenie
+Humenné/Jasenov
+Sobrance/Jasenov
+Dolný Kubín/Jasenová
+Vranov nad Topľou/Jasenovce
+Žilina/Jasenové
+Turčianske Teplice/Jasenovo
+Trnava/Jaslovské Bohunice
+Košice-okolie/Jasov
+Nové Zámky/Jasová
+Žiar nad Hronom/Jastrabá
+Vranov nad Topľou/Jastrabie nad Topľou
+Michalovce/Jastrabie pri Michalovciach
+Nové Zámky/Jatov
+Turčianske Teplice/Jazernica
+Bardejov/Jedlinka
+Zlaté Moravce/Jedľové Kostoľany
+Nitra/Jelenec
+Galanta/Jelka
+Revúca/Jelšava
+Nitra/Jelšovce
+Lučenec/Jelšovec
+Sobrance/Jenkovce
+Levice/Jesenské
+Rimavská Sobota/Jesenské
+Rimavská Sobota/Jestice
+Partizánske/Ješkova Ves
+Kežmarok/Jezersko
+Rožňava/Jovice
+Michalovce/Jovsa
+Levice/Jur nad Hronom
+Svidník/Jurkova Voľa
+Dunajská Streda/Jurová
+Kežmarok/Jurské
+Vranov nad Topľou/Juskova Voľa
+Michalovce/Kačanov
+Galanta/Kajal
+Ružomberok/Kalameny
+Senec/Kalinkovo
+Medzilaborce/Kalinov
+Poltár/Kalinovo
+Levice/Kalná nad Hronom
+Snina/Kalná Roztoka
+Nové Mesto nad Váhom/Kálnica
+Svidník/Kalnište
+Lučenec/Kalonda
+Košice-okolie/Kalša
+Rimavská Sobota/Kaloša
+Michalovce/Kaluža
+Turčianske Teplice/Kaľamenová
+Spišská Nová Ves/Kaľava
+Topoľčany/Kamanová
+Prievidza/Kamenec pod Vtáčnikom
+Sabinov/Kamenica
+Humenné/Kamenica nad Cirochou
+Nové Zámky/Kamenica nad Hronom
+Ilava/Kameničany
+Komárno/Kameničná
+Nové Zámky/Kamenín
+Žilina/Kamenná Poruba
+Vranov nad Topľou/Kamenná Poruba
+Veľký Krtíš/Kamenné Kosihy
+Nové Zámky/Kamenný Most
+Revúca/Kameňany
+Humenné/Kamienka
+Stará Ľubovňa/Kamienka
+Prievidza/Kanianka
+Nitra/Kapince
+Svidník/Kapišová
+Senec/Kaplna
+Prešov/Kapušany
+Michalovce/Kapušianske Kľačany
+Martin/Karlová
+Humenné/Karná
+Trebišov/Kašov
+Trnava/Kátlovce
+Skalica/Kátov
+Trebišov/Kazimír
+Košice-okolie/Kecerovce
+Košice-okolie/Kecerovský Lipovec
+Svidník/Kečkovce
+Rožňava/Kečovo
+Košice-okolie/Kechnec
+Prešov/Kendice
+Rimavská Sobota/Kesovce
+Levice/Keť
+Kežmarok/Kežmarok
+Veľký Krtíš/Kiarov
+Vranov nad Topľou/Kladzany
+Nitra/Klasov
+Martin/Kláštor pod Znievom
+Partizánske/Klátova Nová Ves
+Levoča/Klčov
+Prešov/Klenov
+Snina/Klenová
+Rimavská Sobota/Klenovec
+Veľký Krtíš/Kleňany
+Považská Bystrica/Klieština
+Námestovo/Klin
+Trebišov/Klin nad Bodrogom
+Komárno/Klížska Nemá
+Detva/Klokoč
+Čadca/Klokočov
+Michalovce/Klokočov
+Čadca/Klubina
+Gelnica/Kluknava
+Hlohovec/Kľačany
+Žilina/Kľače
+Prievidza/Kľačno
+Žarnovica/Kľak
+Dunajská Streda/Kľúčovec
+Bardejov/Kľušov
+Nové Zámky/Kmeťovo
+Rožňava/Kobeliarovo
+Svidník/Kobylnice
+Bardejov/Kobyly
+Rožňava/Koceľovce
+Rimavská Sobota/Kociha
+Prievidza/Kocurany
+Piešťany/Kočín-Lančár
+Nové Mesto nad Váhom/Kočovce
+Bardejov/Kochanovce
+Humenné/Kochanovce
+Prešov/Kojatice
+Gelnica/Kojšov
+Poltár/Kokava nad Rimavicou
+Prešov/Kokošovce
+Košice-okolie/Kokšov-Bakša
+Stará Ľubovňa/Kolačkov
+Partizánske/Kolačno
+Veľký Krtíš/Koláre
+Bytča/Kolárovice
+Komárno/Kolárovo
+Snina/Kolbasov
+Stropkov/Kolbovce
+Sobrance/Kolibabovce
+Spišská Nová Ves/Kolinovce
+Nitra/Kolíňany
+Snina/Kolonica
+Nové Zámky/Kolta
+Vranov nad Topľou/Komárany
+Komárno/Komárno
+Bardejov/Komárov
+Košice-okolie/Komárovce
+Nové Zámky/Komjatice
+Ružomberok/Komjatná
+Nové Zámky/Komoča
+Topoľčany/Koniarovce
+Rimavská Sobota/Konrádovce
+Liptovský Mikuláš/Konská
+Žilina/Konská
+Sobrance/Koňuš
+Skalica/Kopčany
+Žiar nad Hronom/Kopernica
+Hlohovec/Koplotovce
+Bardejov/Koprivnica
+Banská Bystrica/Kordíky
+Svidník/Korejovce
+Čadca/Korňa
+Sobrance/Koromľa
+Stropkov/Korunková
+Detva/Korytárky
+Levoča/Korytné
+Veľký Krtíš/Kosihovce
+Veľký Krtíš/Kosihy nad Ipľom
+Žiar nad Hronom/Kosorín
+Považská Bystrica/Kostolec
+Malacky/Kostolište
+Senec/Kostolná pri Dunaji
+Prievidza/Kostolná Ves
+Trenčín/Kostolná-Záriečie
+Myjava/Kostolné
+Dunajská Streda/Kostolné Kračany
+Košice-okolie/Kostoľany nad Hornádom
+Zlaté Moravce/Kostoľany pod Tribečom
+Prievidza/Koš
+Myjava/Košariská
+Humenné/Košarovce
+Ilava/Košeca
+Ilava/Košecké Podhradie
+Košice-okolie/Košická Belá
+Košice-okolie/Košická Polianka
+Košice-okolie/Košické Oľšany
+Košice-okolie/Košický Klečenov
+Humenné/Koškovce
+Trnava/Košolná
+Galanta/Košúty
+Martin/Košťany nad Turcom
+Bytča/Kotešová
+Lučenec/Kotmanová
+Žilina/Kotrčiná Lúčka
+Zvolen/Kováčová
+Rožňava/Kováčová
+Veľký Krtíš/Kováčovce
+Senica/Koválov
+Skalica/Koválovec
+Topoľčany/Kovarce
+Levice/Kozárovce
+Banská Štiavnica/Kozelník
+Krupina/Kozí Vrbovok
+Bardejov/Kožany
+Trebišov/Kožuchov
+Stropkov/Kožuchovce
+Svidník/Kračúnovce
+Žiar nad Hronom/Krahule
+Svidník/Krajná Bystrá
+Svidník/Krajná Poľana
+Svidník/Krajná Porúbka
+Myjava/Krajné
+Svidník/Krajné Čierno
+Piešťany/Krakovany
+Banská Bystrica/Králiky
+Rimavská Sobota/Kráľ
+Galanta/Kráľov Brod
+Liptovský Mikuláš/Kráľova Lehota
+Šaľa/Kráľová nad Váhom
+Senec/Kráľová pri Senci
+Dolný Kubín/Kraľovany
+Košice-okolie/Kráľovce
+Krupina/Kráľovce-Krnišov
+Dunajská Streda/Kráľovičove Kračany
+Trebišov/Kráľovský Chlmec
+Rimavská Sobota/Kraskovo
+Sabinov/Krásna Lúka
+Bánovce nad Bebravou/Krásna Ves
+Partizánske/Krásno
+Čadca/Krásno nad Kysucou
+Rožňava/Krásnohorská Dlhá Lúka
+Rožňava/Krásnohorské Podhradie
+Michalovce/Krásnovce
+Medzilaborce/Krásny Brod
+Žilina/Krasňany
+Poprad/Kravany
+Trebišov/Kravany
+Komárno/Kravany nad Dunajom
+Sobrance/Krčava
+Stará Ľubovňa/Kremná
+Žiar nad Hronom/Kremnica
+Žiar nad Hronom/Kremnické Bane
+Sobrance/Kristy
+Stropkov/Krišľovce
+Michalovce/Krišovská Liesková
+Dolný Kubín/Krivá
+Sabinov/Krivany
+Detva/Kriváň
+Bardejov/Krivé
+Ilava/Krivoklát
+Trenčín/Krivosúd-Bodovka
+Bardejov/Kríže
+Kežmarok/Krížová Ves
+Prešov/Krížovany
+Trnava/Križovany nad Dudváhom
+Poltár/Krná
+Topoľčany/Krnča
+Rimavská Sobota/Krokava
+Spišská Nová Ves/Krompachy
+Martin/Krpeľany
+Levice/Krškany
+Topoľčany/Krtovce
+Stropkov/Kručov
+Krupina/Krupina
+Námestovo/Krušetnica
+Stropkov/Krušinec
+Topoľčany/Krušovce
+Bardejov/Kružlov
+Svidník/Kružlová
+Rožňava/Kružná
+Rimavská Sobota/Kružno
+Bánovce nad Bebravou/Kšinná
+Levice/Kubáňovo
+Bardejov/Kučín
+Vranov nad Topľou/Kučín
+Malacky/Kuchyňa
+Senica/Kuklov
+Svidník/Kuková
+Levice/Kukučínov
+Žilina/Kunerad
+Žiar nad Hronom/Kunešov
+Rožňava/Kunova Teplica
+Levice/Kuraľany
+Bardejov/Kurima
+Levoča/Kurimany
+Svidník/Kurimka
+Bardejov/Kurov
+Michalovce/Kusín
+Dunajská Streda/Kútniky
+Senica/Kúty
+Topoľčany/Kuzmice
+Trebišov/Kuzmice
+Liptovský Mikuláš/Kvačany
+Prešov/Kvačany
+Vranov nad Topľou/Kvakovce
+Púchov/Kvašov
+Dunajská Streda/Kvetoslavov
+Rimavská Sobota/Kyjatice
+Stará Ľubovňa/Kyjov
+Banská Bystrica/Kynceľová
+Košice-okolie/Kysak
+Dunajská Streda/Kyselica
+Trebišov/Kysta
+Kysucké Nové Mesto/Kysucké Nové Mesto
+Kysucké Nové Mesto/Kysucký Lieskovec
+Malacky/Láb
+Krupina/Lackov
+Stará Ľubovňa/Lacková
+Humenné/Lackovce
+Prešov/Lada
+Ilava/Ladce
+Zlaté Moravce/Ladice
+Trebišov/Ladmovce
+Žiar nad Hronom/Ladomerská Vieska
+Snina/Ladomirov
+Svidník/Ladomirová
+Krupina/Ladzany
+Senica/Lakšárska Nová Ves
+Bardejov/Lascov
+Martin/Laskár
+Michalovce/Lastomír
+Trebišov/Lastovce
+Michalovce/Laškovce
+Detva/Látky
+Prievidza/Lazany
+Liptovský Mikuláš/Lazisko
+Púchov/Lazy pod Makytou
+Prešov/Lažany
+Púchov/Lednica
+Púchov/Lednické Rovne
+Stará Ľubovňa/Legnava
+Dunajská Streda/Lehnice
+Nitra/Lehota
+Rimavská Sobota/Lehota nad Rimavicou
+Prievidza/Lehota pod Vtáčnikom
+Lučenec/Lehôtka
+Žiar nad Hronom/Lehôtka pod Brehmi
+Kežmarok/Lechnica
+Sobrance/Lekárovce
+Trebišov/Leles
+Nové Zámky/Leľa
+Prešov/Lemešany
+Bardejov/Lenartov
+Rimavská Sobota/Lenartovce
+Kežmarok/Lendak
+Rimavská Sobota/Lenka
+Lučenec/Lentvora
+Hlohovec/Leopoldov
+Veľký Krtíš/Lesenice
+Prešov/Lesíček
+Michalovce/Lesné
+Stará Ľubovňa/Lesnica
+Dolný Kubín/Leštiny
+Zvolen/Lešť (vojenský obvod)
+Spišská Nová Ves/Letanovce
+Skalica/Letničie
+Revúca/Leváre
+Levice/Levice
+Revúca/Levkuška
+Levoča/Levoča
+Martin/Ležiachov
+Bánovce nad Bebravou/Libichava
+Revúca/Licince
+Prešov/Ličartovce
+Tvrdošín/Liesek
+Spišská Nová Ves/Lieskovany
+Zvolen/Lieskovec
+Humenné/Lieskovec
+Turčianske Teplice/Liešno
+Prievidza/Liešťany
+Žilina/Lietava
+Žilina/Lietavská Lúčka
+Žilina/Lietavská Svinná-Babkov
+Ružomberok/Likavka
+Pezinok/Limbach
+Sabinov/Lipany
+Prievidza/Lipník
+Prešov/Lipníky
+Nové Zámky/Lipová
+Bardejov/Lipová
+Lučenec/Lipovany
+Prešov/Lipovce
+Komárno/Lipové
+Martin/Lipovec
+Rimavská Sobota/Lipovec
+Topoľčany/Lipovník
+Rožňava/Lipovník
+Liptovský Mikuláš/Liptovská Anna
+Liptovský Mikuláš/Liptovská Kokava
+Ružomberok/Liptovská Lúžna
+Ružomberok/Liptovská Osada
+Liptovský Mikuláš/Liptovská Porúbka
+Liptovský Mikuláš/Liptovská Sielnica
+Ružomberok/Liptovská Štiavnica
+Ružomberok/Liptovská Teplá
+Poprad/Liptovská Teplička
+Liptovský Mikuláš/Liptovské Beharovce
+Liptovský Mikuláš/Liptovské Kľačany
+Liptovský Mikuláš/Liptovské Matiašovce
+Ružomberok/Liptovské Revúce
+Ružomberok/Liptovské Sliače
+Liptovský Mikuláš/Liptovský Hrádok
+Liptovský Mikuláš/Liptovský Ján
+Ružomberok/Liptovský Michal
+Liptovský Mikuláš/Liptovský Mikuláš
+Liptovský Mikuláš/Liptovský Ondrej
+Liptovský Mikuláš/Liptovský Peter
+Liptovský Mikuláš/Liptovský Trnovec
+Ružomberok/Lisková
+Krupina/Lišov
+Krupina/Litava
+Stará Ľubovňa/Litmanová
+Partizánske/Livina
+Partizánske/Livinské Opatovce
+Bardejov/Livov
+Bardejov/Livovská Huta
+Kysucké Nové Mesto/Lodno
+Levice/Lok
+Námestovo/Lokca
+Brezno/Lom nad Rimavicou
+Námestovo/Lomná
+Stropkov/Lomné
+Stará Ľubovňa/Lomnička
+Levice/Lontov
+Skalica/Lopašov
+Bardejov/Lopúchov
+Kysucké Nové Mesto/Lopušné Pažite
+Trnava/Lošonec
+Zlaté Moravce/Lovce
+Žiar nad Hronom/Lovča
+Žiar nad Hronom/Lovčica-Trubín
+Lučenec/Lovinobaňa
+Malacky/Lozorno
+Michalovce/Ložín
+Revúca/Lubeník
+Nové Mesto nad Váhom/Lubina
+Dunajská Streda/Lúč na Ostrove
+Banská Bystrica/Lučatín
+Lučenec/Lučenec
+Prešov/Lúčina
+Poprad/Lučivná
+Levoča/Lúčka
+Sabinov/Lúčka
+Svidník/Lúčka
+Rožňava/Lúčka
+Ružomberok/Lúčky
+Žiar nad Hronom/Lúčky
+Michalovce/Lúčky
+Nitra/Lúčnica nad Žitavou
+Topoľčany/Ludanice
+Ružomberok/Ludrová
+Trebišov/Luhyňa
+Nové Mesto nad Váhom/Lúka
+Humenné/Lukačovce
+Nitra/Lukáčovce
+Zvolen/Lukavica
+Bardejov/Lukavica
+Bardejov/Lukov
+Rimavská Sobota/Lukovištia
+Púchov/Lúky
+Levice/Lula
+Lučenec/Lupoč
+Žiar nad Hronom/Lutila
+Žilina/Lutiše
+Topoľčany/Lužany
+Svidník/Lužany pri Topli
+Nitra/Lužianky
+Púchov/Lysá pod Makytou
+Žilina/Lysica
+Nové Zámky/Ľubá
+Liptovský Mikuláš/Ľubeľa
+Kežmarok/Ľubica
+Banská Bystrica/Ľubietová
+Humenné/Ľubiša
+Ružomberok/Ľubochňa
+Lučenec/Ľuboreč
+Veľký Krtíš/Ľuboriečka
+Prešov/Ľubotice
+Stará Ľubovňa/Ľubotín
+Prešov/Ľubovec
+Nitra/Ľudovítová
+Sabinov/Ľutina
+Bánovce nad Bebravou/Ľutov
+Dunajská Streda/Macov
+Dunajská Streda/Mad
+Hlohovec/Madunice
+Revúca/Magnezitovce
+Zlaté Moravce/Machulince
+Trnava/Majcichov
+Kežmarok/Majere
+Vranov nad Topľou/Majerovce
+Čadca/Makov
+Stropkov/Makovce
+Veľký Krtíš/Malá Čalomija
+Prievidza/Malá Čausa
+Žilina/Malá Čierna
+Vranov nad Topľou/Malá Domaša
+Kežmarok/Malá Franková
+Bánovce nad Bebravou/Malá Hradná
+Košice-okolie/Malá Ida
+Žarnovica/Malá Lehota
+Košice-okolie/Malá Lodina
+Galanta/Malá Mača
+Nové Zámky/Malá nad Hronom
+Stropkov/Malá Poľana
+Trebišov/Malá Tŕňa
+Malacky/Malacky
+Banská Bystrica/Malachov
+Levice/Málaš
+Dolný Kubín/Malatiná
+Liptovský Mikuláš/Malatíny
+Bardejov/Malcov
+Michalovce/Malčice
+Liptovský Mikuláš/Malé Borové
+Dunajská Streda/Malé Dvorníky
+Nitra/Malé Chyndice
+Bánovce nad Bebravou/Malé Hoste
+Nové Zámky/Malé Kosihy
+Levice/Malé Kozmálovce
+Partizánske/Malé Kršteňany
+Považská Bystrica/Malé Lednice
+Malacky/Malé Leváre
+Levice/Malé Ludince
+Trebišov/Malé Ozorovce
+Michalovce/Malé Raškovce
+Topoľčany/Malé Ripňany
+Veľký Krtíš/Malé Straciny
+Trebišov/Malé Trakany
+Partizánske/Malé Uherce
+Zlaté Moravce/Malé Vozokany
+Nitra/Malé Zálužie
+Veľký Krtíš/Malé Zlievce
+Poltár/Málinec
+Prievidza/Malinová
+Senec/Malinovo
+Liptovský Mikuláš/Malužiná
+Nitra/Malý Cetín
+Turčianske Teplice/Malý Čepčín
+Trebišov/Malý Horeš
+Trebišov/Malý Kamenec
+Veľký Krtíš/Malý Krtíš
+Nitra/Malý Lapáš
+Stará Ľubovňa/Malý Lipník
+Kežmarok/Malý Slavkov
+Prešov/Malý Slivník
+Prešov/Malý Šariš
+Trnava/Malženice
+Zlaté Moravce/Mankovce
+Nové Zámky/Maňa
+Komárno/Marcelová
+Gelnica/Margecany
+Bardejov/Marhaň
+Malacky/Marianka
+Michalovce/Markovce
+Rožňava/Markuška
+Spišská Nová Ves/Markušovce
+Bytča/Maršová-Rašov
+Martin/Martin
+Zlaté Moravce/Martin nad Žitavou
+Ružomberok/Martinček
+Rimavská Sobota/Martinová
+Komárno/Martovce
+Lučenec/Mašková
+Humenné/Maškovce
+Spišská Nová Ves/Matejovce nad Hornádom
+Vranov nad Topľou/Matiaška
+Kežmarok/Matiašovce
+Svidník/Matovce
+Galanta/Matúškovo
+Stará Ľubovňa/Matysová
+Michalovce/Maťovské Vojkovce
+Krupina/Medovarce
+Svidník/Medvedie
+Dunajská Streda/Medveďov
+Prešov/Medzany
+Košice-okolie/Medzev
+Vranov nad Topľou/Medzianky
+Banská Bystrica/Medzibrod
+Dolný Kubín/Medzibrodie nad Oravou
+Medzilaborce/Medzilaborce
+Trenčín/Melčice-Lieskové
+Nitra/Melek
+Rožňava/Meliata
+Poprad/Mengusovce
+Hlohovec/Merašice
+Vranov nad Topľou/Merník
+Púchov/Mestečko
+Svidník/Mestisko
+Svidník/Mičakovce
+Dunajská Streda/Mierovo
+Bánovce nad Bebravou/Miezgovce
+Snina/Michajlov
+Dunajská Streda/Michal na Ostrove
+Nové Zámky/Michal nad Žitavou
+Zvolen/Michalková
+Vranov nad Topľou/Michalok
+Brezno/Michalová
+Michalovce/Michalovce
+Trebišov/Michaľany
+Prešov/Miklušovce
+Stropkov/Miková
+Bardejov/Mikulášová
+Ilava/Mikušovce
+Lučenec/Mikušovce
+Košice-okolie/Milhosť
+Senec/Miloslavov
+Sabinov/Milpoš
+Stropkov/Miňovce
+Prešov/Mirkovce
+Svidník/Miroľa
+Poltár/Mládzovo
+Svidník/Mlynárovce
+Kežmarok/Mlynčeky
+Poprad/Mlynica
+Spišská Nová Ves/Mlynky
+Trenčín/Mníchova Lehota
+Gelnica/Mníšek nad Hnilcom
+Stará Ľubovňa/Mníšek nad Popradom
+Komárno/Moča
+Šaľa/Močenok
+Banská Štiavnica/Močiar
+Pezinok/Modra
+Humenné/Modra nad Cirochou
+Komárno/Modrany
+Nové Mesto nad Váhom/Modrová
+Nové Mesto nad Váhom/Modrovka
+Veľký Krtíš/Modrý Kameň
+Nitra/Mojmírovce
+Žilina/Mojš
+Púchov/Mojtín
+Nové Zámky/Mojzesovo
+Revúca/Mokrá Lúka
+Košice-okolie/Mokrance
+Bardejov/Mokroluh
+Skalica/Mokrý Háj
+Košice-okolie/Moldava nad Bodvou
+Michalovce/Moravany
+Piešťany/Moravany nad Váhom
+Nové Mesto nad Váhom/Moravské Lieskové
+Senica/Moravský Svätý Ján
+Senec/Most pri Bratislave
+Galanta/Mostová
+Turčianske Teplice/Moškovec
+Turčianske Teplice/Mošovce
+Banská Bystrica/Moštenica
+Prešov/Mošurov
+Trenčín/Motešice
+Banská Bystrica/Motyčky
+Banská Bystrica/Môlča
+Stropkov/Mrázovce
+Lučenec/Mučín
+Komárno/Mudroňovo
+Košice-okolie/Mudrovce
+Veľký Krtíš/Muľa
+Revúca/Muráň
+Revúca/Muránska Dlhá Lúka
+Revúca/Muránska Huta
+Revúca/Muránska Lehota
+Revúca/Muránska Zdychava
+Námestovo/Mútne
+Nové Zámky/Mužla
+Myjava/Myjava
+Humenné/Myslina
+Lučenec/Mýtna
+Levice/Mýtne Ludany
+Brezno/Mýto pod Ďumbierom
+Michalovce/Nacina Ves
+Partizánske/Nadlice
+Trnava/Naháč
+Gelnica/Nálepkovo
+Námestovo/Námestovo
+Nové Zámky/Nána
+Revúca/Nandraž
+Martin/Necpaly
+Partizánske/Nedanovce
+Bánovce nad Bebravou/Nedašovce
+Šaľa/Neded
+Žilina/Nededza
+Prievidza/Nedožery-Brezany
+Humenné/Nechválova Polianka
+Banská Bystrica/Nemce
+Bardejov/Nemcovce
+Prešov/Nemcovce
+Topoľčany/Nemčice
+Zlaté Moravce/Nemčiňany
+Brezno/Nemecká
+Topoľčany/Nemečky
+Levoča/Nemešany
+Trenčín/Nemšová
+Veľký Krtíš/Nenince
+Trenčín/Neporadza
+Rimavská Sobota/Neporadza
+Komárno/Nesvady
+Kysucké Nové Mesto/Nesluša
+Zlaté Moravce/Neverice
+Prievidza/Nevidzany
+Zlaté Moravce/Nevidzany
+Žiar nad Hronom/Nevoľné
+Žilina/Nezbudská Lúčka
+Púchov/Nimnica
+Nitra/Nitra
+Lučenec/Nitra nad Ipľom
+Topoľčany/Nitrianska Blatnica
+Topoľčany/Nitrianska Streda
+Nitra/Nitrianske Hrnčiarovce
+Prievidza/Nitrianske Pravno
+Prievidza/Nitrianske Rudno
+Prievidza/Nitrianske Sučany
+Prievidza/Nitrica
+Piešťany/Nižná
+Tvrdošín/Nižná
+Liptovský Mikuláš/Nižná Boca
+Košice-okolie/Nižná Hutka
+Humenné/Nižná Jablonka
+Svidník/Nižná Jedľová
+Košice-okolie/Nižná Kamenica
+Košice-okolie/Nižná Myšľa
+Stropkov/Nižná Olšava
+Svidník/Nižná Pisaná
+Bardejov/Nižná Polianka
+Sobrance/Nižná Rybnica
+Humenné/Nižná Sitnica
+Rožňava/Nižná Slaná
+Bardejov/Nižná Voľa
+Humenné/Nižné Ladičkovce
+Sobrance/Nižné Nemecké
+Levoča/Nižné Repaše
+Stará Ľubovňa/Nižné Ružbachy
+Košice-okolie/Nižný Čaj
+Vranov nad Topľou/Nižný Hrabovec
+Vranov nad Topľou/Nižný Hrušov
+Košice-okolie/Nižný Klátov
+Svidník/Nižný Komárnik
+Vranov nad Topľou/Nižný Kručov
+Košice-okolie/Nižný Lánec
+Svidník/Nižný Mirošov
+Svidník/Nižný Orlík
+Rimavská Sobota/Nižný Skálnik
+Sabinov/Nižný Slavkov
+Bardejov/Nižný Tvarožec
+Trebišov/Nižný Žipov
+Martin/Nolčovo
+Topoľčany/Norovce
+Žarnovica/Nová Baňa
+Rimavská Sobota/Nová Bašta
+Nové Mesto nad Váhom/Nová Bošáca
+Čadca/Nová Bystrica
+Levice/Nová Dedina
+Senec/Nová Dedinka
+Ilava/Nová Dubnica
+Vranov nad Topľou/Nová Kelča
+Nové Mesto nad Váhom/Nová Lehota
+Poprad/Nová Lesná
+Stará Ľubovňa/Nová Ľubovňa
+Košice-okolie/Nová Polhora
+Svidník/Nová Polianka
+Snina/Nová Sedlica
+Veľký Krtíš/Nová Ves
+Nové Mesto nad Váhom/Nová Ves nad Váhom
+Nitra/Nová Ves nad Žitavou
+Nové Zámky/Nová Vieska
+Košice-okolie/Nováčany
+Prievidza/Nováky
+Lučenec/Nové Hony
+Nové Mesto nad Váhom/Nové Mesto nad Váhom
+Nitra/Nové Sady
+Nové Zámky/Nové Zámky
+Trebišov/Novosad
+Námestovo/Novoť
+Trebišov/Nový Ruskov
+Košice-okolie/Nový Salaš
+Senec/Nový Svet
+Levice/Nový Tekov
+Dunajská Streda/Nový Život
+Levice/Nýrovce
+Medzilaborce/Ňagov
+Dunajská Streda/Ňárad
+Veľký Krtíš/Obeckov
+Nové Zámky/Obid
+Košice-okolie/Obišovce
+Michalovce/Oborín
+Stará Ľubovňa/Obručné
+Zlaté Moravce/Obyce
+Nové Mesto nad Váhom/Očkov
+Zvolen/Očová
+Spišská Nová Ves/Odorín
+Dunajská Streda/Ohrady
+Humenné/Ohradzany
+Kysucké Nové Mesto/Ochodnica
+Rožňava/Ochtiná
+Dunajská Streda/Okoč
+Komárno/Okoličná na Ostrove
+Svidník/Okrúhle
+Prešov/Okružná
+Spišská Nová Ves/Olcnava
+Sabinov/Olejníkov
+Čadca/Olešná
+Veľký Krtíš/Olováry
+Košice-okolie/Olšovany
+Dunajská Streda/Oľdza
+Medzilaborce/Oľka
+Bardejov/Oľšavce
+Levoča/Oľšavica
+Stropkov/Oľšavka
+Spišská Nová Ves/Oľšavka
+Medzilaborce/Oľšinkov
+Sabinov/Oľšov
+Bánovce nad Bebravou/Omastiná
+Trenčín/Omšenie
+Bardejov/Ondavka
+Vranov nad Topľou/Ondavské Matiašovce
+Prešov/Ondrašovce
+Turčianske Teplice/Ondrašová
+Levice/Ondrejovce
+Košice-okolie/Opátka
+Trenčín/Opatovce
+Prievidza/Opatovce nad Nitrou
+Veľký Krtíš/Opatovská Nová Ves
+Veľký Krtíš/Opava
+Košice-okolie/Opiná
+Trnava/Opoj
+Topoľčany/Oponice
+Banská Bystrica/Oravce
+Rimavská Sobota/Orávka
+Námestovo/Oravská Jasenica
+Námestovo/Oravská Lesná
+Námestovo/Oravská Polhora
+Dolný Kubín/Oravská Poruba
+Námestovo/Oravské Veselé
+Tvrdošín/Oravský Biely Potok
+Dolný Kubín/Oravský Podzámok
+Levoča/Ordzovany
+Sobrance/Orechová
+Dunajská Streda/Orechová Potôň
+Skalica/Oreské
+Michalovce/Oreské
+Topoľčany/Orešany
+Stará Ľubovňa/Orlov
+Žarnovica/Orovnica
+Bardejov/Ortuťová
+Dolný Kubín/Osádka
+Snina/Osadné
+Bardejov/Osikov
+Prievidza/Oslany
+Brezno/Osrblie
+Zvolen/Ostrá Lúka
+Partizánske/Ostratice
+Piešťany/Ostrov
+Sobrance/Ostrov
+Sabinov/Ostrovany
+Žarnovica/Ostrý Grúň
+Kežmarok/Osturňa
+Senica/Osuské
+Čadca/Oščadnica
+Bánovce nad Bebravou/Otrhánky
+Revúca/Otročok
+Žilina/Ovčiarsko
+Prešov/Ovčie
+Poltár/Ozdín
+Rimavská Sobota/Ožďany
+Rožňava/Pača
+Dunajská Streda/Padáň
+Rimavská Sobota/Padarovce
+Humenné/Pakostov
+Nové Zámky/Palárikovo
+Michalovce/Palín
+Medzilaborce/Palota
+Lučenec/Panické Dravce
+Nitra/Paňa
+Košice-okolie/Paňovce
+Humenné/Papín
+Považská Bystrica/Papradno
+Trebišov/Parchovany
+Snina/Parihuzovce
+Dolný Kubín/Párnica
+Liptovský Mikuláš/Partizánska Ľupča
+Partizánske/Partizánske
+Levice/Pastovce
+Hlohovec/Pastuchov
+Rožňava/Pašková
+Žilina/Paština Závada
+Galanta/Pata
+Dunajská Streda/Pataš
+Komárno/Patince
+Liptovský Mikuláš/Pavčina Lehota
+Trnava/Pavlice
+Nové Zámky/Pavlová
+Liptovský Mikuláš/Pavlova Ves
+Rimavská Sobota/Pavlovce
+Vranov nad Topľou/Pavlovce
+Michalovce/Pavlovce nad Uhom
+Levoča/Pavľany
+Partizánske/Pažiť
+Snina/Pčoliné
+Levice/Pečenice
+Piešťany/Pečeňady
+Bánovce nad Bebravou/Pečeňany
+Sabinov/Pečovská Nová Ves
+Košice-okolie/Peder
+Košice-okolie/Perín-Chym
+Malacky/Pernek
+Vranov nad Topľou/Petkovce
+Michalovce/Petrikovce
+Bardejov/Petrová
+Trenčín/Petrova Lehota
+Skalica/Petrova Ves
+Prešov/Petrovany
+Rimavská Sobota/Petrovce
+Vranov nad Topľou/Petrovce
+Sobrance/Petrovce
+Michalovce/Petrovce nad Laborcom
+Bytča/Petrovice
+Rožňava/Petrovo
+Pezinok/Pezinok
+Piešťany/Piešťany
+Snina/Pichne
+Pezinok/Píla
+Lučenec/Píla
+Žarnovica/Píla
+Lučenec/Pinciná
+Sobrance/Pinkovce
+Vranov nad Topľou/Piskorovce
+Žiar nad Hronom/Pitelová
+Levice/Plášťovce
+Levice/Plavé Vozokany
+Malacky/Plavecké Podhradie
+Malacky/Plavecký Mikuláš
+Senica/Plavecký Peter
+Malacky/Plavecký Štvrtok
+Stará Ľubovňa/Plaveč
+Stará Ľubovňa/Plavnica
+Trebišov/Plechotice
+Lučenec/Pleš
+Rožňava/Plešivec
+Považská Bystrica/Plevník-Drienové
+Zvolen/Pliešovce
+Revúca/Ploské
+Košice-okolie/Ploské
+Nové Mesto nad Váhom/Pobedim
+Považská Bystrica/Počarová
+Banská Štiavnica/Počúvadlo
+Tvrdošín/Podbiel
+Senica/Podbranč
+Brezno/Podbrezová
+Nové Zámky/Podhájska
+Nitra/Podhorany
+Kežmarok/Podhorany
+Prešov/Podhorany
+Žilina/Podhorie
+Banská Štiavnica/Podhorie
+Sobrance/Podhoroď
+Prievidza/Podhradie
+Topoľčany/Podhradie
+Martin/Podhradie
+Prešov/Podhradík
+Banská Bystrica/Podkonice
+Detva/Podkriváň
+Myjava/Podkylava
+Bánovce nad Bebravou/Podlužany
+Levice/Podlužany
+Nové Mesto nad Váhom/Podolie
+Stará Ľubovňa/Podolínec
+Lučenec/Podrečany
+Považská Bystrica/Podskalie
+Liptovský Mikuláš/Podtureň
+Čadca/Podvysoká
+Zvolen/Podzámčok
+Brezno/Pohorelá
+Nitra/Pohranice
+Brezno/Pohronská Polhora
+Banská Bystrica/Pohronský Bukovec
+Levice/Pohronský Ruskov
+Bánovce nad Bebravou/Pochabany
+Dolný Kubín/Pokryváč
+Bardejov/Poliakovce
+Myjava/Polianka
+Lučenec/Polichno
+Revúca/Polina
+Sabinov/Poloma
+Brezno/Polomka
+Poltár/Poltár
+Prievidza/Poluvsie
+Levoča/Poľanovce
+Trebišov/Poľany
+Nitra/Poľný Kesov
+Levoča/Pongrácovce
+Banská Bystrica/Poniky
+Poprad/Poprad
+Rimavská Sobota/Poproč
+Košice-okolie/Poproč
+Skalica/Popudinské Močidľany
+Spišská Nová Ves/Poráč
+Myjava/Poriadie
+Sobrance/Porostov
+Prievidza/Poruba
+Michalovce/Poruba pod Vihorlatom
+Žilina/Porúbka
+Bardejov/Porúbka
+Humenné/Porúbka
+Sobrance/Porúbka
+Vranov nad Topľou/Poša
+Ružomberok/Potok
+Rimavská Sobota/Potok
+Stropkov/Potoky
+Stropkov/Potôčky
+Dunajská Streda/Potônske Lúky
+Nové Mesto nad Váhom/Potvorice
+Nové Mesto nad Váhom/Považany
+Považská Bystrica/Považská Bystrica
+Kysucké Nové Mesto/Povina
+Dunajská Streda/Povoda
+Banská Bystrica/Povrazník
+Nové Zámky/Pozba
+Michalovce/Pozdišovce
+Veľký Krtíš/Pôtor
+Lučenec/Praha
+Gelnica/Prakovce
+Topoľčany/Prašice
+Piešťany/Prašník
+Prievidza/Pravenec
+Veľký Krtíš/Pravica
+Bánovce nad Bebravou/Pravotice
+Topoľčany/Práznovce
+Považská Bystrica/Prečín
+Brezno/Predajná
+Bytča/Predmier
+Banská Štiavnica/Prenčov
+Topoľčany/Preseľany
+Žiar nad Hronom/Prestavlky
+Prešov/Prešov
+Veľký Krtíš/Príbelce
+Trebišov/Pribeník
+Komárno/Pribeta
+Dolný Kubín/Pribiš
+Martin/Príbovce
+Liptovský Mikuláš/Pribylina
+Banská Bystrica/Priechod
+Sobrance/Priekopa
+Myjava/Priepasné
+Senica/Prietrž
+Skalica/Prietržka
+Senica/Prievaly
+Prievidza/Prievidza
+Revúca/Prihradzany
+Svidník/Príkra
+Snina/Príslop
+Humenné/Prituľany
+Prešov/Proč
+Žiar nad Hronom/Prochot
+Vranov nad Topľou/Prosačov
+Liptovský Mikuláš/Prosiek
+Lučenec/Prša
+Ilava/Pruské
+Bánovce nad Bebravou/Prusy
+Považská Bystrica/Pružina
+Svidník/Pstriná
+Humenné/Ptičie
+Michalovce/Ptrukša
+Dolný Kubín/Pucov
+Púchov/Púchov
+Levice/Pukanec
+Michalovce/Pusté Čemerné
+Stará Ľubovňa/Pusté Pole
+Galanta/Pusté Sady
+Galanta/Pusté Úľany
+Prešov/Pušovce
+Námestovo/Rabča
+Námestovo/Rabčice
+Trebišov/Rad
+Prešov/Radatice
+Nové Zámky/Radava
+Skalica/Radimov
+Rimavská Sobota/Radnovce
+Prievidza/Radobica
+Kysucké Nové Mesto/Radoľa
+Svidník/Radoma
+Topoľčany/Radošina
+Skalica/Radošovce
+Trnava/Radošovce
+Čadca/Radôstka
+Vranov nad Topľou/Radvanovce
+Komárno/Radvaň nad Dunajom
+Medzilaborce/Radvaň nad Laborcom
+Lučenec/Radzovce
+Vranov nad Topľou/Rafajovce
+Topoľčany/Rajčany
+Žilina/Rajec
+Žilina/Rajecká Lesná
+Žilina/Rajecké Teplice
+Revúca/Rákoš
+Košice-okolie/Rákoš
+Čadca/Raková
+Svidník/Rakovčík
+Michalovce/Rakovec nad Ondavou
+Piešťany/Rakovice
+Rožňava/Rakovnica
+Martin/Rakovo
+Turčianske Teplice/Rakša
+Kežmarok/Rakúsy
+Rimavská Sobota/Rakytník
+Košice-okolie/Rankovce
+Lučenec/Rapovce
+Bardejov/Raslavice
+Nové Zámky/Rastislavice
+Revúca/Rašice
+Lučenec/Ratka
+Revúca/Ratková
+Hlohovec/Ratkovce
+Martin/Ratkovo
+Rimavská Sobota/Ratkovská Lehota
+Rimavská Sobota/Ratkovská Suchá
+Revúca/Ratkovské Bystré
+Piešťany/Ratnovce
+Sabinov/Ratvaj
+Prievidza/Ráztočno
+Brezno/Ráztoka
+Sabinov/Ražňany
+Senec/Reca
+Bardejov/Regetovka
+Rožňava/Rejdová
+Kežmarok/Reľov
+Vranov nad Topľou/Remeniny
+Sobrance/Remetské Hámre
+Sabinov/Renčišov
+Medzilaborce/Repejov
+Žiar nad Hronom/Repište
+Košice-okolie/Rešica
+Bardejov/Rešov
+Revúca/Revúca
+Revúca/Revúcka Lehota
+Banská Bystrica/Riečka
+Rimavská Sobota/Riečka
+Gelnica/Richnava
+Bardejov/Richvald
+Rimavská Sobota/Rimavská Baňa
+Rimavská Sobota/Rimavská Seč
+Rimavská Sobota/Rimavská Sobota
+Rimavská Sobota/Rimavské Brezovo
+Rimavská Sobota/Rimavské Janovce
+Rimavská Sobota/Rimavské Zalužany
+Nitra/Rišňovce
+Senica/Rohov
+Dunajská Streda/Rohovce
+Malacky/Rohožník
+Humenné/Rohožník
+Rožňava/Rochovce
+Prešov/Rokycany
+Bardejov/Rokytov
+Humenné/Rokytov pri Humennom
+Medzilaborce/Rokytovce
+Žilina/Rosina
+Medzilaborce/Roškovce
+Rožňava/Roštár
+Senica/Rovensko
+Senec/Rovinka
+Rimavská Sobota/Rovné
+Humenné/Rovné
+Svidník/Rovné
+Poltár/Rovňany
+Košice-okolie/Rozhanovce
+Rožňava/Rozložná
+Svidník/Roztoky
+Sabinov/Rožkovany
+Rožňava/Rožňava
+Rožňava/Rožňavské Bystré
+Nové Zámky/Rúbaň
+Kysucké Nové Mesto/Rudina
+Kysucké Nové Mesto/Rudinka
+Kysucké Nové Mesto/Rudinská
+Vranov nad Topľou/Rudlov
+Rožňava/Rudná
+Prievidza/Rudnianska Lehota
+Myjava/Rudník
+Košice-okolie/Rudník
+Turčianske Teplice/Rudno
+Žarnovica/Rudno nad Hronom
+Spišská Nová Ves/Rudňany
+Nitra/Rumanová
+Rimavská Sobota/Rumince
+Snina/Runina
+Michalovce/Ruská
+Sobrance/Ruská Bystrá
+Humenné/Ruská Kajňa
+Prešov/Ruská Nová Ves
+Humenné/Ruská Poruba
+Snina/Ruská Volová
+Vranov nad Topľou/Ruská Voľa
+Stará Ľubovňa/Ruská Voľa nad Popradom
+Košice-okolie/Ruskov
+Bánovce nad Bebravou/Ruskovce
+Sobrance/Ruskovce
+Sobrance/Ruský Hrabovec
+Snina/Ruský Potok
+Lučenec/Ružiná
+Trnava/Ružindol
+Ružomberok/Ružomberok
+Bánovce nad Bebravou/Rybany
+Senica/Rybky
+Levice/Rybník
+Revúca/Rybník
+Krupina/Rykynčice
+Sabinov/Sabinov
+Vranov nad Topľou/Sačurov
+Považská Bystrica/Sádočné
+Košice-okolie/Sady nad Torysou
+Nové Zámky/Salka
+Levice/Santovka
+Dunajská Streda/Sap
+Revúca/Sása
+Zvolen/Sása
+Hlohovec/Sasinkovo
+Levice/Sazdice
+Banská Bystrica/Sebedín-Bečov
+Prievidza/Sebedražie
+Krupina/Sebechleby
+Prievidza/Seč
+Veľký Krtíš/Sečianky
+Trebišov/Sečovce
+Vranov nad Topľou/Sečovská Polianka
+Dolný Kubín/Sedliacka Dubová
+Prešov/Sedlice
+Vranov nad Topľou/Sedliská
+Ilava/Sedmerovec
+Sobrance/Sejkov
+Senica/Sekule
+Banská Bystrica/Selce
+Krupina/Selce
+Poltár/Selce
+Trenčín/Selec
+Šaľa/Selice
+Veľký Krtíš/Seľany
+Nové Zámky/Semerovo
+Senec/Senec
+Prešov/Seniakovce
+Senica/Senica
+Veľký Krtíš/Senné
+Michalovce/Senné
+Krupina/Senohrad
+Košice-okolie/Seňa
+Galanta/Sereď
+Zvolen/Sielnica
+Námestovo/Sihelné
+Brezno/Sihla
+Levice/Sikenica
+Nové Zámky/Sikenička
+Hlohovec/Siladice
+Rožňava/Silica
+Rožňava/Silická Brezová
+Rožňava/Silická Jablonica
+Revúca/Sirk
+Trebišov/Sirník
+Partizánske/Skačany
+Skalica/Skalica
+Čadca/Skalité
+Trenčín/Skalka nad Váhom
+Košice-okolie/Skároš
+Revúca/Skerešovo
+Veľký Krtíš/Sklabiná
+Martin/Sklabinský Podzámok
+Martin/Sklabiňa
+Turčianske Teplice/Sklené
+Žiar nad Hronom/Sklené Teplice
+Vranov nad Topľou/Skrabské
+Zlaté Moravce/Skýcov
+Galanta/Sládkovičovo
+Košice-okolie/Slančík
+Košice-okolie/Slanec
+Košice-okolie/Slanská Huta
+Košice-okolie/Slanské Nové Mesto
+Žiar nad Hronom/Slaská
+Levice/Slatina
+Bánovce nad Bebravou/Slatina nad Bebravou
+Bánovce nad Bebravou/Slatinka nad Bebravou
+Detva/Slatinské Lazy
+Spišská Nová Ves/Slatvina
+Rožňava/Slavec
+Michalovce/Slavkovce
+Ilava/Slavnica
+Rožňava/Slavoška
+Rožňava/Slavošovce
+Zlaté Moravce/Slepčany
+Zvolen/Sliač
+Michalovce/Sliepkovce
+Rimavská Sobota/Slizké
+Trebišov/Slivník
+Považská Bystrica/Slopná
+Martin/Slovany
+Vranov nad Topľou/Slovenská Kajňa
+Banská Bystrica/Slovenská Ľupča
+Trnava/Slovenská Nová Ves
+Kežmarok/Slovenská Ves
+Humenné/Slovenská Volová
+Veľký Krtíš/Slovenské Ďarmoty
+Veľký Krtíš/Slovenské Kľačany
+Humenné/Slovenské Krivé
+Trebišov/Slovenské Nové Mesto
+Turčianske Teplice/Slovenské Pravno
+Pezinok/Slovenský Grob
+Spišská Nová Ves/Slovinky
+Zlaté Moravce/Sľažany
+Bardejov/Smilno
+Spišská Nová Ves/Smižany
+Trnava/Smolenice
+Senica/Smolinské
+Gelnica/Smolnícka Huta
+Gelnica/Smolník
+Senica/Smrdáky
+Liptovský Mikuláš/Smrečany
+Bardejov/Snakov
+Kysucké Nové Mesto/Snežnica
+Snina/Snina
+Martin/Socovce
+Trenčín/Soblahov
+Svidník/Soboš
+Senica/Sobotište
+Sobrance/Sobrance
+Komárno/Sokolce
+Piešťany/Sokolovce
+Košice-okolie/Sokoľ
+Košice-okolie/Sokoľany
+Topoľčany/Solčany
+Topoľčany/Solčianky
+Malacky/Sološnica
+Vranov nad Topľou/Soľ
+Trebišov/Soľnička
+Stropkov/Soľník
+Trebišov/Somotor
+Humenné/Sopkovce
+Kežmarok/Spišská Belá
+Spišská Nová Ves/Spišská Nová Ves
+Kežmarok/Spišská Stará Ves
+Poprad/Spišská Teplica
+Poprad/Spišské Bystré
+Kežmarok/Spišské Hanušovce
+Levoča/Spišské Podhradie
+Spišská Nová Ves/Spišské Tomášovce
+Spišská Nová Ves/Spišské Vlachy
+Levoča/Spišský Hrhov
+Spišská Nová Ves/Spišský Hrušov
+Poprad/Spišský Štiavnik
+Levoča/Spišský Štvrtok
+Snina/Stakčín
+Snina/Stakčínska Roztoka
+Trebišov/Stanča
+Ružomberok/Stankovany
+Trebišov/Stankovce
+Rimavská Sobota/Stará Bašta
+Čadca/Stará Bystrica
+Lučenec/Stará Halič
+Detva/Stará Huta
+Žiar nad Hronom/Stará Kremnička
+Nové Mesto nad Váhom/Stará Lehota
+Kežmarok/Stará Lesná
+Stará Ľubovňa/Stará Ľubovňa
+Myjava/Stará Myjava
+Nové Mesto nad Váhom/Stará Turá
+Gelnica/Stará Voda
+Michalovce/Staré
+Banská Bystrica/Staré Hory
+Stará Ľubovňa/Starina
+Levice/Starý Hrádok
+Levice/Starý Tekov
+Čadca/Staškov
+Stropkov/Staškovce
+Bardejov/Stebnícka Huta
+Bardejov/Stebník
+Detva/Stožok
+Kežmarok/Stráne pod Tatrami
+Rimavská Sobota/Stránska
+Žilina/Stránske
+Stará Ľubovňa/Stráňany
+Žilina/Stráňavy
+Rožňava/Stratená
+Žilina/Stráža
+Trebišov/Strážne
+Michalovce/Strážske
+Žilina/Strečno
+Trebišov/Streda nad Bodrogom
+Veľký Krtíš/Stredné Plachtince
+Nové Zámky/Strekov
+Banská Bystrica/Strelníky
+Michalovce/Stretava
+Michalovce/Stretavka
+Púchov/Streženice
+Snina/Strihovce
+Svidník/Stročín
+Stropkov/Stropkov
+Rimavská Sobota/Studená
+Levoča/Studenec
+Malacky/Studienka
+Bardejov/Stuľany
+Malacky/Stupava
+Považská Bystrica/Stupné
+Martin/Sučany
+Krupina/Sudince
+Krupina/Súdovce
+Prešov/Suchá Dolina
+Tvrdošín/Suchá Hora
+Trnava/Suchá nad Parnou
+Veľký Krtíš/Sucháň
+Michalovce/Suché
+Veľký Krtíš/Suché Brezovo
+Malacky/Suchohrad
+Medzilaborce/Sukov
+Stará Ľubovňa/Sulín
+Topoľčany/Súlovce
+Bytča/Súľov-Hradná
+Poltár/Sušany
+Rimavská Sobota/Sútor
+Trebišov/Svätá Mária
+Nitra/Svätoplukovo
+Sobrance/Svätuš
+Trebišov/Svätuše
+Banská Štiavnica/Svätý Anton
+Pezinok/Svätý Jur
+Liptovský Mikuláš/Svätý Kríž
+Komárno/Svätý Peter
+Žilina/Svederník
+Považská Bystrica/Sverepec
+Bardejov/Sveržov
+Medzilaborce/Svetlice
+Svidník/Svidnička
+Svidník/Svidník
+Prešov/Svinia
+Košice-okolie/Svinica
+Trebišov/Svinice
+Trenčín/Svinná
+Poprad/Svit
+Nové Zámky/Svodín
+Topoľčany/Svrbice
+Čadca/Svrčinovec
+Levice/Šahy
+Senica/Šajdíkove Humence
+Topoľčany/Šalgovce
+Galanta/Šalgočka
+Levice/Šalov
+Šaľa/Šaľa
+Stará Ľubovňa/Šambron
+Dunajská Streda/Šamorín
+Michalovce/Šamudovce
+Stropkov/Šandal
+Svidník/Šarbov
+Prešov/Šarišská Poruba
+Prešov/Šarišská Trstená
+Prešov/Šarišské Bohdanovce
+Bardejov/Šarišské Čierne
+Sabinov/Šarišské Dravce
+Stará Ľubovňa/Šarišské Jastrabie
+Sabinov/Šarišské Michaľany
+Sabinov/Šarišské Sokolovce
+Svidník/Šarišský Štiavnik
+Nové Zámky/Šarkan
+Levice/Šarovce
+Bardejov/Šašová
+Senica/Šaštín-Stráže
+Lučenec/Šávoľ
+Trnava/Šelpice
+Svidník/Šemetkovce
+Košice-okolie/Šemša
+Pezinok/Šenkvice
+Lučenec/Šiatorská Bukovinka
+Bardejov/Šiba
+Lučenec/Šíd
+Rimavská Sobota/Šimonovce
+Prešov/Šindliar
+Galanta/Šintava
+Bánovce nad Bebravou/Šípkov
+Piešťany/Šípkové
+Veľký Krtíš/Širákov
+Rimavská Sobota/Širkovce
+Prešov/Široké
+Bánovce nad Bebravou/Šišov
+Revúca/Šivetice
+Snina/Šmigovec
+Poltár/Šoltýska
+Galanta/Šoporňa
+Trnava/Špačince
+Banská Bystrica/Špania Dolina
+Rimavská Sobota/Španie Pole
+Komárno/Šrobárová
+Senica/Štefanov
+Tvrdošín/Štefanov nad Oravou
+Pezinok/Štefanová
+Prešov/Štefanovce
+Vranov nad Topľou/Štefanovce
+Nitra/Štefanovičová
+Svidník/Štefurov
+Piešťany/Šterusy
+Banská Štiavnica/Štiavnické Bane
+Ružomberok/Štiavnička
+Bytča/Štiavnik
+Nitra/Štitáre
+Rožňava/Štítnik
+Košice-okolie/Štós
+Poprad/Štôla
+Poprad/Štrba
+Rimavská Sobota/Štrkovec
+Nové Zámky/Štúrovo
+Trenčín/Štvrtok
+Dunajská Streda/Štvrtok na Ostrove
+Žilina/Šuja
+Veľký Krtíš/Šuľa
+Brezno/Šumiac
+Poprad/Šuňava
+Nové Zámky/Šurany
+Nitra/Šurianky
+Lučenec/Šurice
+Trnava/Šúrovce
+Martin/Šútovo
+Prievidza/Šútovce
+Poprad/Švábovce
+Gelnica/Švedlár
+Ružomberok/Švošov
+Rimavská Sobota/Tachty
+Nitra/Tajná
+Banská Bystrica/Tajov
+Bardejov/Tarnov
+Poprad/Tatranská Javorina
+Sobrance/Tašuľa
+Levice/Tehla
+Hlohovec/Tekolďany
+Žarnovica/Tekovská Breznica
+Levice/Tekovské Lužany
+Zlaté Moravce/Tekovské Nemce
+Levice/Tekovský Hrádok
+Brezno/Telgárt
+Nitra/Telince
+Prievidza/Temeš
+Spišská Nová Ves/Teplička
+Žilina/Teplička nad Váhom
+Hlohovec/Tepličky
+Rimavská Sobota/Teplý Vrch
+Krupina/Terany
+Žilina/Terchová
+Prešov/Teriakovce
+Prešov/Terňa
+Topoľčany/Tesáre
+Zlaté Moravce/Tesárske Mlyňany
+Šaľa/Tešedíkovo
+Sobrance/Tibava
+Sabinov/Tichý Potok
+Bánovce nad Bebravou/Timoradza
+Stropkov/Tisinec
+Rimavská Sobota/Tisovec
+Levice/Tlmače
+Lučenec/Točnica
+Stropkov/Tokajík
+Galanta/Tomášikovo
+Senec/Tomášov
+Lučenec/Tomášovce
+Rimavská Sobota/Tomášovce
+Snina/Topoľa
+Topoľčany/Topoľčany
+Zlaté Moravce/Topoľčianky
+Galanta/Topoľnica
+Dunajská Streda/Topoľníky
+Humenné/Topoľovka
+Kežmarok/Toporec
+Revúca/Tornaľa
+Sabinov/Torysa
+Levoča/Torysky
+Vranov nad Topľou/Tovarné
+Vranov nad Topľou/Tovarnianska Polianka
+Topoľčany/Tovarníky
+Komárno/Tôň
+Hlohovec/Trakovice
+Nové Zámky/Trávnica
+Komárno/Trávnik
+Piešťany/Trebatice
+Košice-okolie/Trebejov
+Lučenec/Trebeľovce
+Bánovce nad Bebravou/Trebichava
+Trebišov/Trebišov
+Martin/Trebostovo
+Veľký Krtíš/Trebušovce
+Lučenec/Trenč
+Trenčín/Trenčianska Teplá
+Trenčín/Trenčianska Turná
+Nové Mesto nad Váhom/Trenčianske Bohuslavice
+Trenčín/Trenčianske Jastrabie
+Trenčín/Trenčianske Mitice
+Trenčín/Trenčianske Stankovce
+Trenčín/Trenčianske Teplice
+Trenčín/Trenčín
+Dunajská Streda/Trhová Hradská
+Michalovce/Trhovište
+Trnava/Trnava
+Žiar nad Hronom/Trnavá Hora
+Michalovce/Trnava pri Laborci
+Dunajská Streda/Trnávka
+Trebišov/Trnávka
+Prešov/Trnkov
+Skalica/Trnovec
+Šaľa/Trnovec nad Váhom
+Martin/Trnovo
+Bardejov/Tročany
+Krupina/Trpín
+Tvrdošín/Trstená
+Dunajská Streda/Trstená na Ostrove
+Liptovský Mikuláš/Trstené
+Košice-okolie/Trstené pri Hornáde
+Galanta/Trstice
+Trnava/Trstín
+Košice-okolie/Trsťany
+Zvolen/Tŕnie
+Lučenec/Tuhár
+Prešov/Tuhrina
+Ilava/Tuchyňa
+Prešov/Tulčík
+Levice/Tupá
+Levice/Turá
+Martin/Turany
+Stropkov/Turany nad Ondavou
+Humenné/Turcovce
+Turčianske Teplice/Turček
+Partizánske/Turčianky
+Martin/Turčianska Štiavnička
+Martin/Turčianske Jaseno
+Martin/Turčianske Kľačany
+Turčianske Teplice/Turčianske Teplice
+Martin/Turčiansky Ďur
+Martin/Turčiansky Peter
+Revúca/Turčok
+Banská Bystrica/Turecká
+Senec/Tureň
+Žilina/Turie
+Ružomberok/Turík
+Košice-okolie/Turnianska Nová Ves
+Košice-okolie/Turňa nad Bodvou
+Zvolen/Turová
+Čadca/Turzovka
+Michalovce/Tušice
+Michalovce/Tušická Nová Ves
+Prievidza/Tužina
+Kežmarok/Tvarožná
+Topoľčany/Tvrdomestice
+Tvrdošín/Tvrdošín
+Nové Zámky/Tvrdošovce
+Námestovo/Ťapešovo
+Snina/Ubľa
+Sobrance/Úbrež
+Humenné/Udavské
+Považská Bystrica/Udiča
+Stará Ľubovňa/Údol
+Levice/Uhliská
+Gelnica/Úhorná
+Liptovský Mikuláš/Uhorská Ves
+Poltár/Uhorské
+Bánovce nad Bebravou/Uhrovec
+Bánovce nad Bebravou/Uhrovské Podhradie
+Snina/Ulič
+Snina/Uličské Krivé
+Levoča/Uloža
+Nové Zámky/Úľany nad Žitavou
+Skalica/Unín
+Krupina/Uňatín
+Topoľčany/Urmince
+Poltár/Utekáč
+Sabinov/Uzovce
+Rimavská Sobota/Uzovská Panica
+Sabinov/Uzovské Pekľany
+Sabinov/Uzovský Šalgov
+Nové Mesto nad Váhom/Vaďovce
+Svidník/Vagrinec
+Galanta/Váhovce
+Košice-okolie/Vajkovce
+Košice-okolie/Valaliky
+Brezno/Valaská
+Prievidza/Valaská Belá
+Ružomberok/Valaská Dubová
+Humenné/Valaškovce (vojenský obvod)
+Martin/Valča
+Medzilaborce/Valentovce
+Rimavská Sobota/Valice
+Svidník/Valkovce
+Brezno/Vaľkovňa
+Bardejov/Vaniškovce
+Svidník/Vápeník
+Bardejov/Varadka
+Stropkov/Varechovce
+Prešov/Varhaňovce
+Žilina/Varín
+Námestovo/Vasiľov
+Námestovo/Vavrečka
+Vranov nad Topľou/Vavrinec
+Liptovský Mikuláš/Vavrišovo
+Liptovský Mikuláš/Važec
+Rimavská Sobota/Včelince
+Rimavská Sobota/Večelkov
+Vranov nad Topľou/Vechec
+Zlaté Moravce/Velčice
+Dolný Kubín/Veličná
+Topoľčany/Velušovce
+Trebišov/Veľaty
+Veľký Krtíš/Veľká Čalomija
+Prievidza/Veľká Čausa
+Žilina/Veľká Čierna
+Nitra/Veľká Dolina
+Kežmarok/Veľká Franková
+Trenčín/Veľká Hradná
+Košice-okolie/Veľká Ida
+Žarnovica/Veľká Lehota
+Stará Ľubovňa/Veľká Lesná
+Košice-okolie/Veľká Lodina
+Kežmarok/Veľká Lomnica
+Zvolen/Veľká Lúka
+Galanta/Veľká Mača
+Lučenec/Veľká nad Ipľom
+Dunajská Streda/Veľká Paka
+Trebišov/Veľká Tŕňa
+Poltár/Veľká Ves
+Veľký Krtíš/Veľká Ves nad Ipľom
+Trenčín/Veľké Bierovce
+Dunajská Streda/Veľké Blahovo
+Liptovský Mikuláš/Veľké Borové
+Lučenec/Veľké Dravce
+Bánovce nad Bebravou/Veľké Držkovce
+Topoľčany/Veľké Dvorany
+Dunajská Streda/Veľké Dvorníky
+Bánovce nad Bebravou/Veľké Hoste
+Bánovce nad Bebravou/Veľké Chlievany
+Nitra/Veľké Chyndice
+Michalovce/Veľké Kapušany
+Komárno/Veľké Kosihy
+Piešťany/Veľké Kostoľany
+Levice/Veľké Kozmálovce
+Partizánske/Veľké Kršteňany
+Malacky/Veľké Leváre
+Nové Zámky/Veľké Lovce
+Levice/Veľké Ludince
+Piešťany/Veľké Orvište
+Trebišov/Veľké Ozorovce
+Žarnovica/Veľké Pole
+Michalovce/Veľké Raškovce
+Sobrance/Veľké Revištia
+Topoľčany/Veľké Ripňany
+Bytča/Veľké Rovné
+Michalovce/Veľké Slemence
+Veľký Krtíš/Veľké Straciny
+Rimavská Sobota/Veľké Teriakovce
+Trebišov/Veľké Trakany
+Levice/Veľké Turovce
+Partizánske/Veľké Uherce
+Galanta/Veľké Úľany
+Zlaté Moravce/Veľké Vozokany
+Nitra/Veľké Zálužie
+Veľký Krtíš/Veľké Zlievce
+Stropkov/Veľkrop
+Senec/Veľký Biel
+Rimavská Sobota/Veľký Blh
+Nitra/Veľký Cetín
+Turčianske Teplice/Veľký Čepčín
+Levice/Veľký Ďur
+Gelnica/Veľký Folkmar
+Galanta/Veľký Grob
+Trebišov/Veľký Horeš
+Trebišov/Veľký Kamenec
+Partizánske/Veľký Klíž
+Veľký Krtíš/Veľký Krtíš
+Nové Zámky/Veľký Kýr
+Nitra/Veľký Lapáš
+Stará Ľubovňa/Veľký Lipník
+Veľký Krtíš/Veľký Lom
+Dunajská Streda/Veľký Meder
+Poprad/Veľký Slavkov
+Prešov/Veľký Slivník
+Prešov/Veľký Šariš
+Humenné/Veľopolie
+Poprad/Vernár
+Piešťany/Veselé
+Liptovský Mikuláš/Veterná Poruba
+Lučenec/Vidiná
+Dunajská Streda/Vieska
+Veľký Krtíš/Vieska
+Rimavská Sobota/Vieska nad Blhom
+Zlaté Moravce/Vieska nad Žitavou
+Detva/Vígľaš
+Detva/Vígľašská Huta-Kalinka
+Poprad/Vikartovce
+Veľký Krtíš/Vinica
+Trebišov/Viničky
+Pezinok/Viničné
+Michalovce/Vinné
+Nitra/Vinodol
+Galanta/Vinohrady nad Váhom
+Pezinok/Vinosady
+Komárno/Virt
+Stará Ľubovňa/Vislanka
+Stropkov/Vislava
+Púchov/Visolaje
+Trebišov/Višňov
+Nové Mesto nad Váhom/Višňové
+Revúca/Višňové
+Žilina/Višňové
+Pezinok/Vištuk
+Tvrdošín/Vitanová
+Spišská Nová Ves/Vítkovce
+Prešov/Víťaz
+Humenné/Víťazovce
+Vranov nad Topľou/Vlača
+Stropkov/Vladiča
+Rožňava/Vlachovo
+Liptovský Mikuláš/Vlachy
+Šaľa/Vlčany
+Trnava/Vlčkovce
+Banská Bystrica/Vlkanová
+Nové Zámky/Vlkas
+Kežmarok/Vlková
+Kežmarok/Vlkovce
+Senec/Vlky
+Rimavská Sobota/Vlkyňa
+Trnava/Voderady
+Michalovce/Vojany
+Trebišov/Vojčice
+Trebišov/Vojka
+Dunajská Streda/Vojka nad Dunajom
+Spišská Nová Ves/Vojkovce
+Sobrance/Vojnatina
+Kežmarok/Vojňany
+Stropkov/Vojtovce
+Medzilaborce/Volica
+Zlaté Moravce/Volkovce
+Michalovce/Voľa
+Žarnovica/Voznica
+Galanta/Vozokany
+Topoľčany/Vozokany
+Nitra/Vráble
+Skalica/Vrádište
+Dunajská Streda/Vrakúň
+Vranov nad Topľou/Vranov nad Topľou
+Michalovce/Vrbnica
+Kežmarok/Vrbov
+Myjava/Vrbovce
+Komárno/Vrbová nad Váhom
+Piešťany/Vrbové
+Veľký Krtíš/Vrbovka
+Považská Bystrica/Vrchteplá
+Martin/Vrícko
+Ilava/Vršatské Podhradie
+Martin/Vrútky
+Košice-okolie/Vtáčkovce
+Kežmarok/Výborná
+Nitra/Výčapy-Opatovce
+Dunajská Streda/Vydrany
+Púchov/Vydrná
+Poprad/Vydrník
+Žiar nad Hronom/Vyhne
+Liptovský Mikuláš/Východná
+Medzilaborce/Výrava
+Bánovce nad Bebravou/Vysočany
+Banská Štiavnica/Vysoká
+Sabinov/Vysoká
+Čadca/Vysoká nad Kysucou
+Michalovce/Vysoká nad Uhom
+Malacky/Vysoká pri Morave
+Poprad/Vysoké Tatry
+Stropkov/Vyškovce
+Levice/Vyškovce nad Ipľom
+Liptovský Mikuláš/Vyšná Boca
+Košice-okolie/Vyšná Hutka
+Humenné/Vyšná Jablonka
+Svidník/Vyšná Jedľová
+Košice-okolie/Vyšná Kamenica
+Košice-okolie/Vyšná Myšľa
+Stropkov/Vyšná Olšava
+Svidník/Vyšná Pisaná
+Bardejov/Vyšná Polianka
+Sobrance/Vyšná Rybnica
+Humenné/Vyšná Sitnica
+Rožňava/Vyšná Slaná
+Prešov/Vyšná Šebastová
+Bardejov/Vyšná Voľa
+Humenné/Vyšné Ladičkovce
+Levice/Vyšné nad Hronom
+Sobrance/Vyšné Nemecké
+Sobrance/Vyšné Remety
+Levoča/Vyšné Repaše
+Stará Ľubovňa/Vyšné Ružbachy
+Rimavská Sobota/Vyšné Valice
+Košice-okolie/Vyšný Čaj
+Stropkov/Vyšný Hrabovec
+Humenné/Vyšný Hrušov
+Vranov nad Topľou/Vyšný Kazimír
+Košice-okolie/Vyšný Klátov
+Svidník/Vyšný Komárnik
+Bardejov/Vyšný Kručov
+Dolný Kubín/Vyšný Kubín
+Košice-okolie/Vyšný Medzev
+Svidník/Vyšný Mirošov
+Svidník/Vyšný Orlík
+Rimavská Sobota/Vyšný Skálnik
+Levoča/Vyšný Slavkov
+Bardejov/Vyšný Tvarožec
+Vranov nad Topľou/Vyšný Žipov
+Tvrdošín/Zábiedovo
+Martin/Záborie
+Prešov/Záborské
+Košice-okolie/Zádiel
+Rimavská Sobota/Zádor
+Sobrance/Záhor
+Veľký Krtíš/Záhorce
+Malacky/Záhorie (vojenský obvod)
+Malacky/Záhorská Ves
+Prešov/Záhradné
+Rimavská Sobota/Zacharovce
+Námestovo/Zákamenné
+Čadca/Zákopčie
+Levice/Zalaba
+Senec/Zálesie
+Kežmarok/Zálesie
+Michalovce/Zalužice
+Trenčín/Zamarovce
+Vranov nad Topľou/Zámutov
+Púchov/Záriečie
+Považská Bystrica/Záskalie
+Trebišov/Zatín
+Topoľčany/Závada
+Humenné/Závada
+Veľký Krtíš/Závada
+Humenné/Závadka
+Gelnica/Závadka
+Michalovce/Závadka
+Brezno/Závadka nad Hronom
+Trnava/Zavar
+Liptovský Mikuláš/Závažná Poruba
+Malacky/Závod
+Dolný Kubín/Zázrivá
+Trebišov/Zbehňov
+Nitra/Zbehy
+Snina/Zboj
+Medzilaborce/Zbojné
+Bardejov/Zborov
+Čadca/Zborov nad Bystricou
+Levice/Zbrojníky
+Medzilaborce/Zbudská Belá
+Humenné/Zbudské Dlhé
+Michalovce/Zbudza
+Žilina/Zbyňov
+Trnava/Zeleneč
+Komárno/Zemianska Olča
+Prievidza/Zemianske Kostoľany
+Nové Mesto nad Váhom/Zemianske Podhradie
+Galanta/Zemianske Sady
+Krupina/Zemiansky Vrbovok
+Nové Zámky/Zemné
+Trebišov/Zemplín
+Trebišov/Zemplínska Nová Ves
+Michalovce/Zemplínska Široká
+Trebišov/Zemplínska Teplica
+Snina/Zemplínske Hámre
+Trebišov/Zemplínske Hradište
+Trebišov/Zemplínske Jastrabie
+Michalovce/Zemplínske Kopčany
+Trebišov/Zemplínsky Branč
+Prešov/Zlatá Baňa
+Košice-okolie/Zlatá Idka
+Bardejov/Zlaté
+Dunajská Streda/Zlaté Klasy
+Zlaté Moravce/Zlaté Moravce
+Komárno/Zlatná na Ostrove
+Vranov nad Topľou/Zlatník
+Bánovce nad Bebravou/Zlatníky
+Poltár/Zlatno
+Zlaté Moravce/Zlatno
+Ilava/Zliechov
+Malacky/Zohor
+Veľký Krtíš/Zombor
+Púchov/Zubák
+Tvrdošín/Zuberec
+Humenné/Zubné
+Námestovo/Zubrohlava
+Zvolen/Zvolen
+Zvolen/Zvolenská Slatina
+Trnava/Zvončín
+Martin/Žabokreky
+Partizánske/Žabokreky nad Nitrou
+Gelnica/Žakarovce
+Kežmarok/Žakovce
+Vranov nad Topľou/Žalobín
+Košice-okolie/Žarnov
+Žarnovica/Žarnovica
+Dolný Kubín/Žaškov
+Michalovce/Žbince
+Košice-okolie/Ždaňa
+Poprad/Ždiar
+Prešov/Žehňa
+Spišská Nová Ves/Žehra
+Zvolen/Železná Breznica
+Svidník/Železník
+Levice/Želiezovce
+Svidník/Želmanovce
+Veľký Krtíš/Želovce
+Levice/Žemberovce
+Levice/Žemliare
+Liptovský Mikuláš/Žiar
+Revúca/Žiar
+Žiar nad Hronom/Žiar nad Hronom
+Krupina/Žibritov
+Šaľa/Žihárec
+Zlaté Moravce/Žikava
+Žilina/Žilina
+Rimavská Sobota/Žíp
+Prešov/Žipov
+Nitra/Žirany
+Zlaté Moravce/Žitavany
+Nitra/Žitavce
+Bánovce nad Bebravou/Žitná-Radiša
+Hlohovec/Žlkovce
+Prešov/Župčany
+Žarnovica/Župkov

@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 
     'account.apps.AccountConfig',
     'machine.apps.MachineConfig',
+    'location.apps.LocationConfig',
 ]
 
 MIDDLEWARE = [
@@ -244,3 +245,5 @@ USER_GROUPS = {
         "machine.change_machinetouser"
     ],
 }
+
+LOCATION_FILE = "location/data/SK.txt"

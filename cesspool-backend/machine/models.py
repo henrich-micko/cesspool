@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime, date, timedelta
 from . import managers, validators
-
+from location.models import City
 
 class Machine(models.Model):
     objects = managers.MachineManager()
@@ -10,6 +10,8 @@ class Machine(models.Model):
     code = models.CharField(max_length = 10, unique = True, blank = False, null = False, validators = [validators.validate_machine_code])
     mqtt = models.BooleanField(default = True)
     notification = models.BooleanField(default = True)
+
+    city = models.ForeignKey(City, on_delete = models.CASCADE, null = True, blank = True)
 
     class Meta:
         permissions = [
