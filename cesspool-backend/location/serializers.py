@@ -29,11 +29,13 @@ class CitySerializer(MSWithListners):
             "id",
             "title",
             "district",
-            "manager"
+            "delete_at",
+            "manager",
         ]
         extra_kwargs = {
             "title": { "read_only": True },
             "district": { "read_only": True },
+            "delete_at": { "read_only": True },
             "manager": { "read_only": True, "ignore_on_save": True }
         }
 
