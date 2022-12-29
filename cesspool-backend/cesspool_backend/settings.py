@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'machine.apps.MachineConfig',
     'location.apps.LocationConfig',
+    'utils.apps.UtilsConfig',
 ]
 
 MIDDLEWARE = [
@@ -185,7 +186,14 @@ CORS_ALLOW_CREDENTIALS = True
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
+# models with delete_at field
+
+CHECK_DELETE_MODELS = [
+    "location.city",
+]
+
 # settings for mqtt
+
 USE_MQTT = not DEBUG and bool(int(environ.get("IS_MAIN", "0"), 0))
 MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
 MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
