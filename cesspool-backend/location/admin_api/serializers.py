@@ -7,5 +7,5 @@ class CityForAdminSerializer(CitySerializer):
         extra_kwargs = {
             "title": { "read_only": False },
             "district": { "read_only": False },
-            "manager": { "read_only": False }
+            "manager": { "read_only": False, "ignore_on_create": True },
         }

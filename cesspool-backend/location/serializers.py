@@ -44,8 +44,8 @@ class CitySerializer(_ModelSerializer):
 
         return super_output
 
-    def on_instance_modify(self, validated_data):
+    def on_instance_modify(self, instance, validated_data):
         manager_email = validated_data.pop("manager", None)
         if manager_email != None:
-            self.instance.manager = UserAccount.objects.get(email = manager_email)
-            self.instance.save()
+            instance.manager = UserAccount.objects.get(email = manager_email)
+            instance.save()
