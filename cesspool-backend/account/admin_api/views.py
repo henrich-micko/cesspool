@@ -13,6 +13,7 @@ from account import serializers as account_serializer
 
 from . import serializers
 
+
 # list of machines
 class AdminAccountListAPIView(APIView):
     permission_classes = [IsAdminUser]

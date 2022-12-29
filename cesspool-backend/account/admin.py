@@ -12,7 +12,6 @@ class UserAccountAdmin(UserAdmin):
     
     list_display = [
         "email",
-        "id",
         "is_staff",
         "is_active",
     ]
@@ -41,7 +40,7 @@ class UserAccountAdmin(UserAdmin):
     ]
     
     search_fields = ["email"]
-    ordering = ["id"]
+    ordering = ["email"]
 
 
 admin.site.register(models.ResetPasswordToken)

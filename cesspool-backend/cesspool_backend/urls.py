@@ -19,9 +19,12 @@ from django.urls import path, include
 
 urlpatterns = [
     path('api/admin/dashboard', admin.site.urls),
+
     path("api/account/", include("account.urls"), name = "account"),
     path("api/machine/", include("machine.urls"), name = "machine"),
-    path("api/admin/machine/", include("machine.admin_api.urls")),
-    path("api/admin/account/", include("account.admin_api.urls")),
-    path("api/location/", include("location.urls")),
+    path("api/location/", include("location.urls"), name = "location"),
+
+    path("api/admin/machine/", include("machine.admin_api.urls"), name = "machine-admin"),
+    path("api/admin/account/", include("account.admin_api.urls"), name = "account-admin"),
+    path("api/admin/location/", include("location.admin_api.urls",), name = "location-admin")
 ]

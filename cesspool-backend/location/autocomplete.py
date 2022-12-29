@@ -1,5 +1,3 @@
-from location.parser import load_from_file
-
 
 def autocomplete_city(location_file: str, value: str):
     output, value = [], value.lower()

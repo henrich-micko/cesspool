@@ -5,7 +5,8 @@ from machine import models
 from account.models import UserAccount
 
 from location.models import City
-from location.serializers import CityField
+from location.serializers import DistrictCityField
+
 
 def remove_from_list(array, value):
     if value in array:
@@ -41,7 +42,7 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
     last_update = serializers.SerializerMethodField()
     problems = serializers.SerializerMethodField()
 
-    city = CityField()
+    city = DistrictCityField()
 
     class Meta:
         model = models.Machine
@@ -92,9 +93,6 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
     def get_records(self, obj):
         return len(obj.record_set.all())
 
-    def validate(self, attrs):
-        return super().validate(attrs)
-
     def create(self, validated_data):
         if not "code" in validated_data.keys():
             validated_data["code"] = models.Machine.objects.get_machine_code()
@@ -122,9 +120,10 @@ class MachineDetialForAdminSerializer(serializers.ModelSerializer):
             remove_not_included = True
         )
 
-        city_title = validated_data.pop("city", None)
-        if city_title != None:
-            city, created = City.objects.get_or_create(title = city_title)
+        city_value = validated_data.pop("city", None)
+        if city_value != None:
+            district, city_title = city_value.split("/")
+            city, created = City.objects.get_or_create(title = city_title, district = district)
    
             instance.city = city
             instance.save()

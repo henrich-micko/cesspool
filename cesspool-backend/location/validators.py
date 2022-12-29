@@ -1,17 +1,28 @@
 from rest_framework.validators import ValidationError
 from django.conf import settings
-from location.parser import load_from_file
 
-def city_validation(value):
-    location_file = f"location/data/{settings.LOCATION_FILE}"
-    
-    try: district, city = value.split("/")
-    except ValueError: raise ValidationError("Invalid format <DISTRICT>/<CITY>") 
+from account.models import UserAccount
 
-    locations = load_from_file(location_file)
-    exists = [city, district] in locations
 
-    if not exists:
-        raise ValidationError("City in this Distric doesnt exists")
+def district_city_validation(value):
+    splited = value.split("/")
+    if len(splited) != 2: 
+        raise ValidationError("Invalid format, should be district/city")    
+    value_district, value_city = splited
 
+    with open(settings.LOCATION_FILE, "r") as f:
+        while True:
+            location_line = f.readline().strip()
+            if location_line == "":
+                break
+
+            district, city = location_line.split("/")
+            if city == value_city and district == value_district: return
+
+    raise ValidationError("This compination doesnt exists")
+
+def manager_validation(value):
+    print(value)
+    try: UserAccount.objects.get(email = value)
+    except UserAccount.DoesNotExist: raise ValidationError("User doesnt exists")
     return value

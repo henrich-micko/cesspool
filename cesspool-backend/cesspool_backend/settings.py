@@ -22,15 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "default")
-if SECRET_KEY == None:
-    raise ValueError("DJANGO_SECRET_KEY is not set in env vars")
+SECRET_KEY = environ.get("DJANGO_SECRET_KEY", "r(o0ju*h30c2l=6=510=(@55u2-wqxsz#dp%=2*q%)pc&tb&(x")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(environ.get("DJANGO_DEBUG", "1"), 0))
 ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "*").split(' ')
 
-if DEBUG:
+# host for fronted (email links)
+if "*" in ALLOWED_HOSTS:
     REACT_HOST = "127.0.0.1"
 else:
     REACT_HOST = ALLOWED_HOSTS[0]
@@ -107,10 +106,21 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase', # This is where you put the name of the db file. 
-                 # If one doesn't exist, it will be created at migration time.
+        'NAME': 'db.sqlite3', 
     }
 }
+
+if int(environ.get("CUSTOM_DB", "0"), 0):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': environ.get('DB_NAME'),
+            'USER': environ.get('DB_USER'),
+            'PASSWORD': environ.get('DB_PASSWORD'),
+            'HOST': environ.get('DB_HOST'),
+            "PORT": environ.get("DB_PORT")
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
