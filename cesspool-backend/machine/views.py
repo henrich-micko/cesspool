@@ -9,7 +9,6 @@ from . import serializers, permission
 
 class MachineDetailAPIView(APIView):
     permission_classes = [IsAuthenticated, *permission.has_user_permission("machine.own_machine", "machine.view_machine")]
-    print(permission_classes)
 
     def get(self, request, machine_code: str|None = None) -> Response:
         mtus = request.user.get_machine_to_user(code = machine_code)
