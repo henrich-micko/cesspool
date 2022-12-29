@@ -22,7 +22,9 @@ def district_city_validation(value):
     raise ValidationError("This compination doesnt exists")
 
 def manager_validation(value):
-    print(value)
+    if value == None: return value
+    
     try: UserAccount.objects.get(email = value)
     except UserAccount.DoesNotExist: raise ValidationError("User doesnt exists")
+    
     return value

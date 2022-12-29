@@ -2,7 +2,7 @@ from rest_framework import serializers
 from location import validators, models
 
 from account.models import UserAccount
-from utils.serializers import _ModelSerializer
+from utils.serializers import MSWithListners
 
 class DistrictCityField(serializers.CharField):
     def __init__(self, **kwargs):
@@ -12,6 +12,7 @@ class DistrictCityField(serializers.CharField):
 
 class ManagerField(serializers.EmailField):
     def __init__(self, **kwargs):
+        kwargs["allow_blank"], kwargs["allow_null"] = True, True
         super().__init__(**kwargs)
 
         self.validators.append(validators.manager_validation)
@@ -19,7 +20,7 @@ class ManagerField(serializers.EmailField):
     def get_attribute(self, instance):
         return instance.manager
 
-class CitySerializer(_ModelSerializer):
+class CitySerializer(MSWithListners):
     manager = ManagerField()
 
     class Meta:
@@ -33,7 +34,7 @@ class CitySerializer(_ModelSerializer):
         extra_kwargs = {
             "title": { "read_only": True },
             "district": { "read_only": True },
-            "manager": { "read_only": True, "ignore_on_create": True }
+            "manager": { "read_only": True, "ignore_on_save": True }
         }
 
     def validate(self, attrs):
@@ -44,8 +45,11 @@ class CitySerializer(_ModelSerializer):
 
         return super_output
 
-    def on_instance_modify(self, instance, validated_data):
-        manager_email = validated_data.pop("manager", None)
-        if manager_email != None:
+    def on_create_and_update(self, instance, validated_data):
+        manager_email = validated_data.get("manager")
+
+        if manager_email != None: 
             instance.manager = UserAccount.objects.get(email = manager_email)
-            instance.save()
+        else:
+            instance.manager = None
+        instance.save()

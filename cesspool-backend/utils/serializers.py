@@ -2,21 +2,27 @@ from rest_framework.serializers import ModelSerializer
 from utils.utils import get_value_by_path
 
 
-class _ModelSerializer(ModelSerializer):
+class MSWithListners(ModelSerializer):
 
-    def on_instance_modify(self, instance, validated_data):
+    def on_create_and_update(self, instance, validated_data):
         pass
 
     def create(self, validated_data):
         validated_data_for_create = {
             k:v for k, v in validated_data.items() 
-            if not get_value_by_path(self.Meta.extra_kwargs, f"{k}/ignore_on_create", False)
+            if not get_value_by_path(self.Meta.extra_kwargs, f"{k}/ignore_on_save", False)
         }
 
         instance = super().create(validated_data = validated_data_for_create)
-        self.on_instance_modify(instance = instance, validated_data = validated_data)
+        self.on_create_and_update(instance = instance, validated_data = validated_data)
         return instance
 
     def update(self, instance, validated_data):
-        self.on_instance_modify(instance = instance, validated_data = validated_data)
-        return super().update(instance, validated_data)
+        validated_data_for_update = {
+            k:v for k, v in validated_data.items() 
+            if not get_value_by_path(self.Meta.extra_kwargs, f"{k}/ignore_on_save", False)
+        }
+
+        update_ouptut = super().update(instance, validated_data_for_update)
+        self.on_create_and_update(instance = instance, validated_data = validated_data)
+        return update_ouptut
