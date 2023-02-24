@@ -1,6 +1,4 @@
-from location.autocomplete import autocomplete_city, autocomplete_district
+from location.models import City
 
-
-print(
-    autocomplete_district("location/data/SK.txt", "stropko")
-)
+city = City.objects.get(title = "Tŕnie")
+city.export_to_csv(1)

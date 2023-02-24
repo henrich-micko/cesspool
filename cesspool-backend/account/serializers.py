@@ -1,7 +1,5 @@
-from django.utils import timezone
 from rest_framework import serializers
-
-from . import models
+from account import models, validators
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -19,88 +17,55 @@ class CreateUserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Password is too wick.")
         return value
 
+
 class UserAccountSerializer(serializers.ModelSerializer):
-    delete_date = serializers.SerializerMethodField(default = None)
-    delete_machines_date = serializers.SerializerMethodField(default = None)
 
     class Meta:
         model = models.UserAccount
-        fields = ["pk", "email", "is_active", "date_joined", "is_staff", "delete_date", "delete_machines_date"]
-        extra_kwargs = {"email": {"required": False}}
+        fields = [
+            "pk", 
+            "email", 
+            "is_active", 
+            "date_joined", 
+            "is_staff", 
+            "delete_at", 
+        ]
+        extra_kwargs = {
+            "date_joined": { "read_only": True },
+            "is_active": { "read_only": True },
+            "is_staff": { "read_only": True },
+            "delete_at": { "read_only": True },
+        }
 
-    def get_delete_date(self, obj):
-        action = obj.one_to_one(models.AccountDeleteAction)
-        if action != None:
-            return action.date
-        return None
-
-    def get_delete_machines_date(self, obj):
-        action = obj.one_to_one(models.AccountDeleteMachinesAction)
-        if action != None:
-            return action.date
-        return None
 
 class ResetPasswordSerializer(serializers.Serializer):
-    user = serializers.EmailField(default = None)
+    user = serializers.EmailField(
+        default = None, 
+        validators = [validators.validate_user]
+    )
 
     class Meta:
-        fields = ["user"]
-
-    def validate_user(self, user):
-        if models.UserAccount.objects.filter(email = user).first() == None:
-            raise serializers.ValidationError("User doesn't exists.")
-        return user
+        fields = [
+            "user"
+        ]
 
 class ResetPasswordSubmitSerializer(serializers.Serializer):
-    token = serializers.CharField(max_length = 10)
+    token = serializers.CharField(max_length = 10, validators = [validators.validate_reset_password_token])
     password = serializers.CharField(max_length = 10)
 
     class Meta:
-        fields = ["token", "password"]
+        fields = [
+            "token", 
+            "password"
+        ]
 
-    def validate_token(self, token):
-        token_obj = models.ResetPasswordToken.objects.filter(token = token).first()
-        if token_obj == None or token_obj.expired_date < timezone.now():
-            raise serializers.ValidationError("Token not found or expired.")
-        
-        return token
 
-class ResetPasswordTokenSerializer(serializers.Serializer):
-    token = serializers.CharField(max_length = 10)
-
-    class Meta:
-        fields = ["token"]
-
-    def validate_token(self, token):
-        token_obj = models.ResetPasswordToken.objects.filter(token = token).first()
-        if token_obj == None or token_obj.expired_date < timezone.now():
-            raise serializers.ValidationError("Token not found or expired.")
-        
-        return token
-# 
 class ActivateUserSerializer(serializers.Serializer):
-    token = serializers.CharField(max_length = 10)
+    token = serializers.CharField(max_length = 10, validators = [validators.validate_activate_account_token])
     password = serializers.CharField(max_length = 10)
 
     class Meta:
-        fields = ["token", "password"]
-
-    def validate_token(self, token):
-        token_obj = models.ActivateUserToken.objects.filter(token = token).first()
-        if token_obj == None or token_obj.expired_date < timezone.now():
-            raise serializers.ValidationError("Token not found or expired.")
-        
-        return token
-
-class ActivateUserCheckTokenSerializer(serializers.Serializer):
-    token = serializers.CharField(max_length = 10)
-
-    class Meta:
-        fields = ["token"]
-
-    def validate_token(self, token):
-        token_obj = models.ActivateUserToken.objects.filter(token = token).first()
-        if token_obj == None or token_obj.expired_date < timezone.now():
-            raise serializers.ValidationError("Token not found or expired.")
-        
-        return token
+        fields = [
+            "token", 
+            "password"
+        ]

@@ -24,7 +24,10 @@ def district_city_validation(value):
 def manager_validation(value):
     if value == None: return value
     
-    try: UserAccount.objects.get(email = value)
+    try: user = UserAccount.objects.get(email = value)
     except UserAccount.DoesNotExist: raise ValidationError("User doesnt exists")
-    
+
+    if not user.has_perm("location.be_city_admin"):
+        raise ValidationError("User doesnt have permission to be admin")
+
     return value

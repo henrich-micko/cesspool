@@ -51,9 +51,10 @@ INSTALLED_APPS = [
     'django_celery_beat',
 
     'account.apps.AccountConfig',
-    'machine.apps.MachineConfig',
+    'cesspool.apps.CesspoolConfig',
     'location.apps.LocationConfig',
     'utils.apps.UtilsConfig',
+    'subscription.apps.SubscriptionConfig',
 ]
 
 MIDDLEWARE = [
@@ -219,21 +220,13 @@ if USE_MQTT and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
 CELERY_TIMEZONE = TIME_ZONE
 DJANGO_CELERY_BEAT_TZ_AWARE = False
 
-CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
 CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CELERY_BEAT_SCHEDULE = {
-    "scan_machine_actions": {
-        'task': "machine.tasks.scan_machine_actions",
-        "schedule": timedelta(minutes = 1),
-    },
-    "scan_machine_problems_and_send_email": {
-        "task": "machine.tasks.scan_machine_problems_and_send_email",
-        "schedule": timedelta(minutes = 1),
-    },
-    "scan_account_actions": {
-        "task": "account.tasks.scan_user_actions",
+    "delete": {
+        "task": "utils.tasks.check_delete_models",
         "schedule": timedelta(minutes = 1),
     }
 }
@@ -256,11 +249,9 @@ if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
 
 # for running command "account.setup_groups"
 USER_GROUPS = {
-    "default": [
-        "machine.own_machine",
-        "machine.view_machine",
-        "machine.view_record",
-        "machine.change_machinetouser"
+    "city_admin": [
+        "location.export_data",
+        "location.be_city_admin",
     ],
 }
 

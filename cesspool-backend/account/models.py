@@ -1,37 +1,20 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from django.http import Http404
 
-from datetime import datetime, timedelta
+from account.managers import UserAccountManager
+from account.utils import generate_activate_user_code, generate_reset_password_code
+from utils.models import ModelWithDeleteField
+from utils.utils import get_default_datetime_timedelta
 
-from .managers import UserAccountManager
 
-import random, string
 
-def generate_code(lenght: int = 8, check = None):
-    while True:
-        output = ""
-
-        for i in range(lenght):
-            new_char = random.choice(string.ascii_letters)
-            if random.randint(0, 1):
-                new_char = new_char.upper()
-            output += new_char
-
-        if check == None or check(token = output):
-            break
-
-    return output
-
-class UserAccount(AbstractBaseUser, PermissionsMixin):
+class UserAccount(AbstractBaseUser, PermissionsMixin, ModelWithDeleteField):
     objects = UserAccountManager()
 
     email = models.EmailField(unique = True)
-
     is_staff = models.BooleanField(default = False)
     is_active = models.BooleanField(default = True)
-
     date_joined = models.DateTimeField(default = timezone.now)
 
     USERNAME_FIELD = "email"
@@ -39,68 +22,31 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    
 
-    def action_at(self, action: models.Model, date: datetime):
-        action = action.objects.update_or_create(user = self, defaults = {"date": date})
-        return action
+def _rpt_expired_date_default():
+    return timezone.now() + timezone.timedelta(minutes = 15)
 
-    def one_to_one(self, table: models.Model, default = None):
-        output = table.objects.filter(user = self).first()
-        if output != None:
-            return output
-        return default
-
-    def get_machine_to_user(self, code = None):
-        mtus = self.machinetouser_set.all()
-        if code == None:
-            return mtus
-        return mtus.filter(machine__code = code).first()
-
-    def get_machine_to_user_or_404(self, *argv, **kwargs):
-        output = self.get_machine_to_user(*argv, **kwargs)
-        if output == None: 
-            raise Http404()
-        return output
-
-class AccountBaseAction(models.Model):
-    user = models.OneToOneField(UserAccount, on_delete = models.CASCADE)
-    date = models.DateTimeField()
-
-    class Meta:
-        abstract = True
+class ResetPasswordToken(models.Model):
+    token = models.CharField(max_length = 10, default = generate_reset_password_code)
+    user = models.ForeignKey(UserAccount, on_delete = models.CASCADE)
+    expired_date = models.DateTimeField(
+        default = _rpt_expired_date_default
+    )
 
     def __str__(self):
-        return f"{self.user} at {self.date}"
+        return self.token
 
-    def run(self):
-        pass
 
-class AccountDeleteAction(AccountBaseAction):
-    def run(self):
-        self.user.delete()
-
-class AccountDeleteMachinesAction(AccountBaseAction):
-    def run(self):
-        self.user.machine_set.all().delete()
-
-class TokenForUser(models.Model):
-    user = models.OneToOneField(UserAccount, on_delete = models.CASCADE)
-    token = models.CharField(max_length = 8, default = generate_code)
-
-    class Meta:
-        abstract = True
+def _aut_expired_date_default():
+    return timezone.now() + timezone.timedelta(days = 7)
+    
+class ActivateUserToken(models.Model):
+    token = models.CharField(max_length = 10, default = generate_activate_user_code)
+    user = models.ForeignKey(UserAccount, on_delete = models.CASCADE)
+    expired_date = models.DateTimeField(
+        default = _aut_expired_date_default
+    )
 
     def __str__(self):
-        return f"{self.token} for {self.user}"
-
-def get_reset_password_token_date():
-    return timezone.now() + timedelta(minutes = 5)
-
-class ResetPasswordToken(TokenForUser):
-    expired_date = models.DateTimeField(default = get_reset_password_token_date)
-
-def get_activate_user_token_date():
-    return timezone.now() + timedelta(days = 14)
-
-class ActivateUserToken(TokenForUser):
-    expired_date = models.DateTimeField(default = get_activate_user_token_date)
+        return self.token

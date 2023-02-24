@@ -1,4 +1,3 @@
-
 def autocomplete_city(location_file: str, value: str):
     output, value = [], value.lower()
     with open(location_file, "r") as f:

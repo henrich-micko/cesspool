@@ -9,7 +9,5 @@ urlpatterns = [
     path("whoami/", views.WhoAmIAPIview.as_view(), name = "whoami-account"),
     path("reset-password/", views.ResetPasswordAPIView.as_view(), name = "reset-password"),
     path("reset-password/submit/", views.ResetPasswordSubmitAPIView.as_view(), name = "reset-password-submit"),
-    path("reset-password/check-token/", views.ResetPasswordCheckTokenAPIView.as_view(), name = "reset-password-token"),
     path("activate/submit/", views.ActivateUserAPIView.as_view(), name = "activate-user"),
-    path("activate/check-token/", views.ActivateUserCheckTokenAPIView.as_view(), name = "activate-user-check-token"),
 ]

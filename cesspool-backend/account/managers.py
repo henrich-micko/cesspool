@@ -1,6 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
-
 from rest_framework.authtoken.models import Token
+
 
 class UserAccountManager(BaseUserManager):
     def create_user(self, email: str, password: str, **extra_fields):

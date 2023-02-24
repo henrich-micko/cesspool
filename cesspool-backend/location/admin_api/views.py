@@ -1,55 +1,34 @@
-from django.shortcuts import get_object_or_404
-from rest_framework import status
-from rest_framework.views import APIView, Response
+from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 from location.models import City
 from location.admin_api.serializers import CityForAdminSerializer
 
-from utils.views import RsModelAPIView
+from utils.mixins import MultipleFieldLookupMixin
+from utils.generics import RestoreModelAPIView
 
 
-class CityCreateAPIView(APIView):
+class _CityAdminAPIView(MultipleFieldLookupMixin):
+
     permission_classes = [IsAuthenticated, IsAdminUser]
+    serializer_class = CityForAdminSerializer
+    lookup_fields = ["district", "title"]
 
-    def post(self, request):
-        sz = CityForAdminSerializer(data = request.data)
-        if sz.is_valid():
-            sz.save()
-            return Response(data = sz.data, status = status.HTTP_200_OK)
-        return Response(data = sz.errors, status = status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        return City.objects.all()
 
-class CityAPIView(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
 
-    def get(self, request, district, city):
-        instance = get_object_or_404(City, district = district, title = city)
-        sz = CityForAdminSerializer(instance = instance)
-        return Response(sz.data, status = status.HTTP_200_OK)
-    
-    def put(self, request, district, city):
-        instance = get_object_or_404(City, district = district, title = city)
-        sz = CityForAdminSerializer(instance = instance, data = request.data)
-        if sz.is_valid():
-            sz.save()
-            return Response(sz.data, status = status.HTTP_200_OK)
-        return Response(sz.errors, status = status.HTTP_400_BAD_REQUEST)
+class CreateCityAPIView(_CityAdminAPIView, CreateAPIView):
+    pass
 
-    def delete(self, request, district, city):
-        print(district, city)
-        instance = get_object_or_404(City, district = district, title = city)
-        instance.delete()
-        sz = CityForAdminSerializer(instance)
-        return Response(data = sz.data, status = status.HTTP_200_OK)
 
-class CityListAPIView(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+class GPDCityAPIView(_CityAdminAPIView, RetrieveUpdateDestroyAPIView):  
+    pass
 
-    def get(self, request):
-        sz = CityForAdminSerializer(City.objects.all(), many = True)
-        return Response(sz.data, status = status.HTTP_200_OK)
 
-class RsCityAPIView(RsModelAPIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
-    model = City
-    serializer = CityForAdminSerializer
+class ListCityAPIView(_CityAdminAPIView, ListAPIView):
+    pass
+
+
+class RestoreCityAPIView(_CityAdminAPIView, RestoreModelAPIView):
+    pass

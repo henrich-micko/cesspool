@@ -4,11 +4,13 @@ from location import validators, models
 from account.models import UserAccount
 from utils.serializers import MSWithListners
 
+
 class DistrictCityField(serializers.CharField):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.validators.append(validators.district_city_validation)
+
 
 class ManagerField(serializers.EmailField):
     def __init__(self, **kwargs):
@@ -19,6 +21,7 @@ class ManagerField(serializers.EmailField):
 
     def get_attribute(self, instance):
         return instance.manager
+
 
 class CitySerializer(MSWithListners):
     manager = ManagerField()

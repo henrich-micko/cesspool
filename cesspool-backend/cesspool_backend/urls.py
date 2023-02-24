@@ -21,10 +21,11 @@ urlpatterns = [
     path('api/admin/dashboard', admin.site.urls),
 
     path("api/account/", include("account.urls"), name = "account"),
-    path("api/machine/", include("machine.urls"), name = "machine"),
+    path("api/cesspool/", include("cesspool.urls"), name = "cesspool"),
     path("api/location/", include("location.urls"), name = "location"),
+    path("api/subs/", include("subscription.urls"), name = "subscription"),
 
-    path("api/admin/machine/", include("machine.admin_api.urls"), name = "machine-admin"),
+    path("api/admin/cesspool/", include("cesspool.admin_api.urls"), name = "cesspool-admin"),
     path("api/admin/account/", include("account.admin_api.urls"), name = "account-admin"),
-    path("api/admin/location/", include("location.admin_api.urls",), name = "location-admin")
+    path("api/admin/subs/", include("subscription.admin_api.urls",), name = "subscription-admin")
 ]
