@@ -1,0 +1,98 @@
+.cesspoolPoem {
+    margin-top: 10em;
+}
+
+.scrollButton {
+    margin-top: 3em;
+    cursor: pointer;
+}
+
+.pageHeader {
+    padding: 1em;
+    font-size: 2.5rem;
+    font-family: sofia-pro,sans-serif;
+    font-weight: 600;
+}
+
+.subscriptionBox {
+    border-radius: 10px;
+    border: 2px solid #4FACF7;
+    width: 20em;
+
+    .header {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        border-bottom: 1px solid #96d0ff;
+        font-size: 1.25em;
+        padding-bottom: 0.25em;
+        
+        h3 {
+            margin: 0.5em;
+            margin-bottom: 0.1em;
+        }
+
+        article {
+            color: #6A718A;
+            font-size: 0.75em;
+            text-align: center;
+            padding: 0 0.25em;
+        }
+    }
+
+    .body { 
+        display: flex;
+        justify-content: right;
+        flex-direction: column;
+        padding-bottom: 0.8em;
+        padding-right: 0.8em;
+
+        .cost {
+            font-size: 1.5em;
+            text-align: right;
+        }
+
+        .costAbout {
+            font-size: 1em;
+            text-align: right;
+            color: #6A718A;
+        }
+    }
+}
+
+
+.subscriptionBoxParam { 
+    text-align: left;
+
+    .icon {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+}
+
+.subscriptions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.installationBox {
+    border-radius: 10px;
+    width: 15em;
+    padding-bottom: 1em;
+    background-color: #071b2c;
+
+    img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+
+    span {
+        color: #6A718A;
+        padding: 0.25em;
+    }
+}
+
+.installationBoxes {
+    display: flex;
+    justify-content: space-evenly;
+}

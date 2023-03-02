@@ -2,8 +2,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 
 from utils.permission import has_user_permission
-from cesspool.serializers import CesspoolToUserSerializer
-from cesspool.models import CesspoolToUser
+from cesspool.serializers import CesspoolToUserSerializer, RecordSerializer
+from cesspool.models import CesspoolToUser, Record
 
 
 class BaseCesspoolToOwner:
@@ -25,3 +25,14 @@ class ListCesspolAPIView(BaseCesspoolToOwner,
 class RUDAPIView(BaseCesspoolToOwner, 
                  RetrieveUpdateAPIView):
     pass
+
+
+class RecordView(BaseCesspoolToOwner,
+                 ListAPIView):
+
+    serializer_class = RecordSerializer
+
+    def get_queryset(self):
+        time_filter = self.kwargs.get("time_filter")
+        
+        return super().get_queryset()

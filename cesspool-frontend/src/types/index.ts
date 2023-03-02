@@ -75,3 +75,61 @@ export interface MachineForAdminMenu {
     user: string|null
     delete: boolean
 }
+
+// types
+export interface Subscription {
+    pk: number;
+    title: string;
+    about: string;
+    month_paying: number|null;
+    mqtt: boolean;
+    email_notf: boolean;
+    sms_notf: boolean;
+    max_owners: boolean;
+}
+
+export interface SubscriptionParam {
+    about: string;
+    value: boolean;
+}
+
+export interface User {
+    pk: number; 
+    email: string; 
+    is_active: boolean; 
+    date_joined: string; 
+    is_staff: boolean; 
+    delete_at: null|string;
+}
+
+export interface Record {
+    pk: number;
+    level_m: number;
+    level_percent: number;
+    battery: number;
+}
+
+export interface SimpleCesspoolToUser {
+    user: string;
+    is_super_owner: true;
+}
+
+export interface Cesspool {
+    pk: number;
+    code: string;
+    city: string;
+    users: SimpleCesspoolToUser[];
+    about: string|null;
+    delete_at: string|null;
+    subscription: string;
+    record: Record|null;
+}
+
+export interface CesspoolToUser {
+    pk: number;
+    user: string;
+    cesspool: Cesspool;
+    title: string;
+    contact_at_level: number;
+    is_super_owner: true;
+}

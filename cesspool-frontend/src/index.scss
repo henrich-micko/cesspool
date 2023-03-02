@@ -4,7 +4,12 @@
 body {
 	font-size: 16px;
 	color: white;
-	background-color: #131517;
+	background-color: #001220;
+	margin: 0;
+}
+
+html {
+	scroll-behavior: smooth;
 }
 
 a {
@@ -33,10 +38,13 @@ h1 {
 	}
 
 	text-align: center;
-	margin: 0em auto 2em;
+	margin: 0em auto 0;
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+
+	display: flex;
+	justify-content: center;
 }
 
 header {
@@ -46,7 +54,7 @@ header {
 .content {
 	font-size: 1.15em;
 	line-height: 1.5em;
-	// padding: 1.5em 1.75em;
+	width: 50em;
 }
 
 article {
@@ -57,4 +65,8 @@ article {
 	.App {
 		font-size: 0.85em;
 	}
+}
+
+input:focus {
+	outline: none;
 }

@@ -28,7 +28,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
             "is_active", 
             "date_joined", 
             "is_staff", 
-            "delete_at", 
+            "delete_at",
         ]
         extra_kwargs = {
             "date_joined": { "read_only": True },

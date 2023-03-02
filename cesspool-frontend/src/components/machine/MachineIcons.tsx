@@ -38,7 +38,7 @@ export const StatusBattery: React.FC<StatusBatteryProps> = (props) => {
         <div style={statusStyle}>            
             <span style={{marginRight: "0.25em"}}>{props.battery?.toFixed(0)}{props.battery !== undefined ? "V" : "..."}</span>
             <FontAwesomeIcon icon={batteryIcon} />
-        </div> 
+        </div>
     )
 }
 

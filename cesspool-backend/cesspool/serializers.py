@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from cesspool.models import Cesspool, CesspoolToUser
-from cesspool.serializer_fields import CesspoolUsersField, SubscriptionField
+from cesspool.models import Cesspool, CesspoolToUser, Record
+from cesspool.serializer_fields import CesspoolUsersField, SubscriptionField, LastRecordField
 from location.serializers import DistrictCityField
 from location.models import City
 from utils.serializers import MSWithListners
@@ -9,25 +9,11 @@ from utils.utils import get_user_model
 from subscription.models import Subscription
 
 
-class CesspoolToUserSerializer(serializers.ModelSerializer):
-    cesspool = serializers.CharField(source = "cesspool.code", read_only = True)
-    user = serializers.EmailField(source = "user.email", read_only = True)
-
-    class Meta:
-        model = CesspoolToUser
-        fields = [
-            "pk",
-            "user",
-            "cesspool",
-            "title",
-            "contact_at_level",
-        ]
-
-
 class CesspoolSerializer(MSWithListners):
     city = DistrictCityField(required = True)
     users = CesspoolUsersField(required = True)
     subscription = SubscriptionField()
+    record = LastRecordField()
 
     class Meta:
         model = Cesspool
@@ -39,6 +25,7 @@ class CesspoolSerializer(MSWithListners):
             "about",
             "delete_at",
             "subscription",
+            "record",
         ]
         extra_kwargs = {
             "delete": { "read_only": False },
@@ -75,3 +62,35 @@ class CesspoolSerializer(MSWithListners):
         if sub != None:
             instance.subscription = Subscription.objects.get(title = sub)
             instance.save()
+
+
+class CesspoolToUserSerializer(serializers.ModelSerializer):
+    cesspool = CesspoolSerializer(read_only = True)
+    user = serializers.EmailField(source = "user.email", read_only = True)
+
+    class Meta:
+        model = CesspoolToUser
+        fields = [
+            "pk",
+            "user",
+            "is_super_owner",
+            "title",
+            "contact_at_level",
+            "cesspool",
+        ]
+        extra_kwargs = {
+            "cesspool": { "required": False }
+        }
+
+
+
+class RecordSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Record
+        fields = [
+            "pk",
+            "level_m",
+            "level_percent",
+            "battery"
+        ]

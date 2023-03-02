@@ -10,6 +10,7 @@
             "@permissions/*": ["permissions/*"],
             "@views/*": ["views/*"],
             "@styles/*": ["styles/*"],
+            "@pages/*": ["pages/*"],
         }    
     }
 }

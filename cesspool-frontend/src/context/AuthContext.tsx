@@ -32,7 +32,7 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     // set user after token is set
     useEffect(() => {
         if (authToken !== null) {
-            axios.get(url + "account/whoami/", {headers: {Authorization: "Token " + authToken}})
+            axios.get(url + "account/", {headers: {Authorization: "Token " + authToken}})
                 .then(res => setUser(res.data))
                 .catch(error => error.response.status === 401 && logoutUser())
         } else setUser({email: null, is_active: null, is_staff: null, date_joined: null})

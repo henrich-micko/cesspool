@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
-from cesspool.models import CesspoolToUser
+from cesspool.models import CesspoolToUser, Record
 from account.validators import validate_user_with_permissions
 from subscription.validators import validate_subscription
 
@@ -44,3 +44,17 @@ class SubscriptionField(serializers.CharField):
 
     def get_attribute(self, instance):
         return instance.subscription.title
+    
+
+class LastRecordField(serializers.DictField):
+    def __init__(self, *args, **kwargs):
+        kwargs["read_only"] = True
+        super().__init__(*args, **kwargs)
+
+    def get_attribute(self, instance):
+        from cesspool.serializers import RecordSerializer
+        
+        record = Record.objects.filter(cesspool = instance).last()
+        if record == None:
+            return None
+        return RecordSerializer(instance = record).data

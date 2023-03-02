@@ -22,7 +22,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, ModelWithDeleteField):
 
     def __str__(self):
         return self.email
-    
+
 
 def _rpt_expired_date_default():
     return timezone.now() + timezone.timedelta(minutes = 15)

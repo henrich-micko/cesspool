@@ -30,6 +30,7 @@ def send_welcome_email(user_pk, token_pk):
     else:
         logger.info(f"Send welcome email task activate token: {token} for user {user}")
 
+
 @shared_task
 def send_reset_password_token_email(token_pk):
     token = models.ResetPasswordToken.objects.get(pk = token_pk)

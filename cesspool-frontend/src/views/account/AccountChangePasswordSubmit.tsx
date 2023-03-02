@@ -6,6 +6,7 @@ import useAxios from "@hooks/useAxios"
 import styles from "@styles/components/account/accountChangePasswordSubmit.module.scss"
 import classNames from "classnames"
 
+
 const AccountChangePassword: React.FC = () => {
     const { token } = useParams()
 
@@ -16,11 +17,6 @@ const AccountChangePassword: React.FC = () => {
     const [redirect, setRedirect] = useState<boolean>(false)
 
     const axios = useAxios()
-
-    useEffect(() => {
-        axios.post("/account/reset-password/check-token/", {token: token})
-             .catch(error => setRedirect(true))
-    }, [token])
 
     const handlePassword = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value.trim())

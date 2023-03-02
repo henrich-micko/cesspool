@@ -11,6 +11,7 @@ module.exports = {
             '@permissions': path.resolve(__dirname, 'src/permissions'),
             '@views': path.resolve(__dirname, 'src/views'),
             '@styles': path.resolve(__dirname, 'src/styles'),
+            '@pages': path.resolve(__dirname, 'src/pages'),
         },
     },
 };

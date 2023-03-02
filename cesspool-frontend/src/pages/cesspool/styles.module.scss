@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .tools {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5em;
+        color: #6A718A;
+        cursor: pointer;
+    }
+}

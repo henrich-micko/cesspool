@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    justify-content: right;
+
+    input[type=button] {
+        padding: 0.5em 0.7em 0.5em 0.7em;
+        font-size: 1.25em;
+        color: white;
+        background-color: transparent;
+        border: 2px solid #4FACF7;
+        border-radius: 0.3em 0.3em 0.3em 0.3em;
+    }
+}

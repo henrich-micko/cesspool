@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6A718A;
+
+    .help {
+        margin: 0;
+        text-align: left;
+        font-size: 1.2em;
+    
+        a {
+            color: #6A718A;
+        }
+
+        a:hover {
+            color: #4FACF7;
+        }
+    }
+
+    .refresh {
+        cursor: pointer;
+    }
+}
+
+.cesspoolsWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5em;
+}

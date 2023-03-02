@@ -28,6 +28,7 @@ class ResetPasswordAPIView(APIView):
 
     def post(self, request):
         serializer = serializers.ResetPasswordSerializer(data = request.data)
+       
         if serializer.is_valid():
             email = serializer.data.get("user")
             user = models.UserAccount.objects.get(email = email)
