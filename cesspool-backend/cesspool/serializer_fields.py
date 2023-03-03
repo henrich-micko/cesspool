@@ -58,3 +58,15 @@ class LastRecordField(serializers.DictField):
         if record == None:
             return None
         return RecordSerializer(instance = record).data
+
+
+class CesspoolProblemsField(serializers.ListField):
+    def __init__(self, *args, **kwargs):
+        kwargs["read_only"] = True
+        super().__init__(*args, **kwargs)
+
+    def get_attribute(self, instance):
+        return [
+            problem.detail
+            for problem in instance.doctor()
+        ]

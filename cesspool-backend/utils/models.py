@@ -16,3 +16,10 @@ class ModelWithDeleteField(models.Model):
 
     def delete_permanent(self):
         super().delete()
+
+
+class Notification(models.Model):
+    is_sand = models.BooleanField(default = False)
+
+    class Meta:
+        abstract = True

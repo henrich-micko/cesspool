@@ -1,14 +1,15 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from cesspool.validators import validate_machine_code
 from cesspool.utils import generate_cesspool_code
-from utils.models import ModelWithDeleteField
+from cesspool.managers import RecordQuerySet
+from utils.models import ModelWithDeleteField, Notification
 
 
 class Cesspool(ModelWithDeleteField):
-    
     code = models.CharField(max_length = 10, 
                             unique = True, 
                             blank = False, 
@@ -33,7 +34,7 @@ class Cesspool(ModelWithDeleteField):
     def get_record(self, field = None):
         """Get last record or field of last record"""
 
-        last_record = self.recorc_set.last(default = None)
+        last_record = self.record_set.last()
         if last_record == None: return None
         if field == None: return last_record
         return getattr(last_record, field, None)
@@ -42,6 +43,43 @@ class Cesspool(ModelWithDeleteField):
     def is_subscription_valid(self):
         return self.subscription != None and timezone.now() <= self.expiration_date
     
+    # run quick scan and find problems
+    def doctor(self):
+        record: Record = self.get_record()
+        if not record:
+            return
+
+        output = []
+        is_not_responding = record.date < timezone.now() - timezone.timedelta(days = 2)
+        is_battery_low = record.battery < 3
+        is_battery_dead = is_not_responding and is_battery_low
+
+        # get || create instances of problems
+        if is_not_responding:
+            output.append(
+                CesspoolNotRespondingProblem.objects.get_or_create(cesspool = self)[0]
+            )
+        if is_battery_low:
+            output.append(
+                CesspoolLowBatteryProblem.objects.get_or_create(cesspool = self)[0]
+            )
+        if is_battery_dead:
+            output.append(
+                CesspoolDeadBatteryProblem.objects.get_or_create(cesspool = self)[0]
+            )
+        
+        return output
+    
+    # check all ctu for hight level notf
+    def ctu_doctor(self):
+        level = self.get_record("level")
+        output = []
+        for ctu in self.cesspooltouser_set.objects.all():
+            if level > ctu.contact_at_level:
+                output.append(
+                    CesspoolHightLevelNotif.objects.get_or_create(ctu = ctu)
+                )
+        return output
 
 class CesspoolToUser(models.Model):
 
@@ -69,8 +107,9 @@ class CesspoolToUser(models.Model):
         
 
 class Record(models.Model):
+    objects = RecordQuerySet.as_manager()
+
     cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
-    
     date = models.DateTimeField(auto_now_add = True)
     level_m = models.FloatField()
     level_percent = models.FloatField()
@@ -78,3 +117,50 @@ class Record(models.Model):
 
     def __str__(self):
         return f"{self.cesspool} at {self.date}"
+    
+
+# notif for user ( based on ctu )
+class CesspoolHightLevelNotif(Notification):
+    ctu = models.ForeignKey(CesspoolToUser, on_delete = models.CASCADE)
+
+    def __str__(self):
+        f"{self.ctu}"
+
+
+"""
+-------------------------
+This problem down here 
+are sand only all admins
+-------------------------
+"""
+
+
+class CesspoolDeadBatteryProblem(models.Model):
+    cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
+    is_sand = models.BooleanField(default = False)
+    detail = _("Battery is dead.")
+
+    def __str__(self):
+        return f"{self.cesspool}"
+
+
+class CesspoolLowBatteryProblem(models.Model):
+    cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
+    is_sand = models.BooleanField(default = False)
+    detail = _("Battery is low.")
+
+    def __str__(self):
+        return f"{self.cesspool}"
+
+
+class CesspoolNotRespondingProblem(models.Model):
+    cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
+    is_sand = models.BooleanField(default = False)
+
+    @property
+    def detail(self):
+        last_record_date = self.cesspool.get_record("date")
+        return _(f"Cesspool is not responding, last record: {last_record_date}")
+
+    def __str__(self):
+        return f"{self.cesspool}"

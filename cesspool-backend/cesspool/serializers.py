@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from cesspool.models import Cesspool, CesspoolToUser, Record
-from cesspool.serializer_fields import CesspoolUsersField, SubscriptionField, LastRecordField
+from cesspool.serializer_fields import CesspoolUsersField, SubscriptionField, LastRecordField, CesspoolProblemsField
 from location.serializers import DistrictCityField
 from location.models import City
 from utils.serializers import MSWithListners
@@ -14,6 +14,7 @@ class CesspoolSerializer(MSWithListners):
     users = CesspoolUsersField(required = True)
     subscription = SubscriptionField()
     record = LastRecordField()
+    problems = CesspoolProblemsField()
 
     class Meta:
         model = Cesspool
@@ -26,6 +27,7 @@ class CesspoolSerializer(MSWithListners):
             "delete_at",
             "subscription",
             "record",
+            "problems"
         ]
         extra_kwargs = {
             "delete": { "read_only": False },
