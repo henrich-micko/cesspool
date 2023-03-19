@@ -18,6 +18,7 @@ import ResetPasswordPage from "@pages/resetPassword";
 import ActivateUserPage from "@pages/activateUser";
 import CesspoolMenuPage from "@pages/cesspoolsMenu";
 import CesspoolPage from "@pages/cesspool";
+import TheFooter from "@components/TheFooter";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 
             </Routes>
         </main>
+
       </div>
     </AuthProvider>
   );

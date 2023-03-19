@@ -50,9 +50,11 @@
             border-radius: 0.15em;
             display: block;
             text-align: left;
-            color: #61dafb;
+            color: #4FACF7;
 
-            background-color: #1e1f25;
+            background-color: #001220;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.15em;
         }
 
         .date {
@@ -65,7 +67,7 @@
 
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.15em;
-            color: #61dafb;
+            color: #4FACF7;
 
             .closeIcon {
                 margin-left: 0.50em;

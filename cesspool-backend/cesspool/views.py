@@ -2,41 +2,62 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from utils.permission import has_user_permission
-from cesspool.serializers import CesspoolToUserSerializer, RecordSerializer
-from cesspool.models import CesspoolToUser, Record, Cesspool
+from cesspool.serializers import CesspoolToUserSerializer, RecordSerializer, CesspoolToUserWithUsersSerializer
+from cesspool.models import CesspoolToUser, Record
 from cesspool.utils import try_get_cesspool_by_code
+from cesspool.permissions import is_super_owner_of_cesspool
+from utils.permission import perm_or
+from utils.utils import get_user_model
 
 
-class BaseCesspoolToOwner:
-
+class CesspoolToUserMixin:
     permission_classes = [IsAuthenticated, *has_user_permission("cesspool.related_to_cesspool")]
-    serializer_class = CesspoolToUserSerializer
     lookup_field = "cesspool__code"
     lookup_value_regex = "[^/]+"
+
+    @property
+    def serializer_class(self):
+        user, cesspool = self.request.user, self.kwargs.get("cesspool__code"), 
+        try:
+            if CesspoolToUser.objects.get(user = user, cesspool__code = cesspool).is_super_owner:
+                return CesspoolToUserWithUsersSerializer
+        except CesspoolToUser.DoesNotExist:
+            pass
+        return CesspoolToUserSerializer
 
     def get_queryset(self):
         return CesspoolToUser.objects.filter(user = self.request.user)
     
 
-class ListCesspolAPIView(BaseCesspoolToOwner, 
-                         ListAPIView):
-    pass
+class ListCesspolAPIView(CesspoolToUserMixin, APIView):
+    """ Get List of ctus related to loged user """
+
+    def get(self, request):
+        response_data = []
+        for ctu in self.get_queryset():
+            if ctu.is_super_owner:
+                ser = CesspoolToUserWithUsersSerializer(instance = ctu)
+            else:
+                ser = CesspoolToUserSerializer(instance = ctu)
+            response_data.append(ser.data)
+        return Response(data = response_data, status = status.HTTP_200_OK)
 
 
-class RUDAPIView(BaseCesspoolToOwner, 
-                 RetrieveUpdateAPIView):
-    pass
+class RUDAPIView(CesspoolToUserMixin, RetrieveUpdateAPIView):
+    """Retreive Update and Delete methods for spec ctu """
 
 
-class RecordsAPIView(ListAPIView, BaseCesspoolToOwner):
-    
+class RecordsAPIView(ListAPIView):
+    permission_classes = [IsAuthenticated, *has_user_permission("cesspool.related_to_cesspool")]
     serializer_class = RecordSerializer
+    lookup_field = "cesspool__code"
+    lookup_value_regex = "[^/]+"
     
     def get_queryset(self):
         cesspool_code, time_filter = self.kwargs.get("cesspool_code"), self.kwargs.get("tf")
@@ -54,8 +75,11 @@ class RecordsAPIView(ListAPIView, BaseCesspoolToOwner):
         return cesspool.record_set.time_period(days = 365).last_by(lambda item: item.date.strftime("%Y-%m-%d"))
     
 
-class RecordsDateAPIView(ListAPIView, BaseCesspoolToOwner):
+class RecordsDateAPIView(ListAPIView):
+    permission_classes = [IsAuthenticated, *has_user_permission("cesspool.related_to_cesspool")]
     serializer_class = RecordSerializer
+    lookup_field = "cesspool__code"
+    lookup_value_regex = "[^/]+"
 
     def get_queryset(self):
         cesspool_code, date = self.kwargs.get("cesspool_code"), self.kwargs.get("date")
@@ -70,7 +94,10 @@ class RecordsDateAPIView(ListAPIView, BaseCesspoolToOwner):
         ) # this kinda sucks
     
 
-class RecordsSupportAPIView(APIView, BaseCesspoolToOwner):
+class RecordsSupportAPIView(APIView):
+    permission_classes = [IsAuthenticated, *has_user_permission("cesspool.related_to_cesspool")]
+    lookup_field = "cesspool__code"
+    lookup_value_regex = "[^/]+"
 
     def get(self, request, cesspool_code):
         cesspool = try_get_cesspool_by_code(user = request.user, cesspool_code = cesspool_code)

@@ -25,7 +25,8 @@ class Cesspool(ModelWithDeleteField):
 
     class Meta:
         permissions = [
-            ["related_to_cesspool", "Can be related to the cesspool"]
+            ["related_to_cesspool", "Can be related to the cesspool"],
+            ["edit_users", "Can edit users"]
         ]
 
     def __str__(self):
@@ -47,12 +48,12 @@ class Cesspool(ModelWithDeleteField):
     def doctor(self):
         record: Record = self.get_record()
         if not record:
-            return
+            return []
 
         output = []
         is_not_responding = record.date < timezone.now() - timezone.timedelta(days = 2)
-        is_battery_low = record.battery < 3
-        is_battery_dead = is_not_responding and is_battery_low
+        is_battery_low = record.battery < 3 and not is_not_responding
+        is_battery_dead = is_not_responding and record.battery < 3
 
         # get || create instances of problems
         if is_not_responding:
@@ -69,17 +70,7 @@ class Cesspool(ModelWithDeleteField):
             )
         
         return output
-    
-    # check all ctu for hight level notf
-    def ctu_doctor(self):
-        level = self.get_record("level")
-        output = []
-        for ctu in self.cesspooltouser_set.objects.all():
-            if level > ctu.contact_at_level:
-                output.append(
-                    CesspoolHightLevelNotif.objects.get_or_create(ctu = ctu)
-                )
-        return output
+
 
 class CesspoolToUser(models.Model):
 
@@ -105,6 +96,12 @@ class CesspoolToUser(models.Model):
                 new_owner.save()
         return super().delete(*args, **kwargs)
         
+    def doctor(self):
+        level = self.cesspool.get_record("level")
+
+        if level != None and level > self.contact_at_level:
+            return [CesspoolHightLevelNotif.objects.get_or_create(ctu = self)]
+        return []
 
 class Record(models.Model):
     objects = RecordQuerySet.as_manager()
@@ -160,7 +157,7 @@ class CesspoolNotRespondingProblem(models.Model):
     @property
     def detail(self):
         last_record_date = self.cesspool.get_record("date")
-        return _(f"Cesspool is not responding, last record: {last_record_date}")
+        return _(f"Cesspool is not responding since {last_record_date.day}. {last_record_date.month}. {last_record_date.year}")
 
     def __str__(self):
         return f"{self.cesspool}"

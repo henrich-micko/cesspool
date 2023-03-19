@@ -11,6 +11,8 @@ class Subscription(models.Model):
     email_notf = models.BooleanField(default = False)
     sms_notf = models.BooleanField(default = False)
     max_owners = models.IntegerField(default = 1, validators = [validate_max_owners])
+    month_paying = models.FloatField(default = None, null = True, blank = True)
+    change_parts = models.BooleanField(default = False)
 
     def __str__(self):
         return self.title

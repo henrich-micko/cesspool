@@ -11,3 +11,23 @@ def has_user_permission(*permissions: str) -> BasePermission:
         output.append(PermissionClass)
 
     return output
+
+
+def perm_or(*perms):
+
+    class PermOr(BasePermission):
+        def __init__(self, *argv, **kwargs):
+            self.perms = [
+                p(*argv, **kwargs)
+                for p in perms
+            ]
+
+            super().__init__(*argv, **kwargs)
+        
+        def has_permission(self, request, view):
+            for p in self.perms:
+                if p.has_permission(request, view):
+                    return True
+            return False
+        
+    return PermOr

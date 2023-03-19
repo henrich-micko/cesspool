@@ -6,7 +6,6 @@ const TheBox = styled.div`
     padding: 1em;
     border: 2px solid #4FACF7;
     border-radius: 10px;
-    margin-top: 5em;
     width: fit-content;
 `;
 

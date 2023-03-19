@@ -25,6 +25,7 @@
 
 .cesspoolsWrapper {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5em;
+    grid-gap: 1rem;
+    grid-template-areas: 'item item';
+    padding-bottom: 5em;
 }

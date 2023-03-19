@@ -85,12 +85,8 @@ export interface Subscription {
     mqtt: boolean;
     email_notf: boolean;
     sms_notf: boolean;
-    max_owners: boolean;
-}
-
-export interface SubscriptionParam {
-    about: string;
-    value: boolean;
+    max_owners: number;
+    change_parts: boolean;
 }
 
 export interface User {
@@ -107,9 +103,11 @@ export interface Record {
     level_m: number;
     level_percent: number;
     battery: number;
+    date: string;
 }
 
 export interface SimpleCesspoolToUser {
+    pk: number;
     user: string;
     is_super_owner: true;
 }
@@ -118,11 +116,11 @@ export interface Cesspool {
     pk: number;
     code: string;
     city: string;
-    users: SimpleCesspoolToUser[];
     about: string|null;
     delete_at: string|null;
-    subscription: string;
+    subscription: Subscription;
     record: Record|null;
+    problems: string[];
 }
 
 export interface CesspoolToUser {
@@ -132,4 +130,5 @@ export interface CesspoolToUser {
     title: string;
     contact_at_level: number;
     is_super_owner: true;
+    cesspool_users: undefined|string[];
 }

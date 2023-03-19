@@ -30,9 +30,9 @@ ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', "*").split(' ')
 
 # host for fronted (email links)
 if "*" in ALLOWED_HOSTS:
-    REACT_HOST = "127.0.0.1"
+    WEBSITE = REACT_HOST = "127.0.0.1"
 else:
-    REACT_HOST = ALLOWED_HOSTS[0]
+    WEBSITE = REACT_HOST = ALLOWED_HOSTS[0]
 
 # Application definition
 
@@ -68,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "django.middleware.locale.LocaleMiddleware"
 ]
 
 ROOT_URLCONF = 'cesspool_backend.urls'
@@ -146,7 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sk'
 
 TIME_ZONE = 'Europe/Bratislava'
 
@@ -235,8 +237,8 @@ CELERY_BEAT_SCHEDULE = {
 USE_EMAIL = not DEBUG
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", "x")
-EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", "x")
+EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", "zumpomer.app@gmail.com")
+EMAIL_HOST_PASSWORD = environ.get("DJANGO_EMAIL_HOST_PASS", "wiedzpyzdjfwzxtz")
 EMAIL_USE_TLS = True
 
 if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:

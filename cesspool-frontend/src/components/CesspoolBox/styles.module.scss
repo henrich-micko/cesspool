@@ -1,11 +1,17 @@
 .header {
     display: flex;
     justify-content: space-between;
-    width: 20em;
     padding: 1em;
 
     h2 {
         margin: 0;
+    }
+
+    .iconWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
     }
 }
 
@@ -27,7 +33,11 @@
 }
 
 .problems {
-    li {
-        text-align: left;
+    ul {
+        padding-left: 20px;
+
+        li {
+            text-align: left;
+        }
     }
 }

@@ -25,7 +25,7 @@ const CtuSettings: React.FC<_CtuSettings> = (props) => {
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
  
-        axios.put("cesspool/" + props.code + "/", {title: title, contact_at_level: contactAtLevel})
+        axios.put("cesspool/c/" + props.code + "/", {title: title, contact_at_level: contactAtLevel})
              .then(res => props.onUpdate(res.data))
              .catch(err => setError("Nepodarilo sa nastaviť."))
     }

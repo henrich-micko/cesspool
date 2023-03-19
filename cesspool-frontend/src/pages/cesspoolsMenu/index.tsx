@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import Page from "@components/Page";
 
 
 const CesspoolMenuPage: React.FC = () => {
@@ -18,7 +19,7 @@ const CesspoolMenuPage: React.FC = () => {
     const axios = useAxios();
     
     const fetchData = () => {
-        axios.get("cesspool/")
+        axios.get("cesspool/c/")
              .then(res => setCtus(res.data))
              .catch(err => {});
     }
@@ -27,28 +28,31 @@ const CesspoolMenuPage: React.FC = () => {
 
     return (
         <IsAuthenticatedView>
-            { redirectCode !== null && <Navigate to={"/cesspool/" + redirectCode} /> }
-            
-            <Navigation />
+            <Page>
+                { redirectCode !== null && <Navigate to={"/cesspool/" + redirectCode} /> }
+                
+                <Navigation />
 
-            <div className={styles.header}>
-                <p className={styles.help}>
-                    Zariadenia ktoré Vám su pridelene, <Link to="/contact/"> chybaju vam dáke?</Link>
-                </p>
-                <FontAwesomeIcon className={styles.refresh} icon={faRefresh} onClick={fetchData}/>
-            </div>
+                <div className={styles.header}>
+                    <p className={styles.help}>
+                        Zariadenia ktoré Vám su pridelene, <Link to="/contact/"> chybaju vam dáke?</Link>
+                    </p>
+                    <FontAwesomeIcon className={styles.refresh} icon={faRefresh} onClick={fetchData}/>
+                </div>
 
-            <div className={styles.cesspoolsWrapper}>
-                {ctus.map((ctu) => 
-                    <CesspoolBox 
-                        pk={ctu.pk} 
-                        code={ctu.cesspool.code} 
-                        record={ctu.cesspool.record}
-                        title={ctu.title}
-                        onClick={(code) => setRedirectCode(code)}
-                    />
-                )}
-            </div>
+                <div className={styles.cesspoolsWrapper}>
+                    {ctus.map((ctu) => 
+                        <CesspoolBox 
+                            pk={ctu.pk} 
+                            code={ctu.cesspool.code} 
+                            record={ctu.cesspool.record}
+                            title={ctu.title}
+                            problems={ctu.cesspool.problems}
+                            onClick={(code) => setRedirectCode(code)}
+                        />
+                    )}
+                </div>
+            </Page>
         </IsAuthenticatedView>
     )
 }

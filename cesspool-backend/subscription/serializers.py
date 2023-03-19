@@ -13,7 +13,9 @@ class SubscriptionSerializer(serializers.ModelSerializer):
             "mqtt",
             "email_notf",
             "sms_notf",
-            "max_owners"
+            "max_owners",
+            "month_paying",
+            "change_parts",
         ]
         extra_kwargs = {
             "title": { "read_only": True },
@@ -22,4 +24,6 @@ class SubscriptionSerializer(serializers.ModelSerializer):
             "email_notf": { "read_only": True },
             "sms_notf": { "read_only": True },
             "max_owners": { "read_only": True },
+            "month_paying": { "read_only": True },
+            "change_parts": { "read_only": True }
         }

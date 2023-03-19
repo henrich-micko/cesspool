@@ -8,7 +8,7 @@ Why i use types here? idk
 """
 
 
-def get_value_by_path(data: dict, path: str, default: any) -> any:
+def get_value_by_path(data: dict, path: str, default: any = None, split_with = "/") -> any:
     splited_path: list = path.split("/")
     key: str = splited_path.pop(0)
     left_path: str = "/".join(splited_path)
@@ -22,6 +22,22 @@ def get_value_by_path(data: dict, path: str, default: any) -> any:
     if type(value) != dict: return default
 
     return get_value_by_path(data = value, path = left_path, default = default)
+
+
+def getattr_by_path(obj: any, path: str|list, default: any = None, split_with = ".") -> any:
+    if type(path) != list: 
+        path: list[str] = path.split(split_with)
+    current: str = path.pop(0)
+    print(current, path)
+
+    new_obj = getattr(obj, current, None)
+    print(new_obj)
+    if new_obj == None:
+        return default
+    
+    if not path:
+        return new_obj
+    return getattr_by_path(new_obj, path, default)
 
 
 def try_parse_get_param(request: any, name: str, parse_with: any = int, not_found_default: any = None, invalid_default: any = None) -> any:

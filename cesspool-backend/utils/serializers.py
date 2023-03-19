@@ -8,20 +8,29 @@ class MSWithListners(ModelSerializer):
         pass
 
     def create(self, validated_data):
+        extra_kwargs = getattr(self.Meta, "extra_kwargs", {})
+        custom_create = getattr(self.Meta, "listners_custom_create", False)
+
         validated_data_for_create = {
             k:v for k, v in validated_data.items() 
-            if not get_value_by_path(self.Meta.extra_kwargs, f"{k}/ignore_on_save", False)
+            if not get_value_by_path(extra_kwargs, f"{k}/ignore_on_save", False)
         }
 
-        instance = super().create(validated_data = validated_data_for_create)
-        self.on_create_and_update(instance = instance, validated_data = validated_data)
-        return instance
+        # sometimes there is custom create needed so here it is
+        if not custom_create: instance = super().create(validated_data = validated_data_for_create)
+        else: instance = None
+
+        return instance if instance else self.on_create_and_update(instance = instance, validated_data = validated_data)
 
     def update(self, instance, validated_data):
+        extra_kwargs = getattr(self.Meta, "extra_kwargs", {})
+        
         validated_data_for_update = {
             k:v for k, v in validated_data.items() 
-            if not get_value_by_path(self.Meta.extra_kwargs, f"{k}/ignore_on_save", False)
+            if not get_value_by_path(extra_kwargs, f"{k}/ignore_on_save", False)
         }
+
+        print(validated_data_for_update)
 
         update_ouptut = super().update(instance, validated_data_for_update)
         self.on_create_and_update(instance = instance, validated_data = validated_data)

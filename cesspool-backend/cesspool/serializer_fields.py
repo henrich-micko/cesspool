@@ -4,34 +4,31 @@ from rest_framework import serializers
 from cesspool.models import CesspoolToUser, Record
 from account.validators import validate_user_with_permissions
 from subscription.validators import validate_subscription
+from utils.utils import getattr_by_path
+from account.models import UserAccount
 
 
 class CesspoolUsersField(serializers.ListField):
     def __init__(self, **kwargs):
-        kwargs["child"] = serializers.DictField()
+        kwargs["child"] = serializers.EmailField()
+        self.source_ = kwargs.pop("source_", None)
         super().__init__(**kwargs)
 
-        self.validators.append(
-            CesspoolUsersField._validate
-        )
+        self.validators.append(self._validate)
+
 
     def get_attribute(self, instance):
-        return [
-            { "user": ctu.user.email, "is_super_owner": ctu.is_super_owner } 
-            for ctu in CesspoolToUser.objects.filter(cesspool = instance)
-        ]
+        cesspool_instance = getattr_by_path(instance, self.source_, None)
+        if cesspool_instance == None: return None
 
+        return [
+            ctu.user.email 
+            for ctu in CesspoolToUser.objects.filter(cesspool = cesspool_instance)
+        ]
+    
     @staticmethod
     def _validate(value):
-        if type(value) != list:
-            raise ValidationError("Invalid format")
-
-        for user_data in value:
-            user, is_super_owner = user_data.get("user", None), user_data.get("is_super_owner", None)
-            if user == None or is_super_owner == None:
-                raise ValidationError("user or is_super_owner field is missing")
-
-            validate_user_with_permissions("cesspool.relation_to_cesspool")(value = user)
+        pass            
 
 
 class SubscriptionField(serializers.CharField):

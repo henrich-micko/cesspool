@@ -1,0 +1,11 @@
+.cpWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    width: 6em;
+
+    span {
+        font-size: 1em;
+    }
+}

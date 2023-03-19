@@ -1,0 +1,11 @@
+.problems {
+    padding-left: 0px;
+
+    .problem {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        gap: 0.5em;
+        text-align: left;
+    }
+}

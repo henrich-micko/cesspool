@@ -6,22 +6,31 @@ import styles from "@pages/home/styles.module.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowDown, faCheckCircle, faXmarkCircle } from "@fortawesome/free-solid-svg-icons"
 import { HashLink } from "react-router-hash-link";
-import { Subscription, SubscriptionParam } from "@types"
+import { Subscription } from "@types"
 import Picture1 from "@assets/Zumpomer-obr1.png";
 import Picture2 from "@assets/Zumpomer-obr2.png";
 import Picture3 from "@assets/Zumpomer-obr3.png";
+import useAxios from "@hooks/useAxios";
 
 
-export const SubscriptionBoxParam: React.FC<SubscriptionParam> = (props) => {    
+interface _SubscriptionBoxParam {
+    about: string;
+    value: any;
+}
+
+export const SubscriptionBoxParam: React.FC<_SubscriptionBoxParam> = (props) => {    
     return (
         <li className={styles.subscriptionBoxParam}>
             <span>
                 {props.about}
-                <FontAwesomeIcon
-                    className={styles.icon}
-                    icon={props.value ? faCheckCircle : faXmarkCircle}
-                    color={props.value ? "#009473" : "#ff5454"}
-                />
+                { typeof props.value === "boolean"
+                  ? <FontAwesomeIcon
+                        className={styles.icon}
+                        icon={props.value ? faCheckCircle : faXmarkCircle}
+                        color={props.value ? "#009473" : "#ff5454"}
+                    />
+                  : <span>: {props.value}</span> 
+                }
             </span>
         </li>
     )
@@ -39,14 +48,15 @@ export const SubscriptionBox: React.FC<Subscription> = (props) => {
                 <ul>
                     <SubscriptionBoxParam about="Email notifikacie" value={props.email_notf} />
                     <SubscriptionBoxParam about="Sms notifikacie" value={props.sms_notf} />
-                    <SubscriptionBoxParam about="Viac vlastnikov" value={props.max_owners} />
+                    <SubscriptionBoxParam about="Výmena dielov" value={props.change_parts} />
+                    <SubscriptionBoxParam about="Počet vlastnikov" value={props.max_owners} />
                 </ul>
                 {props.month_paying !== null && 
                     <>
                         <span className={styles.cost}>{props.month_paying}€</span>
                         <span className={styles.costAbout}>mesačne</span>
                     </>
-                } 
+                }
             </div>
         </div>
     )
@@ -86,6 +96,17 @@ export const InstallationBox: React.FC<_InstallationBox> = (props) => {
 
 
 const HomePage: React.FC = () => {
+    const [subs, setSubs] = React.useState<Subscription[]>([]);
+
+    const axios = useAxios();
+    const fetchData = () => {
+        axios.get("subs/")
+             .then(res => setSubs(res.data))
+             .catch(() => {});
+    }
+
+    React.useEffect(fetchData, []);
+
     return (
         <IsNotAuthenticatedView>
             <Page>
@@ -133,33 +154,10 @@ const HomePage: React.FC = () => {
                 <h2 className={styles.pageHeader} id="subs">Predplatne</h2>
             
                 <div className={styles.subscriptions}>
-                    <SubscriptionBox 
-                        pk={1}
-                        title={"Basic"}
-                        about={"Montáž 270€ Jednorázová platba"}
-                        mqtt={false}
-                        email_notf={true}
-                        sms_notf={false}
-                        max_owners={false}
-                        month_paying={null}
-                    />
-
-                    <SubscriptionBox 
-                        pk={1}
-                        title={"Premium"}
-                        about={"Montáž 120€ Jednorázová platba"}
-                        mqtt={false}
-                        email_notf={true}
-                        sms_notf={true}
-                        max_owners={true}
-                        month_paying={3.90} 
-                    />
+                    { subs.map(sub => 
+                        <SubscriptionBox {...sub}/> )}
                 </div>
             </Page>
-
-            <footer>
-                <span>© 2023 Žumpomer - Henrich Mičko</span>
-            </footer>
         </IsNotAuthenticatedView>
     )
 }
