@@ -18,6 +18,11 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, ModelWithDeleteField):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    class Meta:
+        permissions = [
+            ["manage_account", "Can manage accounts"]
+        ]
+
     def __str__(self):
         return self.email
 

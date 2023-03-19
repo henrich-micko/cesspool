@@ -19,6 +19,7 @@ import ActivateUserPage from "@pages/activateUser";
 import CesspoolMenuPage from "@pages/cesspoolsMenu";
 import CesspoolPage from "@pages/cesspool";
 import TheFooter from "@components/TheFooter";
+import Account from "@pages/account";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/account/auth" element={<AuthPage />} />
                 <Route path="/cesspool" element={<CesspoolMenuPage />} />
                 <Route path="/cesspool/:code" element={<CesspoolPage />} />
+                <Route path="/account/" element={<Account />} />
 
             </Routes>
         </main>

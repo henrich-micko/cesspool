@@ -251,6 +251,16 @@ if USE_EMAIL and EMAIL_HOST_USER == None or EMAIL_HOST_PASSWORD == None:
 
 # for running command "account.setup_groups"
 USER_GROUPS = {
+    "client": [
+        "cesspool.related_to_cesspool",
+    ],
+
+    "admin": [
+        "cesspool.manage_cesspool",
+        "account.manage_account",
+        "location.manage_city",
+    ],
+
     "city_admin": [
         "location.export_data",
         "location.be_city_admin",

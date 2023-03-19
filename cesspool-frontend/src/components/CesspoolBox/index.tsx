@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@components/CesspoolBox/styles.module.scss";
-import TheBox from "@components/TheBox";
+import { TheBoxMin } from "@components/TheBox";
 import { Record } from "@types";
 import TheBattery from "@components/TheBattery";
 import Wave from "@assets/wave.svg";
@@ -20,7 +20,7 @@ interface _CesspoolBox {
 
 const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
     return (
-        <TheBox
+        <TheBoxMin
             style={{
                 "padding": 0,
                 "marginTop": "2em",
@@ -57,7 +57,7 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
                     <TheCesspoolProblems problems={props.problems} />
                 </div>
             } */}
-        </TheBox>
+        </TheBoxMin>
     )
 }
 

@@ -26,7 +26,7 @@ class Cesspool(ModelWithDeleteField):
     class Meta:
         permissions = [
             ["related_to_cesspool", "Can be related to the cesspool"],
-            ["edit_users", "Can edit users"]
+            ["manage_cesspool", "Can manage cesspools"]
         ]
 
     def __str__(self):

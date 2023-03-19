@@ -20,7 +20,7 @@ class Command(BaseCommand):
                         codename = perm_name
                     )
 
-                except Permission.DoesNotExist:
+                except Permission.DoesNotExist as error:
                     self.stderr.write(f"Permission with code name {perm_name} doesnt exists in {app_label}.")
                     return
 

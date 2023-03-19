@@ -6,7 +6,7 @@ import AuthContext from "@context/AuthContext";
 
 
 const Navigation: React.FC = () => {
-    const { isLogged, user, logoutUser } = React.useContext(AuthContext);
+    const { isLogged, user } = React.useContext(AuthContext);
     
     return (
         <header className={styles.wrapper}>
@@ -20,7 +20,7 @@ const Navigation: React.FC = () => {
                         <li><NavLink id={styles.auth} to="/account/auth">Prihlasiť sa</NavLink></li>
                     </> : <>
                         <li><NavLink to="/cesspool">Moje žumpy</NavLink></li>
-                        <li><NavLink id={styles.auth} to="/" onClick={() => logoutUser()}>{user.email?.split("@").at(0)}</NavLink></li>
+                        <li><NavLink id={styles.auth} to="/account/" >{user.email?.split("@").at(0)}</NavLink></li>
                     </>
                 }        
             </ul>

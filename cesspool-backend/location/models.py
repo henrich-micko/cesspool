@@ -14,7 +14,8 @@ class City(ModelWithDeleteField):
         unique_together = ["title", "district"]
         permissions = [
             ["export_data", "Can export data"],
-            ["be_city_admin", "Can be an admin of city"]
+            ["be_city_admin", "Can be an admin of city"],
+            ["manage_city", "Can manage cities"]
         ]
 
     def __str__(self):
