@@ -27,7 +27,13 @@ const CesspoolPage: React.FC = () => {
         axios.get("cesspool/c/" + code)
              .then(res => setCtu(res.data))
              .catch(err => {})
-    }
+    };
+
+    const getProblems = (): string[] => {
+        if (ctu && ctu.cesspool.record && ctu.contact_at_level <= ctu.cesspool.record.level_percent)
+            return [...ctu.cesspool.problems, "Vysoka hladina odpadu."];
+        return ctu ? ctu.cesspool.problems : [];
+    };
 
     React.useEffect(fetchData, []);
 
@@ -43,9 +49,9 @@ const CesspoolPage: React.FC = () => {
                 </h1>
 
                 <div className={styles.tools}>
-                    <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
                     <FontAwesomeIcon icon={faSliders} onClick={() => setCtuSettingsPop(true)} color={ ctuSettingsPop ? "white" : undefined } />
                     { ctu && ctu.is_super_owner && <FontAwesomeIcon icon={faUsers} onClick={() => setCtuUsersPop(true)} color={ ctuUsersPop ? "white" : undefined } /> }
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
                 </div>
             </div>
 
@@ -63,9 +69,7 @@ const CesspoolPage: React.FC = () => {
                             battery={ctu.cesspool.record.battery} 
                         /> 
                         
-                        <TheCesspoolProblemsBox
-                            problems={ctu.cesspool.problems}
-                        />
+                        <TheCesspoolProblemsBox problems={ getProblems() } />
                     </>
                 }
             </div>
@@ -99,7 +103,7 @@ const CesspoolPage: React.FC = () => {
 
             { ctu && ctu.cesspool.record
                 ? <CesspoolChart code={ctu.cesspool.code} /> 
-                : <span className={styles.noRecords}>Zatial žiadne záznamy...</span>
+                : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
             }
 
         </IsAuthenticatedView>

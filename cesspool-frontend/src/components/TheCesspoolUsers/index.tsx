@@ -106,7 +106,7 @@ const TheCesspoolUsers: React.FC<_TheCesspoolUsers> = (props) => {
         <TheForm onSubmit={handleSubmit} style={{ "gap": "2em" }}>
             <ul className={styles.users}>
                 { users.map((user_email, index) => 
-                    <CesspoolUser key={index} user={user_email} is_super_owner={user_email === user.email} onTrashClick={handleDelete} />) }
+                    <CesspoolUser key={index} user={user_email} is_super_owner={user !== null && user_email === user.email} onTrashClick={handleDelete} />) }
                 { users.length < props.max && <NewCesspoolUser onSubmit={handleAdd} /> }
             </ul>
                 

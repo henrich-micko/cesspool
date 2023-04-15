@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    padding-bottom: 0.25em;
+
+    h2 {
+        margin: 0;
+    }
+
+    .iconWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
+    }
+}
+
+.group {
+    display: flex;
+    justify-content: space-between;
+    color: #6A718A;
+    text-align: left;
+    padding: 1em;
+    padding-top: 0.25em;
+}

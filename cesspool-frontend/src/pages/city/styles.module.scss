@@ -1,0 +1,35 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .tools {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5em;
+        color: #6A718A;
+        cursor: pointer;
+    }
+}
+
+.infoPanel {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.about {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    font-size: 1.2em;
+    color: #6A718A;
+    margin-bottom: 1em;
+}
+
+.noRecords {
+    font-size: 1.25em;
+    color: #6A718A;
+}

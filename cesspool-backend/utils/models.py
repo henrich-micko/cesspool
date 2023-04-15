@@ -10,8 +10,8 @@ class ModelWithDeleteField(models.Model):
     class Meta:
         abstract = True
 
-    def delete(self):
-        self.delete_at = timezone.now() + timedelta(hours = 24)
+    def delete(self, timedelta_ = timedelta(hours = 24)):
+        self.delete_at = timezone.now() + timedelta_
         self.save()
 
     def delete_permanent(self):

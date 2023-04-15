@@ -72,3 +72,24 @@ article {
 input:focus {
 	outline: none;
 }
+
+select {
+	width: fit-content;
+	height: fit-content;
+
+	color: white;
+	font-size: 1em;
+	background: none;
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 0.15em;
+	display: block;
+	text-align: left;
+	color: #4FACF7;
+
+	color: white;
+	font-size: 1em;
+	padding: 0.25em;
+	border-radius: 7px;
+	border: 2px solid #6A718A;
+	background-color: transparent;
+}

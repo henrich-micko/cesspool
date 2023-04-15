@@ -27,5 +27,8 @@ urlpatterns = [
 
     path("api/admin/cesspool/", include("cesspool.admin_api.urls"), name = "cesspool-admin"),
     path("api/admin/account/", include("account.admin_api.urls"), name = "account-admin"),
-    path("api/admin/subs/", include("subscription.admin_api.urls",), name = "subscription-admin")
+    path("api/admin/subs/", include("subscription.admin_api.urls",), name = "subscription-admin"),
+    path("api/admin/location/", include("location.admin_api.urls",), name = "location-admin"),
+
+    path("api/city-manager/cesspool/", include("cesspool.city_manager_api.urls"), name = "city-manager-cesspool"),
 ]

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 
 from account.managers import UserAccountManager
 from account.utils import generate_activate_user_code, generate_reset_password_code
@@ -23,8 +24,32 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, ModelWithDeleteField):
             ["manage_account", "Can manage accounts"]
         ]
 
+    created_by = models.ForeignKey(
+        "account.UserAccount", 
+        on_delete = models.SET_DEFAULT,
+        default = None, 
+        null = True, 
+        blank = True
+    )
+
     def __str__(self):
         return self.email
+    
+    def get_groups(self):
+        return self.groups.all()
+    
+    def get_permissions(self):
+        permissions = [
+            "cesspool.related_to_cesspool",
+            "cesspool.manage_cesspool",
+            "account.manage_account",
+            "location.manage_city",
+            "location.be_city_admin",
+        ]
+
+        return [
+            p for p in permissions if self.has_perm(p)
+        ]
 
 
 def _rpt_expired_date_default():

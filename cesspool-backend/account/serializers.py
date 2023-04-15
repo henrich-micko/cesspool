@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
 from account import models, validators
-from account.serializers_fields import PermissionField
+from account.serializers_fields import PermissionField, GroupField
+from utils.serializers import MSWithListners
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -20,8 +21,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return value
 
 
-class UserAccountSerializer(serializers.ModelSerializer):
-    permissions = PermissionField()
+class UserAccountSerializer(MSWithListners):
+    permissions = PermissionField(required = False)
+    groups = GroupField()
+    created_by = serializers.EmailField(read_only = True)
 
     class Meta:
         model = models.UserAccount
@@ -33,6 +36,8 @@ class UserAccountSerializer(serializers.ModelSerializer):
             "is_staff", 
             "delete_at",
             "permissions",
+            "groups",
+            "created_by",
         ]
         extra_kwargs = {
             "date_joined": { "read_only": True },
@@ -40,6 +45,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
             "is_staff": { "read_only": True },
             "delete_at": { "read_only": True },
             "permissions": { "read_only": True },
+            "groups": { "ignore_on_save": True },
         }
 
 

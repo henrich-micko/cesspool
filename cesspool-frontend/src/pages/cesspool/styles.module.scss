@@ -21,14 +21,26 @@
 }
 
 .help {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     margin: 0;
-    text-align: left;
-    font-size: 1.2em;
-    color: #6A718A;
     margin-bottom: 1em;
+
+    color: #6A718A;
+
+    span:last-child {
+        font-size: 1em;
+    }
+    
+    a {
+        color: #6A718A;
+    }
 }
 
 .noRecords {
     font-size: 1.25em;
-    color: #6A718A;
+    text-align: left;
+    width: 100%;
 }

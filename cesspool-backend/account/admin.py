@@ -14,6 +14,7 @@ class UserAccountAdmin(UserAdmin):
         "email",
         "is_staff",
         "is_active",
+        "delete_at",
     ]
 
     list_filter = [

@@ -267,4 +267,4 @@ USER_GROUPS = {
     ],
 }
 
-LOCATION_FILE = "location/data/SK.txt"
+LOCATION_FILE = "location/data/SK.json"

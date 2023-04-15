@@ -10,7 +10,11 @@ def generate_cesspool_code():
         invalid = [c.code for c in Cesspool.objects.all()] 
     )
 
-def try_get_cesspool_by_code(user, cesspool_code):
+def try_get_cesspool_from_user_by_code(user, **kwargs):
     from cesspool.models import CesspoolToUser
+    return get_object_or_404(CesspoolToUser.objects.all(), user = user, **kwargs).cesspool
 
-    return get_object_or_404(CesspoolToUser.objects.all(), user = user, cesspool__code = cesspool_code).cesspool
+
+def try_get_cesspool_by_code(**kwargs):
+    from cesspool.models import Cesspool
+    return get_object_or_404(Cesspool.objects.all(), **kwargs)

@@ -12,15 +12,16 @@ interface Props {
 
 // If it's not authenticated view login link
 export const IsAuthenticatedView: React.FC<Props> = ({ children, onEffect = null }) => {
-    const {isLogged} = React.useContext(AuthContext)
+    const { user } = React.useContext(AuthContext);
 
     useEffect(() => {
-        if (onEffect !== null && isLogged) onEffect()
+        if (onEffect !== null && user !== null)
+            onEffect();
     }, [])
 
     return(
         <>
-            {isLogged
+            {user !== null
                 ? children
                 : <Navigate to="/" />
             }
@@ -31,17 +32,18 @@ export const IsAuthenticatedView: React.FC<Props> = ({ children, onEffect = null
 
 // If its authenticated view login link
 export const IsNotAuthenticatedView: React.FC<Props> = ({ children, onEffect = null  }) => {
-    const {isLogged} = React.useContext(AuthContext)
+    const { user } = React.useContext(AuthContext)
 
     useEffect(() => {
-        if (onEffect !== null && !isLogged) onEffect()
+        if (onEffect !== null && user === null)
+            onEffect()
     }, [])
 
     return(
         <>
-            {!isLogged
+            {user === null
                 ? children
-                : <Navigate to="/machine" />
+                : <Navigate to="/" />
             }
         </>
     )

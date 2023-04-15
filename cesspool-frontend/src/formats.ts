@@ -1,14 +1,14 @@
-export const maxLength = (content: string, maxLenght: number): string => {
-    return (
-        content.length > maxLenght ? Array.from(content).slice(0, maxLenght - 1).join("") + "..." : content 
-    )
+export const getCity = (location: string, defaultValue: string = ""): string => {
+    const value = location.split("/").at(1);
+    return value ? value : defaultValue;
+} 
+
+export const getDistrict = (location: string, defaultValue: string = ""): string => {
+    const value = location.split("/").at(0);
+    return value ? value : defaultValue;
 }
 
-export const maxLenghtEmail = (email: string, maxLenght: number): string|undefined  => {
-    if (email.length > maxLenght) {
-        const username = email.split("@").at(0)
-        return username === undefined ? email : username
-    }
-
-    return email
+export const getName = (email: string) => {
+    const output = email.split(".").at(0);
+    return output ? output : email;
 }

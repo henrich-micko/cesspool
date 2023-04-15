@@ -9,7 +9,7 @@ class RestoreModelAPIView(GenericAPIView, mixins.RestoreModelMixin):
     only for intherited from utils.models.ModelWithDeleteField
     """
 
-    def post(self, *args, **kwargs):
+    def get(self, *args, **kwargs):
         return super().restore(*args, **kwargs)
 
 # --_-_-_=--__-_-=---_---

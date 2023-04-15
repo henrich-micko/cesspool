@@ -44,7 +44,7 @@ class CitySerializer(MSWithListners):
 
     def validate(self, attrs):
         super_output = super().validate(attrs)
-        
+        print(super_output)
         district, city = super_output.get("district"), super_output.get("title")
         validators.district_city_validation(value = f"{district}/{city}")
 

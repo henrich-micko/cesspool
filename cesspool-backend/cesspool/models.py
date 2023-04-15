@@ -22,7 +22,7 @@ class Cesspool(ModelWithDeleteField):
     city = models.ForeignKey("location.City", on_delete = models.CASCADE, null = True)
     subscription = models.ForeignKey("subscription.Subscription", on_delete = models.CASCADE, null = True, blank = True)
     subscription_expiration_date = models.DateField(null = True, blank = True)
-
+    
     class Meta:
         permissions = [
             ["related_to_cesspool", "Can be related to the cesspool"],
@@ -88,13 +88,13 @@ class CesspoolToUser(models.Model):
     def __str__(self):
         return f"{self.cesspool} to {self.user}"
 
-    def delete(self, *args, **kwargs):        
-        if self.is_owner:
-            new_owner = CesspoolToUser.objects.filter(user = self.user, cesspool = self.cesspool, is_owner = False).first()
-            if new_owner != None:
-                new_owner.is_owner = True
-                new_owner.save()
-        return super().delete(*args, **kwargs)
+    # def delete(self, *args, **kwargs):        
+    #     if self.is_owner:
+    #         new_owner = CesspoolToUser.objects.filter(user = self.user, cesspool = self.cesspool, is_owner = False).first()
+    #         if new_owner != None:
+    #             new_owner.is_owner = True
+    #             new_owner.save()
+    #     return super().delete(*args, **kwargs)
         
     def doctor(self):
         level = self.cesspool.get_record("level")
@@ -119,6 +119,7 @@ class Record(models.Model):
 # notif for user ( based on ctu )
 class CesspoolHightLevelNotif(Notification):
     ctu = models.ForeignKey(CesspoolToUser, on_delete = models.CASCADE)
+    detail = _("Hight level of trash.")
 
     def __str__(self):
         f"{self.ctu}"

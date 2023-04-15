@@ -15,7 +15,7 @@ const TheInput = styled.input`
     font-size: 1em;
     background: none;
     border: none;
-    border-bottom: 0.125em solid hsla(0, 0%, 100%, 0.9);
+    border-bottom: 0.125em solid #6A718A;
     display: block;
     text-align: left;
     margin: 0 auto 0.5em;

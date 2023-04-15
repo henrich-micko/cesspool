@@ -26,7 +26,7 @@ const SwitchInput: React.FC<Props> = (props) => {
                 className={classNames(styles.icon, props.value ? styles.on : styles.off)}
                 icon={props.value ? faToggleOn : faToggleOff}
                 onClick={handleClick}
-                size="lg"
+                size="3x"
             />
         </div>
     )

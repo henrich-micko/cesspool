@@ -1,0 +1,23 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #071b2c;
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 10px;
+
+    input {
+        font-size: 1em;
+        background: none;
+        border: none;
+        display: block;
+        text-align: left;
+        width: 15em;
+        color: white;
+    }
+
+    input::placeholder {
+        color: #6A718A;
+    }
+}

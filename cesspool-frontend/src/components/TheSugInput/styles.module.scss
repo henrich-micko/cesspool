@@ -1,0 +1,43 @@
+.wrapper {
+    position: relative;
+    display: flex;
+
+    background-color: transparent;
+
+    input {
+        color: white;
+        border: none;
+        font-size: 1em;
+        padding: 0.25em;
+        border-radius: 7px;
+        border: 2px solid #6A718A;
+        background-color: transparent;
+        width: 100%;
+        
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+        position: absolute;
+
+        z-index: 99;
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        border-radius: 0 0 7px 7px;
+        border: 2px solid #6A718A;
+        background-color: #001220;
+
+        li {
+            padding-left: none;
+            padding: 0.25em;
+            cursor: pointer;
+            background-color: transparent;
+            text-align: left;
+        }
+    }
+
+}

@@ -7,7 +7,6 @@ from location.models import City
 from utils.serializers import MSWithListners
 from subscription.models import Subscription
 from subscription.serializers import SubscriptionSerializer
-from account.models import UserAccount
 
 
 """
@@ -20,7 +19,7 @@ from account.models import UserAccount
 class CesspoolSerializer(MSWithListners):
     
     city = DistrictCityField(required = True)
-    subscription = serializers.PrimaryKeyRelatedField(read_only = True)
+    subscription = serializers.PrimaryKeyRelatedField(read_only = False, queryset = Subscription.objects.all())
     record = LastRecordField()
     problems = CesspoolProblemsField()
 
@@ -34,14 +33,14 @@ class CesspoolSerializer(MSWithListners):
             "delete_at",
             "subscription",
             "record",
-            "problems"
+            "problems",
+            "subscription_expiration_date",
         ]
         extra_kwargs = {
             "delete": { "read_only": False },
-            "subscription": { "read_only": False },
             "users": { "ignore_on_save": True },            
             "city": { "ignore_on_save": True },
-            "subscription": { "ignore_on_save": True }
+            "subscription_expiration_date": { "read_only": True }
         }
 
     def on_create_and_update(self, instance, validated_data):
@@ -92,21 +91,8 @@ class CesspoolToUserWithUsersSerializer(CesspoolToUserSerializer):
         # is_super_owner is read only False as default
     def on_create_and_update(self, instance: CesspoolToUser, validated_data):        
         users = validated_data.pop("cesspool_users", None)
-        if users == None: return
-
-        # filter so only allowed amount of users will be added
-        max_owners = instance.cesspool.subscription.max_owners
-        if max_owners < len(users):
-            users = users[0:max_owners]
-
-        for user in users:
-            user, user_created = UserAccount.objects.get_or_create(email = user)
-            if user_created:
-                user.is_active = False
-                user.save()
-            CesspoolToUser.objects.get_or_create(cesspool = instance.cesspool, user = user)
-        
-        CesspoolToUser.objects.exclude(user__email__in = users).delete()
+        if users:
+            CesspoolUsersField.save(cesspool = instance.cesspool, users = users)
 
 
 class RecordSerializer(serializers.ModelSerializer):

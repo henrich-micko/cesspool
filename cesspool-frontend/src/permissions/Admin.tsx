@@ -15,12 +15,12 @@ export const IsAdminView: React.FC<Props> = ({ children, onEffect = null }) => {
     const { user } = React.useContext(AuthContext)
 
     useEffect(() => {
-        if (onEffect !== null && user.is_staff) onEffect()
+        if (onEffect !== null && user !== null && user.is_staff) onEffect()
     }, [])
  
     return(
         <>
-            {user.is_staff 
+            {user !== null && user.is_staff 
                 ? children
                 : <Navigate to="/" />
             }

@@ -6,11 +6,12 @@ from location.admin_api.serializers import CityForAdminSerializer
 
 from utils.mixins import MultipleFieldLookupMixin
 from utils.generics import RestoreModelAPIView
+from utils.permission import has_user_permission
 
 
 class _CityAdminAPIView(MultipleFieldLookupMixin):
 
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = has_user_permission("location.manage_city")
     serializer_class = CityForAdminSerializer
     lookup_fields = ["district", "title"]
 

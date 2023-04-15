@@ -26,3 +26,14 @@ const TheDate: React.FC<_TheDate> = (props) => {
 }
 
 export default TheDate;
+
+
+interface _TheTime {
+    time: string|undefined;
+}
+
+export const TheTime: React.FC<_TheTime> = (props) => {
+    if (!props.time)
+        return <></>
+    return <>{ props.time.split(".").at(0) }</>
+}

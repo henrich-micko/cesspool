@@ -31,9 +31,10 @@ class CityAutocompleteAPIView(APIView):
 
     def get(self, request):
         value = request.GET.get("value", None)
+        district = request.GET.get("d", None)
         if value == None: return Response(status = status.HTTP_400_BAD_REQUEST)
 
-        output = autocomplete_city(settings.LOCATION_FILE, value)
+        output = autocomplete_city(settings.LOCATION_FILE, value, district = district)
         return Response(data = output, status = status.HTTP_200_OK)
 
 

@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+
+    h2 {
+        margin: 0;
+    }
+
+    .iconWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
+    }
+}
+
+.wave {
+    .bottom {
+        background-color: #4FACF7;
+        height: 2em;
+        margin-top: -8px;
+        padding: 0.25em 0.4em 0.4em 0.5em;
+
+        .levelPercent {
+            float: right;
+            text-align: right;
+            font-size: 1.5em;
+            color: #001220;
+        }
+    }
+}
+
+.problems {
+    ul {
+        padding-left: 20px;
+
+        li {
+            text-align: left;
+        }
+    }
+}

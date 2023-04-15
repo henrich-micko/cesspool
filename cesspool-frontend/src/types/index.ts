@@ -96,6 +96,19 @@ export interface User {
     date_joined: string; 
     is_staff: boolean; 
     delete_at: null|string;
+    permissions: string[];
+    groups: string[];
+    created_by: string|null;
+}
+
+export interface ContextUser {
+    pk: number|null; 
+    email: string|null; 
+    is_active: boolean|null; 
+    date_joined: string|null; 
+    is_staff: boolean|null; 
+    delete_at: string|null;
+    permissions: string[]|null;
 }
 
 export interface Record {
@@ -121,6 +134,8 @@ export interface Cesspool {
     subscription: Subscription;
     record: Record|null;
     problems: string[];
+    owner: string|null;
+    subscription_expiration_date: string|null;
 }
 
 export interface CesspoolToUser {
@@ -131,4 +146,12 @@ export interface CesspoolToUser {
     contact_at_level: number;
     is_super_owner: true;
     cesspool_users: undefined|string[];
+}
+
+export interface City {
+    id: number;
+    title: string;
+    district: string;
+    delete_at: null|string,
+    manager: string;
 }

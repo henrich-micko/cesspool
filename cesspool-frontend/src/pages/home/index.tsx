@@ -108,7 +108,7 @@ const HomePage: React.FC = () => {
     React.useEffect(fetchData, []);
 
     return (
-        <IsNotAuthenticatedView>
+        <>
             <Page>
                 <Navigation />
                 <div className={styles.cesspoolPoem}>
@@ -117,7 +117,7 @@ const HomePage: React.FC = () => {
                         systém detekuje, čo hrozí.<br />
                         Tehnológie zázrak, splnený sen,<br />
                         chráni domovy a odpad celý deň.<br />
-                        -- OJ. Simpson --
+                        -- Florence Wood --
                     </em>
                 </div>
                 
@@ -158,7 +158,7 @@ const HomePage: React.FC = () => {
                         <SubscriptionBox {...sub}/> )}
                 </div>
             </Page>
-        </IsNotAuthenticatedView>
+        </>
     )
 }
 

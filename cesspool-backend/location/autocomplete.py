@@ -1,32 +1,40 @@
-def autocomplete_city(location_file: str, value: str):
-    output, value = [], value.lower()
-    with open(location_file, "r") as f:
-        while True:
-            line = f.readline().strip()
-            if not line: break
-            district, city = line.split("/")
+import json
 
-            if not city.lower().startswith(value):
-                if output and city[0] != value[0]:
-                    break
-                continue
-
-            output.append(city)
-    
-    return output
 
 def autocomplete_district(location_file: str, value: str):
     output, value = [], value.lower()
+
     with open(location_file, "r") as f:
-        while True:
-            line = f.readline().strip()
-            if not line: break
-            district, city = line.split("/")
+        data = json.load(f)
 
-            if not district.lower().startswith(value):
-                continue
-
-            if not district in output:
+        for district in data.keys():
+            district_ = district.lower()
+            if district_.startswith(value) and district_ != value:
                 output.append(district)
+            elif output:
+                break
+
+        return output
     
-    return output
+
+def autocomplete_city(location_file: str, value: str, district: str = None):
+    output, value = [], value.lower()
+
+    print(district)
+    with open(location_file, "r") as f:
+        data = json.load(f)
+
+        if district == None:
+            for d in data.keys():
+                for c in data[d]:
+                    c_ = c.lower()
+                    if c_.startswith(value) and c_ != value:
+                        output.append(c)
+    
+        else:
+            for c in data.get(district, []):
+                c_ = c.lower()
+                if c_.startswith(value) and c_ != value:
+                    output.append(c)
+    
+        return output

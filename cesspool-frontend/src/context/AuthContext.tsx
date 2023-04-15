@@ -1,8 +1,9 @@
 import React, { FC, createContext, useState, ReactNode, useEffect } from "react"
 import axios from "axios"
 
-import { ContextUserType } from "../types";
+import { User } from "../types";
 import { apiUrl } from "../settings";
+
 
 // Types for default values and defalut values for context
 interface defaultValueTypes {
@@ -11,9 +12,9 @@ interface defaultValueTypes {
     createUser(email: string, password: string, onError: Function|null): void;
     logoutUserAll(onError: Function|null): void
 
-    authToken: string | null;
+    authToken: string|null;
     isLogged: boolean;
-    user: ContextUserType
+    user: User|null;
 }
 
 
@@ -25,24 +26,27 @@ export default AuthContext
 
 // Provider for Context
 export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
-    const [authToken, setAuthToken] = useState(localStorage.getItem("authToken")) // Private getter and setter
-    const [isLogged, setIsLogged] = useState(authToken !== null) // Public getter and setter 
-    const [user, setUser] = useState<ContextUserType>({} as ContextUserType)
+    const [authToken, setAuthToken] = useState(localStorage.getItem("authToken")); // Private getter and setter
+    const [isLogged, setIsLogged] = useState(authToken !== null); // Public getter and setter 
+    const [user, setUser] = useState<User|null>(null);
 
     // set user after token is set
     useEffect(() => {
-        if (authToken !== null) {
+        if (authToken !== null)
             axios.get(url + "account/", {headers: {Authorization: "Token " + authToken}})
                 .then(res => setUser(res.data))
-                .catch(error => error.response.status === 401 && logoutUser())
-        } else setUser({email: null, is_active: null, is_staff: null, date_joined: null})
-    }, [authToken])
-
+                .catch(error => error.response.status === 401 && logoutUser());
+        else {
+            setUser(null);
+            setIsLogged(false);
+        }
+    }, [authToken]);
 
     const loginUser = async (email: string, password: string, onError: Function|null = null) => {        
         const data = {
             "username": email,
             "password": password
+            
         }
 
         await axios.post(url + "account/login/", data)
@@ -59,9 +63,8 @@ export const AuthProvider: FC<{children: ReactNode}>= ({ children }) => {
     }
 
     const logoutUser = () => {
-        setAuthToken(null)
-        localStorage.removeItem("authToken")
-        setIsLogged(false)
+        setAuthToken(null);
+        localStorage.removeItem("authToken");
     }
 
     const logoutUserAll = async (onError: Function|null = null) => {

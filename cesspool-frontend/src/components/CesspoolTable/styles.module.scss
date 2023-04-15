@@ -1,0 +1,44 @@
+.cesspoolTable {
+    width: 100%;
+
+    th {
+        padding: 0.5em;
+        text-align: left;
+        color: inherit;
+        width: fit-content;
+    }
+
+    tr {
+        color: #6A718A;
+    }
+
+    tr:first-child {
+        color: white;
+    }
+
+    th:first-child {
+        text-align: left;
+    }
+
+    th:last-child {
+        text-align: right;
+    }
+
+    .line {
+        background-color: #6A718A;
+        width: 100%;
+        height: 2px;
+    }
+
+    .icons {
+        display: flex;
+        justify-content: right;
+        gap: 1em;
+        width: 100%;
+        align-items: center;
+    }
+
+    a {
+        color: white;
+    }
+}
