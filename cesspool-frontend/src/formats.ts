@@ -16,3 +16,8 @@ export const getName = (email: string) => {
     const output = email.split(".").at(0);
     return output ? output : email;
 }
+
+export const formatDate = (value: string): string => {
+    const splitedValue = value.split("-")
+    return splitedValue.at(0) + "-" + splitedValue.at(2) + "-" + splitedValue.at(1);
+}
