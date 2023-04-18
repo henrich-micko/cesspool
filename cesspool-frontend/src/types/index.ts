@@ -117,6 +117,8 @@ export interface Record {
     level_percent: number;
     battery: number;
     date: string;
+    created_on_debug_mode: boolean;
+    mqtt_message: string|null;
 }
 
 export interface SimpleCesspoolToUser {
@@ -128,7 +130,7 @@ export interface SimpleCesspoolToUser {
 export interface Cesspool {
     pk: number;
     code: string;
-    city: string;
+    city: string|null;
     about: string|null;
     delete_at: string|null;
     subscription: Subscription;
@@ -136,6 +138,8 @@ export interface Cesspool {
     problems: string[];
     owner: string|null;
     subscription_expiration_date: string|null;
+    is_subsription_expirate: boolean;
+    debug_mode: boolean;
 }
 
 export interface CesspoolToUser {

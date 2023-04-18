@@ -4,12 +4,13 @@ import useAxios from "@hooks/useAxios";
 import { Chart as ChartJS, registerables, ChartOptions, ActiveElement } from 'chart.js';
 import { Chart } from 'react-chartjs-2'
 import 'chartjs-adapter-moment';
-import { blue } from "../../settings";
+import { blue, red } from "../../settings";
 import styles from "@components/CesspoolChart/styles.module.scss";
 import TheBox from "@components/TheBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import TheDate from "@components/TheDate";
+import CesspoolMqttMessages from "@components/CesspoolMqttMessages";
 
 
 ChartJS.register(...registerables);
@@ -17,6 +18,7 @@ ChartJS.register(...registerables);
 
 interface _CesspoolChart {
     code: string;
+    mqttMessages?: boolean;
 }
 
 
@@ -55,7 +57,7 @@ const CesspoolChart: React.FC<_CesspoolChart> = (props) => {
     React.useEffect(() => {
         fetchTfSupport();
         fetchData();
-    }, [tf])
+    }, [tf, props.code]);
 
     const handlePointClick = (e: any, element: ActiveElement[]) => {
         if (tf === "day" || tf == "date" || !records)
@@ -119,7 +121,7 @@ const CesspoolChart: React.FC<_CesspoolChart> = (props) => {
 
     const data = {
         datasets: [{
-            pointRadius: unit === "hour" ? 5 : 1,
+            pointRadius: unit === "hour" ? 5 : 4,
             pointHoverRadius: 10,
             label: "Hodnota",
             backgroundColor: blue,
@@ -129,53 +131,58 @@ const CesspoolChart: React.FC<_CesspoolChart> = (props) => {
     };
 
     return (
-        <TheBox style={{"width": "100%", "margin": 0, "padding": 0}}>
-            <div className={styles.wrapper}>
-                <div className={styles.header}>
-                    <div className={styles.selector}>
-                        <span>Zobraziť</span> 
-                        <select onChange={(e) => setField(e.target.value)}>
-                            <option value="battery">Bateriu</option>
-                            <option value="level_m">Hladinu m</option>
-                            <option selected value="level_percent">Hladinu %</option>
-                        </select>
-                    </div>
+        <>
+            {props.mqttMessages &&
+                <><CesspoolMqttMessages records={records} /> <br /></>}
 
-                    <div className={styles.selector}>
-                        { tf.startsWith("date/") 
-                            ? <>
-                                <span>z dňa</span> 
-                                <span className={styles.date}>
-                                    <TheDate date={tf.split("/").at(1)} />
-                                    
-                                    <FontAwesomeIcon 
-                                        className={styles.closeIcon}
-                                        icon={faX}
-                                        onClick={() => setTf("day")}
-                                    />
-                                </span>
-                            </>
-                                    
-                            : <>
-                                <span>za posledný</span> 
-                                    <select onChange={(e) => setTf(e.target.value)}>
-                                        {tfAllSup && <option value="all">Všetky</option>}
-                                        {tfMonthSup && <option value="month">Mesiac</option>}
-                                        {tfWeekSup && <option value="week">Tyždeň</option>}
-                                        {tfDaySup && <option selected value="day">Deň</option>}
-                                    </select>
-                            </> }
+            <TheBox style={{"width": "100%", "margin": 0, "padding": 0}}>
+                <div className={styles.wrapper}>
+                    <div className={styles.header}>
+                        <div className={styles.selector}>
+                            <span>Zobraziť</span> 
+                            <select onChange={(e) => setField(e.target.value)}>
+                                <option value="battery">Bateriu</option>
+                                <option value="level_m">Hladinu m</option>
+                                <option selected value="level_percent">Hladinu %</option>
+                            </select>
+                        </div>
+
+                        <div className={styles.selector}>
+                            { tf.startsWith("date/") 
+                                ? <>
+                                    <span>z dňa</span> 
+                                    <span className={styles.date}>
+                                        <TheDate date={tf.split("/").at(1)} />
+                                        
+                                        <FontAwesomeIcon 
+                                            className={styles.closeIcon}
+                                            icon={faX}
+                                            onClick={() => setTf("day")}
+                                        />
+                                    </span>
+                                </>
+                                        
+                                : <>
+                                    <span>za posledný</span> 
+                                        <select onChange={(e) => setTf(e.target.value)}>
+                                            {tfAllSup && <option value="all">Všetky</option>}
+                                            {tfMonthSup && <option value="month">Mesiac</option>}
+                                            {tfWeekSup && <option value="week">Tyždeň</option>}
+                                            {tfDaySup && <option selected value="day">Deň</option>}
+                                        </select>
+                                </> }
+                        </div>
                     </div>
-                </div>
                 
-                <Chart
-                    type="line"
-                    redraw={false} 
-                    options={options}
-                    data={data}
-                />
-            </div>
-        </TheBox>
+                    <Chart
+                        type="line"
+                        redraw={false} 
+                        options={options}
+                        data={data}
+                    />
+                </div>
+            </TheBox>
+        </>
     )   
 }
 

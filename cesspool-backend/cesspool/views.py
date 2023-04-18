@@ -75,7 +75,7 @@ class RecordsAPIView(ListAPIView):
                 return cesspool.record_set.time_period(days = 31)
 
         # all
-        return cesspool.record_set.time_period(days = 365).last_by(lambda item: item.date.strftime("%Y-%m-%d"))
+        return cesspool.record_set.all()
     
 
 class RecordsDateAPIView(ListAPIView):

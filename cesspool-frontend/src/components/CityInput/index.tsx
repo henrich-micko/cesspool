@@ -10,8 +10,8 @@ import styles from "./styles.module.scss"
 
 
 interface _CityInput {
-    district: string;
-    city: string;
+    district: string|null;
+    city: string|null;
     setError(error: string): void; 
     onDistrictChange(value: string): void;
     onCityChange(value: string): void;
@@ -19,7 +19,7 @@ interface _CityInput {
 
 
 const CityInput: React.FC<_CityInput> = (props) => {
-    const [cityDisabled, setCityDisabled] = React.useState<boolean>(!(props.district.length > 0));
+    const [cityDisabled, setCityDisabled] = React.useState<boolean>((props.district === null || props.district.length === 0));
     const axios = useAxios();
 
     const handleDistrict = (value: string): Promise<AxiosResponse<any, any>> => {        
@@ -37,14 +37,14 @@ const CityInput: React.FC<_CityInput> = (props) => {
         <div className={styles.wrapper}>
             <TheSugInput 
                 placeholder="Okres"
-                value={props.district} 
+                value={props.district ? props.district : ""} 
                 onChange={handleDistrict}
                 onClick={props.onDistrictChange}
             />
             <FontAwesomeIcon icon={faArrowRight} color={glass}/>
             <TheSugInput 
                 placeholder="Mesto"
-                value={props.city} 
+                value={props.city ? props.city : ""} 
                 disabled={cityDisabled}
                 onChange={handleCity}
                 onClick={props.onCityChange}

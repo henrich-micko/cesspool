@@ -71,9 +71,10 @@ def generate_code(lenght, invalid = []):
     return output
 
 
-def is_history(datetime): # i named it this way because i can :)
+def is_history(datetime, compare_as_date = False): # i named it this way because i can :)
     from django.utils import timezone
-    return timezone.now() > datetime
+    rn = timezone.now() if not compare_as_date else timezone.now().date()
+    return rn > datetime
 
 
 def get_default_datetime_timedelta(*args, **kwargs):

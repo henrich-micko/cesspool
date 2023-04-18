@@ -42,7 +42,7 @@ const CesspoolMenuPage: React.FC = () => {
         setFilteredItem(items.filter(
             item => 
             item.code.toLowerCase().includes(lowerCasedFilter) || 
-            item.city.toLowerCase().includes(lowerCasedFilter) || 
+            item.city?.toLowerCase().includes(lowerCasedFilter) || 
             (item.about && item.about.toLowerCase().includes(lowerCasedFilter))
         ));
     }
@@ -79,6 +79,7 @@ const CesspoolMenuPage: React.FC = () => {
                         city={item.city}
                         about={item.about}
                         deleteAt={item.delete_at}
+                        debugMode={item.debug_mode}
                         onClick={() => setRedirectTo(item.code)}
                     />
                 )}

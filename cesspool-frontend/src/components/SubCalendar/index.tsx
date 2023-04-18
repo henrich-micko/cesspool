@@ -26,7 +26,7 @@ const SubCalendar: React.FC<_SubCalendar> = (props) => {
     }
 
     const handleChange = (value: any) => {
-        setDate(value.getFullYear() + "-" + value.getMonth() + "-" + value.getDate());
+        setDate(value.getFullYear() + "-" + Number(value.getMonth()) + 1 + "-" + value.getDate());
     }
 
     return (

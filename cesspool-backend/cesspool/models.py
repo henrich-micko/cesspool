@@ -17,12 +17,13 @@ class Cesspool(ModelWithDeleteField):
                             validators = [validate_machine_code],
                             default = generate_cesspool_code,
     )
-    about = models.CharField(max_length = 255, blank = True, null = True)
 
+    about = models.CharField(max_length = 255, blank = True, null = True)
     city = models.ForeignKey("location.City", on_delete = models.CASCADE, null = True)
     subscription = models.ForeignKey("subscription.Subscription", on_delete = models.CASCADE, null = True, blank = True)
     subscription_expiration_date = models.DateField(null = True, blank = True)
-    
+    debug_mode = models.BooleanField(default = False)
+
     class Meta:
         permissions = [
             ["related_to_cesspool", "Can be related to the cesspool"],
@@ -111,6 +112,9 @@ class Record(models.Model):
     level_m = models.FloatField()
     level_percent = models.FloatField()
     battery = models.FloatField()
+
+    created_on_debug_mode = models.BooleanField(default = False)
+    mqtt_message = models.CharField(max_length = 255, blank = True, null = True, default = None)
 
     def __str__(self):
         return f"{self.cesspool} at {self.date}"

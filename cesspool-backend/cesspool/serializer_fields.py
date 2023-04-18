@@ -1,10 +1,8 @@
-from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
 from cesspool.models import CesspoolToUser, Record
-from account.validators import validate_user_with_permissions
 from subscription.validators import validate_subscription
-from utils.utils import getattr_by_path
+from utils.utils import getattr_by_path, is_history
 from account.models import UserAccount
 
 
@@ -87,11 +85,13 @@ class CesspoolProblemsField(serializers.ListField):
     
 
 class CesspoolOwnerField(serializers.EmailField):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
     def get_attribute(self, instance):
         from cesspool.models import CesspoolToUser
         owner = CesspoolToUser.objects.filter(is_super_owner = True, cesspool = instance).first()
         if not owner: return None
         return owner.user.email
+    
+
+class CesspoolIsSubsriptionExpired(serializers.BooleanField):
+    def get_attribute(self, instance):
+        return instance.subscription_expiration_date != None and is_history(instance.subscription_expiration_date, compare_as_date = True)

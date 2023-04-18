@@ -198,25 +198,31 @@ CHECK_DELETE_MODELS = [
 # settings for mqtt
 
 USE_MQTT = not DEBUG and bool(int(environ.get("IS_MAIN", "0"), 0))
-MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
-MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
-MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
+# MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
+# MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
+# MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
 MQTT_TOPIC = "#"
+MQTT_INTERVAL_H = 2
 
-if environ.get("DJANGO_MQTT_PORT", False):
-    MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT", 1234))
-else: 
-    MQTT_PORT = None
+MQTT_HOST="backend.zumpomer.sk"
+MQTT_USERNAME="micko"
+MQTT_PASSWORD="HenrichMicko"
+MQTT_PORT=18579
+
+# if environ.get("DJANGO_MQTT_PORT", False):
+#     MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT", 1234))
+# else: 
+#     MQTT_PORT = None
     
-if USE_MQTT and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
-    raise ValueError(f"""
-        USE_MQTT is True but some env var are missing
+# if USE_MQTT and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
+#     raise ValueError(f"""
+#         USE_MQTT is True but some env var are missing
         
-        DJANGO_MQTT_HOST={MQTT_HOST}
-        DJANGO_MQTT_PORT={MQTT_PORT}
-        DJANGO_MQTT_USERNAME={MQTT_USERNAME}
-        DJANGO_MQTT_PASS={MQTT_PASSWORD}
-    """)
+#         DJANGO_MQTT_HOST={MQTT_HOST}
+#         DJANGO_MQTT_PORT={MQTT_PORT}
+#         DJANGO_MQTT_USERNAME={MQTT_USERNAME}
+#         DJANGO_MQTT_PASS={MQTT_PASSWORD}
+#     """)
 
 # settings for celery
 CELERY_TIMEZONE = TIME_ZONE

@@ -5,7 +5,7 @@ import useAxios from "@hooks/useAxios";
 import Navigation from "@components/Navigation";
 import styles from "@pages/cesspool/styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoneyCheck, faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBug, faMoneyCheck, faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
 import PopupWin from "@components/PopupWin";
 import CesspoolChart from "@components/CesspoolChart";
 import TheCesspoolStatus from "@components/TheCesspoolStatus";
@@ -18,6 +18,8 @@ import { red } from "../../settings";
 import generateDeleteItem, { generateRestoreItem } from "@components/DeleteItem";
 import { getCity } from "../../formats";
 import { Link } from "react-router-dom";
+import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn } from "@components/CesspoolDebugMode";
+import CesspoolMqttMessages from "@components/CesspoolMqttMessages";
 
 
 const CesspoolDelete = generateDeleteItem<Cesspool>();
@@ -30,36 +32,17 @@ const CesspoolAdminPage: React.FC = () => {
     const [cesspoolSettingsPop, setCesspoolSettingsPop] = useState<boolean>(false);
     const [cesspoolSubPop, setCesspoolSubPop] = useState<boolean>(false);
     const [cesspoolDeletePop, setCesspoolDeletePop] = useState<boolean>(false);
+    const [cesspoolDebugPop, setCesspoolDebugPop] = useState<boolean>(false);
 
     const { code } = useParams();
     const { user } = React.useContext(AuthContext);
 
     const axios = useAxios();
-    const today = new Date();
 
     const fetchData = () => {
         axios.get("admin/cesspool/c/" + code)
              .then(res => setCesspool(res.data))
              .catch(err => {})
-    }
-
-    const isSubExpired = (): boolean => {
-        if (!cesspool || !cesspool.subscription_expiration_date) 
-            return false;
-
-        const splitedSubDate = cesspool.subscription_expiration_date.split("-");
-        const subYear = splitedSubDate.at(0);
-        const subMonth = splitedSubDate.at(1);
-        const subDate = splitedSubDate.at(2);
-
-        if (!subYear || !subMonth || !subDate)
-            return false;
-
-        return (
-            today.getFullYear() > Number(subYear) && 
-            today.getMonth() > Number(subMonth) &&
-            today.getDate() > Number(subDate)
-        )
     }
 
     React.useEffect(fetchData, []);
@@ -79,16 +62,17 @@ const CesspoolAdminPage: React.FC = () => {
 
                 <div className={styles.tools}>
                     <FontAwesomeIcon icon={faMoneyCheck} onClick={() => setCesspoolSubPop(true)} 
-                        color={ cesspoolSubPop ? "white" : cesspool?.subscription_expiration_date && isSubExpired() ? red : undefined} />
+                        color={ cesspoolSubPop ? "white" : cesspool?.is_subsription_expirate ? red : undefined} />
                     <FontAwesomeIcon icon={faSliders} onClick={() => setCesspoolSettingsPop(true)} color={ cesspoolSettingsPop ? "white" : undefined } />
-                    <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
+                    <FontAwesomeIcon icon={faBug} color={cesspool?.debug_mode === true ? red : undefined} onClick={() => setCesspoolDebugPop(true)} />
                     <FontAwesomeIcon icon={faTrash} color={cesspool && cesspool.delete_at ? red : undefined} onClick={() => setCesspoolDeletePop(true)} />
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
                 </div>
             </div>
 
             <div className={styles.help}>
                 <span>{ cesspool ? cesspool.about : "..." }</span>
-                <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>
+                {cesspool?.city && <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>}
             </div> 
 
             <div className={styles.infoPanel}>
@@ -162,10 +146,23 @@ const CesspoolAdminPage: React.FC = () => {
                 </PopupWin>
             }
 
+            {
+                cesspool && cesspoolDebugPop &&
+                <PopupWin label={cesspool.debug_mode ? "Vypnuť debug mode" : "Zanpuť debug mode"} close={() => setCesspoolDebugPop(false)}>
+                    {
+                        cesspool.debug_mode === false
+                        ? <CesspoolDebugModeTurnOn code={cesspool.code} onUpdate={c => { setCesspool(c); setCesspoolDebugPop(false) }} />
+                        : <CesspoolDebugModeTurnOff code={cesspool.code} onUpdate={c => { setCesspool(c); setCesspoolDebugPop(false) }} />
+                    }
+                </PopupWin>
+            }
+
             { cesspool && cesspool.record
-                ? <CesspoolChart code={cesspool.code} /> 
+                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} /> 
                 : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
             }
+
+            <br />
 
         </Page>
     )

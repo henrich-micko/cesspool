@@ -1,25 +1,30 @@
-from cesspool.serializers import CesspoolSerializer
-from cesspool.serializer_fields import CesspoolOwnerField, CesspoolUsersField
+from rest_framework import serializers
 
-from account.models import UserAccount
 from cesspool.models import CesspoolToUser
+from cesspool.serializers import CesspoolSerializer
+from cesspool.serializer_fields import CesspoolOwnerField, CesspoolUsersField, CesspoolIsSubsriptionExpired
+from account.models import UserAccount
 
 
 class CesspoolForAdminSerializer(CesspoolSerializer):
     owner = CesspoolOwnerField(read_only = False, required = False, allow_null = True)
-    users = CesspoolUsersField(read_only = True, required = False)
+    users = CesspoolUsersField(read_only = True)
+    is_subsription_expirate = CesspoolIsSubsriptionExpired(read_only = True, required = False)
 
     class Meta(CesspoolSerializer.Meta):
         fields = [
             *CesspoolSerializer.Meta.fields, 
             "owner",
-            "users"
+            "users",
+            "is_subsription_expirate",
+            "debug_mode",
         ]
         
         extra_kwargs = {
             **CesspoolSerializer.Meta.extra_kwargs,
             "owner": { "ignore_on_save": True },
-            "subscription_expiration_date": { "read_only": False }
+            "subscription_expiration_date": { "read_only": False },
+            "debug_mode": { "read_only": False, "required": False }
         }
 
     def on_create_and_update(self, instance, validated_data):

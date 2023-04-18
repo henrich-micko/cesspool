@@ -13,7 +13,7 @@ import TheSubInput from "@components/TheSubInput";
 interface _CesspoolSettings {
     pk: number;
     code: string;
-    city: string;
+    city: string|null;
     owner: string|null;
     subPk: number;
     about: string|null;
@@ -22,8 +22,8 @@ interface _CesspoolSettings {
 
 const CesspoolSettings: React.FC<_CesspoolSettings> = (props) => {
     const [code, setCode] = React.useState<string>(props.code);
-    const [district, setDistrict] = React.useState<string>(getDistrict(props.city));
-    const [city, setCity] = React.useState<string>(getCity(props.city));
+    const [district, setDistrict] = React.useState<string|null>(getDistrict(props.city));
+    const [city, setCity] = React.useState<string|null>(getCity(props.city));
     const [owner, setOwner] = React.useState<string>(props.owner !== null ? props.owner : "");
     const [sub, setSub] = React.useState<number>(props.subPk);
     const [about, setAbout] = React.useState<string|null>(props.about);
@@ -33,7 +33,7 @@ const CesspoolSettings: React.FC<_CesspoolSettings> = (props) => {
 
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        axios.patch("admin/cesspool/c/" + props.code, {code: code, owner: owner, city: district + "/" + city, subscription: sub, about: about})
+        axios.patch("admin/cesspool/c/" + props.code, {code: code, owner: owner === "" ? null : owner, city: district + "/" + city, subscription: sub, about: about})
              .then(res => props.onUpdate(res.data))
              .catch(err => setError("Nepodarilo sa nastaviť."))
     }
@@ -57,7 +57,7 @@ const CesspoolSettings: React.FC<_CesspoolSettings> = (props) => {
                 placeholder="Vlastnik"
                 value={owner}
                 onChange={onChangeSetState(setOwner, setError)} 
-                required={true}
+                required={false}
             />
 
             <TheInput
@@ -67,7 +67,7 @@ const CesspoolSettings: React.FC<_CesspoolSettings> = (props) => {
                 placeholder="Poznamka"
                 value={about ? about : ""}
                 onChange={onChangeSetState(setAbout, setError, false)} 
-                required={true}
+                required={false}
                 maxLength={25}
             />
 

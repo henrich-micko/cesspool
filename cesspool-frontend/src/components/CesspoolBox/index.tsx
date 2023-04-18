@@ -7,7 +7,7 @@ import TheLevel from "@components/TheLevel";
 import TheCesspoolProblems from "@components/TheCesspoolProblems";
 import { getCity } from "../../formats";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBug, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { red } from "../../settings";
 
 
@@ -16,9 +16,10 @@ interface _CesspoolBox {
     code: string;
     record: Record|null;
     problems: string[];
-    city: string;
+    city: string|null;
     about: string|null;
     deleteAt: string|null;
+    debugMode: boolean;
     onClick(code: string): void;
 }
 
@@ -46,6 +47,7 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
 
                 <div className={styles.iconWrapper}>
                     { props.deleteAt && <FontAwesomeIcon icon={faTrash} color={red} /> }
+                    { props.debugMode && <FontAwesomeIcon icon={faBug} color={red} /> }
                     <TheBattery value={ props.record ? props.record.battery : null } />
                     <TheLevel value={ props.record ? props.record.battery : null } /> 
                 </div>
