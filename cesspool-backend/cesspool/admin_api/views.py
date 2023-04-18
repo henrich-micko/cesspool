@@ -1,65 +1,43 @@
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from cesspool.admin_api.serializers import CesspoolForAdminSerializer
 from cesspool.utils import generate_cesspool_code
-from cesspool.models import Cesspool, CesspoolToUser
+from cesspool.admin_api.mixins import CesspoolAdminMixin
 from utils.generics import RestoreModelAPIView
 from utils.permission import has_user_permission
-from location.models import City
-from location.utils import split_location
 
 
-class BaseCesspoolAdminAPIView:
 
-    permission_classes = [IsAuthenticated, *has_user_permission("cesspool.manage_cesspool")]
-    serializer_class = CesspoolForAdminSerializer
-    lookup_field = "code"
-
-    def get_queryset(self):
-        user = self.request.GET.get("user", None)
-        location = self.request.GET.get("city", None)
-        output = Cesspool.objects.all()
-        
-        if user:
-            output = output.filter(
-                pk__in = [ctu.cesspool.pk for ctu in CesspoolToUser.objects.filter(user = user)]
-            )
-
-        if location:
-            city, district = split_location(location)
-            try: 
-                city = City.objects.get(district = district)
-                output = output.filter(city = city)
-            except City.DoesNotExist:
-                print("oh, no")
-        return output
-
-class CreateCesspoolAPIView(BaseCesspoolAdminAPIView, 
-                            CreateAPIView):
+class CreateCesspoolAPIView(CesspoolAdminMixin, CreateAPIView):
     pass
 
+create_cesspool_api_view = CreateCesspoolAPIView.as_view()
 
-class ListCesspoolAPIView(BaseCesspoolAdminAPIView, 
-                          ListAPIView):
+
+class ListCesspoolAPIView(CesspoolAdminMixin, ListAPIView):
     pass
 
+list_cesspool_api_view = ListCesspoolAPIView.as_view()
 
-class RUDCesspoolAPIView(BaseCesspoolAdminAPIView, 
-                         RetrieveUpdateDestroyAPIView):
+
+class RUDCesspoolAPIView(CesspoolAdminMixin, RetrieveUpdateDestroyAPIView):
     pass
 
+rud_cesspool_api_view = RUDCesspoolAPIView.as_view()
 
-class RestoreCesspoolAPIView(BaseCesspoolAdminAPIView,
-                             RestoreModelAPIView):
+
+class RestoreCesspoolAPIView(CesspoolAdminMixin, RestoreModelAPIView):
     pass
 
+restore_cesspool_api_view = RestoreCesspoolAPIView.as_view()
 
-class GenerateCesspoolCodeAPIView(APIView):
-    permission_classes = has_user_permission("cesspool.manage_cesspool")
 
+class GenerateCesspoolCodeAPIView(CesspoolAdminMixin, APIView):
     def get(self, request):
-        return Response({"value": generate_cesspool_code()}, status = status.HTTP_200_OK)
+        return Response({
+            "value": generate_cesspool_code()
+        }, status = status.HTTP_200_OK)
+    
+generate_cesspool_code_api_view = GenerateCesspoolCodeAPIView.as_view()
