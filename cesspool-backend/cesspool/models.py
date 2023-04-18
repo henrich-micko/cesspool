@@ -104,6 +104,7 @@ class CesspoolToUser(models.Model):
             return [CesspoolHightLevelNotif.objects.get_or_create(ctu = self)]
         return []
 
+
 class Record(models.Model):
     objects = RecordQuerySet.as_manager()
 

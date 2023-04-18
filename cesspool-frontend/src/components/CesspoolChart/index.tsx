@@ -165,10 +165,10 @@ const CesspoolChart: React.FC<_CesspoolChart> = (props) => {
                                 : <>
                                     <span>za posledný</span> 
                                         <select onChange={(e) => setTf(e.target.value)}>
-                                            {tfAllSup && <option value="all">Všetky</option>}
-                                            {tfMonthSup && <option value="month">Mesiac</option>}
-                                            {tfWeekSup && <option value="week">Tyždeň</option>}
                                             {tfDaySup && <option selected value="day">Deň</option>}
+                                            {tfWeekSup && <option value="week">Tyždeň</option>}
+                                            {tfMonthSup && <option value="month">Mesiac</option>}
+                                            {tfAllSup && <option value="all">Všetky</option>}
                                         </select>
                                 </> }
                         </div>

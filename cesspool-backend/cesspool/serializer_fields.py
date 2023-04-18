@@ -64,7 +64,7 @@ class LastRecordField(serializers.DictField):
         super().__init__(*args, **kwargs)
 
     def get_attribute(self, instance):
-        from cesspool.serializers import RecordSerializer
+        from cesspool.records_api.serializers import RecordSerializer
         
         record = Record.objects.filter(cesspool = instance).last()
         if record == None:

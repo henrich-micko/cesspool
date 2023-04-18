@@ -82,3 +82,9 @@ def get_default_datetime_timedelta(*args, **kwargs):
     def func():
         return timezone.now() + timezone.timedelta(*args, **kwargs)
     return func
+
+
+def try_get_instance(model, field = None, **kwargs):
+    try: output = model.objects.get(**kwargs)
+    except model.DoesNotExist: return None
+    return output if field == None else getattr(output, field) 

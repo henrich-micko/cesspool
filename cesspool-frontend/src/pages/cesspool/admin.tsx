@@ -90,6 +90,11 @@ const CesspoolAdminPage: React.FC = () => {
                 }
             </div>
 
+            { cesspool && cesspool.record
+                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} /> 
+                : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
+            }
+
             {/* popups */}
             {
                 cesspoolSettingsPop && cesspool &&
@@ -155,11 +160,6 @@ const CesspoolAdminPage: React.FC = () => {
                         : <CesspoolDebugModeTurnOff code={cesspool.code} onUpdate={c => { setCesspool(c); setCesspoolDebugPop(false) }} />
                     }
                 </PopupWin>
-            }
-
-            { cesspool && cesspool.record
-                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} /> 
-                : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
             }
 
             <br />

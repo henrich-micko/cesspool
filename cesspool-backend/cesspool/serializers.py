@@ -93,18 +93,3 @@ class CesspoolToUserWithUsersSerializer(CesspoolToUserSerializer):
         users = validated_data.pop("cesspool_users", None)
         if users:
             CesspoolUsersField.save(cesspool = instance.cesspool, users = users)
-
-
-class RecordSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Record
-        fields = [
-            "pk",
-            "level_m",
-            "level_percent",
-            "battery",
-            "date",
-            "created_on_debug_mode",
-            "mqtt_message"
-        ]

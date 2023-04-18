@@ -3,7 +3,7 @@ from django.utils.timezone import timedelta
 
 
 class RecordQuerySet(QuerySet):
-    def time_period(self, **kwargs) -> QuerySet[Model]:
+    def time_filter(self, **kwargs) -> QuerySet[Model]:
         record = self.last()
         if not record: 
             return RecordQuerySet(self.model, using = self._db).none()
