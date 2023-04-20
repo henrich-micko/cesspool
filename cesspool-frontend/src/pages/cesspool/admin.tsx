@@ -19,7 +19,7 @@ import generateDeleteItem, { generateRestoreItem } from "@components/DeleteItem"
 import { getCity } from "../../formats";
 import { Link } from "react-router-dom";
 import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn } from "@components/CesspoolDebugMode";
-import CesspoolMqttMessages from "@components/CesspoolMqttMessages";
+import AccountLink from "@components/AccountLink";
 
 
 const CesspoolDelete = generateDeleteItem<Cesspool>();
@@ -71,8 +71,13 @@ const CesspoolAdminPage: React.FC = () => {
             </div>
 
             <div className={styles.help}>
-                <span>{ cesspool ? cesspool.about : "..." }</span>
-                {cesspool?.city && <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>}
+                { cesspool ? <span>{cesspool.about}</span> : "..." }
+                
+                <div className={styles.linkWrapper}>
+                    { cesspool?.city && <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>}
+                    { cesspool && cesspool.created_by && <span>Vytvoril <AccountLink {...cesspool.created_by} /></span> }
+                    { cesspool && cesspool.owner && <span>Vlastní <AccountLink {...cesspool.owner} /></span> }
+                </div>
             </div> 
 
             <div className={styles.infoPanel}>
@@ -82,7 +87,7 @@ const CesspoolAdminPage: React.FC = () => {
                             levelPercent={cesspool.record.level_percent} 
                             battery={cesspool.record.battery} 
                         /> 
-                        
+                                                
                         <TheCesspoolProblemsBox
                             problems={cesspool.problems}
                         />
@@ -103,7 +108,7 @@ const CesspoolAdminPage: React.FC = () => {
                         pk={cesspool.pk} 
                         code={cesspool.code}
                         city={cesspool.city}
-                        owner={cesspool.owner}
+                        owner={cesspool.owner ? cesspool.owner.email : null}
                         subPk={cesspool.subscription.pk}
                         about={cesspool.about}
                         onUpdate={(ctu) => {

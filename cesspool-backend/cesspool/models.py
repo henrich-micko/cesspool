@@ -73,6 +73,10 @@ class Cesspool(ModelWithDeleteField):
         
         return output
 
+    def get_owner(self):
+        try: return CesspoolToUser.objects.get(cesspool = self, is_super_owner = True).user
+        except CesspoolToUser.DoesNotExist: return None
+
 
 class CesspoolToUser(models.Model):
 

@@ -13,7 +13,7 @@ export const getDistrict = (location: string|null): string|null => {
 }
 
 export const getName = (email: string) => {
-    const output = email.split(".").at(0);
+    const output = email.split("@").at(0);
     return output ? output : email;
 }
 

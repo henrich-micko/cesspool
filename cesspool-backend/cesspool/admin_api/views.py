@@ -34,6 +34,7 @@ restore_cesspool_api_view = RestoreCesspoolAPIView.as_view()
 
 class GenerateCesspoolCodeAPIView(CesspoolAdminMixin, APIView):
     def get(self, request):
+        print("x")
         return Response({
             "value": generate_cesspool_code()
         }, status = status.HTTP_200_OK)

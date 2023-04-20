@@ -95,3 +95,11 @@ class CesspoolOwnerField(serializers.EmailField):
 class CesspoolIsSubsriptionExpired(serializers.BooleanField):
     def get_attribute(self, instance):
         return instance.subscription_expiration_date != None and is_history(instance.subscription_expiration_date, compare_as_date = True)
+    
+
+def cesspool_owner_repr(instance):
+    cesspool_owner = instance.get_owner()
+    return None if cesspool_owner == None else {
+        "pk": cesspool_owner.pk,
+        "email": cesspool_owner.email
+    }

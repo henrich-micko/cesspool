@@ -1,20 +1,20 @@
 import TheBox from "@components/TheBox";
-import { Cesspool, Record } from "@types";
-import { getCity } from "../../formats";
+import { Cesspool, Record, UserAsField } from "@types";
+import { getCity, getName } from "../../formats";
 import React from "react";
 import styles from "./styles.module.scss";
 import TheBattery from "@components/TheBattery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faSmile, faTrash, faWarning, faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
 import TheLevel from "@components/TheLevel";
-import { red } from "../../settings";
+import { glass, red } from "../../settings";
 import { Link } from "react-router-dom";
-import AuthContext from "@context/AuthContext";
+import AccountLink from "@components/AccountLink";
 
 
 export interface _CesspoolItem {
     code: string;
-    owner: string|null;
+    owner: UserAsField|null;
     city: string;
     record: Record|null;
     problems: string[];
@@ -32,7 +32,7 @@ const CesspoolItem: React.FC<_CesspoolItem> = (props) => {
             <th><Link to={"/admin/cesspool/" + props.code}>{props.code}</Link></th>
             { props.showCity && <th><Link to={"/admin/city/"+props.city }>{ getCity(props.city) }</Link></th> }
             { props.showIsOwner && <th style={{ textAlign: "center" }}>{<FontAwesomeIcon icon={props.isOwner ? faXmarkCircle : faCheckCircle} />}</th> }
-            { props.showOwner && <th>{ props.owner ? props.owner : "Bez vlastnika" }</th> }
+            { props.showOwner && <th style={{ color: glass }}>{ props.owner ? <AccountLink {...props.owner} /> : "Bez vlastnika" }</th> }
             <th>
                 <div className={styles.icons}>
                     { props.delete_at !== null && <FontAwesomeIcon icon={faTrash} color={red} /> }
@@ -68,7 +68,7 @@ function generateCesspoolTable({location = true, isOwner = true, owner = true, c
                             showCity={location} 
                             showIsOwner={isOwner} 
                             showOwner={owner} 
-                            isOwner={c.owner === compareWithUser}
+                            isOwner={c.owner !== null && c.owner.email === compareWithUser}
                         />) } 
                 </table>
             </TheBox>

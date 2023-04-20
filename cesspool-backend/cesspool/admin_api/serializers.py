@@ -1,12 +1,13 @@
 from cesspool.models import CesspoolToUser
 from cesspool.serializers import CesspoolSerializer
-from cesspool.serializer_fields import CesspoolOwnerField, CesspoolUsersField, CesspoolIsSubsriptionExpired
+from cesspool.serializer_fields import CesspoolUsersField, CesspoolIsSubsriptionExpired, cesspool_owner_repr
 from account.models import UserAccount
 from utils.serializer_fields import created_by_field_repr
+from rest_framework.serializers import EmailField
 
 
 class CesspoolForAdminSerializer(CesspoolSerializer):
-    owner = CesspoolOwnerField(read_only = False, required = False, allow_null = True)
+    owner = EmailField(read_only = False, required = False, allow_null = True)
     users = CesspoolUsersField(read_only = True)
     is_subsription_expirate = CesspoolIsSubsriptionExpired(read_only = True, required = False)
 
@@ -50,4 +51,5 @@ class CesspoolForAdminSerializer(CesspoolSerializer):
     def to_representation(self, instance):
         response = super().to_representation(instance)
         response["created_by"] = created_by_field_repr(instance)
+        response["owner"] = cesspool_owner_repr(instance)
         return response

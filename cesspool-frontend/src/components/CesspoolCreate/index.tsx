@@ -60,7 +60,7 @@ const CesspoolCreate: React.FC<_CesspoolCreate> = (props) => {
                 placeholder="Vlastnik"
                 value={owner ? owner : ""}
                 onChange={onChangeSetState(setOwner, setError)} 
-                required={true}
+                required={false}
             />
 
             <TheInput

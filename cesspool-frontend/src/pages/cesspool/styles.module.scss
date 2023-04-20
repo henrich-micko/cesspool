@@ -36,7 +36,14 @@
     
     a {
         color: #6A718A;
+        text-align: right;
     }
+
+    .linkWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+    } 
 }
 
 .noRecords {
