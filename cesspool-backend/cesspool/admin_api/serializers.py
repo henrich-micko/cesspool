@@ -1,9 +1,8 @@
-from rest_framework import serializers
-
 from cesspool.models import CesspoolToUser
 from cesspool.serializers import CesspoolSerializer
 from cesspool.serializer_fields import CesspoolOwnerField, CesspoolUsersField, CesspoolIsSubsriptionExpired
 from account.models import UserAccount
+from utils.serializer_fields import created_by_field_repr
 
 
 class CesspoolForAdminSerializer(CesspoolSerializer):
@@ -18,13 +17,15 @@ class CesspoolForAdminSerializer(CesspoolSerializer):
             "users",
             "is_subsription_expirate",
             "debug_mode",
+            "created_by"
         ]
         
         extra_kwargs = {
             **CesspoolSerializer.Meta.extra_kwargs,
             "owner": { "ignore_on_save": True },
             "subscription_expiration_date": { "read_only": False },
-            "debug_mode": { "read_only": False, "required": False }
+            "debug_mode": { "read_only": False, "required": False },
+            "created_by": { "read_only": True }
         }
 
     def on_create_and_update(self, instance, validated_data):
@@ -45,3 +46,8 @@ class CesspoolForAdminSerializer(CesspoolSerializer):
                 ctu.save()
 
         super().on_create_and_update(instance, validated_data)
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response["created_by"] = created_by_field_repr(instance)
+        return response

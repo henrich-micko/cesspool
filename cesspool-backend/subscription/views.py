@@ -1,22 +1,12 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from subscription.serializers import SubscriptionSerializer
-from subscription.models import Subscription
+from subscription.mixins import SubscriptionMixin
 
 
-class BaseSubscriptionAPIView:
-    permissions = [IsAuthenticated]
-    serializer_class = SubscriptionSerializer
-
-    def get_queryset(self):
-        return Subscription.objects.all()
-
-class SubscriptionListAPIView(BaseSubscriptionAPIView, 
-                              ListAPIView):
+class SubscriptionListAPIView(SubscriptionMixin, ListAPIView):
     pass
 
 
-class SubscriptionRetrieveAPIView(BaseSubscriptionAPIView, 
-                                  RetrieveAPIView):
+class SubscriptionRetrieveAPIView(SubscriptionMixin, RetrieveAPIView):
     lookup_field = "title"

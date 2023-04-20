@@ -19,10 +19,11 @@ class Cesspool(ModelWithDeleteField):
     )
 
     about = models.CharField(max_length = 255, blank = True, null = True)
-    city = models.ForeignKey("location.City", on_delete = models.CASCADE, null = True)
-    subscription = models.ForeignKey("subscription.Subscription", on_delete = models.CASCADE, null = True, blank = True)
+    city = models.ForeignKey("location.City", on_delete = models.SET_NULL, null = True)
+    subscription = models.ForeignKey("subscription.Subscription", on_delete = models.SET_NULL, null = True, blank = True)
     subscription_expiration_date = models.DateField(null = True, blank = True)
     debug_mode = models.BooleanField(default = False)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.SET_NULL, null = True)
 
     class Meta:
         permissions = [

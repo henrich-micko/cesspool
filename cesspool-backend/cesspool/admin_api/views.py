@@ -5,12 +5,10 @@ from rest_framework.response import Response
 
 from cesspool.utils import generate_cesspool_code
 from cesspool.admin_api.mixins import CesspoolAdminMixin
-from utils.generics import RestoreModelAPIView
-from utils.permission import has_user_permission
+from utils.generics import RestoreModelAPIView, CreateModelWithCreatedByFieldAPIView
 
 
-
-class CreateCesspoolAPIView(CesspoolAdminMixin, CreateAPIView):
+class CreateCesspoolAPIView(CesspoolAdminMixin, CreateModelWithCreatedByFieldAPIView):
     pass
 
 create_cesspool_api_view = CreateCesspoolAPIView.as_view()

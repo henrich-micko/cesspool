@@ -16,7 +16,6 @@ class CesspoolAdminMixin:
         cesspool_queryset = Cesspool.objects.all()        
 
         if user_filter:
-            print(user_filter)
             cesspool_queryset = cesspool_queryset.filter(
                 pk__in = [ctu.cesspool.pk for ctu in CesspoolToUser.objects.filter(user__pk = user_filter)]
             )

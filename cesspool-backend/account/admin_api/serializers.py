@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Group
-from django.conf import settings
 
 from account.serializers import UserAccountSerializer
 from account.models import UserAccount
+from utils.serializer_fields import created_by_field_repr
 
 
 class UserAccountAdminSerializer(UserAccountSerializer):
@@ -23,3 +23,8 @@ class UserAccountAdminSerializer(UserAccountSerializer):
                 except ValueError: pass 
 
             for gtr in groups_to_remove: instance.groups.remove(gtr)
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response["created_by"] = created_by_field_repr(instance)
+        return response

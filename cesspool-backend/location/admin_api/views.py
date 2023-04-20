@@ -1,35 +1,29 @@
-from rest_framework.generics import CreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListAPIView
 
-from location.models import City
-from location.admin_api.serializers import CityForAdminSerializer
-
-from utils.mixins import MultipleFieldLookupMixin
+from location.admin_api.mixins import CityAdminMixin
 from utils.generics import RestoreModelAPIView
-from utils.permission import has_user_permission
+from utils.generics import CreateModelWithCreatedByFieldAPIView
 
 
-class _CityAdminAPIView(MultipleFieldLookupMixin):
-
-    permission_classes = has_user_permission("location.manage_city")
-    serializer_class = CityForAdminSerializer
-    lookup_fields = ["district", "title"]
-
-    def get_queryset(self):
-        return City.objects.all()
-
-
-class CreateCityAPIView(_CityAdminAPIView, CreateAPIView):
+class CreateCityAPIView(CityAdminMixin, CreateModelWithCreatedByFieldAPIView):
     pass
 
+create_city_api_view = CreateCityAPIView.as_view()
 
-class GPDCityAPIView(_CityAdminAPIView, RetrieveUpdateDestroyAPIView):  
+
+class GPDCityAPIView(CityAdminMixin, RetrieveUpdateDestroyAPIView):  
     pass
 
+gpd_city_api_view = GPDCityAPIView.as_view()
 
-class ListCityAPIView(_CityAdminAPIView, ListAPIView):
+
+class ListCityAPIView(CityAdminMixin, ListAPIView):
     pass
 
+list_city_api_view = ListCityAPIView.as_view()
 
-class RestoreCityAPIView(_CityAdminAPIView, RestoreModelAPIView):
+
+class RestoreCityAPIView(CityAdminMixin, RestoreModelAPIView):
     pass
+
+restore_city_api_view = RestoreCityAPIView.as_view()

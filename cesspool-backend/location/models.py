@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 from utils.models import ModelWithDeleteField
 import csv
 
@@ -9,6 +9,8 @@ class City(ModelWithDeleteField):
     
     title = models.CharField(max_length = 25)
     district = models.CharField(max_length = 25)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.SET_NULL, null = True, related_name = "created_city")
+
 
     class Meta:
         unique_together = ["title", "district"]
