@@ -24,13 +24,13 @@ interface _CesspoolBox {
 }
 
 const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
-    
+
     const getProblems = () => {
         if (props.record)
             return props.problems
         return [...props.problems, "Zatiaľ žiadne záznamy."]
     }
-    
+
     return (
         <TheBoxMin
             style={{
@@ -40,7 +40,7 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
                 "height": "fit-content",
                 "width": "auto"
             }}
-            onClick={() => props.onClick(props.code)}    
+            onClick={() => props.onClick(props.code)}
         >
             <div className={styles.header}>
                 <h2>{ props.code }</h2>
@@ -49,10 +49,10 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
                     { props.deleteAt && <FontAwesomeIcon icon={faTrash} color={red} /> }
                     { props.debugMode && <FontAwesomeIcon icon={faBug} color={red} /> }
                     <TheBattery value={ props.record ? props.record.battery : null } />
-                    <TheLevel value={ props.record ? props.record.battery : null } /> 
+                    <TheLevel value={ props.record ? props.record.battery : null } />
                 </div>
             </div>
-            
+
             <div className={styles.aboutAndCity}>
                 <span>{ props.about }</span>
                 <span>{ getCity(props.city) }</span>
@@ -60,7 +60,7 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
 
             { (props.problems.length > 0 || props.record === null) &&
                 <div className={styles.problems}>
-                    <TheCesspoolProblems 
+                    <TheCesspoolProblems
                         problems={getProblems()} />
                 </div>
             }

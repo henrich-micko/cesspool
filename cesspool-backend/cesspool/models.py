@@ -117,7 +117,8 @@ class Record(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     level_m = models.FloatField()
     level_percent = models.FloatField()
-    battery = models.FloatField()
+    battery = models.FloatField() # percent
+    battery_voltage = models.FloatField()
 
     created_on_debug_mode = models.BooleanField(default = False)
     mqtt_message = models.CharField(max_length = 255, blank = True, null = True, default = None)

@@ -1,3 +1,0 @@
-- my account
-- admin menu page for cesspool
-- admin page for cesspool

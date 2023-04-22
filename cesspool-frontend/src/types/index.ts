@@ -11,11 +11,11 @@ export interface Subscription {
 }
 
 export interface User {
-    pk: number; 
-    email: string; 
-    is_active: boolean; 
-    date_joined: string; 
-    is_staff: boolean; 
+    pk: number;
+    email: string;
+    is_active: boolean;
+    date_joined: string;
+    is_staff: boolean;
     delete_at: null|string;
     permissions: string[];
     groups: string[];
@@ -23,11 +23,11 @@ export interface User {
 }
 
 export interface ContextUser {
-    pk: number|null; 
-    email: string|null; 
-    is_active: boolean|null; 
-    date_joined: string|null; 
-    is_staff: boolean|null; 
+    pk: number|null;
+    email: string|null;
+    is_active: boolean|null;
+    date_joined: string|null;
+    is_staff: boolean|null;
     delete_at: string|null;
     permissions: string[]|null;
 }
@@ -42,6 +42,7 @@ export interface Record {
     level_m: number;
     level_percent: number;
     battery: number;
+    battery_voltage: number;
     date: string;
     created_on_debug_mode: boolean;
     mqtt_message: string|null;

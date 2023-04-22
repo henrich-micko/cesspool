@@ -28,7 +28,7 @@ const CesspoolRestore = generateRestoreItem<Cesspool>();
 
 const CesspoolAdminPage: React.FC = () => {
     const [cesspool, setCesspool] = useState<Cesspool|null>(null);
-    
+
     const [cesspoolSettingsPop, setCesspoolSettingsPop] = useState<boolean>(false);
     const [cesspoolSubPop, setCesspoolSubPop] = useState<boolean>(false);
     const [cesspoolDeletePop, setCesspoolDeletePop] = useState<boolean>(false);
@@ -61,10 +61,10 @@ const CesspoolAdminPage: React.FC = () => {
                 </h1>
 
                 <div className={styles.tools}>
-                    <FontAwesomeIcon icon={faMoneyCheck} onClick={() => setCesspoolSubPop(true)} 
+                    <FontAwesomeIcon icon={faMoneyCheck} onClick={() => setCesspoolSubPop(true)}
                         color={ cesspoolSubPop ? "white" : cesspool?.is_subsription_expirate ? red : undefined} />
                     <FontAwesomeIcon icon={faSliders} onClick={() => setCesspoolSettingsPop(true)} color={ cesspoolSettingsPop ? "white" : undefined } />
-                    <FontAwesomeIcon icon={faBug} color={cesspool?.debug_mode === true ? red : undefined} onClick={() => setCesspoolDebugPop(true)} />
+                    <FontAwesomeIcon icon={faBug} color={cesspool?.debug_mode ? red : undefined} onClick={() => setCesspoolDebugPop(true)} />
                     <FontAwesomeIcon icon={faTrash} color={cesspool && cesspool.delete_at ? red : undefined} onClick={() => setCesspoolDeletePop(true)} />
                     <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
                 </div>
@@ -72,22 +72,24 @@ const CesspoolAdminPage: React.FC = () => {
 
             <div className={styles.help}>
                 { cesspool ? <span>{cesspool.about}</span> : "..." }
-                
+
                 <div className={styles.linkWrapper}>
                     { cesspool?.city && <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>}
                     { cesspool && cesspool.created_by && <span>Vytvoril <AccountLink {...cesspool.created_by} /></span> }
                     { cesspool && cesspool.owner && <span>Vlastní <AccountLink {...cesspool.owner} /></span> }
                 </div>
-            </div> 
+            </div>
 
             <div className={styles.infoPanel}>
                 { cesspool && cesspool.record &&
                     <>
-                        <TheCesspoolStatus 
-                            levelPercent={cesspool.record.level_percent} 
-                            battery={cesspool.record.battery} 
-                        /> 
-                                                
+                        <TheCesspoolStatus
+                            levelPercent={cesspool.record.level_percent}
+                            levelMeter={cesspool.record.level_m}
+                            batteryVolt={cesspool.record.battery_voltage}
+                            battery={cesspool.record.battery}
+                        />
+
                         <TheCesspoolProblemsBox
                             problems={cesspool.problems}
                         />
@@ -96,7 +98,7 @@ const CesspoolAdminPage: React.FC = () => {
             </div>
 
             { cesspool && cesspool.record
-                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} /> 
+                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} />
                 : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
             }
 
@@ -104,8 +106,8 @@ const CesspoolAdminPage: React.FC = () => {
             {
                 cesspoolSettingsPop && cesspool &&
                 <PopupWin label="Nastavenia" close={() => setCesspoolSettingsPop(false)}>
-                    <CesspoolSettings 
-                        pk={cesspool.pk} 
+                    <CesspoolSettings
+                        pk={cesspool.pk}
                         code={cesspool.code}
                         city={cesspool.city}
                         owner={cesspool.owner ? cesspool.owner.email : null}
@@ -122,9 +124,9 @@ const CesspoolAdminPage: React.FC = () => {
             {
                 cesspoolSubPop && cesspool &&
                 <PopupWin label="Koniec predplatneho" close={() => setCesspoolSubPop(false)}>
-                    <SubCalendar 
-                        value={cesspool.subscription_expiration_date} 
-                        code={cesspool.code} 
+                    <SubCalendar
+                        value={cesspool.subscription_expiration_date}
+                        code={cesspool.code}
                         setCesspool={(c) => { setCesspool(c); setCesspoolSubPop(false)}}
                     />
                 </PopupWin>
@@ -145,7 +147,7 @@ const CesspoolAdminPage: React.FC = () => {
                             }}
                         />
 
-                        :<CesspoolDelete 
+                        :<CesspoolDelete
                             title="Žumpu"
                             url={"admin/cesspool/c/" + code}
                             onDelete={(ctu) => {

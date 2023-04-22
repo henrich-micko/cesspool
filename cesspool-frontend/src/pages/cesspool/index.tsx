@@ -64,10 +64,12 @@ const CesspoolPage: React.FC = () => {
             <div className={styles.infoPanel}>
                 { ctu && ctu.cesspool.record &&
                     <>
-                        <TheCesspoolStatus 
-                            levelPercent={ctu.cesspool.record.level_percent} 
-                            battery={ctu.cesspool.record.battery} 
-                        /> 
+                        <TheCesspoolStatus
+                            levelPercent={ctu.cesspool.record.level_percent}
+                            levelMeter={ctu.cesspool.record.level_m}
+                            batteryVolt={ctu.cesspool.record.battery_voltage}
+                            battery={ctu.cesspool.record.battery}
+                        />
                         
                         <TheCesspoolProblemsBox problems={ getProblems() } />
                     </>

@@ -1,9 +1,15 @@
 from django.utils import timezone
 from paho.mqtt import client
 from cesspool.models import Cesspool
+from cesspool.utils import battery_voltage_to_percent
 
 
 class MqttClient(client.Client):
+    LEVEL_PERCENT = "level_percent"
+    LEVEL_M = "level_m"
+    BATTERY_VOLTAGE = "battery_voltage"
+
+
     def __init__(self, host: str, port: int, topic: str, username: str, password: str, interval_h: int = 2) -> None:
         super().__init__(client_id = "", clean_session = True, userdata = None, protocol = client.MQTTv311, transport = "tcp")
 
@@ -14,9 +20,9 @@ class MqttClient(client.Client):
 
         self.data = {} # cesspool code: {level: flaot, percent: float, battery: float, mqtt_message: ""}
         self.fields = {
-            "Level_Percent": "level_percent",
-            "Level_Raw": "level_m",
-            "Battery_Voltage": "battery"
+            "Level_Percent": self.LEVEL_PERCENT,
+            "Level_Raw": self.LEVEL_M,
+            "Battery_Voltage": self.BATTERY_VOLTAGE
         }
 
         self.tls_set()
@@ -65,10 +71,17 @@ class MqttClient(client.Client):
                 (cesspool_record_date == None or rn - cesspool_record_date > timezone.timedelta(hours = self.interval_h))):
 
                 mqtt_message = f"[{rn}]:&&" + self.data[cesspool_code].pop("mqtt_message")
+                battery = battery_voltage_to_percent(self.data[cesspool_code]["Battery_Voltage"])
+
                 record = cesspool.record_set.create(
-                    **{self.fields[field]: self.data[cesspool_code][field] for field in self.data[cesspool_code].keys()}, 
+                    **{
+                        self.fields[field]: self.data[cesspool_code][field] 
+                        for field in self.data[cesspool_code].keys()
+                    },
+
                     created_on_debug_mode = cesspool.debug_mode,
-                    mqtt_message = mqtt_message if cesspool.debug_mode else None
+                    mqtt_message = mqtt_message if cesspool.debug_mode else None,
+                    battery = battery
                 )
 
                 print(f"From: {self.data[cesspool_code]} created {record}")

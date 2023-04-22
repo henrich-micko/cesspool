@@ -11,6 +11,7 @@ class RecordSerializer(serializers.ModelSerializer):
             "level_m",
             "level_percent",
             "battery",
+            "battery_voltage",
             "date",
             "created_on_debug_mode",
             "mqtt_message"
