@@ -86,4 +86,5 @@ export interface City {
     district: string;
     delete_at: null|string,
     manager: UserAsField;
+    created_by: UserAsField|null;
 }

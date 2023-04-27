@@ -73,7 +73,10 @@ const CityPageAdmin: React.FC = () => {
 
             <div className={styles.about}>
                 <span>V okrese { item?.district }</span>
-                <span>{ item && item.manager ? <>Manžér <AccountLink {...item.manager} /></> : "Bez manažéra" }</span>
+                <div>
+                    <span>{ item && item.manager ? <>Manžér <AccountLink {...item.manager} /></> : "Bez manažéra" }</span>
+                    <span>{ item && item.created_by && <>Vytvoril <AccountLink {...item.created_by} /></> }</span>
+                </div>
             </div> 
 
             {

@@ -27,6 +27,13 @@
     font-size: 1em;
     color: #6A718A;
     margin-bottom: 1em;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        text-align: right;        
+    }
 }
 
 .noRecords {

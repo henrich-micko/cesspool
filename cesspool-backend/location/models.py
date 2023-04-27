@@ -11,7 +11,6 @@ class City(ModelWithDeleteField):
     district = models.CharField(max_length = 25)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.SET_NULL, null = True, related_name = "created_city")
 
-
     class Meta:
         unique_together = ["title", "district"]
         permissions = [

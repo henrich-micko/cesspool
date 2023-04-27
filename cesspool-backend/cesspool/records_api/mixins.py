@@ -17,4 +17,4 @@ class RecordsMixin:
         if not self.request.user.has_perm("cesspool.manage_cesspool"):
             get_object_or_404(CesspoolToUser.objects.all(), user = self.request.user, cesspool = cesspool)
 
-        return cesspool.record_set.all()
+        return cesspool.record_set.all() if not cesspool.debug_mode else cesspool.record_set.order_by("date")
