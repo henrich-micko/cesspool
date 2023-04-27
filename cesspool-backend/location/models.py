@@ -23,28 +23,20 @@ class City(ModelWithDeleteField):
     def __str__(self):
         return f"{self.district}/{self.title}"
 
-    def write_csv(self, writable: any, month: int):        
-        data = {
-            machine: machine.record_set.filter(date__month = month).last_by(
-                lambda item: item.date.strftime("%Y-%m-%d")
-            )
-
-            for machine in self.machine_set.all()
-        }
-
-        
-        fieldnames = ["Zariadenie", "Datum", "Vlastnik", "Hladina"]
+    def write_csv(self, writable):        
+        fieldnames = ["Žumpa", "Datum", "Vlastník"]
     
         writer = csv.DictWriter(writable, fieldnames = fieldnames)
         writer.writeheader()
-        
-        for machine, records in data.items():
-            for record in records:
+
+        for cesspool in self.cesspool_set.all():
+            cesspool_release_dates = cesspool.record_set.get_release_datetimes()
+
+            for release in cesspool_release_dates:
                 writer.writerow({
-                    "Datum": record.date.strftime("%Y-%d-%m"),
-                    "Zariadenie": machine.code,
-                    "Vlastnik": "Nik",
-                    "Hladina": record.level
+                    "Žumpa": cesspool.code,
+                    "Datum": release.strftime("%y-%d-%m"),
+                    "Vlastník": cesspool.get_owner() 
                 })
     
         return writable

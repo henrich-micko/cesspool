@@ -23,3 +23,20 @@ const TheInput = styled.input`
 `;
 
 export default TheInput;
+
+
+export const TheRangeInput = styled.input`
+    -webkit-appearance: none;
+    height: 7px;
+    border-radius: 5px;
+    background-image: linear-gradient(#4FACF7, #4FACF7);
+    background-repeat: no-repeat;
+`;
+
+
+export const TheInputWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5em;
+    align-items: center;
+`;

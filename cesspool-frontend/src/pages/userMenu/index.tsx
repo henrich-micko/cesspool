@@ -3,6 +3,7 @@ import Navigation from "@components/Navigation";
 import Page from "@components/Page";
 import PopupWin from "@components/PopupWin";
 import SearchBar from "@components/SearchBar";
+import TheBox, { TheBoxMin } from "@components/TheBox";
 import UserBox from "@components/UserBox";
 import AuthContext from "@context/AuthContext";
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons";
@@ -86,7 +87,7 @@ const UserMenuPage: React.FC = () => {
 
             {
                 createPop &&
-                <PopupWin label="Vytvoriť zariadenie" close={() => setCreatePop(false)}>
+                <PopupWin label="Vytvoriť učet" close={() => setCreatePop(false)}>
                     <AccountCreate onCreate={(a) => {
                         setCreatePop(false); 
                         setItems(olds => [...olds, a]); 

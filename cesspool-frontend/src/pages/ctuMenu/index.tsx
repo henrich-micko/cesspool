@@ -10,6 +10,7 @@ import Page from "@components/Page";
 import AuthContext from "@context/AuthContext";
 import { CesspoolToUser } from "@types";
 import CtuBox from "@components/CtuBox";
+import ItemWrapper from "@components/ItemWrapper";
 
 
 const CtuMenuPage: React.FC = () => {
@@ -46,7 +47,7 @@ const CtuMenuPage: React.FC = () => {
                 />
             </div>
 
-            <div className={styles.wrapper}>
+            <ItemWrapper>
                 { items.map((item, index) => 
                     <CtuBox
                         pk={item.pk}
@@ -57,7 +58,7 @@ const CtuMenuPage: React.FC = () => {
                         onClick={() => setRedirectTo(item.cesspool.code)}
                     />
                 )}
-            </div>
+            </ItemWrapper>
         </Page>
     )
 }

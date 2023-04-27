@@ -1,7 +1,7 @@
 from django.utils import timezone
 from paho.mqtt import client
 from cesspool.models import Cesspool
-from cesspool.utils import battery_voltage_to_percent
+from utils.utils import to_percent
 
 
 class MqttClient(client.Client):
@@ -71,7 +71,7 @@ class MqttClient(client.Client):
                 (cesspool_record_date == None or rn - cesspool_record_date > timezone.timedelta(hours = self.interval_h))):
 
                 mqtt_message = f"[{rn}]:&&" + self.data[cesspool_code].pop("mqtt_message")
-                battery = battery_voltage_to_percent(self.data[cesspool_code]["Battery_Voltage"])
+                battery = to_percent(self.data[cesspool_code]["Battery_Voltage"], 6)
 
                 record = cesspool.record_set.create(
                     **{

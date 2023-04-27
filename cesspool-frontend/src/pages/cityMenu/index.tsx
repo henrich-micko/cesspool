@@ -1,6 +1,6 @@
-import AccountCreate from "@components/AccountCreate";
 import CityBox from "@components/CityBox";
 import CityCreate from "@components/CreateCity";
+import ItemWrapper from "@components/ItemWrapper";
 import Navigation from "@components/Navigation";
 import Page from "@components/Page";
 import PopupWin from "@components/PopupWin";
@@ -10,8 +10,7 @@ import AuthContext from "@context/AuthContext";
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAxios from "@hooks/useAxios";
-import translate from "@permissions/translate";
-import { City, User } from "@types";
+import { City } from "@types";
 import React from "react";
 import { Navigate } from "react-router-dom";
 import styles from "./styles.module.scss";
@@ -45,10 +44,10 @@ const CityMenuPage: React.FC = () => {
         setFilteredItem(items.filter(
             item => 
             item.district.toLowerCase().includes(lowerCasedFilter) || 
-            (item.manager && item.manager.toLowerCase().includes(lowerCasedFilter)) || 
+            (item.manager && item.manager.email.toLowerCase().includes(lowerCasedFilter)) || 
             item.title.toLowerCase().includes(lowerCasedFilter) 
         ));
-    }
+    };
 
     const getCurrentItems = (): City[] => {
         return filteredItem === null ? items : filteredItem;
@@ -72,22 +71,22 @@ const CityMenuPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className={styles.wrapper}>
+            <ItemWrapper>
                 { items.length > 0 && getCurrentItems().map((item, index) => 
                     <CityBox 
                         pk={item.id}
                         district={item.district} 
                         title={item.title} 
                         isSetToDelete={item.delete_at !== null} 
-                        manager={item.manager}
+                        manager={item.manager?.email}
                         onClick={(d, t) => setRedirectTo(d + "/" + t)}
-                    /> 
+                    />
                 )}
-            </div>
+            </ItemWrapper>
 
             {
                 createPop &&
-                <PopupWin label="Vytvoriť zariadenie" close={() => setCreatePop(false)}>
+                <PopupWin label="Vytvoriť lokáciu" close={() => setCreatePop(false)}>
                     <CityCreate onCreate={(a) => {
                         setCreatePop(false); 
                         setItems(olds => [...olds, a]); 

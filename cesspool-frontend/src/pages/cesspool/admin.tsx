@@ -5,7 +5,7 @@ import useAxios from "@hooks/useAxios";
 import Navigation from "@components/Navigation";
 import styles from "@pages/cesspool/styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBug, faMoneyCheck, faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faBug, faFlag, faMoneyCheck, faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
 import PopupWin from "@components/PopupWin";
 import CesspoolChart from "@components/CesspoolChart";
 import TheCesspoolStatus from "@components/TheCesspoolStatus";
@@ -18,7 +18,7 @@ import { red } from "../../settings";
 import generateDeleteItem, { generateRestoreItem } from "@components/DeleteItem";
 import { getCity } from "../../formats";
 import { Link } from "react-router-dom";
-import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn } from "@components/CesspoolDebugMode";
+import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn, GenerateCesspoolRecords } from "@components/CesspoolDebugMode";
 import AccountLink from "@components/AccountLink";
 
 
@@ -33,6 +33,7 @@ const CesspoolAdminPage: React.FC = () => {
     const [cesspoolSubPop, setCesspoolSubPop] = useState<boolean>(false);
     const [cesspoolDeletePop, setCesspoolDeletePop] = useState<boolean>(false);
     const [cesspoolDebugPop, setCesspoolDebugPop] = useState<boolean>(false);
+    const [cesspoolGenerateRecordsPop, setCesspoolGenerateRecordsPop] = useState<boolean>(false);
 
     const { code } = useParams();
     const { user } = React.useContext(AuthContext);
@@ -65,6 +66,7 @@ const CesspoolAdminPage: React.FC = () => {
                         color={ cesspoolSubPop ? "white" : cesspool?.is_subsription_expirate ? red : undefined} />
                     <FontAwesomeIcon icon={faSliders} onClick={() => setCesspoolSettingsPop(true)} color={ cesspoolSettingsPop ? "white" : undefined } />
                     <FontAwesomeIcon icon={faBug} color={cesspool?.debug_mode ? red : undefined} onClick={() => setCesspoolDebugPop(true)} />
+                    { cesspool?.debug_mode && <FontAwesomeIcon icon={faFlag} onClick={() => setCesspoolGenerateRecordsPop(true)}  color={ cesspoolSubPop ? "white" : undefined} />}
                     <FontAwesomeIcon icon={faTrash} color={cesspool && cesspool.delete_at ? red : undefined} onClick={() => setCesspoolDeletePop(true)} />
                     <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
                 </div>
@@ -155,6 +157,13 @@ const CesspoolAdminPage: React.FC = () => {
                                 setCesspoolDeletePop(false);
                             }} />
                         }
+                </PopupWin>
+            }
+
+            {
+                cesspool && cesspoolGenerateRecordsPop &&
+                <PopupWin label="Generovať záznamy" close={() => setCesspoolGenerateRecordsPop(false)}>
+                    <GenerateCesspoolRecords code={cesspool.code} onSubmit={() => setCesspoolGenerateRecordsPop(false)} />
                 </PopupWin>
             }
 

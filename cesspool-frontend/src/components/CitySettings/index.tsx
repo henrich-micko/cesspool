@@ -4,19 +4,19 @@ import TheError from "@components/TheError";
 import TheInput, { onChangeSetState } from "@components/TheInput";
 import useAxios from "@hooks/useAxios";
 import React from "react";
-import { City } from "@types";
+import { City, UserAsField } from "@types";
 import CityInput from "@components/CityInput";
 
 
 interface _CitySettings {
-    manager: string|null;
+    manager: UserAsField|null;
     district: string;
     city: string;
     onUpdate(city: City): void;
 }
 
 const CitySettings: React.FC<_CitySettings> = (props) => {
-    const [manager, setManager] = React.useState<string|null>(props.manager);
+    const [manager, setManager] = React.useState<UserAsField|null>(props.manager);
     const [error, setError] = React.useState<string|null>(null);
 
     const axios = useAxios();
@@ -35,7 +35,7 @@ const CitySettings: React.FC<_CitySettings> = (props) => {
                     type="email"
                     spellCheck={false}
                     placeholder="Manadžer"
-                    value={ manager ? manager : "" }
+                    value={ manager ? manager.email : "" }
                     onChange={onChangeSetState(setManager, setError)} 
                     required={true}
                 />

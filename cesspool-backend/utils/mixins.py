@@ -10,7 +10,9 @@ class MultipleFieldLookupMixin:
 
     def get_object(self):
         queryset = self.get_queryset()             
-        queryset = self.filter_queryset(queryset)  
+        
+        try: queryset = self.filter_queryset(queryset)  
+        except AttributeError: pass
 
         kwargs_keys = self.kwargs.keys()
         filter = {

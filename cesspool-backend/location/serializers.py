@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from location import validators, models
 
+from location import validators, models
+from location.serializer_fields import city_manager_repr_field
 from account.models import UserAccount
 from utils.serializers import MSWithListners
 
@@ -12,20 +13,8 @@ class DistrictCityField(serializers.CharField):
         self.validators.append(validators.district_city_validation)
 
 
-class ManagerField(serializers.EmailField):
-    def __init__(self, **kwargs):
-        kwargs["allow_blank"], kwargs["allow_null"] = True, True
-        super().__init__(**kwargs)
-
-        self.validators.append(validators.manager_validation)
-
-    def get_attribute(self, instance):
-        return instance.manager
-
-
 class CitySerializer(MSWithListners):
-    manager = ManagerField()
-
+    
     class Meta:
         model = models.City
         fields = [
@@ -39,12 +28,11 @@ class CitySerializer(MSWithListners):
             "title": { "read_only": True },
             "district": { "read_only": True },
             "delete_at": { "read_only": True },
-            "manager": { "read_only": True, "ignore_on_save": True }
+            "manager": { "read_only": True }
         }
 
     def validate(self, attrs):
         super_output = super().validate(attrs)
-        print(super_output)
         district, city = super_output.get("district"), super_output.get("title")
         validators.district_city_validation(value = f"{district}/{city}")
 
@@ -58,3 +46,8 @@ class CitySerializer(MSWithListners):
         else:
             instance.manager = None
         instance.save()
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response["manager"] = city_manager_repr_field(instance)
+        return response

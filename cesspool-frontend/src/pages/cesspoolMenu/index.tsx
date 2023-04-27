@@ -12,6 +12,7 @@ import CesspoolBox from "@components/CesspoolBox";
 import SearchBar from "@components/SearchBar";
 import PopupWin from "@components/PopupWin";
 import CesspoolCreate from "@components/CesspoolCreate";
+import ItemWrapper from "@components/ItemWrapper";
 
 
 const CesspoolMenuPage: React.FC = () => {
@@ -69,7 +70,7 @@ const CesspoolMenuPage: React.FC = () => {
                 </div>
             </div>
 
-            <div className={styles.wrapper}>
+            <ItemWrapper>
                 { items.length > 0 && getCurrentItems().map((item, index) => 
                     <CesspoolBox
                         pk={item.pk}
@@ -83,11 +84,11 @@ const CesspoolMenuPage: React.FC = () => {
                         onClick={() => setRedirectTo(item.code)}
                     />
                 )}
-            </div>
+            </ItemWrapper>
 
             {
                 cesspoolCreatePop &&
-                <PopupWin label="Vytvoriť zariadenie" close={() => setCesspoolCreatePop(false)}>
+                <PopupWin label="Vytvoriť žumpu" close={() => setCesspoolCreatePop(false)}>
                     <CesspoolCreate onCreate={c => { setItems(olds => [...olds, c]); setCesspoolCreatePop(false) }}/>                    
                 </PopupWin>
             }

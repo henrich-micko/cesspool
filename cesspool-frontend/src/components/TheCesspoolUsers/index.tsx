@@ -97,7 +97,7 @@ const TheCesspoolUsers: React.FC<_TheCesspoolUsers> = (props) => {
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault();
 
-        axios.patch("cesspool/c/" + props.code + "/", { "cesspool_users": users })
+        axios.patch("cesspool/c/" + props.code, { "cesspool_users": users })
              .then(res => props.onUpdate(res.data))
              .catch(() => {});
     }

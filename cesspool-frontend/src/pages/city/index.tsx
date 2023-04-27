@@ -1,119 +1,84 @@
-import generateCesspoolTable, { toCesspoolItem, _CesspoolItem } from "@components/CesspoolTable";
-import CitySettings from "@components/CitySettings";
-import generateDeleteItem, { generateRestoreItem } from "@components/DeleteItem";
-import Navigation from "@components/Navigation";
 import Page from "@components/Page";
-import PopupWin from "@components/PopupWin";
 import AuthContext from "@context/AuthContext";
-import { faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPrint, faRefresh, faSliders } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAxios from "@hooks/useAxios";
-import { Cesspool, City, User } from "@types";
-import { getName } from "../../formats";
-import React, { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import { red } from "../../settings";
+import { Cesspool, City } from "@types";
+import React from "react";
+import Navigation from "@components/Navigation";
 import styles from "./styles.module.scss";
+import { Navigate, useParams } from "react-router-dom";
+import PopupWin from "@components/PopupWin";
+import CesspoolExportCSV from "@components/CesspoolExportToCSV";
+import ItemWrapper from "@components/ItemWrapper";
+import TheCesspoolMin from "@components/CesspoolBox/min";
 
 
 const CityPage: React.FC = () => {
-    const [item, setItem] = useState<City|null>(null);
-    const [cesspools, setCesspools] = useState<_CesspoolItem[]>([]);
-    const [settingsPop, setSettingsPop] = useState<boolean>(false);
-    const [deletePop, setDeletePop] = useState<boolean>(false);
+    const [city, setCity] = React.useState<City|null>(null);
+    const [exportPop, setExportPop] = React.useState<boolean>(false);
+    const [cesspools, setCesspools] = React.useState<Cesspool[]>([]);
 
-    const { district, city } = useParams();
+
     const { user } = React.useContext(AuthContext);
-
-    const CityDelete = generateDeleteItem<City>();
-    const CityRestore = generateRestoreItem<City>();
-    const CesspoolTable = generateCesspoolTable({isOwner: false, location: false});
-
+    const { district, title } = useParams();
     const axios = useAxios();
-
-    const fetchData = () => {
-        axios.get("admin/location/city/c/" + district + "/" + city)
-             .then(res => setItem(res.data))
-             .catch(err => {});
-
-        axios.get("admin/cesspool?city=" + district + "/" + city)
-             .then(res => setCesspools(res.data.map(toCesspoolItem)))
-             .catch(err => {});
-    };
     
-    React.useEffect(fetchData, []);
+    const fetchItems = () => {
+        axios.get("/location/city/" + district + "/" + title)
+             .then(res => setCity(res.data))
+             .catch(err => {});
+
+        axios.get("admin/cesspool?city=" + district + "/" + title)
+            .then(res => setCesspools(res.data))
+            .catch(err => {});
+    };
+
+    React.useEffect(fetchItems, []);
 
     return (
         <Page>
-             {/* check for permission */}
-             {  user && !user.permissions.includes("account.manage_account") && <Navigate to="/" /> }
-
+            {/* check for permission */}
+            {  user && !user.groups.includes("city_admin") && <Navigate to="/" /> }        
+        
             <Navigation />
 
             <div className={styles.header}>
-                <h1>
-                    { item ? item.title : "..." }
-                </h1>
-
+                <h1>{city?.title}</h1>
+            
                 <div className={styles.tools}>
-                    <FontAwesomeIcon icon={faSliders} onClick={() => setSettingsPop(true)} color={ settingsPop ? "white" : undefined } />
-                    <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
-                    <FontAwesomeIcon icon={faTrash} color={item && item.delete_at ? red : undefined} onClick={() => setDeletePop(true)} />
+                    <FontAwesomeIcon icon={faPrint} onClick={() => setExportPop(true)} />
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchItems} />
                 </div>
             </div>
 
             <div className={styles.about}>
-                <span>V okrese { item?.district }</span>
-                <span>{ item && item.manager ? getName(item.manager) : "Bez manažéra" }</span>
-            </div> 
+                <span>V okrese {city?.district}</span>
+            </div>
 
-            {
-                <CesspoolTable cesspools={cesspools} />
-            }
-
-            {/* {Popup windows} */}
-            { item && settingsPop &&
-                <PopupWin label="Nastavenia" close={() => setSettingsPop(false)}>
-                    <CitySettings
-                        manager={item.manager}
-                        district={item.district}
-                        city={item.title}
-                        onUpdate={(city: City) => {
-                            setItem(city);
-                            setSettingsPop(false);
-                        }}
-                    />
-                </PopupWin>
+            {cesspools &&
+                <ItemWrapper>
+                    { cesspools.map((item, index) => 
+                        <TheCesspoolMin
+                            pk={item.pk}
+                            code={item.code}
+                            delete={item.delete_at !== null}
+                            debugMode={item.debug_mode}
+                            owner={item.owner?.email}
+                            onClick={() => ("/admin/cesspool/" + item.code)}
+                        />
+                    )}
+                </ItemWrapper>
             }
 
             {
-                deletePop && item &&
-                <PopupWin label={ item.delete_at ? "Obnoviť" : "Odstrániť" } close={() => setDeletePop(false)}>
-                    {
-                        item.delete_at
-                        ? <CityRestore
-                            title={"Učet"}
-                            url={"admin/location/city/c/" + item.district + "/" + item.title + "/restore"}
-                            deleteAt={item.delete_at}
-                            onRestore={i => {
-                                setItem(i);
-                                setDeletePop(false);
-                            }}
-                        />
-
-                        : <CityDelete 
-                            title="Učet"
-                            url={"admin/location/city/c/" + item.district + "/" + item.title}
-                            onDelete={account => {
-                                fetchData();
-                                setDeletePop(false);
-                            }} 
-                        />
-                    }
-                </PopupWin>
+                exportPop && city &&
+                <PopupWin label="Exporotovať dáta" close={() => setExportPop(false)}>
+                    <CesspoolExportCSV district={city.district} city={city.title} />
+                </ PopupWin>
             }
         </Page>
-    )
+    );
 }
 
 export default CityPage;

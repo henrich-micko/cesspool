@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "@components/CesspoolBox/styles.module.scss";
 import { TheBoxMin } from "@components/TheBox";
-import { Record } from "@types";
+import { Record, UserAsField } from "@types";
 import TheBattery from "@components/TheBattery";
 import TheLevel from "@components/TheLevel";
 import TheCesspoolProblems from "@components/TheCesspoolProblems";
-import { getCity } from "../../formats";
+import { getCity, getName } from "../../formats";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBug, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { red } from "../../settings";
@@ -20,6 +20,7 @@ interface _CesspoolBox {
     about: string|null;
     deleteAt: string|null;
     debugMode: boolean;
+    owner?: UserAsField|null;
     onClick(code: string): void;
 }
 
@@ -53,9 +54,9 @@ const CesspoolBox: React.FC<_CesspoolBox> = (props) => {
                 </div>
             </div>
 
-            <div className={styles.aboutAndCity}>
+            <div className={styles.spec}>
                 <span>{ props.about }</span>
-                <span>{ getCity(props.city) }</span>
+                <span>{ props.owner ? "Vlastní " + getName(props.owner.email) : getCity(props.city) }</span>
             </div>
 
             { (props.problems.length > 0 || props.record === null) &&

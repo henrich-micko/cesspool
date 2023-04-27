@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const AccountLink: React.FC<UserAsField> = (props) => {
-    return <Link style={{ color: "inherit" }} to={"/account/" + props.pk }>{getName(props.email)}</Link>
+    return <Link style={{ color: "inherit" }} to={"/admin/account/" + props.pk }>{getName(props.email)}</Link>
 };
 
 export default AccountLink;

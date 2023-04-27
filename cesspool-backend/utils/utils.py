@@ -88,3 +88,7 @@ def try_get_instance(model, field = None, **kwargs):
     try: output = model.objects.get(**kwargs)
     except model.DoesNotExist: return None
     return output if field == None else getattr(output, field) 
+
+
+def to_percent(value, max: int):
+    return round(100 * value / max, 2)

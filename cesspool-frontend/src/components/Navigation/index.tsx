@@ -39,7 +39,7 @@ const Navigation: React.FC = () => {
 
                             { user.permissions.includes("account.manage_account") && 
                                 <li>
-                                    <NavLink to="/account" className={({ isActive }) => (isActive ? styles.active : undefined)} >
+                                    <NavLink to="/admin/account" className={({ isActive }) => (isActive ? styles.active : undefined)} >
                                         Uživatelia
                                     </NavLink>
                                 </li>
@@ -55,8 +55,8 @@ const Navigation: React.FC = () => {
                             {/* city admin permission */}
                             { user.permissions.includes("location.be_city_admin") && 
                                 <li>
-                                    <NavLink to="/cesspool" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-                                        Moje mesto
+                                    <NavLink to="/city/" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+                                        Moje mestá
                                     </NavLink>
                                 </li> 
                             }

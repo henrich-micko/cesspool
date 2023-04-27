@@ -25,6 +25,7 @@ import UserMenuPage from "@pages/userMenu"
 import UserPage from "@pages/user";
 import CityMenuPage from "@pages/cityMenu";
 import CityPage from "@pages/city";
+import CityPageAdmin from "@pages/city/admin";
 
 
 function App() {
@@ -33,24 +34,20 @@ function App() {
       <div className="App">
         <main className="content">
             <Routes>
-                {/* <Route path="/" element={<HomeView />} />
-                <Route path="/account" element={<AccountView />} />
-                <Route path="/machine" element={<MachineView />} />
-                <Route path="/admin/machine/" element={<AdminMachineView />} />
-                <Route path="/admin/account/" element={<AdminAccountView />} />*/}
+                <Route path="/" element={<HomePage />} />
                 <Route path="/account/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route path="/account/activate/:token" element={<ActivateUserPage />} /> 
-                <Route path="/" element={<HomePage />} />
                 <Route path="/account/auth" element={<AuthPage />} />
                 <Route path="/cesspool" element={<CtuMenuPage />} />
                 <Route path="/cesspool/:code" element={<CesspoolPage />} />
                 <Route path="/account/me" element={<Account />} />
                 <Route path="/admin/cesspool/" element={<CesspoolMenuPage />} />
                 <Route path="/admin/cesspool/:code" element={<CesspoolAdminPage />} />
-                <Route path="/account/" element={<UserMenuPage />} />
-                <Route path="/account/:pk" element={<UserPage />} />
+                <Route path="/admin/account/" element={<UserMenuPage />} />
+                <Route path="/admin/account/:pk" element={<UserPage />} />
                 <Route path="/admin/city/" element={<CityMenuPage />} />
-                <Route path="/admin/city/:district/:city" element={<CityPage />} />
+                <Route path="/admin/city/:district/:title" element={<CityPageAdmin />} />
+                <Route path="/city/:district/:title" element={<CityPage />} />
             </Routes>
         </main>
 

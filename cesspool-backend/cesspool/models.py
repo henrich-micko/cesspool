@@ -1,12 +1,14 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.utils.timezone import datetime
 from django.utils.translation import gettext as _
 
 from cesspool.validators import validate_machine_code
 from cesspool.utils import generate_cesspool_code
 from cesspool.managers import RecordQuerySet
 from utils.models import ModelWithDeleteField, Notification
+from utils.utils import to_percent
 
 
 class Cesspool(ModelWithDeleteField):
@@ -19,7 +21,10 @@ class Cesspool(ModelWithDeleteField):
     )
 
     about = models.CharField(max_length = 255, blank = True, null = True)
+    
     city = models.ForeignKey("location.City", on_delete = models.SET_NULL, null = True)
+    address = models.CharField(max_length = 30, default = None, null = True)
+
     subscription = models.ForeignKey("subscription.Subscription", on_delete = models.SET_NULL, null = True, blank = True)
     subscription_expiration_date = models.DateField(null = True, blank = True)
     debug_mode = models.BooleanField(default = False)
@@ -76,6 +81,35 @@ class Cesspool(ModelWithDeleteField):
     def get_owner(self):
         try: return CesspoolToUser.objects.get(cesspool = self, is_super_owner = True).user
         except CesspoolToUser.DoesNotExist: return None
+
+    def generate_debug_records(self, days: int, freq_h: int, max_level_m: int = 25, increase: int = 0.25):
+        if not self.debug_mode:
+            self.debug_mode = True
+            self.save()
+
+        # some values
+        record = self.get_record()
+        level_m = record.level_m if record != None else 0
+        battery_v = record.battery_voltage if record != None else 0
+        created_at = record.date if record != None else timezone.now()
+
+        # go through n days and create record every freq_h
+        for i in range(days):
+            for j in range(24 // freq_h):
+                record = self.record_set.create(
+                    level_m = round(level_m, 2),
+                    level_percent = to_percent(level_m, max_level_m),
+                    battery_voltage = round(battery_v, 2),
+                    battery = to_percent(battery_v, 6),
+                    created_on_debug_mode = True
+                )
+
+                record.date = created_at
+                record.save()
+
+                level_m = level_m + increase if level_m <= max_level_m else 5
+                battery_v = battery_v - 0.25 if battery_v >= 6.0 else 6.0
+                created_at += timezone.timedelta(hours = freq_h)
 
 
 class CesspoolToUser(models.Model):

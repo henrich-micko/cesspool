@@ -197,7 +197,7 @@ CHECK_DELETE_MODELS = [
 
 # settings for mqtt
 
-USE_MQTT = not DEBUG and bool(int(environ.get("IS_MAIN", "0"), 0))
+USE_MQTT = False
 # MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
 # MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
 # MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
