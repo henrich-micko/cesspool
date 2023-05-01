@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
             </Page>
 
             <Page>
-                <h2 className={styles.pageHeader} id="install">Prevedenie inštalácií v praxi</h2>
+                <h2 className={styles.pageHeader} id="install">Inštalácia</h2>
                 
                 <div className={styles.installationBoxes}>
                     <InstallationBox 

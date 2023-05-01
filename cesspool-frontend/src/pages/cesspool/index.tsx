@@ -19,19 +19,24 @@ import { getCity } from "../../formats";
 import { Link } from "react-router-dom";
 import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn, GenerateCesspoolRecords } from "@components/CesspoolDebugMode";
 import AccountLink from "@components/AccountLink";
-
+import styled from "styled-components";
 
 const CesspoolDelete = generateDeleteItem<Cesspool>();
 const CesspoolRestore = generateRestoreItem<Cesspool>();
 
 
-const InfoPanelStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: "1.5em",
-    paddingTop: "1.5em",
-    paddingBottom: "1.5em",
+const InfoPanel = styled.div`
+    display: grid;
+    grid-gap: 1rem;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+
+    @media (max-width: 700px) {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }
 }
+`;
 
 
 const CesspoolAdminPage: React.FC = () => {
@@ -92,7 +97,7 @@ const CesspoolAdminPage: React.FC = () => {
                 </LinkWrapper>
             </SpaceBetweenWrapper>
 
-            <div style={InfoPanelStyle}>
+            <InfoPanel>
                 { 
                     cesspool && cesspool.record &&
                     <>
@@ -105,7 +110,7 @@ const CesspoolAdminPage: React.FC = () => {
                             problems={cesspool.problems} />
                     </>
                 }
-            </div>
+            </InfoPanel>
 
             { 
                 cesspool && cesspool.record

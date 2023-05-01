@@ -3,13 +3,15 @@ import Navigation from "@components/Navigation";
 import useAxios from "@hooks/useAxios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import Page, { HelpText, IconWrapper, PageHeader } from "@components/Page";
 import AuthContext from "@context/AuthContext";
 import { CesspoolToUser } from "@types";
 import CtuBox from "@components/CtuBox";
-import ItemWrapper from "@components/ItemWrapper";
+import { generateItemWrapper } from "@components/ItemWrapper";
+
+
+const ItemWrapper = generateItemWrapper(900);
 
 
 const CtuMenuPage: React.FC = () => {
@@ -38,7 +40,7 @@ const CtuMenuPage: React.FC = () => {
             <Navigation />
 
             <PageHeader>
-                <HelpText>Žumpy ktoré Vám su pridelene, <Link to="/contact/"> chybaju dáke?</Link></HelpText>
+                <HelpText>Žumpy ktoré Vám su pridelene, <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={(e) => {window.location.href ='mailto:example@email.com';}}> chybaju dáke?</span></HelpText>
                 <IconWrapper>
                     <FontAwesomeIcon icon={faRefresh} onClick={fetchItems} />
                 </IconWrapper>

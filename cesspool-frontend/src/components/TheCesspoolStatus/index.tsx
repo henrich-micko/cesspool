@@ -15,7 +15,7 @@ interface _TheCesspoolStatus {
 
 const TheCesspoolStatus: React.FC<_TheCesspoolStatus> = (props) => {
     return (
-        <TheBox style={{ "width": "100%" }}>
+        <TheBox style={{ "width": "auto" }}>
             <div className={styles.wrapper}>
                 <div>
                     <TheCpWrapper label="Hladina">

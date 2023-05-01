@@ -1,6 +1,6 @@
 import React from "react";
 import TheBox, { TheBoxHeader } from "@components/TheBox";
-import { faBook, faFlag, faSmile, faWarning } from "@fortawesome/free-solid-svg-icons";
+import { faFlag, faWarning } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "@components/TheCesspoolProblems/styles.module.scss";
 import { red } from "../../settings";
@@ -45,7 +45,7 @@ export default TheCesspoolProblems;
 
 export const TheCesspoolProblemsBox: React.FC<_TheCesspoolProblems> = (props) => {
     return (
-        <TheBox style={{ "width": "100%" }}>
+        <TheBox style={{ "width": "auto" }}>
             <TheBoxHeader style={{ "textAlign": "left", "margin": 0 }}>Problémy</TheBoxHeader>
             <TheCesspoolProblems problems={props.problems} showNotProblems={true} />
         </TheBox>

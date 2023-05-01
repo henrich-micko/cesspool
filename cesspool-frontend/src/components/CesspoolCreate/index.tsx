@@ -1,7 +1,7 @@
 import TheForm from "@components/TheForm";
 import { TheButtonInput, TheButtonWrapper } from "@components/TheButton";
 import TheError from "@components/TheError";
-import TheInput, { onChangeSetState } from "@components/TheInput";
+import TheInput, { onChangeSetState, TheInputLabel, TheInputWrapper } from "@components/TheInput";
 import useAxios from "@hooks/useAxios";
 import React from "react";
 import { Cesspool } from "@types";
@@ -84,7 +84,11 @@ const CesspoolCreate: React.FC<_CesspoolCreate> = (props) => {
                 onDistrictChange={value => { setDistrict(value); setError(null) }}
             />
 
-            <TheSubInput defaultSub={sub ? sub : 1} onChange={setSub}/>
+
+            <TheInputWrapper style={{ alignItems: "center", justifyContent: "left" }}>
+                <TheInputLabel>Predplatné: </TheInputLabel>
+                <TheSubInput defaultSub={sub ? sub : 1} onChange={setSub}/>
+            </TheInputWrapper>
 
             {
                 error && <TheError>{error}</TheError>

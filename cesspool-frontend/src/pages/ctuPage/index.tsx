@@ -13,15 +13,21 @@ import TheCesspoolStatus from "@components/TheCesspoolStatus";
 import { TheCesspoolProblemsBox } from "@components/TheCesspoolProblems";
 import TheCesspoolUsers from "@components/TheCesspoolUsers";
 import { HelpText, IconWrapper, PageHeader, Title } from "@components/Page";
+import styled from "styled-components";
 
 
-const InfoPanelStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: "1.5em",
-    paddingTop: "1.5em",
-    paddingBottom: "1.5em",
+const InfoPanel = styled.div`
+    display: grid;
+    grid-gap: 1rem;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+
+    @media (max-width: 700px) {
+        grid-template-columns: repeat(1, minmax(200px, 1fr));
+    }
 }
+`;
 
 
 const CtuPage: React.FC = () => {
@@ -69,7 +75,7 @@ const CtuPage: React.FC = () => {
                 </HelpText>
             }
 
-            <div style={InfoPanelStyle}>
+            <InfoPanel>
                 { ctu && ctu.cesspool.record &&
                     <>
                         <TheCesspoolStatus
@@ -82,7 +88,7 @@ const CtuPage: React.FC = () => {
                         <TheCesspoolProblemsBox problems={ getProblems() } />
                     </>
                 }
-            </div>
+            </InfoPanel>
 
             {/* popups */}
             {

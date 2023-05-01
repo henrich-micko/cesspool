@@ -1,5 +1,5 @@
 import AccountCreate from "@components/AccountCreate";
-import ItemWrapper from "@components/ItemWrapper";
+import { generateItemWrapper } from "@components/ItemWrapper";
 import Navigation from "@components/Navigation";
 import Page, { IconWrapper, PageHeader } from "@components/Page";
 import PopupWin from "@components/PopupWin";
@@ -13,6 +13,9 @@ import translate from "@permissions/translate";
 import { User } from "@types";
 import React from "react";
 import { Navigate } from "react-router-dom";
+
+
+const ItemWrapper = generateItemWrapper(700);
 
 
 const AccountMenu: React.FC = () => {
