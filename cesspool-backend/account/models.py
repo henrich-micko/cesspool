@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
-from django.conf import settings
+from django.contrib.auth.models import Group
 
 from account.managers import UserAccountManager
 from account.utils import generate_activate_user_code, generate_reset_password_code
@@ -37,6 +37,11 @@ class UserAccount(AbstractBaseUser, PermissionsMixin, ModelWithDeleteField):
     
     def get_groups(self):
         return self.groups.all()
+    
+    def has_group(self, group_name):
+        try: Group.objects.get(user = self, name = group_name)
+        except Group.DoesNotExist: return False
+        return True
     
     def get_permissions(self):
         permissions = [

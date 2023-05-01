@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import Navigation from "@components/Navigation";
 import useAxios from "@hooks/useAxios";
-import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { Navigate } from "react-router-dom";
-import Page from "@components/Page";
+import Page, { IconWrapper, PageHeader } from "@components/Page";
 import AuthContext from "@context/AuthContext";
 import { Cesspool } from "@types";
 import CesspoolBox from "@components/CesspoolBox";
@@ -62,13 +61,13 @@ const CesspoolMenuPage: React.FC = () => {
 
             <Navigation />
 
-            <div className={styles.header}>
+            <PageHeader>
                 <SearchBar onChange={handleFilter}/>
-                <div className={styles.iconWrapper}>
-                    <FontAwesomeIcon className={styles.icon} icon={faPlusCircle} onClick={() => setCesspoolCreatePop(true)}/>
-                    <FontAwesomeIcon className={styles.icon} icon={faRefresh} onClick={fetchItems}/>
-                </div>
-            </div>
+                <IconWrapper>
+                    <FontAwesomeIcon icon={faPlusCircle} onClick={() => setCesspoolCreatePop(true)}/>
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchItems}/>
+                </IconWrapper>
+            </PageHeader>
 
             <ItemWrapper>
                 { items.length > 0 && getCurrentItems().map((item, index) => 

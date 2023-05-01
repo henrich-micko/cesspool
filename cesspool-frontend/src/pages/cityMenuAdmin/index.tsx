@@ -14,7 +14,7 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 
-const CityMenu: React.FC = () => {
+const CityMenuAdmin: React.FC = () => {
     const [items, setItems] = React.useState<City[]>([]);
     const [filteredItem, setFilteredItem] = React.useState<City[]|null>(null);
     const [redirectTo, setRedirectTo] = React.useState<string|null>(null);
@@ -24,7 +24,7 @@ const CityMenu: React.FC = () => {
     const axios = useAxios();
     
     const fetchItems = () => {
-        axios.get("location/city/")
+        axios.get("admin/location/city/")
                 .then(res => setItems(res.data))
                 .catch(err => {});
     }
@@ -54,7 +54,7 @@ const CityMenu: React.FC = () => {
     return (
         <Page>
             {/* check for permission */}
-            {  user && !user.permissions.includes("location.be_city_admin") && <Navigate to="/" /> }
+            {  user && !user.permissions.includes("cesspool.manage_cesspool") && <Navigate to="/" /> }
 
             {/* check redirection */}
             { redirectTo !== null && <Navigate to={redirectTo.toString()} /> }
@@ -95,4 +95,4 @@ const CityMenu: React.FC = () => {
     )
 }
 
-export default CityMenu;
+export default CityMenuAdmin;

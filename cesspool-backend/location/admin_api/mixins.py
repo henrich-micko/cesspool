@@ -10,4 +10,16 @@ class CityAdminMixin(MultipleFieldLookupMixin):
     lookup_fields = ["district", "title"]
 
     def get_queryset(self):
-        return City.objects.all()
+        manager_filter = self.request.GET.get("manager")
+        created_by_filter = self.request.GET.get("created_by")
+        queryset = City.objects.all()
+
+        if manager_filter:
+            try: queryset = queryset.filter(manager = int(manager_filter))
+            except ValueError: pass
+
+        if created_by_filter:
+            try: queryset = queryset.filter(created_by = int(created_by_filter))
+            except ValueError: pass
+
+        return queryset

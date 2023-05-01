@@ -6,40 +6,27 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from account.admin_api.serializers import UserAccountAdminSerializer
-from account import models, tasks
 from utils.generics import RestoreModelAPIView
-from utils.permission import has_user_permission
 from utils.utils import generate_code
+from account.admin_api.mixins import AccountAdminMixin
+from cesspool.models import Cesspool
+from account.models import UserAccount
+from location.models import City
 
 
-class ListUserAccountAPIView(ListAPIView):
-    permission_classes = has_user_permission("account.manage_account")
-    serializer_class = UserAccountAdminSerializer
-
-    def get_queryset(self):
-        return models.UserAccount.objects.all()
+class ListUserAccountAPIView(AccountAdminMixin, ListAPIView):
+    pass
     
 
-class RUDUserAccountAPIView(RetrieveUpdateDestroyAPIView):
-    permission_classes = has_user_permission("account.manage_account")
-    serializer_class = UserAccountAdminSerializer
-    lookup_field = "pk"
-
-    def get_queryset(self):
-        return models.UserAccount.objects.all()
-    
-
-class RestoreUserAccountAPIView(RestoreModelAPIView):
-    permission_classes = has_user_permission("account.manage_account")
-    serializer_class = UserAccountAdminSerializer
-    lookup_field = "pk"
-
-    def get_queryset(self):
-        return models.UserAccount.objects.all()
+class RUDUserAccountAPIView(AccountAdminMixin, RetrieveUpdateDestroyAPIView):
+    pass
 
 
-class CreateUserAccountAPIView(APIView):
-    permission_classes = has_user_permission("account.manage_account")
+class RestoreUserAccountAPIView(AccountAdminMixin, RestoreModelAPIView):
+    pass
+
+
+class CreateUserAccountAPIView(AccountAdminMixin, APIView):
 
     def post(self, request):
         serializer = UserAccountAdminSerializer(data = request.data)
@@ -54,8 +41,34 @@ class CreateUserAccountAPIView(APIView):
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
     
 
-class GroupsAPIView(APIView):
-    permission_classes = has_user_permission("account.manage_account")
-
+class GroupsAPIView(AccountAdminMixin, APIView):
     def get(self, request):
         return Response(settings.USER_GROUPS.keys(), status = status.HTTP_200_OK)
+    
+
+class CreatedByAPIView(AccountAdminMixin, APIView):
+    def get(self, request, pk: int):
+        output = []
+
+        for c in Cesspool.objects.filter(created_by = pk):
+            output.append({
+                "pk": c.pk,
+                "title": c.code,
+                "model": "cesspool.Cesspool",
+            })
+
+        for a in UserAccount.objects.filter(created_by = pk):
+            output.append({
+                "pk": a.pk,
+                "title": a.email,
+                "model": "account.UserAccount",
+            })
+        
+        for c in City.objects.filter(created_by = pk):
+            output.append({
+                "pk": c.pk,
+                "title": c.district+"/"+c.title,
+                "model": "location.City",
+            })
+
+        return Response(output, status = status.HTTP_200_OK)

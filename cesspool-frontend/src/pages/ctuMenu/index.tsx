@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import Navigation from "@components/Navigation";
 import useAxios from "@hooks/useAxios";
-import styles from "./styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import Page from "@components/Page";
+import Page, { HelpText, IconWrapper, PageHeader } from "@components/Page";
 import AuthContext from "@context/AuthContext";
 import { CesspoolToUser } from "@types";
 import CtuBox from "@components/CtuBox";
@@ -38,17 +37,15 @@ const CtuMenuPage: React.FC = () => {
 
             <Navigation />
 
-            <div className={styles.header}>
-                <p className={styles.help}>Žumpy ktoré Vám su pridelene, <Link to="/contact/"> chybaju dáke?</Link></p>
-                <FontAwesomeIcon 
-                    className={styles.refresh} 
-                    icon={faRefresh} 
-                    onClick={fetchItems}
-                />
-            </div>
+            <PageHeader>
+                <HelpText>Žumpy ktoré Vám su pridelene, <Link to="/contact/"> chybaju dáke?</Link></HelpText>
+                <IconWrapper>
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchItems} />
+                </IconWrapper>
+            </PageHeader>
 
             <ItemWrapper>
-                { items.map((item, index) => 
+                { items.map(item => 
                     <CtuBox
                         pk={item.pk}
                         code={item.cesspool.code}

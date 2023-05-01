@@ -13,6 +13,7 @@ class CesspoolAdminMixin:
     def get_queryset(self):
         user_filter = self.request.GET.get("user") # owner my bad sry
         location_filter = self.request.GET.get("city")
+        created_by = self.request.GET.get("created_by")
         cesspool_queryset = Cesspool.objects.all()        
 
         if user_filter:
@@ -27,6 +28,10 @@ class CesspoolAdminMixin:
                     city__title = city,
                     city__district = district
                 )
+
+        if created_by:
+            try: cesspool_queryset = cesspool_queryset.filter(created_by = int(created_by))
+            except ValueError: pass
 
         return cesspool_queryset            
             

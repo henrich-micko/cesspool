@@ -127,14 +127,6 @@ class CesspoolToUser(models.Model):
 
     def __str__(self):
         return f"{self.cesspool} to {self.user}"
-
-    # def delete(self, *args, **kwargs):        
-    #     if self.is_owner:
-    #         new_owner = CesspoolToUser.objects.filter(user = self.user, cesspool = self.cesspool, is_owner = False).first()
-    #         if new_owner != None:
-    #             new_owner.is_owner = True
-    #             new_owner.save()
-    #     return super().delete(*args, **kwargs)
         
     def doctor(self):
         level = self.cesspool.get_record("level")

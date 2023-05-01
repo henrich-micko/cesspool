@@ -1,6 +1,6 @@
 import TheBox from "@components/TheBox";
 import { Cesspool, Record, UserAsField } from "@types";
-import { getCity, getName } from "../../formats";
+import { getCity } from "../../formats";
 import React from "react";
 import styles from "./styles.module.scss";
 import TheBattery from "@components/TheBattery";

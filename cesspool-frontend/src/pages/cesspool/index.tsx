@@ -1,115 +1,195 @@
 import React, { useState } from "react";
-import { Cesspool, CesspoolToUser, SimpleCesspoolToUser } from "@types";
-import { useParams } from "react-router-dom";
+import { Cesspool } from "@types";
+import { Navigate, useParams } from "react-router-dom";
 import useAxios from "@hooks/useAxios";
-import { IsAuthenticatedView } from "@permissions/Authenticated";
 import Navigation from "@components/Navigation";
-import styles from "@pages/cesspool/styles.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRefresh, faSliders, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faBug, faFlag, faMoneyCheck, faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
 import PopupWin from "@components/PopupWin";
-import CtuSettings from "@components/CtuSettings";
 import CesspoolChart from "@components/CesspoolChart";
 import TheCesspoolStatus from "@components/TheCesspoolStatus";
 import { TheCesspoolProblemsBox } from "@components/TheCesspoolProblems";
-import TheCesspoolUsers from "@components/TheCesspoolUsers";
+import AuthContext from "@context/AuthContext";
+import Page, { HelpText, IconWrapper, LinkWrapper, PageHeader, SpaceBetweenWrapper, Title } from "@components/Page";
+import CesspoolSettings from "@components/CesspoolSettings";
+import SubCalendar from "@components/SubCalendar";
+import { red } from "../../settings";
+import generateDeleteItem, { generateRestoreItem } from "@components/DeleteItem";
+import { getCity } from "../../formats";
+import { Link } from "react-router-dom";
+import { CesspoolDebugModeTurnOff, CesspoolDebugModeTurnOn, GenerateCesspoolRecords } from "@components/CesspoolDebugMode";
+import AccountLink from "@components/AccountLink";
 
 
-const CesspoolPage: React.FC = () => {
-    const [ctu, setCtu] = useState<CesspoolToUser|null>(null);
-    const [ctuSettingsPop, setCtuSettingsPop] = useState<boolean>(false);
-    const [ctuUsersPop, setCtuUsersPop] = useState<boolean>(false);
+const CesspoolDelete = generateDeleteItem<Cesspool>();
+const CesspoolRestore = generateRestoreItem<Cesspool>();
+
+
+const InfoPanelStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "1.5em",
+    paddingTop: "1.5em",
+    paddingBottom: "1.5em",
+}
+
+
+const CesspoolAdminPage: React.FC = () => {
+    const [cesspool, setCesspool] = useState<Cesspool|null>(null);
+
+    const [cesspoolSettingsPop, setCesspoolSettingsPop] = useState<boolean>(false);
+    const [cesspoolSubPop, setCesspoolSubPop] = useState<boolean>(false);
+    const [cesspoolDeletePop, setCesspoolDeletePop] = useState<boolean>(false);
+    const [cesspoolDebugPop, setCesspoolDebugPop] = useState<boolean>(false);
+    const [cesspoolGenerateRecordsPop, setCesspoolGenerateRecordsPop] = useState<boolean>(false);
 
     const { code } = useParams();
+    const { user } = React.useContext(AuthContext);
+
     const axios = useAxios();
 
     const fetchData = () => {
-        axios.get("cesspool/c/" + code)
-             .then(res => setCtu(res.data))
+        axios.get("admin/cesspool/c/" + code)
+             .then(res => setCesspool(res.data))
              .catch(err => {})
-    };
-
-    const getProblems = (): string[] => {
-        if (ctu && ctu.cesspool.record && ctu.contact_at_level <= ctu.cesspool.record.level_percent)
-            return [...ctu.cesspool.problems, "Vysoka hladina odpadu."];
-        return ctu ? ctu.cesspool.problems : [];
-    };
+    }
 
     React.useEffect(fetchData, []);
 
     return (
-        <IsAuthenticatedView>
+        <Page>
+             {/* check for permission */}
+             {  user && !user.permissions.includes("cesspool.manage_cesspool") && <Navigate to="/" /> }
+
+
             <Navigation />
 
-            <div className={styles.header}>
-                <h1>
-                    { ctu !== null 
-                        ? ctu.title !== null ? ctu.title : ctu.cesspool.code
-                        : ":.." }
-                </h1>
+            <PageHeader>
+                <Title>{ cesspool ? cesspool.code : "..." }</Title>
 
-                <div className={styles.tools}>
-                    <FontAwesomeIcon icon={faSliders} onClick={() => setCtuSettingsPop(true)} color={ ctuSettingsPop ? "white" : undefined } />
-                    { ctu && ctu.is_super_owner && <FontAwesomeIcon icon={faUsers} onClick={() => setCtuUsersPop(true)} color={ ctuUsersPop ? "white" : undefined } /> }
+                <IconWrapper>
+                    <FontAwesomeIcon icon={faMoneyCheck} onClick={() => setCesspoolSubPop(true)} />
+                    <FontAwesomeIcon icon={faSliders} onClick={() => setCesspoolSettingsPop(true)} />
+                    <FontAwesomeIcon icon={faBug} color={cesspool?.debug_mode ? red : undefined} onClick={() => setCesspoolDebugPop(true)} />
+                    { 
+                        cesspool?.debug_mode && 
+                        <FontAwesomeIcon icon={faFlag} onClick={() => setCesspoolGenerateRecordsPop(true)} />
+                    }
+                    <FontAwesomeIcon icon={faTrash} onClick={() => setCesspoolDeletePop(true)} />
                     <FontAwesomeIcon icon={faRefresh} onClick={fetchData} />
-                </div>
-            </div>
+                </IconWrapper>
+            </PageHeader>
 
-            { ctu && ctu.is_super_owner && 
-                <p className={styles.help}>
-                    Ako správca žumpy možte pridať použivateľov, kliknite na ikonu uživatelia.
-                </p> 
-            }
+            <SpaceBetweenWrapper>
+                <HelpText>
+                    { cesspool ? <span>{cesspool.about}</span> : "..." }
+                </HelpText>
 
-            <div className={styles.infoPanel}>
-                { ctu && ctu.cesspool.record &&
+                <LinkWrapper>
+                    { cesspool?.city && <Link to={"/admin/city/" + cesspool?.city}>{ cesspool ? getCity(cesspool.city) : "..." }</Link>}
+                    { cesspool && cesspool.created_by && <span>Vytvoril <AccountLink {...cesspool.created_by} /></span> }
+                    { cesspool && cesspool.owner && <span>Vlastní <AccountLink {...cesspool.owner} /></span> }
+                </LinkWrapper>
+            </SpaceBetweenWrapper>
+
+            <div style={InfoPanelStyle}>
+                { 
+                    cesspool && cesspool.record &&
                     <>
                         <TheCesspoolStatus
-                            levelPercent={ctu.cesspool.record.level_percent}
-                            levelMeter={ctu.cesspool.record.level_m}
-                            batteryVolt={ctu.cesspool.record.battery_voltage}
-                            battery={ctu.cesspool.record.battery}
-                        />
-                        
-                        <TheCesspoolProblemsBox problems={ getProblems() } />
+                            levelPercent={cesspool.record.level_percent}
+                            levelMeter={cesspool.record.level_m}
+                            batteryVolt={cesspool.record.battery_voltage}
+                            battery={cesspool.record.battery} />
+                        <TheCesspoolProblemsBox
+                            problems={cesspool.problems} />
                     </>
                 }
             </div>
 
+            { 
+                cesspool && cesspool.record
+                ? <CesspoolChart code={cesspool.code} mqttMessages={cesspool.debug_mode} />
+                : <div>Zatial žiadne záznamy...</div>
+            }
+
             {/* popups */}
             {
-                ctuSettingsPop && ctu &&
-                <PopupWin label="Nastavenia" close={() => setCtuSettingsPop(false)}>
-                    <CtuSettings 
-                        pk={ctu.pk} 
-                        code={ctu.cesspool.code}
-                        title={ctu.title}
-                        contact_at_level={ctu.contact_at_level}
+                cesspoolSettingsPop && cesspool &&
+                <PopupWin label="Nastavenia" close={() => setCesspoolSettingsPop(false)}>
+                    <CesspoolSettings
+                        pk={cesspool.pk}
+                        code={cesspool.code}
+                        city={cesspool.city}
+                        owner={cesspool.owner ? cesspool.owner.email : null}
+                        subPk={cesspool.subscription.pk}
+                        about={cesspool.about}
                         onUpdate={(ctu) => {
-                            setCtu(ctu);
-                            setCtuSettingsPop(false);
+                            setCesspool(ctu);
+                            setCesspoolSettingsPop(false);
                         }}
                     />
                 </PopupWin>
             }
 
-            { 
-                ctuUsersPop && ctu && ctu.cesspool_users &&
-                <PopupWin label="Použivatelia" close={() => setCtuUsersPop(false)}>
-                    <TheCesspoolUsers max={ctu.cesspool.subscription.max_owners} code={ctu.cesspool.code} users={ctu.cesspool_users} onUpdate={(ctu) => {
-                        setCtu(ctu);
-                        setCtuUsersPop(false);
-                    }} />
+            {
+                cesspoolSubPop && cesspool &&
+                <PopupWin label="Koniec predplatneho" close={() => setCesspoolSubPop(false)}>
+                    <SubCalendar
+                        value={cesspool.subscription_expiration_date}
+                        code={cesspool.code}
+                        setCesspool={(c) => { setCesspool(c); setCesspoolSubPop(false)}}
+                    />
                 </PopupWin>
             }
 
-            { ctu && ctu.cesspool.record
-                ? <CesspoolChart code={ctu.cesspool.code} /> 
-                : <div className={styles.noRecords}>Zatial žiadne záznamy...</div>
+            {
+                cesspoolDeletePop && cesspool &&
+                <PopupWin label={ cesspool.delete_at ? "Obnoviť" : "Odstrániť" } close={() => setCesspoolDeletePop(false)}>
+                    {
+                        cesspool.delete_at
+                        ?<CesspoolRestore
+                            title={"Žumpa"}
+                            url={"admin/cesspool/c/" + code + "/restore"}
+                            deleteAt={cesspool.delete_at}
+                            onRestore={ctu => {
+                                setCesspool(ctu);
+                                setCesspoolDeletePop(false);
+                            }}
+                        />
+
+                        :<CesspoolDelete
+                            title="Žumpu"
+                            url={"admin/cesspool/c/" + code}
+                            onDelete={(ctu) => {
+                                fetchData();
+                                setCesspoolDeletePop(false);
+                            }} />
+                        }
+                </PopupWin>
             }
 
-        </IsAuthenticatedView>
+            {
+                cesspool && cesspoolGenerateRecordsPop &&
+                <PopupWin label="Generovať záznamy" close={() => setCesspoolGenerateRecordsPop(false)}>
+                    <GenerateCesspoolRecords code={cesspool.code} onSubmit={() => setCesspoolGenerateRecordsPop(false)} />
+                </PopupWin>
+            }
+
+            {
+                cesspool && cesspoolDebugPop &&
+                <PopupWin label={cesspool.debug_mode ? "Vypnuť debug mode" : "Zanpuť debug mode"} close={() => setCesspoolDebugPop(false)}>
+                    {
+                        cesspool.debug_mode === false
+                        ? <CesspoolDebugModeTurnOn code={cesspool.code} onUpdate={c => { setCesspool(c); setCesspoolDebugPop(false) }} />
+                        : <CesspoolDebugModeTurnOff code={cesspool.code} onUpdate={c => { setCesspool(c); setCesspoolDebugPop(false) }} />
+                    }
+                </PopupWin>
+            }
+
+            <br />
+        </Page>
     )
 }
 
-export default CesspoolPage;
+export default CesspoolAdminPage;

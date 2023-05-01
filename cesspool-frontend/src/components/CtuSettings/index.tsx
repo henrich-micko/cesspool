@@ -1,7 +1,7 @@
 import TheForm from "@components/TheForm";
 import { TheButtonInput, TheButtonWrapper } from "@components/TheButton";
 import TheError from "@components/TheError";
-import TheInput, { onChangeSetState } from "@components/TheInput";
+import TheInput, { onChangeSetState, TheInputLabel, TheInputWrapper } from "@components/TheInput";
 import useAxios from "@hooks/useAxios";
 import React, { useState } from "react";
 import { CesspoolToUser } from "@types";
@@ -32,25 +32,33 @@ const CtuSettings: React.FC<_CtuSettings> = (props) => {
 
     return (
         <TheForm onSubmit={handleSubmit}>
-            <TheInput
-                autoFocus
-                type="text"
-                spellCheck={false}
-                placeholder="Názov"
-                value={title}
-                onChange={onChangeSetState(setTitle, setError)} 
-                required={true}
-            />
+            <TheInputWrapper>
+                <TheInputLabel>Názov: </TheInputLabel>
+                <TheInput
+                    autoFocus
+                    type="text"
+                    spellCheck={false}
+                    placeholder="Názov"
+                    value={title}
+                    maxLength={15}
+                    onChange={onChangeSetState(setTitle, setError)} 
+                    required={true}
+                />
+            </TheInputWrapper>
 
-            <TheInput
-                autoFocus
-                type="number"
-                spellCheck={false}
-                placeholder="Kontaktovať pri hladine"
-                value={contactAtLevel}
-                onChange={onChangeSetState(setContactAtLevel, setError)} 
-                required={true}
-            />
+            <TheInputWrapper>
+                <TheInputLabel>Varovať pri hladine: </TheInputLabel>
+                <TheInput
+                    autoFocus
+                    type="number"
+                    spellCheck={false}
+                    placeholder="Kontaktovať pri hladine"
+                    value={contactAtLevel}
+                    onChange={onChangeSetState(setContactAtLevel, setError)} 
+                    required={true}
+                    style={{width: "4em"}}
+                />
+            </TheInputWrapper>
 
             {
                 error && <TheError>Nepodarilo sa nastaviť.</TheError>

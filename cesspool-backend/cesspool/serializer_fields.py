@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from cesspool.models import CesspoolToUser, Record
 from subscription.validators import validate_subscription
-from utils.utils import getattr_by_path, is_history
+from utils.utils import getattr_by_path, is_history, get_group_by_name
 from account.models import UserAccount
 
 
@@ -36,10 +36,12 @@ class CesspoolUsersField(serializers.ListField):
             if user_created:
                 user.is_active = False
                 user.save()
-            else:
-                if not user.has_perm("cesspool.related_to_cesspool"):
-                    continue
             
+            if not user.has_group("client"):
+                group = get_group_by_name("client")
+                if group != None: 
+                    user.groups.add(group)
+
             CesspoolToUser.objects.get_or_create(cesspool = cesspool, user = user)
             appended_users.append(user.pk)
 

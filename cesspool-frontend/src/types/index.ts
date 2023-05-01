@@ -88,3 +88,10 @@ export interface City {
     manager: UserAsField;
     created_by: UserAsField|null;
 }
+
+
+export interface CreatedByItem {
+    pk: number;
+    title: string|number;
+    model: string;
+}

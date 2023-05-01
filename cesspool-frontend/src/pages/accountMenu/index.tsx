@@ -1,9 +1,9 @@
 import AccountCreate from "@components/AccountCreate";
+import ItemWrapper from "@components/ItemWrapper";
 import Navigation from "@components/Navigation";
-import Page from "@components/Page";
+import Page, { IconWrapper, PageHeader } from "@components/Page";
 import PopupWin from "@components/PopupWin";
 import SearchBar from "@components/SearchBar";
-import TheBox, { TheBoxMin } from "@components/TheBox";
 import UserBox from "@components/UserBox";
 import AuthContext from "@context/AuthContext";
 import { faPlusCircle, faRefresh } from "@fortawesome/free-solid-svg-icons";
@@ -13,10 +13,9 @@ import translate from "@permissions/translate";
 import { User } from "@types";
 import React from "react";
 import { Navigate } from "react-router-dom";
-import styles from "./styles.module.scss";
 
 
-const UserMenuPage: React.FC = () => {
+const AccountMenu: React.FC = () => {
     const [items, setItems] = React.useState<User[]>([]);
     const [filteredItem, setFilteredItem] = React.useState<User[]|null>(null);
     const [redirectTo, setRedirectTo] = React.useState<number|null>(null);
@@ -62,15 +61,15 @@ const UserMenuPage: React.FC = () => {
 
             <Navigation />
 
-            <div className={styles.header}>
+            <PageHeader>
                 <SearchBar onChange={handleFilter}/>
-                <div className={styles.iconWrapper}>
-                    <FontAwesomeIcon className={styles.icon} icon={faPlusCircle} onClick={() => setCreatePop(true)}/>
-                    <FontAwesomeIcon className={styles.icon} icon={faRefresh} onClick={fetchItems}/>
-                </div>
-            </div>
+                <IconWrapper>
+                    <FontAwesomeIcon icon={faPlusCircle} onClick={() => setCreatePop(true)}/>
+                    <FontAwesomeIcon icon={faRefresh} onClick={fetchItems}/>
+                </IconWrapper>
+            </PageHeader>
 
-            <div className={styles.wrapper}>
+            <ItemWrapper>
                 { items.length > 0 && getCurrentItems().map((item, index) => 
                     <UserBox
                         pk={item.pk}
@@ -83,7 +82,7 @@ const UserMenuPage: React.FC = () => {
                         onClick={setRedirectTo}
                     />
                 )}
-            </div>
+            </ItemWrapper>
 
             {
                 createPop &&
@@ -98,4 +97,4 @@ const UserMenuPage: React.FC = () => {
     )
 }
 
-export default UserMenuPage;
+export default AccountMenu;

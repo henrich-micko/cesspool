@@ -5,7 +5,7 @@ import csv
 
 
 class City(ModelWithDeleteField):
-    manager = models.ForeignKey("account.UserAccount", on_delete = models.CASCADE, null = True)
+    manager = models.ForeignKey("account.UserAccount", on_delete = models.SET_NULL, null = True)
     
     title = models.CharField(max_length = 25)
     district = models.CharField(max_length = 25)

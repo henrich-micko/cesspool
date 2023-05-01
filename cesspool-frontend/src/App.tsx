@@ -18,14 +18,15 @@ import ResetPasswordPage from "@pages/resetPassword";
 import ActivateUserPage from "@pages/activateUser";
 import CtuMenuPage from "@pages/ctuMenu";
 import CesspoolMenuPage from "@pages/cesspoolMenu";
-import CesspoolPage from "@pages/cesspool";
+import CtuPage from "@pages/ctuPage";
 import Account from "@pages/account";
-import CesspoolAdminPage from "@pages/cesspool/admin";
-import UserMenuPage from "@pages/userMenu"
-import UserPage from "@pages/user";
-import CityMenuPage from "@pages/cityMenu";
+import CesspoolAdminPage from "@pages/cesspool";
+import AccountMenu from "@pages/accountMenu"
+import AccountPage from "@pages/accountPage";
+import CityMenuAdmin from "@pages/cityMenuAdmin";
 import CityPage from "@pages/city";
-import CityPageAdmin from "@pages/city/admin";
+import CityPageAdmin from "@pages/cityPageAdmin";
+import CityMenu from "@pages/cityMenu";
 
 
 function App() {
@@ -35,18 +36,23 @@ function App() {
         <main className="content">
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                
                 <Route path="/account/reset-password/:token" element={<ResetPasswordPage />} />
                 <Route path="/account/activate/:token" element={<ActivateUserPage />} /> 
                 <Route path="/account/auth" element={<AuthPage />} />
-                <Route path="/cesspool" element={<CtuMenuPage />} />
-                <Route path="/cesspool/:code" element={<CesspoolPage />} />
                 <Route path="/account/me" element={<Account />} />
+
+                <Route path="/cesspool" element={<CtuMenuPage />} />
+                <Route path="/cesspool/:code" element={<CtuPage />} />
+                
                 <Route path="/admin/cesspool/" element={<CesspoolMenuPage />} />
                 <Route path="/admin/cesspool/:code" element={<CesspoolAdminPage />} />
-                <Route path="/admin/account/" element={<UserMenuPage />} />
-                <Route path="/admin/account/:pk" element={<UserPage />} />
-                <Route path="/admin/city/" element={<CityMenuPage />} />
+                <Route path="/admin/account/" element={<AccountMenu />} />
+                <Route path="/admin/account/:pk" element={<AccountPage />} />               
+                <Route path="/admin/city/" element={<CityMenuAdmin />} />
                 <Route path="/admin/city/:district/:title" element={<CityPageAdmin />} />
+
+                <Route path="/city/" element={<CityMenu />} />
                 <Route path="/city/:district/:title" element={<CityPage />} />
             </Routes>
         </main>

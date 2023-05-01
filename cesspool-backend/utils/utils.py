@@ -92,3 +92,9 @@ def try_get_instance(model, field = None, **kwargs):
 
 def to_percent(value, max: int):
     return round(100 * value / max, 2)
+
+
+def get_group_by_name(group_name, default = None):
+    from django.contrib.auth.models import Group
+    try: return Group.objects.get(name = group_name)
+    except Group.DoesNotExist: return default

@@ -19,6 +19,7 @@ export const TheBoxMin = styled.div`
 
 export const TheBoxHeader = styled.h2`
     margin: 0.25em;
+    font-size: 1em;
 `;
 
 export default TheBox;

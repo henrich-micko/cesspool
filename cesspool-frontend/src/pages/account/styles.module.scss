@@ -1,20 +1,7 @@
-.header {
+.wrapper {
+    margin-top: 10em;
     display: flex;
-    justify-content: space-between;
-    align-items: end;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-
-    h2 {
-        margin: 0;
-    }
-
-    .logoutButton {
-        border-bottom: 1px solid #6A718A;
-        color: #6A718A;
-    }
-
-    .logoutButton:hover {
-        border-color: white;
-        color: white;
-    }
 }

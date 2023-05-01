@@ -4,8 +4,10 @@ import Navigation from '@components/Navigation';
 import { IsAuthenticatedView } from '@permissions/Authenticated';
 import AuthContext from '@context/AuthContext';
 import { Navigate } from 'react-router-dom';
-import Page from '@components/Page';
-
+import Page, { HelpText } from '@components/Page';
+import TheBox, { TheBoxHeader } from '@components/TheBox';
+import TheDate from '@components/TheDate';
+import { TheButtonInput, TheButtonWrapper } from '@components/TheButton';
 
 const Account: React.FC = () => {
     const { user, logoutUser } = React.useContext(AuthContext);
@@ -15,12 +17,24 @@ const Account: React.FC = () => {
         <Page>
             <Navigation />
 
-            <div className={styles.header}>
-                <h2>{user.email}</h2>
-                
-                <div className={styles.logoutButton} onClick={logoutUser}>
-                    <span>Odhlasiť</span>
-                </div>
+            <div className={styles.wrapper}>
+                <TheBox style={{ width: "20em" }}>
+                    <TheBoxHeader>{user.email}</TheBoxHeader>
+                    <br/>
+                    <HelpText>Deň pridania: <TheDate date={user.date_joined.split("T").at(0)}/></HelpText>
+
+                    <TheButtonWrapper>
+                        <TheButtonInput 
+                            style={{
+                                fontSize: "1em",
+                                marginTop: "3em",
+                            }}
+                            onClick={logoutUser}
+                            type="button" 
+                            value="Odlhasiť"
+                        />
+                    </TheButtonWrapper>
+                </TheBox>
             </div>
         </Page>
     )

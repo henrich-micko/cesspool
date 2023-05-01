@@ -18,7 +18,6 @@ const TheInput = styled.input`
     border-bottom: 0.125em solid #6A718A;
     display: block;
     text-align: left;
-    margin: 0 auto 0.5em;
     width: 100%;
 `;
 
@@ -37,6 +36,11 @@ export const TheRangeInput = styled.input`
 export const TheInputWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: top;
     gap: 0.5em;
-    align-items: center;
+`;
+
+
+export const TheInputLabel = styled.span`
+    color: #6A718A;
 `;

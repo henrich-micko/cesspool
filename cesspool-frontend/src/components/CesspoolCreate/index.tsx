@@ -6,18 +6,20 @@ import useAxios from "@hooks/useAxios";
 import React from "react";
 import { Cesspool } from "@types";
 import CityInput from "@components/CityInput";
-import { getCity, getDistrict } from "../../formats";
 import TheSubInput from "@components/TheSubInput";
 
 
 interface _CesspoolCreate {
+    defaultDistrict?: string,
+    defaultCity?: string,
     onCreate(cesspool: Cesspool): void;
 }
 
+
 const CesspoolCreate: React.FC<_CesspoolCreate> = (props) => {
     const [code, setCode] = React.useState<string|null>(null);
-    const [district, setDistrict] = React.useState<string|null>(null);
-    const [city, setCity] = React.useState<string|null>(null);
+    const [district, setDistrict] = React.useState<string|null>(props.defaultDistrict !== undefined ? props.defaultDistrict : null);
+    const [city, setCity] = React.useState<string|null>(props.defaultCity !== undefined ? props.defaultCity : null);
     const [owner, setOwner] = React.useState<string|null>(null);
     const [sub, setSub] = React.useState<number>(1);
     const [about, setAbout] = React.useState<string|null>(null);
