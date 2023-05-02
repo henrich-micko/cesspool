@@ -4,6 +4,7 @@ from location import validators, models
 from location.serializer_fields import city_manager_repr_field
 from account.models import UserAccount
 from utils.serializers import MSWithListners
+from utils.utils import get_group_by_name
 
 
 class DistrictCityField(serializers.CharField):
@@ -14,7 +15,8 @@ class DistrictCityField(serializers.CharField):
 
 
 class CitySerializer(MSWithListners):
-    
+    manager = serializers.EmailField()
+
     class Meta:
         model = models.City
         fields = [
@@ -34,7 +36,8 @@ class CitySerializer(MSWithListners):
     def validate(self, attrs):
         super_output = super().validate(attrs)
         district, city = super_output.get("district"), super_output.get("title")
-        validators.district_city_validation(value = f"{district}/{city}")
+        if district and city:
+            validators.district_city_validation(value = f"{district}/{city}")
 
         return super_output
 
@@ -42,10 +45,16 @@ class CitySerializer(MSWithListners):
         manager_email = validated_data.get("manager")
 
         if manager_email != None: 
-            instance.manager = UserAccount.objects.get(email = manager_email)
+            instance.manager, created = UserAccount.objects.get_or_create(email = manager_email)
         else:
             instance.manager = None
         instance.save()
+
+        if not instance.manager.has_group("city_admin"):
+            group = get_group_by_name("city_admin")
+            if group != None: 
+                instance.manager.groups.add(group)
+
 
     def to_representation(self, instance):
         response = super().to_representation(instance)

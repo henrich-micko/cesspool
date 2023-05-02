@@ -1,11 +1,56 @@
+{% load cesspool_record %}
+
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                color: #1e1f25;
+            }
+
+            #website {
+                color: #1e1f25;
+            }
+
+            .cesspool {
+                border: 2px solid #1e1f25;
+                border-radius: 0.5em;
+                padding: 0.5em 1em;
+                min-width: 12.5em;
+                max-width: 20em;
+                margin-bottom: 2em;
+                width: fit-content;
+            }
+
+            h2 {
+                margin: 0em;
+                border-bottom: 1px solid #1e1f25;
+            }
+
+            ul {
+                padding-left: 1em;
+            }
+        </style>
     </head>
-    
     <body>
-        
+        <div>
+            <h3>
+                Na zariadeniach došlo ku týmto problemom, viac sa dozviete na <a  id=website href="{{ url }}">{{ url }}</a>.
+            </h3>
+            
+            {% for cesspool, problems in cesspool_problems.items %}
+                <div class=cesspool>
+                    <h2><a href="{{ url }}/admin/cesspool/{{ cesspool.code }}">{{ cesspool.code }}</a></h2>
+                    <ul>
+                        {% for problem in problems %}
+                            <li>{{ problem.detail }}</li>
+                        {% endfor %}
+                    </ul>
+                    <span>Hladina: {{ cesspool|get_cesspool_record_field:"level_percent" }}%</span>
+                    <span>Batéria: {{ cesspool|get_cesspool_record_field:"battery" }}%</span>
+                </div>
+            {% endfor %}
+            </div>
     </body>
 </html>

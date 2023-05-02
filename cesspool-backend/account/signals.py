@@ -12,4 +12,4 @@ def _send_activate_email(sender, instance, **kwargs):
         try: ActivateUserToken.objects.get(user = instance).delete()
         except ActivateUserToken.DoesNotExist: pass
         token = ActivateUserToken.objects.create(user = instance)
-        # send_activate_email.delay(activate_token_pk = token.pk)
+        send_activate_email.delay(activate_token_pk = token.pk)

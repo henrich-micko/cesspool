@@ -13,5 +13,10 @@ export default AccountLink;
 
 
 export const AccountContactLink: React.FC<UserAsField> = (props) => {
-    return <HelpText>Kontaktovať na <Link style={{ color: "inherit" }} to={"mailto:" + props.email}>email</Link></HelpText>
+    return <HelpText>
+                Kontaktovať na <span style={{ textDecoration: "underline", cursor: "pointer" }} onClick={(e) => {window.location.href ='mailto:'+props.email;}}> 
+                    email
+                </span>
+            </HelpText>
+
 }

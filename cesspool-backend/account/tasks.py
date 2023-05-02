@@ -6,7 +6,7 @@ from celery import shared_task
 from celery.utils.log import get_task_logger
 
 from utils.email import send_token_email
-from account.models import ActivateUserToken
+from account.models import ActivateUserToken, ResetPasswordToken
 
 
 logger = get_task_logger(__name__)
@@ -14,8 +14,7 @@ logger = get_task_logger(__name__)
 
 @shared_task
 def send_activate_email(activate_token_pk):
-    try: activate_token = ActivateUserToken.objects.get(activate_token_pk)
-    except ActivateUserToken.DoesNotExist: return
+    activate_token = ActivateUserToken.objects.get(pk = activate_token_pk)
 
     email_receiver = activate_token.user
     email_subject = _("Activate user account")
@@ -28,16 +27,16 @@ def send_activate_email(activate_token_pk):
 
 @shared_task
 def send_reset_password_token_email(token_pk):
-    # token = models.ResetPasswordToken.objects.get(pk = token_pk)
+    token = ResetPasswordToken.objects.get(pk = token_pk)
 
-    # if settings.USE_EMAIL:
-    #     html_content = render_to_string("account/reset_password_email.html", context = {"website_reset_pass": settings.REACT_HOST + "/account/reset-password/" + token.token})
-    #     send_to = token.user.email
+    if settings.USE_EMAIL:
+        html_content = render_to_string("account/reset_password_email.html", context = {"website_reset_pass": settings.REACT_HOST + "/account/reset-password/" + token.token})
+        send_to = token.user.email
         
-    #     msg = EmailMessage("Restovanie hesla", html_content, settings.EMAIL_HOST_USER, [send_to])
-    #     msg.content_subtype = "html"
-    #     msg.send()
+        msg = EmailMessage("Restovanie hesla", html_content, settings.EMAIL_HOST_USER, [send_to])
+        msg.content_subtype = "html"
+        msg.send()
+        print("xxxxx")
     
-    # else:
-    #     logger.info(f"Send reset token reset password {token} to {token.user.email}")
-    pass
+    else:
+        logger.info(f"Send reset token reset password {token} to {token.user.email}")

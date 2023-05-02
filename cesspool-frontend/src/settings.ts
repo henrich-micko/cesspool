@@ -1,4 +1,4 @@
-export const apiUrl = "http://192.168.1.151:8000/api/"
+export const apiUrl = "http://localhost:8000/api/"
 
 // my fav colors
 export const blue = "#4FACF7";

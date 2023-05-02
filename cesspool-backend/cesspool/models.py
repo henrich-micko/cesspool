@@ -54,28 +54,18 @@ class Cesspool(ModelWithDeleteField):
     # run quick scan and find problems
     def doctor(self):
         record: Record = self.get_record()
-        if not record:
-            return []
+        if not record: return []
 
-        output = []
-        is_not_responding = record.date < timezone.now() - timezone.timedelta(days = 2)
-        is_battery_low = record.battery < 3 and not is_not_responding
-        is_battery_dead = is_not_responding and record.battery < 3
+        output, scan_for = [], [CesspoolDeadBatteryProblem, CesspoolLowBatteryProblem, CesspoolNotRespondingProblem]
+        for problem_to_scan in scan_for:
+            if problem_to_scan.scan(record):
+                output.append(
+                    problem_to_scan.objects.get_or_create(cesspool = self)[0]
+                )
+            else:
+                try: problem_to_scan.objects.get(cesspool = self).delete()
+                except problem_to_scan.DoesNotExist: pass
 
-        # get || create instances of problems
-        if is_not_responding:
-            output.append(
-                CesspoolNotRespondingProblem.objects.get_or_create(cesspool = self)[0]
-            )
-        if is_battery_low:
-            output.append(
-                CesspoolLowBatteryProblem.objects.get_or_create(cesspool = self)[0]
-            )
-        if is_battery_dead:
-            output.append(
-                CesspoolDeadBatteryProblem.objects.get_or_create(cesspool = self)[0]
-            )
-        
         return output
 
     def get_owner(self):
@@ -129,10 +119,15 @@ class CesspoolToUser(models.Model):
         return f"{self.cesspool} to {self.user}"
         
     def doctor(self):
-        level = self.cesspool.get_record("level")
-
+        level = self.cesspool.get_record("level_percent")
+        print(level)
         if level != None and level > self.contact_at_level:
-            return [CesspoolHightLevelNotif.objects.get_or_create(ctu = self)]
+            print("xxx")
+            return [CesspoolHightLevelNotif.objects.get_or_create(ctu = self)[0]]
+
+        try: CesspoolHightLevelNotif.objects.get(ctu = self).delete()
+        except CesspoolHightLevelNotif.DoesNotExist: pass
+        
         return []
 
 
@@ -156,10 +151,10 @@ class Record(models.Model):
 # notif for user ( based on ctu )
 class CesspoolHightLevelNotif(Notification):
     ctu = models.ForeignKey(CesspoolToUser, on_delete = models.CASCADE)
-    detail = _("Hight level of trash.")
+    detail = _(f"Vysoka hladina odpadu.")
 
     def __str__(self):
-        f"{self.ctu}"
+        return f"{self.ctu}"
 
 
 """
@@ -173,29 +168,41 @@ are sand only all admins
 class CesspoolDeadBatteryProblem(models.Model):
     cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
     is_sand = models.BooleanField(default = False)
-    detail = _("Battery is dead.")
+    detail = _("Batéria je vybitá.")
 
     def __str__(self):
         return f"{self.cesspool}"
+    
+    @staticmethod
+    def scan(record):
+        return record.date < timezone.now() - timezone.timedelta(days = 2) and record.battery < 3
 
 
 class CesspoolLowBatteryProblem(models.Model):
     cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
     is_sand = models.BooleanField(default = False)
-    detail = _("Battery is low.")
+    detail = _("Batéria je takmer vybitá.")
 
     def __str__(self):
         return f"{self.cesspool}"
+    
+    @staticmethod
+    def scan(record):
+        return record.battery < 3 and not record.date < timezone.now() - timezone.timedelta(days = 2)
 
 
 class CesspoolNotRespondingProblem(models.Model):
     cesspool = models.ForeignKey(Cesspool, on_delete = models.CASCADE)
     is_sand = models.BooleanField(default = False)
 
+    def __str__(self):
+        return f"{self.cesspool}"
+    
     @property
     def detail(self):
         last_record_date = self.cesspool.get_record("date")
-        return _(f"Cesspool is not responding since {last_record_date.day}. {last_record_date.month}. {last_record_date.year}")
+        return _(f"Žumpa je neaktivna od {last_record_date.day}. {last_record_date.month}. {last_record_date.year}")
 
-    def __str__(self):
-        return f"{self.cesspool}"
+    @staticmethod
+    def scan(record):
+        return record.date < timezone.now() - timezone.timedelta(days = 2)

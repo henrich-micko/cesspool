@@ -193,6 +193,8 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
 CHECK_DELETE_MODELS = [
     "location.city",
+    "cesspool.cesspool",
+    "account.useraccount",
 ]
 
 # settings for mqtt
@@ -236,11 +238,23 @@ CELERY_BEAT_SCHEDULE = {
     "delete": {
         "task": "utils.tasks.check_delete_models",
         "schedule": timedelta(minutes = 1),
-    }
+    },
+
+    "admin_notf": {
+        "task": "cesspool.tasks.send_admin_cesspool_problems",
+        "schedule": timedelta(minutes = 1),
+    },
+
+    "ctu_notf": {
+        "task": "cesspool.tasks.send_client_ctu_notf",
+        "schedule": timedelta(minutes = 1),
+    },
+
+
 }
 
 # email settings
-USE_EMAIL = not DEBUG
+USE_EMAIL = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
 EMAIL_HOST_USER = environ.get("DJANGO_EMAIL_HOST_USER", "zumpomer.app@gmail.com")
