@@ -1,8 +1,14 @@
 .wrapper {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5em 0;
+    display: flex;
+
+    .menuWrapper {
+        display: flex;
+        justify-content: right;
+        width: fit-content;
+    }
 
     ul {
         display: flex;
@@ -32,5 +38,44 @@
         font-size: 2.2em;
         color: #4FACF7;
         padding: 0.5em 0;
+        float: left;
+    }
+
+    @media (max-width: 1000px) {
+       .icon {
+            float: right;
+        }
+    
+        ul {
+            background-color: #071b2c;
+            border-radius: 10px;
+            border: 2px solid #4FACF7;
+            display: none;
+            position: absolute;
+            z-index: 1;
+            margin-top: 1.5em;
+
+            a {
+                display: inline-block;
+                width: 6em;
+                text-align: left;
+                border-bottom: 1px solid #6A718A;
+                padding: 0.5em 0.7em;
+                margin: 0 0.5em;
+            }
+        }
+
+        #auth {
+            border: none;
+            border-radius: none;
+            margin-left: none;
+        }
+
+        .menuWrapper {
+            position: relative;
+            display: inline-block;
+            width: 8.5em;
+        }
+    
     }
 }

@@ -113,11 +113,8 @@ const HomePage: React.FC = () => {
                 <Navigation />
                 <div className={styles.cesspoolPoem}>
                     <em>
-                        V hĺbkach, kde jama leží,<br />
-                        systém detekuje, čo hrozí.<br />
-                        Tehnológie zázrak, splnený sen,<br />
-                        chráni domovy a odpad celý deň.<br />
-                        -- Florence Wood --
+                        Postaráme sa o Váš odpad<br/>
+                        Vaše sračky náš problem<br/>
                     </em>
                 </div>
                 

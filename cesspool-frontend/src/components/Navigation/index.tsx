@@ -4,18 +4,25 @@ import { NavLink } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 import AuthContext from "@context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faListUl } from "@fortawesome/free-solid-svg-icons";
+import { useMaxWidth } from "@hooks/useIsMobile";
 
 
 const Navigation: React.FC = () => {
+    const [showMenu, setShowMenu] = React.useState<boolean>(false);
+    const isSmall = useMaxWidth("1000px");
     const { user } = React.useContext(AuthContext);
 
     return (
         <header className={styles.wrapper}>
             <NavLink className={styles.logo} to="/">Žumpomer</NavLink>
             
-            <div className={styles.menuWrapper}>                
-                <ul>
+            <div className={styles.menuWrapper}>            
+                {
+                    isSmall &&
+                    <FontAwesomeIcon size="lg" icon={!showMenu ? faListUl : faClose} className={styles.icon} onClick={() => setShowMenu(o => o ? false : true)}/>
+                }
+                <ul style={{ display: showMenu && isSmall ? "block" : undefined }}>
                     {
                         user === null ? <>
                             <li><HashLink to="/#install">Inštalácia</HashLink></li>
