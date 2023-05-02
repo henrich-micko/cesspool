@@ -120,9 +120,7 @@ class CesspoolToUser(models.Model):
         
     def doctor(self):
         level = self.cesspool.get_record("level_percent")
-        print(level)
         if level != None and level > self.contact_at_level:
-            print("xxx")
             return [CesspoolHightLevelNotif.objects.get_or_create(ctu = self)[0]]
 
         try: CesspoolHightLevelNotif.objects.get(ctu = self).delete()

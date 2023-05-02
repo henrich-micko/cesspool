@@ -20,7 +20,6 @@ def autocomplete_district(location_file: str, value: str):
 def autocomplete_city(location_file: str, value: str, district: str = None):
     output, value = [], value.lower()
 
-    print(district)
     with open(location_file, "r") as f:
         data = json.load(f)
 

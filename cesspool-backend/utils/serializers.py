@@ -27,8 +27,6 @@ class MSWithListners(ModelSerializer):
             if not get_value_by_path(extra_kwargs, f"{k}/ignore_on_save", False)
         }
 
-        print(validated_data_for_update)
-
         update_ouptut = super().update(instance, validated_data_for_update)
         self.on_create_and_update(instance = instance, validated_data = validated_data)
         return update_ouptut

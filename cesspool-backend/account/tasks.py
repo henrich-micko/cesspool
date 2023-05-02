@@ -36,7 +36,6 @@ def send_reset_password_token_email(token_pk):
         msg = EmailMessage("Restovanie hesla", html_content, settings.EMAIL_HOST_USER, [send_to])
         msg.content_subtype = "html"
         msg.send()
-        print("xxxxx")
     
     else:
         logger.info(f"Send reset token reset password {token} to {token.user.email}")

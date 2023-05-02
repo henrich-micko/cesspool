@@ -40,8 +40,6 @@ class RecordQuerySet(QuerySet):
                 del output[-1]
 
             # on release of cesspool
-            print(record, new_records_tc_avg_level_per, records_tc_avg_level_per)
-
             if new_records_tc_avg_level_per < records_tc_avg_level_per - min_level_diff:
                 records_tc_avg_level_per = record.level_percent
                 output.append(record.date)   

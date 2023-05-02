@@ -28,10 +28,8 @@ def getattr_by_path(obj: any, path: str|list, default: any = None, split_with = 
     if type(path) != list: 
         path: list[str] = path.split(split_with)
     current: str = path.pop(0)
-    print(current, path)
 
     new_obj = getattr(obj, current, None)
-    print(new_obj)
     if new_obj == None:
         return default
     
