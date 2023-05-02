@@ -208,6 +208,7 @@ MQTT_HOST = environ.get("DJANGO_MQTT_HOST", None)
 MQTT_USERNAME = environ.get("DJANGO_MQTT_USERNAME", None)
 MQTT_PASSWORD = environ.get("DJANGO_MQTT_PASS", None)
 MQTT_TOPIC = "#"
+MQTT_INTERVAL_H = 2
 
 if environ.get("DJANGO_MQTT_PORT", False):
     MQTT_PORT = int(environ.get("DJANGO_MQTT_PORT"))

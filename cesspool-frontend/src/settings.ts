@@ -1,4 +1,4 @@
-export const apiUrl = "http://localhost:8000/api/"
+export const apiUrl = "http://backend2.zumpomer.sk/api/"
 
 // my fav colors
 export const blue = "#4FACF7";
