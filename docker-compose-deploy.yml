@@ -88,7 +88,7 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASS}
-      - REDIS_HOST=&{REDIS_HOST}
+      - REDIS_HOST=${REDIS_HOST}
     depends_on:
       - db
       - redis
@@ -115,7 +115,7 @@ services:
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASS}
-      - REDIS_HOST=&{REDIS_HOST}
+      - REDIS_HOST=${REDIS_HOST}
     depends_on:
       - db
       - redis
