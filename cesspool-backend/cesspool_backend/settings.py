@@ -230,8 +230,8 @@ if USE_MQTT and None in [MQTT_HOST, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD]:
 CELERY_TIMEZONE = TIME_ZONE
 DJANGO_CELERY_BEAT_TZ_AWARE = False
 
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = environ.get("REDIS_HOST", "redis://localhost:6379")
+CELERY_RESULT_BACKEND = environ.get("REDIS_HOST", "redis://localhost:6379")
 CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 CELERY_BEAT_SCHEDULE = {
