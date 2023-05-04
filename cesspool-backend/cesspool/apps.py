@@ -12,7 +12,7 @@ class CesspoolConfig(AppConfig):
         from cesspool.mqtt import MqttClient
 
         is_mqtt_running = bool(int(environ.get("IS_MQTT_RUNNING", "0"), 0))
-        if not is_mqtt_running:
+        if not is_mqtt_running and settings.USE_MQTT:
             client = MqttClient(
                 host = settings.MQTT_HOST,
                 port = settings.MQTT_PORT,
