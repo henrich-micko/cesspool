@@ -63,9 +63,6 @@ services:
 
   redis:
     image: redis:alpine
-    command: redis-server --appendonly yes --replica-read-only no 
-    expose:
-        - 6379
 
   celery:
     restart: always
