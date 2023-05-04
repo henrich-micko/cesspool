@@ -13,7 +13,7 @@ from account.models import UserAccount
 logger = get_task_logger(__name__)
 
 
-@shared_task
+@shared_task()
 def send_admin_cesspool_problems():
     problems, problems_exists = {}, False
     for cesspool in Cesspool.objects.all():
@@ -46,7 +46,7 @@ def send_admin_cesspool_problems():
             problem.save()
 
 
-@shared_task
+@shared_task()
 def send_client_ctu_notf():
     data, data_exists = {}, False
     for user in UserAccount.objects.filter(groups__name = "client"):

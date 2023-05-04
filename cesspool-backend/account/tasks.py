@@ -12,7 +12,7 @@ from account.models import ActivateUserToken, ResetPasswordToken
 logger = get_task_logger(__name__)
 
 
-@shared_task
+@shared_task()
 def send_activate_email(activate_token_pk):
     activate_token = ActivateUserToken.objects.get(pk = activate_token_pk)
 
@@ -25,7 +25,7 @@ def send_activate_email(activate_token_pk):
     else: logger.info(f"Email to {email_receiver} would be sand.")
 
 
-@shared_task
+@shared_task()
 def send_reset_password_token_email(token_pk):
     token = ResetPasswordToken.objects.get(pk = token_pk)
 

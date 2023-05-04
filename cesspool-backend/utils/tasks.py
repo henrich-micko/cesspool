@@ -5,7 +5,7 @@ from django.utils import timezone
 from celery import shared_task
 
 
-@shared_task
+@shared_task()
 def check_delete_models():
     acctual_time, time_diff = timezone.now(), timezone.timedelta(0)
 
