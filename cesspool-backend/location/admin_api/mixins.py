@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class CityAdminMixin(MultipleFieldLookupMixin):
-    permissions = [IsAuthenticated, *has_user_permission("location.manage_city")]
+    permission_classes =[IsAuthenticated, *has_user_permission("location.manage_city")]
     serializer_class = CityForAdminSerializer
     lookup_fields = ["district", "title"]
 

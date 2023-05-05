@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class CesspoolAdminMixin:
-    permissions = [IsAuthenticated ,*has_user_permission("cesspool.manage_cesspool")]
+    permission_classes =[IsAuthenticated ,*has_user_permission("cesspool.manage_cesspool")]
     serializer_class = CesspoolForAdminSerializer
     lookup_field = "code"
 

@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class CTUMixin:
-    permissions = [IsAuthenticated ,*has_user_permission("cesspool.related_to_cesspool")]
+    permission_classes =[IsAuthenticated ,*has_user_permission("cesspool.related_to_cesspool")]
     lookup_field = "cesspool__code"
     lookup_value_regex = "[^/]+"
 

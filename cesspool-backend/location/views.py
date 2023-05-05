@@ -14,7 +14,7 @@ from utils.utils import try_parse_get_param
 
 
 class CityAutocompleteAPIView(APIView):
-    permissions = [IsAuthenticated]
+    permission_classes =[IsAuthenticated]
 
     def get(self, request):
         value = request.GET.get("value", None)

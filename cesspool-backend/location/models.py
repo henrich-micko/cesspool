@@ -13,7 +13,7 @@ class City(ModelWithDeleteField):
 
     class Meta:
         unique_together = ["title", "district"]
-        permissions = [
+        permissions =[
             ["export_data", "Can export data"],
             ["be_city_admin", "Can be an admin of city"],
             ["manage_city", "Can manage cities"]

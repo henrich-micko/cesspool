@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class AccountAdminMixin:
-    permissions = [IsAuthenticated, *has_user_permission("account.manage_account")]
+    permission_classes =[IsAuthenticated, *has_user_permission("account.manage_account")]
     serializer_class = UserAccountAdminSerializer
     lookup_field = "pk"
 

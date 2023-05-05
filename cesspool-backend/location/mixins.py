@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class CityManagerMixin(MultipleFieldLookupMixin):
-    permissions = [IsAuthenticated ,*has_user_permission("location.be_city_admin")]
+    permission_classes =[IsAuthenticated ,*has_user_permission("location.be_city_admin")]
     serializer_class = CitySerializer
     lookup_fields = ["district", "title"]
 
@@ -17,7 +17,7 @@ class CityManagerMixin(MultipleFieldLookupMixin):
     
 
 class CityManagerOrAdminMixin(CityManagerMixin):
-    permissions = [IsAuthenticated, perm_or(
+    permission_classes =[IsAuthenticated, perm_or(
         *has_user_permission("location.be_city_admin"), *has_user_permission("location.manage_city")
     )]
 

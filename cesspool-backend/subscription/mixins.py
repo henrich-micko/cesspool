@@ -5,7 +5,6 @@ from subscription.models import Subscription
 
 
 class SubscriptionMixin:
-    permissions = [IsAuthenticated]
     serializer_class = SubscriptionSerializer
 
     def get_queryset(self):
