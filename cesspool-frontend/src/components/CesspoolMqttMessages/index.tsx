@@ -15,6 +15,7 @@ const CesspoolMqttMessages: React.FC<_CesspoolMqttMessages> = (props) => {
             { props.records.map(r => <>{
                 r.mqtt_message?.split("&&").map(m => <p style={{ color: glass, margin: 0, textAlign: "left", paddingLeft: "1em" }}>{m}</p>)
             }<br /></> ) }
+            <br />
         </TheBox>
     )
 };
