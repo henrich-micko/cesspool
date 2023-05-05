@@ -22,7 +22,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
 
 class UserAccountSerializer(MSWithListners):
-    permission_classes =PermissionField(required = False)
+    permissions = PermissionField(required = False)
     groups = GroupField()
     created_by = serializers.EmailField(read_only = True)
 
