@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 #     }
 # }
 
-if not bool(environ.get("USE_LOCAL_DB", "0")):
+if not bool(int(environ.get("USE_LOCAL_DB", "0"))):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -127,7 +127,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": "mydatabase",
+            "NAME": "db.sqlite3",
         }
     }
 
