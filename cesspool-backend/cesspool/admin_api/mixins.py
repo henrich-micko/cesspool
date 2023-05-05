@@ -34,5 +34,4 @@ class CesspoolAdminMixin:
             try: cesspool_queryset = cesspool_queryset.filter(created_by = int(created_by))
             except ValueError: pass
 
-        return cesspool_queryset            
-            
+        return cesspool_queryset
