@@ -9,6 +9,10 @@
         padding-bottom: 1em;
         width: 100%;
 
+        @media (max-width: 1000px) {
+            flex-direction: column;
+        }
+
         .selector {
             display: flex;
             gap: 0.5em;

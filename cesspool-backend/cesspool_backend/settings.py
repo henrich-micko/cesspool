@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 from os import environ
+from dotenv.main import load_dotenv
+
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,18 +111,7 @@ WSGI_APPLICATION = 'cesspool_backend.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': environ.get('DB_NAME'),
-        'USER': environ.get('DB_USER'),
-        'PASSWORD': environ.get('DB_PASSWORD'),
-        'HOST': environ.get('DB_HOST'),
-        "PORT": environ.get("DB_PORT")
-    }
-}
-
-if int(environ.get("CUSTOM_DB", "0"), 0):
+if not bool(environ.get("USE_LOCAL_DB", "0")):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -127,6 +120,14 @@ if int(environ.get("CUSTOM_DB", "0"), 0):
             'PASSWORD': environ.get('DB_PASSWORD'),
             'HOST': environ.get('DB_HOST'),
             "PORT": environ.get("DB_PORT")
+        }
+    }
+
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "mydatabase",
         }
     }
 

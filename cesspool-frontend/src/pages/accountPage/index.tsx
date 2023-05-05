@@ -12,6 +12,7 @@ import AuthContext from "@context/AuthContext";
 import { faRefresh, faSliders, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAxios from "@hooks/useAxios";
+import { useMaxWidth } from "@hooks/useIsMobile";
 import translate from "@permissions/translate";
 import { Cesspool, City, CreatedByItem, User } from "@types";
 import React, { useState } from "react";
@@ -31,6 +32,7 @@ interface _AccountRelatedItems {
 
 export const AccountRelatedCesspools: React.FC<_AccountRelatedItems> = (props) => {
     const [items, setItems] = useState<Cesspool[]>([]);
+    const isSmall = useMaxWidth("1000px");
 
     const axios = useAxios()
 
@@ -45,15 +47,15 @@ export const AccountRelatedCesspools: React.FC<_AccountRelatedItems> = (props) =
             <TheTable>
                 <tr>
                     <th>Pridelený ku žumpe</th>
-                    <th>Lokacia</th>
+                    {!isSmall && <th>Lokacia</th> }
                     <th>Je vlastnikom</th>
                 </tr>
                 
                 <> {
                     items.map(item => 
                         <tr>
-                            <th><Link to={"admin/cessspool/"+item.code} style={{ color: "inherit" }}>{item.code}</Link></th>
-                            <th>{item.city}</th>
+                            <th><Link to={"/admin/cesspool/"+item.code} style={{ color: "inherit" }}>{item.code}</Link></th>
+                            {!isSmall && <th>{item.city}</th>}
                             <th>{item.owner?.pk === props.pk ? "Ano" : "Nie"}</th>
                         </tr>
                     )

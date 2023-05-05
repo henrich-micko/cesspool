@@ -38,7 +38,6 @@ const CtuSettings: React.FC<_CtuSettings> = (props) => {
                     autoFocus
                     type="text"
                     spellCheck={false}
-                    placeholder="Názov"
                     value={title}
                     maxLength={15}
                     onChange={onChangeSetState(setTitle, setError)} 
@@ -52,7 +51,6 @@ const CtuSettings: React.FC<_CtuSettings> = (props) => {
                     autoFocus
                     type="number"
                     spellCheck={false}
-                    placeholder="Kontaktovať pri hladine"
                     value={contactAtLevel}
                     onChange={onChangeSetState(setContactAtLevel, setError)} 
                     required={true}

@@ -17,8 +17,8 @@ def send_activate_email(activate_token_pk):
     activate_token = ActivateUserToken.objects.get(pk = activate_token_pk)
 
     email_receiver = activate_token.user
-    email_subject = _("Activate user account")
-    email_about = _("Click on the link, set password and enojy our platform.")
+    email_subject = _("Aktivovať účet")
+    email_about = _(f"Bol vám vytvorený učet, ak ste si ho nestihli aktivovať prejdite na nášu stránku: http://{settings.WEBSITE}")
     token_link = f"http://{settings.WEBSITE}/account/activate/{activate_token.token}"
 
     if settings.USE_EMAIL: send_token_email(email_receiver, email_subject, email_about, token_link)

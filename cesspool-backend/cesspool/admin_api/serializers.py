@@ -4,6 +4,8 @@ from cesspool.serializer_fields import CesspoolUsersField, CesspoolIsSubsription
 from account.models import UserAccount
 from utils.serializer_fields import created_by_field_repr
 from rest_framework.serializers import EmailField
+from utils.utils import get_group_by_name
+
 
 
 class CesspoolForAdminSerializer(CesspoolSerializer):
@@ -37,14 +39,18 @@ class CesspoolForAdminSerializer(CesspoolSerializer):
                 user.is_active = False
                 user.save()
 
-            if created or user.has_perm("cesspool.related_to_cesspool"): 
-                # delete old mf cause he is aint boss anymore
-                try: CesspoolToUser.objects.get(cesspool = instance, is_super_owner = True).delete()
-                except CesspoolToUser.DoesNotExist: pass
-                
-                ctu, _ = CesspoolToUser.objects.get_or_create(user = user, cesspool = instance)
-                ctu.is_super_owner = True
-                ctu.save()
+            if not user.has_group("client"):
+                group = get_group_by_name("client")
+                if group != None: 
+                    user.groups.add(group)
+
+            # delete old mf cause he is aint boss anymore
+            try: CesspoolToUser.objects.get(cesspool = instance, is_super_owner = True).delete()
+            except CesspoolToUser.DoesNotExist: pass
+            
+            ctu, _ = CesspoolToUser.objects.get_or_create(user = user, cesspool = instance)
+            ctu.is_super_owner = True
+            ctu.save()
 
         super().on_create_and_update(instance, validated_data)
 
