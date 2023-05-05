@@ -2,10 +2,11 @@ from utils.permission import has_user_permission
 from cesspool.models import CesspoolToUser
 from cesspool.serializers import CesspoolToUserSerializer, CesspoolToUserWithUsersSerializer
 from utils.utils import try_get_instance
+from rest_framework.permissions import IsAuthenticated
 
 
 class CTUMixin:
-    permissions = has_user_permission("cesspool.related_to_cesspool")
+    permissions = [IsAuthenticated ,*has_user_permission("cesspool.related_to_cesspool")]
     lookup_field = "cesspool__code"
     lookup_value_regex = "[^/]+"
 

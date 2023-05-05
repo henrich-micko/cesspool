@@ -2,10 +2,11 @@ from django.shortcuts import get_object_or_404
 from utils.permission import has_user_permission, perm_or
 from cesspool.records_api.serializers import RecordSerializer
 from cesspool.models import Cesspool, CesspoolToUser
+from rest_framework.permissions import IsAuthenticated
 
 
 class RecordsMixin:
-    permissions = [ perm_or(has_user_permission("cesspool.related_to_cesspool"), has_user_permission("cesspool.manage_cesspool")) ]
+    permissions = [ IsAuthenticated, perm_or(has_user_permission("cesspool.related_to_cesspool"), has_user_permission("cesspool.manage_cesspool")) ]
     lookup_field = "cesspool__code"
     lookup_value_regex = "[^/]+"
     serializer_class = RecordSerializer

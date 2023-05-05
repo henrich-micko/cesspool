@@ -39,7 +39,7 @@ const CityPage: React.FC = () => {
     return (
         <Page>
             {/* check for permission */}
-            {  user && !user.groups.includes("city_admin") && <Navigate to="/" /> }        
+            { user === null || !user.groups.includes("city_admin") && <Navigate to="/" /> }        
         
             <Navigation />
 

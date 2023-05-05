@@ -3,10 +3,11 @@ from utils.permission import has_user_permission
 from cesspool.admin_api.serializers import CesspoolForAdminSerializer
 from cesspool.models import Cesspool, CesspoolToUser
 from location.utils import split_location
+from rest_framework.permissions import IsAuthenticated
 
 
 class CesspoolAdminMixin:
-    permissions = has_user_permission("cesspool.manage_cesspool")
+    permissions = [IsAuthenticated ,*has_user_permission("cesspool.manage_cesspool")]
     serializer_class = CesspoolForAdminSerializer
     lookup_field = "code"
 

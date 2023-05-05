@@ -1,10 +1,11 @@
 from account.admin_api.serializers import UserAccountAdminSerializer
 from account.models import UserAccount
 from utils.permission import has_user_permission
+from rest_framework.permissions import IsAuthenticated
 
 
 class AccountAdminMixin:
-    permissions = has_user_permission("account.manage_account")
+    permissions = [IsAuthenticated, *has_user_permission("account.manage_account")]
     serializer_class = UserAccountAdminSerializer
     lookup_field = "pk"
 

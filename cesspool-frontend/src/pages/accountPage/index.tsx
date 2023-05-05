@@ -171,7 +171,7 @@ const AccountPage: React.FC = () => {
     return (
         <Page>
             {/* check for permission */}
-            {  user && !user.permissions.includes("account.manage_account") && <Navigate to="/" /> }
+            {  user === null || !user.permissions.includes("account.manage_account") && <Navigate to="/" /> }
 
             <Navigation />
 

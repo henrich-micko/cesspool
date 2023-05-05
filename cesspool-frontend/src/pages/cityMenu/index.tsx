@@ -54,7 +54,7 @@ const CityMenu: React.FC = () => {
     return (
         <Page>
             {/* check for permission */}
-            {  user && !user.permissions.includes("location.be_city_admin") && <Navigate to="/" /> }
+            { user === null || !user.permissions.includes("location.be_city_admin") && <Navigate to="/" /> }
 
             {/* check redirection */}
             { redirectTo !== null && <Navigate to={redirectTo.toString()} /> }

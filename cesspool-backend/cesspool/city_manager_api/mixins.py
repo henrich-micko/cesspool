@@ -2,10 +2,11 @@ from utils.permission import has_user_permission
 from location.utils import split_location
 from cesspool.city_manager_api.serializer import CesspoolForCityManagerSerializer
 from cesspool.models import CesspoolToUser, Cesspool
+from rest_framework.permissions import IsAuthenticated
 
 
 class CesspoolCityManagerMixins:
-    permission_classes = has_user_permission("location.be_city_admin")
+    permission_classes = [IsAuthenticated, *has_user_permission("location.be_city_admin")]
     serializer_class = CesspoolForCityManagerSerializer
     lookup_field = "code"
 
